@@ -822,12 +822,16 @@ export default function App() {
         id="choose-journey"
         className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 scroll-mt-24 py-16 sm:py-20"
       >
-        {/* Subtle Grand Mandala Background Art (Greyish on Cream) */}
-        <img
+        {/* Subtle Grand Mandala Background Art (Greyish on Cream) — Animated on scroll */}
+        <motion.img
           src="/images/mandala-grand-navy.png"
           alt=""
           aria-hidden="true"
-          className="w-[780px] h-[780px] object-contain absolute -top-48 left-1/2 -translate-x-1/2 opacity-[0.04] grayscale pointer-events-none select-none"
+          initial={{ opacity: 0, scale: 0.85, rotate: -15 }}
+          whileInView={{ opacity: 0.045, scale: 1, rotate: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="w-[780px] h-[780px] object-contain absolute -top-48 left-1/2 -translate-x-1/2 grayscale pointer-events-none select-none"
         />
 
         <div className="relative z-10 max-w-[1240px] mx-auto w-full">
@@ -849,12 +853,16 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {/* 05A — For Aspiring VLEs */}
             <div className="relative rounded-[28px] bg-[#0a1628] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#ff5500]/40 transition-all duration-300 overflow-hidden group">
-              {/* Corner Traditional Mandala Art Watermark */}
-              <img
+              {/* Corner Traditional Mandala Art Watermark — Animated on scroll */}
+              <motion.img
                 src="/images/mandala-grand-white.png"
                 alt=""
                 aria-hidden="true"
-                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 opacity-[0.06] pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
+                initial={{ opacity: 0, scale: 0.7, x: 40, y: 40, rotate: -30 }}
+                whileInView={{ opacity: 0.07, scale: 1, x: 0, y: 0, rotate: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
               />
 
               <div className="relative z-10">
@@ -929,12 +937,16 @@ export default function App() {
 
             {/* 05B — For Citizens */}
             <div className="relative rounded-[28px] bg-[#07132b] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#0284c7]/40 transition-all duration-300 overflow-hidden group">
-              {/* Corner Traditional Mandala Art Watermark */}
-              <img
+              {/* Corner Traditional Mandala Art Watermark — Animated on scroll */}
+              <motion.img
                 src="/images/mandala-card-02.png"
                 alt=""
                 aria-hidden="true"
-                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 opacity-[0.06] pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
+                initial={{ opacity: 0, scale: 0.7, x: 40, y: 40, rotate: 30 }}
+                whileInView={{ opacity: 0.07, scale: 1, x: 0, y: 0, rotate: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
               />
 
               <div className="relative z-10">
@@ -1880,7 +1892,7 @@ export default function App() {
           I. FINAL CALL TO ACTION — DEDICATED VLE CONVERSION STAGE
           Headline: Ready to Bring Digital Services to Your Community?
           Art Graphics: Traditional Indian Mandalas on Bottom-Left & Bottom-Right
-          Zero Citizen Split · 100% Dedicated to Village Level Entrepreneurs
+          Animated entrance every time user scrolls to this section (viewport: once: false)
           ==================================================================== */}
       <section
         id="get-started"
@@ -1894,35 +1906,57 @@ export default function App() {
           }}
         />
 
-        {/* Ambient Corner Radial Glows for Art Graphics */}
-        <div
-          className="absolute -bottom-24 -left-24 w-[320px] h-[320px] rounded-full opacity-25 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
-        />
-        <div
-          className="absolute -bottom-24 -right-24 w-[320px] h-[320px] rounded-full opacity-25 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
-        />
+        {/* BOTTOM-LEFT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.65, x: -80, y: 80, rotate: -35 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -bottom-32 sm:-bottom-40 -left-32 sm:-left-40 pointer-events-none select-none z-1"
+        >
+          {/* Ambient Glow */}
+          <div
+            className="absolute inset-0 w-full h-full rounded-full opacity-35 blur-3xl pointer-events-none"
+            style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
+          />
+          <img
+            src="/images/mandala-grand-white.png"
+            alt=""
+            aria-hidden="true"
+            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16] drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+          />
+        </motion.div>
 
-        {/* BOTTOM-LEFT CORNER ART GRAPHIC */}
-        <img
-          src="/images/mandala-grand-white.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[320px] sm:w-[420px] lg:w-[480px] h-[320px] sm:h-[420px] lg:h-[480px] object-contain absolute -bottom-32 sm:-bottom-40 -left-32 sm:-left-40 opacity-[0.14] pointer-events-none select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.08)]"
-        />
-
-        {/* BOTTOM-RIGHT CORNER ART GRAPHIC */}
-        <img
-          src="/images/mandala-grand-white.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[320px] sm:w-[420px] lg:w-[480px] h-[320px] sm:h-[420px] lg:h-[480px] object-contain absolute -bottom-32 sm:-bottom-40 -right-32 sm:-right-40 opacity-[0.14] pointer-events-none select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.08)]"
-        />
+        {/* BOTTOM-RIGHT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.65, x: 80, y: 80, rotate: 35 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -bottom-32 sm:-bottom-40 -right-32 sm:-right-40 pointer-events-none select-none z-1"
+        >
+          {/* Ambient Glow */}
+          <div
+            className="absolute inset-0 w-full h-full rounded-full opacity-35 blur-3xl pointer-events-none"
+            style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
+          />
+          <img
+            src="/images/mandala-grand-white.png"
+            alt=""
+            aria-hidden="true"
+            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16] drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+          />
+        </motion.div>
 
         <div className="absolute inset-0 grain-surface pointer-events-none z-0" />
 
-        <div className="relative z-10 max-w-[1040px] mx-auto w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-[1040px] mx-auto w-full text-center"
+        >
           {/* Government / VLE Credential Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-semibold tracking-wider uppercase mb-5 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
@@ -1998,7 +2032,7 @@ export default function App() {
               Call Toll-Free Helpdesk: <span className="text-[#ff7733] font-bold">14599</span>
             </span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ====================================================================
