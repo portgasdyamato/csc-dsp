@@ -28,6 +28,15 @@ import {
   Users,
   CheckCircle2,
   Check,
+  Phone,
+  Clock,
+  Package,
+  ShieldAlert,
+  Sparkles,
+  GraduationCap,
+  IndianRupee,
+  Mail,
+  Send,
 } from 'lucide-react';
 
 import ServiceVectorLogo from './components/ServiceVectorLogo';
@@ -85,7 +94,7 @@ function CardVisualStage({ variant, isHovered }) {
             scale: isHovered ? 1.06 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
         />
 
         <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
@@ -114,7 +123,7 @@ function CardVisualStage({ variant, isHovered }) {
             scale: isHovered ? 1.06 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none drop-shadow-[0_2px_12px_rgba(255,255,255,0.25)]"
+          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
         />
 
         <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
@@ -143,179 +152,10 @@ function CardVisualStage({ variant, isHovered }) {
           scale: isHovered ? 1.06 : 0.96,
         }}
         transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-        className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+        className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
       />
 
       <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
-    </div>
-  );
-}
-
-// ============================================================================
-// AUTHENTIC EDITORIAL GRAPHIC HEADERS FOR NEWS & UPDATES (MATCHING IMAGE 2)
-// Card 01: Mint background with WhatsApp scam warning & clean smartphone graphic
-// Card 02: Sky-blue background with AI Olympiad 6.0 badge & academic credentials
-// Card 03: Deep purple background with Tax2Win ITR Super Dhamaka & Tata Punch
-// ============================================================================
-function NewsVectorSecurity() {
-  return (
-    <div className="relative w-full h-full bg-[#eefbf4] overflow-hidden p-4 sm:p-5 flex flex-col justify-between border-b border-emerald-100 select-none">
-      {/* Top Badges */}
-      <div className="flex items-center justify-between w-full">
-        <span className="px-2.5 py-0.5 rounded-md bg-[#10b981] text-white text-[11px] font-bold tracking-wide shadow-xs">
-          News
-        </span>
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/90 border border-emerald-200/60 shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500]" />
-          <span className="text-[11px] font-bold text-slate-800 tracking-wider">CSC</span>
-        </div>
-      </div>
-
-      {/* Main Content Row */}
-      <div className="flex items-center justify-between gap-2.5 mt-1">
-        <div className="flex-1 min-w-0 pr-1">
-          <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#ef4444] text-white text-[9.5px] font-black tracking-wider uppercase mb-1.5">
-            VLES BEWARE !
-          </div>
-          <p className="text-[11px] sm:text-[11.5px] text-slate-800 leading-tight font-medium">
-            Scammers are making <span className="font-bold text-slate-900">Fake WhatsApp Channels</span> pretending to be CSC officials...
-          </p>
-          <div className="mt-2 space-y-0.5 text-[10px] font-semibold text-[#dc2626]">
-            <div className="flex items-center gap-1">
-              <span className="font-bold">✕</span>
-              <span>Don't download any APK App</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="font-bold">✕</span>
-              <span>Don't transfer money for CSC ID</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Crisp Smartphone Graphic */}
-        <div className="w-[66px] sm:w-[74px] h-[98px] sm:h-[104px] bg-white rounded-2xl border-2 border-slate-200/90 shadow-sm p-1.5 flex flex-col justify-between items-center relative shrink-0">
-          <div className="w-6 h-1 rounded-full bg-slate-200" />
-
-          {/* Alert Notification Badge */}
-          <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#ef4444] text-white text-[9px] font-black grid place-items-center shadow-xs">
-            !
-          </div>
-
-          <div className="text-center my-auto">
-            <div className="text-[11px] font-black text-emerald-600 tracking-tight leading-none mb-1">
-              CSC
-            </div>
-            <div className="px-1.5 py-0.5 rounded bg-red-50 border border-red-200 text-[7.5px] font-bold text-red-600 tracking-wider">
-              BEWARE
-            </div>
-          </div>
-
-          <div className="w-3.5 h-1 rounded-full bg-slate-200" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NewsVectorAcademy() {
-  return (
-    <div className="relative w-full h-full bg-[#f0f7ff] overflow-hidden p-4 sm:p-5 flex flex-col justify-between border-b border-blue-100 select-none">
-      {/* Top Badges */}
-      <div className="flex items-center justify-between w-full">
-        <span className="px-2.5 py-0.5 rounded-md bg-[#ef4444] text-white text-[11px] font-bold tracking-wide shadow-xs">
-          News
-        </span>
-        <span className="px-2.5 py-0.5 rounded-md bg-white border border-sky-200/80 text-[#0284c7] text-[10.5px] font-bold tracking-wider shadow-xs">
-          CSC ACADEMY
-        </span>
-      </div>
-
-      {/* Main Content Row */}
-      <div className="flex items-center justify-between gap-2.5 mt-1">
-        <div className="flex-1 min-w-0 pr-1">
-          <div className="text-[12px] sm:text-[12.5px] font-bold text-[#0284c7] leading-tight mb-1.5">
-            Smarter Testing with AI Integration!
-          </div>
-          <div className="bg-white/95 border border-blue-100 rounded-lg p-2 text-[10px] text-slate-700 leading-snug mb-1 shadow-2xs">
-            CSC Olympiad 6.0 brings AI-driven performance tracking to help students analyze & improve!
-          </div>
-          <p className="text-[9.5px] text-slate-500 font-medium">
-            Mock tests, topic-wise quizzes & instant feedback!
-          </p>
-        </div>
-
-        {/* Olympiad 6.0 Badge Frame */}
-        <div className="w-[66px] sm:w-[74px] h-[98px] sm:h-[104px] bg-gradient-to-b from-[#38bdf8] to-[#0284c7] text-white rounded-2xl shadow-sm p-2 flex flex-col justify-between items-center relative shrink-0 text-center">
-          <div className="text-[8.5px] font-semibold text-yellow-200 flex items-center justify-center gap-0.5">
-            <span>💡</span>
-            <span className="font-mono">E=mc²</span>
-          </div>
-
-          <div className="my-auto">
-            <div className="text-[10px] font-extrabold uppercase tracking-tight leading-tight">
-              Olympiad
-            </div>
-            <div className="text-[13px] font-black leading-none mt-0.5">
-              6.0
-            </div>
-          </div>
-
-          <div className="text-[7.5px] font-bold text-white bg-white/20 backdrop-blur-xs px-1.5 py-0.5 rounded-full w-full">
-            Grades 3–12
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NewsVectorCommunity() {
-  return (
-    <div className="relative w-full h-full bg-gradient-to-br from-[#120524] via-[#26094a] to-[#120524] overflow-hidden p-4 sm:p-5 flex flex-col justify-between border-b border-purple-900/40 text-white select-none">
-      {/* Top Badges */}
-      <div className="flex items-center justify-between w-full">
-        <span className="px-2.5 py-0.5 rounded-md bg-[#10b981] text-white text-[11px] font-bold tracking-wide shadow-xs">
-          News
-        </span>
-        <span className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/15 text-white/90 text-[10.5px] font-bold tracking-wide">
-          Tax2win · CSC
-        </span>
-      </div>
-
-      {/* Main Content Row */}
-      <div className="flex items-center justify-between gap-3 mt-1">
-        {/* VLE ITR Gold Badge */}
-        <div className="flex flex-col items-center shrink-0">
-          <div className="w-14 h-14 rounded-full border-2 border-amber-400 bg-gradient-to-b from-amber-500/20 to-amber-900/30 p-1 flex flex-col items-center justify-center text-center shadow-[0_0_12px_rgba(251,191,36,0.35)]">
-            <div className="text-[6.5px] font-black text-amber-300 leading-none tracking-tight uppercase">
-              VLE ITR
-            </div>
-            <div className="text-[8px] font-black text-amber-400 leading-tight">
-              SUPER
-            </div>
-            <div className="text-[6.5px] font-black text-amber-300 leading-none tracking-tight">
-              DHAMAKA
-            </div>
-          </div>
-          <div className="mt-1 px-1.5 py-0.5 rounded bg-black/40 border border-amber-400/30 text-[8px] font-bold text-amber-200">
-            5000 ITR+GST
-          </div>
-        </div>
-
-        {/* Tata Punch Grand Offer Card */}
-        <div className="flex-1 bg-gradient-to-r from-blue-600/70 to-indigo-600/70 border border-blue-400/40 rounded-xl p-2.5 text-center shadow-md">
-          <div className="text-[9.5px] font-bold text-blue-200 flex items-center justify-center gap-1">
-            <span>🚗</span>
-            <span>Tata Punch</span>
-          </div>
-          <div className="text-[11px] font-black text-white leading-tight mt-0.5">
-            Grand VLE Offer
-          </div>
-          <div className="text-[7.5px] text-blue-100/80 mt-1">
-            Validity: 1st April - 31st July 2025
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -354,6 +194,304 @@ function getFanSlot(offset, width = 1200) {
     2: { x: 400, y: 22, rotate: 7, scale: 0.76, zIndex: 10, brightness: 0.8 },
   };
   return desktopSlots[offset] || desktopSlots[0];
+}
+
+// ============================================================================
+// BESPOKE ISOMETRIC STAGE FOR CSC WEBSITE NEWS (MATCHING USER REFERENCE DESIGN)
+// 3 custom vector illustrations directly illustrating CSC services:
+// 1. Security Advisory: Isometric Phone with Security Shield & Anti-Phishing Alert
+// 2. CSC Academy: Isometric Workstation with AI Neural Network & Academic Honor
+// 3. Financial Inclusion: Isometric DigiPay Micro-ATM & Biometric Fingerprint Sensor
+// ============================================================================
+function NewsIllustrationStage({ variant }) {
+  if (variant === 'security') {
+    return (
+      <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
+        {/* Black Squircle Badge in Top-Right Corner */}
+        <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
+          <ShieldAlert className="w-4 h-4 text-white" />
+        </div>
+
+        <svg
+          viewBox="0 0 320 200"
+          className="w-full h-full object-contain"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Base Pedestal Platform */}
+          <polygon
+            points="50,135 160,85 270,135 160,185"
+            fill="#ffffff"
+            stroke="#d1d5db"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points="50,135 160,185 160,195 50,145"
+            fill="#e5e7eb"
+            stroke="#9ca3af"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points="160,185 270,135 270,145 160,195"
+            fill="#d1d5db"
+            stroke="#9ca3af"
+            strokeWidth="1.2"
+          />
+
+          {/* Grid lines on platform */}
+          <line x1="86" y1="118" x2="196" y2="168" stroke="#f3f4f6" strokeWidth="1" />
+          <line x1="123" y1="101" x2="233" y2="151" stroke="#f3f4f6" strokeWidth="1" />
+          <line x1="196" y1="101" x2="86" y2="151" stroke="#f3f4f6" strokeWidth="1" />
+          <line x1="233" y1="118" x2="123" y2="168" stroke="#f3f4f6" strokeWidth="1" />
+
+          {/* Smartphone lying flat in isometric angle */}
+          {/* Phone drop shadow */}
+          <polygon points="105,142 165,115 195,128 135,155" fill="#cbd5e1" opacity="0.7" />
+          {/* Phone body bottom thickness */}
+          <polygon points="102,136 132,150 132,154 102,140" fill="#334155" />
+          <polygon points="132,150 192,123 192,127 132,154" fill="#1e293b" />
+          {/* Phone surface face */}
+          <polygon
+            points="102,136 162,109 192,123 132,150"
+            fill="#0f172a"
+            stroke="#334155"
+            strokeWidth="1.5"
+          />
+          {/* Phone Screen Glass */}
+          <polygon points="108,133 160,110 186,121 134,144" fill="#022c22" />
+          {/* Message bubble on screen */}
+          <polygon points="115,130 152,113 168,120 131,137" fill="#065f46" />
+          <line x1="122" y1="127" x2="148" y2="116" stroke="#a7f3d0" strokeWidth="2" strokeLinecap="round" />
+          <line x1="126" y1="132" x2="156" y2="119" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" />
+
+          {/* Floating 3D Security Shield above phone */}
+          <g transform="translate(136, 42)">
+            {/* Left Shield Half */}
+            <path
+              d="M24 6 L6 14 C6 35 24 50 24 55 C24 50 24 6 24 6 Z"
+              fill="#10b981"
+              stroke="#047857"
+              strokeWidth="1.5"
+            />
+            {/* Right Shield Half */}
+            <path
+              d="M24 6 L42 14 C42 35 24 50 24 55 C24 50 24 6 24 6 Z"
+              fill="#34d399"
+              stroke="#047857"
+              strokeWidth="1.5"
+            />
+            {/* Checkmark inside Shield */}
+            <path
+              d="M16 28 L22 34 L32 20"
+              stroke="#ffffff"
+              strokeWidth="3.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </g>
+
+          {/* Floating WhatsApp / Alert Notification Pill */}
+          <g transform="translate(56, 68)">
+            <rect x="0" y="0" width="48" height="28" rx="8" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+            <circle cx="12" cy="14" r="5" fill="#ef4444" />
+            <line x1="22" y1="11" x2="40" y2="11" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
+            <line x1="22" y1="17" x2="34" y2="17" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" />
+          </g>
+
+          {/* Floating Official Cyber Lock Badge */}
+          <g transform="translate(225, 78)">
+            <rect x="0" y="8" width="30" height="22" rx="5" fill="#ffffff" stroke="#9ca3af" strokeWidth="1.2" />
+            <path d="M8 8 V4 C8 0 22 0 22 4 V8" stroke="#10b981" strokeWidth="2.5" fill="none" />
+            <circle cx="15" cy="17" r="2.5" fill="#10b981" />
+            <line x1="15" y1="19" x2="15" y2="24" stroke="#10b981" strokeWidth="1.8" />
+          </g>
+        </svg>
+      </div>
+    );
+  }
+
+  if (variant === 'academy') {
+    return (
+      <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
+        {/* Black Squircle Badge in Top-Right Corner */}
+        <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
+          <Sparkles className="w-4 h-4 text-white" />
+        </div>
+
+        <svg
+          viewBox="0 0 320 200"
+          className="w-full h-full object-contain"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Base Pedestal Platform */}
+          <polygon
+            points="50,135 160,85 270,135 160,185"
+            fill="#ffffff"
+            stroke="#d1d5db"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points="50,135 160,185 160,195 50,145"
+            fill="#e5e7eb"
+            stroke="#9ca3af"
+            strokeWidth="1.2"
+          />
+          <polygon
+            points="160,185 270,135 270,145 160,195"
+            fill="#d1d5db"
+            stroke="#9ca3af"
+            strokeWidth="1.2"
+          />
+
+          {/* Desktop Monitor Stand */}
+          <polygon points="135,142 185,142 175,152 125,152" fill="#cbd5e1" stroke="#9ca3af" strokeWidth="1" />
+          <rect x="152" y="112" width="16" height="32" rx="3" fill="#94a3b8" />
+
+          {/* Computer Screen Frame */}
+          <polygon points="80,48 240,48 248,56 88,56" fill="#f8fafc" stroke="#9ca3af" strokeWidth="1.2" />
+          <polygon points="240,48 248,56 248,118 240,112" fill="#cbd5e1" stroke="#9ca3af" strokeWidth="1.2" />
+          <rect x="80" y="48" width="160" height="66" rx="8" fill="#ffffff" stroke="#9ca3af" strokeWidth="1.5" />
+
+          {/* Screen Display (AI Diagnostic Testing UI) */}
+          <rect x="88" y="54" width="144" height="54" rx="5" fill="#0f172a" />
+
+          {/* AI Neural Network Graph */}
+          <circle cx="108" cy="80" r="4" fill="#0284c7" />
+          <circle cx="128" cy="68" r="3.5" fill="#38bdf8" />
+          <circle cx="128" cy="92" r="3.5" fill="#38bdf8" />
+          <circle cx="160" cy="81" r="5" fill="#818cf8" />
+          <circle cx="192" cy="70" r="3.5" fill="#c084fc" />
+          <circle cx="192" cy="92" r="3.5" fill="#38bdf8" />
+          <circle cx="212" cy="81" r="4" fill="#0284c7" />
+
+          {/* Interconnecting AI vectors */}
+          <line x1="108" y1="80" x2="128" y2="68" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
+          <line x1="108" y1="80" x2="128" y2="92" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
+          <line x1="128" y1="68" x2="160" y2="81" stroke="#818cf8" strokeWidth="1.5" opacity="0.9" />
+          <line x1="128" y1="92" x2="160" y2="81" stroke="#818cf8" strokeWidth="1.5" opacity="0.9" />
+          <line x1="160" y1="81" x2="192" y2="70" stroke="#c084fc" strokeWidth="1.5" opacity="0.9" />
+          <line x1="160" y1="81" x2="192" y2="92" stroke="#38bdf8" strokeWidth="1.5" opacity="0.9" />
+          <line x1="192" y1="70" x2="212" y2="81" stroke="#0284c7" strokeWidth="1.5" opacity="0.8" />
+          <line x1="192" y1="92" x2="212" y2="81" stroke="#0284c7" strokeWidth="1.5" opacity="0.8" />
+
+          {/* Floating Academic Olympiad Medal */}
+          <g transform="translate(48, 92)">
+            <path d="M12 18 L6 36 L16 31 L26 36 L20 18" fill="#f59e0b" stroke="#d97706" strokeWidth="1" />
+            <circle cx="16" cy="14" r="13" fill="#fbbf24" stroke="#d97706" strokeWidth="1.5" />
+            <circle cx="16" cy="14" r="9" fill="#fef3c7" />
+            <path d="M16 8 L18 12 L22 13 L19 16 L20 20 L16 17 L12 20 L13 16 L10 13 L14 12 Z" fill="#d97706" />
+          </g>
+
+          {/* Floating Certificate Badge */}
+          <g transform="translate(225, 96)">
+            <rect x="0" y="0" width="46" height="34" rx="5" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+            <line x1="8" y1="8" x2="26" y2="8" stroke="#0284c7" strokeWidth="2.5" strokeLinecap="round" />
+            <line x1="8" y1="15" x2="38" y2="15" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="8" y1="21" x2="32" y2="21" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="36" cy="24" r="4" fill="#0284c7" />
+          </g>
+        </svg>
+      </div>
+    );
+  }
+
+  // Financial Inclusion / Grassroots Banking (variant === 'banking')
+  return (
+    <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
+      {/* Black Squircle Badge in Top-Right Corner */}
+      <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
+        <IndianRupee className="w-4 h-4 text-white" />
+      </div>
+
+      <svg
+        viewBox="0 0 320 200"
+        className="w-full h-full object-contain"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Base Pedestal Platform */}
+        <polygon
+          points="50,135 160,85 270,135 160,185"
+          fill="#ffffff"
+          stroke="#d1d5db"
+          strokeWidth="1.2"
+        />
+        <polygon
+          points="50,135 160,185 160,195 50,145"
+          fill="#e5e7eb"
+          stroke="#9ca3af"
+          strokeWidth="1.2"
+        />
+        <polygon
+          points="160,185 270,135 270,145 160,195"
+          fill="#d1d5db"
+          stroke="#9ca3af"
+          strokeWidth="1.2"
+        />
+
+        {/* Micro-ATM Terminal (Isometric POS Device) */}
+        {/* Terminal Depth & Shadow */}
+        <polygon points="78,135 152,90 192,113 118,158" fill="#cbd5e1" />
+        <polygon points="78,135 118,158 118,170 78,147" fill="#475569" />
+        <polygon points="118,158 192,113 192,125 118,170" fill="#334155" />
+
+        {/* Terminal Face Plate */}
+        <polygon
+          points="78,130 152,85 192,108 118,153"
+          fill="#ffffff"
+          stroke="#94a3b8"
+          strokeWidth="1.5"
+        />
+
+        {/* POS Screen (DigiPay Terminal Screen) */}
+        <polygon points="112,102 158,76 182,90 136,116" fill="#0f172a" stroke="#0284c7" strokeWidth="1" />
+        <line x1="122" y1="100" x2="152" y2="83" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
+        <line x1="128" y1="107" x2="162" y2="88" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" />
+
+        {/* Numeric Keypad on POS */}
+        {[
+          { x: 96, y: 126 }, { x: 105, y: 121 }, { x: 114, y: 116 },
+          { x: 101, y: 133 }, { x: 110, y: 128 }, { x: 119, y: 123 },
+          { x: 106, y: 140 }, { x: 115, y: 135 }, { x: 124, y: 130 },
+        ].map((dot, i) => (
+          <circle key={i} cx={dot.x} cy={dot.y} r="1.8" fill="#64748b" />
+        ))}
+
+        {/* Micro-ATM Card Swipe Slot / Saffron Accent */}
+        <line x1="156" y1="118" x2="178" y2="130" stroke="#ff5500" strokeWidth="3" strokeLinecap="round" />
+
+        {/* Biometric Fingerprint Scanner Pad (Right Side) */}
+        <g transform="translate(195, 102)">
+          {/* Scanner Pad base */}
+          <polygon points="10,25 45,5 75,22 40,42" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1.2" />
+          {/* Sensor pad */}
+          <polygon points="18,24 43,10 65,22 40,36" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
+          {/* Concentric Fingerprint Arcs */}
+          <path d="M33 26 Q40 21 47 26" stroke="#0284c7" strokeWidth="1.5" fill="none" />
+          <path d="M30 28 Q40 20 50 28" stroke="#0284c7" strokeWidth="1.5" fill="none" />
+          <path d="M36 24 Q40 22 44 24" stroke="#0284c7" strokeWidth="1.5" fill="none" />
+        </g>
+
+        {/* Floating Golden Rupee Coin */}
+        <g transform="translate(68, 48)">
+          <ellipse cx="22" cy="52" rx="14" ry="4" fill="#94a3b8" opacity="0.4" />
+          <polygon points="10,24 10,29 34,29 34,24" fill="#d97706" />
+          <circle cx="22" cy="22" r="16" fill="#f59e0b" stroke="#d97706" strokeWidth="1.5" />
+          <circle cx="22" cy="22" r="13" fill="#fbbf24" />
+          <text x="22" y="27" textAnchor="middle" fill="#78350f" fontSize="14" fontWeight="bold" fontFamily="sans-serif">₹</text>
+        </g>
+
+        {/* DBT Instant Welfare Status Pill */}
+        <g transform="translate(208, 50)">
+          <rect x="0" y="0" width="56" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
+          <circle cx="12" cy="12" r="7" fill="#10b981" />
+          <path d="M9 12 L11 14 L15 10" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="24" y="16" fill="#0f172a" fontSize="10" fontWeight="bold" fontFamily="sans-serif">DBT ₹</text>
+        </g>
+      </svg>
+    </div>
+  );
 }
 
 
@@ -429,47 +567,156 @@ export default function App() {
   // Login Modal state
   const [loginOpen, setLoginOpen] = useState(false);
 
-  // G. News & Updates 3-Card Modern Vector Grid state
+  // Find Nearest Centre Locator Modal state
+  const [locatorOpen, setLocatorOpen] = useState(false);
+  const [locatorQuery, setLocatorQuery] = useState('');
+
+  const SAMPLE_CENTRES = [
+    {
+      id: 'csc-01',
+      name: 'CSC Gram Panchayat Kendra — Bodhan',
+      vle: 'Rajeshwar Rao',
+      vleId: '4892 1048 2910',
+      pincode: '503185',
+      distance: '0.8 km away',
+      address: 'Main Gram Panchayat Bhavan, Bodhan Mandal, Nizamabad, Telangana',
+      services: ['Aadhaar UCL', 'DigiPay AePS', 'e-District', 'PM-KISAN', 'Electricity BillPay'],
+      timing: '9:00 AM – 7:00 PM',
+      phone: '+91 98480 14599',
+      verified: true,
+    },
+    {
+      id: 'csc-02',
+      name: 'Digital Seva Kendra — Ward 4',
+      vle: 'Sunita Devi',
+      vleId: '5102 9384 1029',
+      pincode: '226001',
+      distance: '1.4 km away',
+      address: 'Near Primary Health Centre, Rural Block 3, Lucknow, Uttar Pradesh',
+      services: ['Ayushman Bharat PM-JAY', 'Jeevan Pramaan', 'Micro-ATM', 'FASTag'],
+      timing: '9:30 AM – 6:30 PM',
+      phone: '+91 94150 14599',
+      verified: true,
+    },
+    {
+      id: 'csc-03',
+      name: 'CSC Digital Seva Counter — Civil Lines',
+      vle: 'Amit Verma',
+      vleId: '3901 8472 6150',
+      pincode: '380001',
+      distance: '2.1 km away',
+      address: 'Shop No. 12, Tehsil Complex, District Headquarters, Ahmedabad, Gujarat',
+      services: ['Passport Seva', 'PAN Card', 'Tele-Law', 'BBPS Utilities'],
+      timing: '10:00 AM – 7:30 PM',
+      phone: '+91 98250 14599',
+      verified: true,
+    },
+  ];
+
+  // G. News & Updates Gazette State & Data
   const [selectedStory, setSelectedStory] = useState(null);
+  const [newsCategory, setNewsCategory] = useState('ALL');
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+  const [newsletterError, setNewsletterError] = useState('');
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterEmail.includes('@') || !newsletterEmail.includes('.')) {
+      setNewsletterError('Please enter a valid email address.');
+      return;
+    }
+    setNewsletterError('');
+    setNewsletterSubscribed(true);
+  };
 
   const NEWS_CARDS = [
     {
       id: 'news-01',
-      tag: 'News',
-      brandBadge: 'CSC',
-      title: 'VLEs Beware of Scammers',
+      variant: 'security',
+      categoryTag: 'Security Advisory',
+      cardTitle: 'Advisory: Fake WhatsApp Channels & Phishing Impersonations',
+      cardSummary:
+        'Strict MeitY directives warning Village Level Entrepreneurs against unauthorized WhatsApp groups, spurious APK downloads, and payment scams.',
+      statusNote: 'Active Advisory · Verified',
+      issuer: 'MEITY · CSC SPV',
+      subLabel: 'OFFICIAL DIRECTIVE',
+      sealText: 'CSC',
+      actionText: 'Read Advisory',
+      headlineDisplay: 'Protection Against Fraudulent Channels & Phishing Impersonations',
+      category: 'Security Advisory',
+      categoryType: 'Active Alert',
+      pillStyle: 'bg-rose-50 text-rose-700 border border-rose-200/60',
+      brandBadge: 'CSC VLE SECURITY',
+      badgeColor: 'border-rose-500/30 bg-rose-500/15 text-rose-300',
+      title: 'Advisory: Protection Against Fraudulent Channels & Phishing Impersonations',
       description:
-        'Scammers are making Fake WhatsApp Channels pretending to be CSC officials...',
-      date: 'Oct 15 2025',
-      vector: 'security',
-      isFeatured: false,
+        'Digital Seva e-Governance issues strict directives warning Village Level Entrepreneurs against unauthorized WhatsApp groups, spurious APK downloads, and payment fraud.',
+      date: '15 Oct 2025',
+      readTime: '3 min read',
+      refCode: 'REF: CSC/SEC/2026-ADV',
+      authority: 'MeitY · CSC SPV Security Desk',
+      image: '/images/step-03-biometric.jpg',
       fullStory:
-        'Official Security Circular for all Village Level Entrepreneurs:\n\nIt has come to our attention that fraudulent entities are creating unauthorized WhatsApp groups, Telegram channels, and fake websites pretending to represent CSC e-Governance district managers.\n\nKey Safety Guidelines:\n1. Never download any third-party APK application sent via WhatsApp or SMS. All verified tools are available only on the official Digital Seva Portal.\n2. Never send registration fees or security deposits to personal UPI IDs or bank accounts. CSC ID generation involves no unauthorized fees.\n3. Verify all district manager contact information directly through your state nodal coordinator.',
+        'Official Security Circular for all Village Level Entrepreneurs:\n\nIt has come to our attention that fraudulent entities are creating unauthorized WhatsApp groups, Telegram channels, and fake websites pretending to represent CSC e-Governance district managers.\n\nKey Safety Guidelines:\n1. Never download any third-party APK application sent via WhatsApp or SMS. All verified tools are available only on the official Digital Seva Portal.\n2. Never send registration fees or security deposits to personal UPI IDs or bank accounts. CSC ID generation involves no unauthorized fees.\n3. Verify all district manager contact information directly through your state nodal coordinator.\n\nAny suspicious communication should be reported immediately to the National Cyber Crime portal (cybercrime.gov.in) and the CSC VLE Helpdesk at 14599.',
     },
     {
       id: 'news-02',
-      tag: 'News',
+      variant: 'academy',
+      categoryTag: 'CSC Academy · AI',
+      cardTitle: 'CSC Olympiad 6.0: AI-Driven Adaptive Diagnostic Testing',
+      cardSummary:
+        'Nationwide educational initiative introduces intelligent diagnostic evaluations and regional language practice roadmaps across 50,000+ gram panchayats for Grades 3–12.',
+      statusNote: '1.2M Students Enrolled',
+      issuer: 'CSC ACADEMY',
+      subLabel: 'OFFICIAL CREDENTIAL',
+      sealText: 'AI',
+      actionText: 'Explore Olympiad',
+      headlineDisplay: 'CSC Olympiad 6.0 Adaptive AI Testing for 1.2M Rural Students',
+      category: 'CSC Academy · AI',
+      categoryType: 'Olympiad 6.0',
+      pillStyle: 'bg-sky-50 text-sky-700 border border-sky-200/60',
       brandBadge: 'CSC ACADEMY',
-      title: 'CSC Olympiad 6.0 is Here',
-      description: 'Smarter Testing with AI Integration!',
-      date: 'Oct 13 2025',
-      vector: 'academy',
-      isFeatured: true,
+      badgeColor: 'border-sky-500/30 bg-sky-500/15 text-sky-300',
+      title: 'CSC Olympiad 6.0 Launches AI-Driven Adaptive Testing for 1.2M Rural Students',
+      description:
+        'Nationwide educational initiative introduces intelligent diagnostic evaluations and regional language practice roadmaps across 50,000+ gram panchayats for Grades 3–12.',
+      date: '13 Oct 2025',
+      readTime: '4 min read',
+      refCode: 'REF: CSCA/OLY/2026-ED',
+      authority: 'CSC Academy · National Education Desk',
+      image: '/images/step-01-visit.jpg',
       fullStory:
-        'CSC Academy is thrilled to announce the nationwide launch of CSC Olympiad 6.0 across all gram panchayats.\n\nThis year’s edition introduces adaptive artificial intelligence learning modules that tailor question difficulty based on student responses in mathematics, science, and digital literacy.\n\nOver 1.2 million rural school students across Grades 3 to 12 can now access simulated practice examinations and personalized performance roadmaps directly from their neighborhood Digital Seva Kendra.',
+        'CSC Academy is thrilled to announce the nationwide launch of CSC Olympiad 6.0 across all gram panchayats.\n\nThis year’s edition introduces adaptive artificial intelligence learning modules that tailor question difficulty based on student responses in mathematics, science, and digital literacy.\n\nOver 1.2 million rural school students across Grades 3 to 12 can now access simulated practice examinations, mock tests, and personalized performance roadmaps directly from their neighborhood Digital Seva Kendra.\n\nTop-performing students across rural districts will receive national scholarships, digital tablets, and direct mentorship from premier institutions.',
     },
     {
       id: 'news-03',
-      tag: 'News',
-      brandBadge: 'Tax2win · CSC',
-      title: 'Empowering Communities in Need',
+      variant: 'banking',
+      categoryTag: 'Financial Inclusion',
+      cardTitle: 'Grassroots Banking Milestone: ₹1,200+ Cr Doorstep Welfare',
+      cardSummary:
+        'Frontline Micro-ATM and DigiPay operators deliver critical Direct Benefit Transfers, pensions, and PM-KISAN funds to 14M+ rural citizens.',
+      statusNote: '₹1,200+ Cr Disbursed',
+      issuer: 'FINANCIAL INCLUSION',
+      subLabel: 'OFFICIAL REPORT',
+      sealText: '₹',
+      actionText: 'View Milestone',
+      headlineDisplay: 'Grassroots Banking Milestone: ₹1,200+ Cr Doorstep Welfare',
+      category: 'Financial Inclusion',
+      categoryType: '₹1,200 Cr Milestone',
+      pillStyle: 'bg-amber-50 text-amber-800 border border-amber-200/60',
+      brandBadge: 'FINANCIAL SERVICES',
+      badgeColor: 'border-amber-500/30 bg-amber-500/15 text-amber-300',
+      title: 'Grassroots Banking Milestone: VLEs Facilitate ₹1,200+ Cr in Doorstep Welfare',
       description:
-        'Mahesh Kumar , a dedicated Village Level Entrepreneur (VLE). Read More',
-      date: 'Oct 13 2025',
-      vector: 'community',
-      isFeatured: false,
+        'Frontline Micro-ATM and DigiPay operators deliver critical Direct Benefit Transfers, pensions, and PM-KISAN funds to 14M+ elderly and rural citizens during festive disbursements.',
+      date: '01 Oct 2025',
+      readTime: '5 min read',
+      refCode: 'REF: CSC/FIN/2026-Q3',
+      authority: 'Financial Inclusion & Tax2win Division',
+      image: '/images/journey-clean-vle.jpg',
       fullStory:
-        'A comprehensive impact evaluation highlights the extraordinary frontline contributions of Village Level Entrepreneurs during the festive welfare disbursement cycle.\n\nOperating Micro-ATMs, AePS biometric scanners, and DigiPay terminals, VLEs delivered doorstep banking assistance to over 14 million rural beneficiaries — specifically elderly citizens, widows, and MGNREGA workers who previously faced arduous journeys to district branch counters.\n\nTotal social welfare disbursements processed through the network surpassed ₹1,200 Crores this quarter.',
+        'A comprehensive impact evaluation highlights the extraordinary frontline contributions of Village Level Entrepreneurs during the festive welfare disbursement cycle.\n\nOperating Micro-ATMs, AePS biometric scanners, and DigiPay terminals, VLEs delivered doorstep banking assistance to over 14 million rural beneficiaries — specifically elderly citizens, widows, and MGNREGA workers who previously faced arduous journeys to district branch counters.\n\nTotal social welfare disbursements processed through the network surpassed ₹1,200 Crores this quarter, proving once again that the decentralized VLE network is India’s most resilient last-mile financial lifeline.',
     },
   ];
 
@@ -508,7 +755,7 @@ export default function App() {
     return matchCat && matchSearch;
   });
 
-  const SERVICES_PER_PAGE = 8;
+  const SERVICES_PER_PAGE = 12;
   const totalServicePages = Math.max(
     1,
     Math.ceil(filteredServices.length / SERVICES_PER_PAGE)
@@ -580,8 +827,8 @@ export default function App() {
         <div
           className={`max-w-[1240px] mx-auto rounded-full px-5 sm:px-7 py-3 flex items-center justify-between gap-6 pointer-events-auto transition-all duration-300 ${
             scrolled
-              ? 'bg-gradient-to-b from-[#0a1628]/95 via-[#08152c]/90 to-[#050e1f]/95 backdrop-blur-2xl border border-white/20 border-t-white/35 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4),inset_0_-1px_1px_rgba(255,255,255,0.06)]'
-              : 'bg-gradient-to-b from-[#0a1628]/85 via-[#08152c]/80 to-[#050e1f]/85 backdrop-blur-xl border border-white/20 border-t-white/35 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.35)]'
+              ? 'bg-gradient-to-b from-[#0a1628]/95 via-[#08152c]/90 to-[#050e1f]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)]'
+              : 'bg-gradient-to-b from-[#0a1628]/85 via-[#08152c]/80 to-[#050e1f]/85 backdrop-blur-xl border border-white/15 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.3)]'
           }`}
         >
           {/* Clean Brand Wordmark */}
@@ -668,100 +915,78 @@ export default function App() {
           ==================================================================== */}
       <section
         id="home"
-        className="relative pt-36 sm:pt-40 lg:pt-44 pb-14 sm:pb-16 bg-gradient-to-br from-[#06142e] via-[#0d2757] to-[#040e22] text-white overflow-hidden border-b border-white/10"
+        className="relative bg-[#0a1628] text-white border-b border-white/10 overflow-hidden"
       >
-        {/* Luminous Ambient Glow */}
-        <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] rounded-full opacity-35 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, #1e40af 0%, #0369a1 40%, transparent 75%)' }}
-        />
+        {/* HERO STAGE — VIDEO FITS HERE ONLY */}
+        <div className="relative pt-36 sm:pt-40 lg:pt-44 pb-20 sm:pb-24 overflow-hidden">
+          {/* Ambient Video confined strictly to Hero */}
+          <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-center opacity-95"
+            >
+              <source src="/Hero-bg.mp4" type="video/mp4" />
+            </video>
+            {/* Gentle Left-Side Scrim Overlay — light, airy gradient for text legibility without obscuring the video */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(to right, rgba(10, 22, 40, 0.6) 0%, rgba(10, 22, 40, 0.35) 25%, rgba(10, 22, 40, 0.08) 45%, transparent 60%)',
+              }}
+            />
+            {/* Top vignette for floating header and soft bottom fade into solid #0a1628 impact strip */}
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a1628]/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" />
+          </div>
 
-        {/* Subtle Background Traditional Mandala Art */}
-        <img
-          src="/images/mandala-grand-white.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[920px] h-[920px] object-contain absolute -top-44 left-1/2 -translate-x-1/2 opacity-[0.04] pointer-events-none select-none"
-        />
-
-        <div className="relative z-10 w-full max-w-[1240px] mx-auto px-5 sm:px-8">
-          {/* Centered Editorial Header Stage */}
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Government Credential Pill — Frosted Glassmorphism */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.04] backdrop-blur-2xl border border-white/20 text-white/90 text-xs font-semibold tracking-wide mb-6 shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.35),0_6px_20px_rgba(0,0,0,0.3)]">
-              <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
-              <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
-            </div>
-
-            {/* Display Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-bold tracking-[-0.035em] text-white leading-[1.08] mb-5 drop-shadow-sm">
-              Bringing Essential Services Closer to Every Indian.
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg text-[#c5d5ec] max-w-2xl mx-auto leading-relaxed mb-8 font-normal">
-              India's unified assisted public service network — connecting citizens across 28 states to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs.
-            </p>
-
-            {/* Actions */}
-            <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 mb-10">
-              <a
-                href="#get-started"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all shadow-[0_10px_25px_-5px_rgba(255,85,0,0.4)] hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span>Become a VLE</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </a>
-
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.05] hover:from-white/[0.22] hover:to-white/[0.10] backdrop-blur-2xl border border-white/25 text-white text-xs sm:text-sm font-semibold transition-all shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.35),0_8px_25px_rgba(0,0,0,0.25)] hover:scale-105 cursor-pointer"
-              >
-                <Search className="w-4 h-4 text-[#38bdf8]" />
-                <span>Explore 400+ Services</span>
-              </a>
-            </div>
-
-            {/* Functional Service Finder & Popular Pills — Frosted Glassmorphism */}
-            <div className="max-w-2xl mx-auto mb-14">
-              <div className="relative flex items-center">
-                <Search className="w-4 h-4 text-white/50 absolute left-4.5 pointer-events-none" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search public services: Aadhaar, DigiPay, PM-Kisan, Land Records, Electricity..."
-                  className="w-full pl-11 pr-24 py-3.5 rounded-full bg-gradient-to-b from-white/[0.12] via-white/[0.06] to-white/[0.02] backdrop-blur-2xl border border-white/20 focus:border-[#ff5500] focus:from-white/[0.18] text-xs sm:text-sm text-white placeholder-white/50 outline-none transition-all shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.35),0_10px_30px_rgba(0,0,0,0.3)]"
-                />
-                <a
-                  href="#services"
-                  className="absolute right-1.5 px-4 py-2 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-all shadow-md cursor-pointer hover:scale-105"
-                >
-                  Search
-                </a>
+          <div className="relative z-10 w-full max-w-[1240px] mx-auto px-5 sm:px-8">
+            {/* Left-Aligned Editorial Header Stage */}
+            <div className="max-w-3xl text-left">
+              {/* Government Credential Pill — Frosted Glassmorphism */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.04] backdrop-blur-2xl border border-white/20 text-white/90 text-xs font-semibold tracking-wide mb-6 shadow-md">
+                <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
+                <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-3 text-xs text-white/70">
-                <span className="text-white/50 font-medium">Frequent:</span>
-                {['DigiLocker Records', 'Aadhaar e-KYC', 'Micro-ATM Cash', 'PM-Kisan', 'Electricity Bill'].map((chip) => (
-                  <button
-                    key={chip}
-                    onClick={() => {
-                      setSearchQuery(chip);
-                      const el = document.getElementById('services');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.18] hover:text-white backdrop-blur-md border border-white/15 text-white/90 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.3)] transition-all cursor-pointer text-[11px]"
-                  >
-                    {chip}
-                  </button>
-                ))}
+              {/* Display Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-bold tracking-[-0.035em] text-white leading-[1.08] mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
+                Bringing Essential Services Closer to Every Indian.
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-base sm:text-lg text-[#c5d5ec] max-w-2xl leading-relaxed mb-9 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                India's unified assisted public service network — connecting citizens across 28 states to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs.
+              </p>
+
+              {/* Actions: 1. Become a VLE  2. Find Nearest Centre */}
+              <div className="flex flex-wrap items-center justify-start gap-3.5 sm:gap-4">
+                <a
+                  href="#get-started"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+                >
+                  <span>Become a VLE</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </a>
+
+                <button
+                  onClick={() => setLocatorOpen(true)}
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.05] hover:from-white/[0.22] hover:to-white/[0.10] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
+                >
+                  <MapPin className="w-4 h-4 text-[#38bdf8]" />
+                  <span>Find Nearest Centre</span>
+                </button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Clean Authoritative Typographic Scale Strip (No AI Bento Cards) */}
-          <div className="border-t border-white/10 pt-8 sm:pt-10">
+        {/* IMPACT METRICS STAGE — SOLID #0a1628 (NO VIDEO) */}
+        <div className="relative z-10 bg-[#0a1628] border-t border-white/10 py-10 sm:py-12">
+          <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
               <div className="lg:px-8 first:lg:pl-0">
                 <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
@@ -872,7 +1097,7 @@ export default function App() {
               <div className="relative z-10">
                 {/* Top Bar: Pill Badge & Counter */}
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500] animate-pulse" />
                     <span>FOR ASPIRING VLES</span>
                   </span>
@@ -931,7 +1156,7 @@ export default function App() {
               <div className="relative z-10 pt-2">
                 <button
                   onClick={() => setLoginOpen(true)}
-                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-[0_10px_25px_-5px_rgba(255,85,0,0.35)] hover:shadow-lg group/btn"
+                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-xs group/btn"
                 >
                   <span>Explore What It Means to Be a CSC VLE</span>
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -956,7 +1181,7 @@ export default function App() {
               <div className="relative z-10">
                 {/* Top Bar: Pill Badge & Counter */}
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-[inset_0_1px_1px_rgba(255,255,255,0.35)]">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
                     <span>FOR CITIZENS</span>
                   </span>
@@ -1015,7 +1240,7 @@ export default function App() {
               <div className="relative z-10 pt-2">
                 <a
                   href="#services"
-                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-[0_10px_25px_-5px_rgba(2,132,199,0.35)] hover:shadow-lg group/btn"
+                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-xs group/btn"
                 >
                   <span>Find Services at Your Nearest CSC</span>
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -1132,7 +1357,7 @@ export default function App() {
           ==================================================================== */}
       <section
         id="services"
-        className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+        className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-20"
       >
         {/* Subtle Floral Mandala Background Art (Greyish on Cream) */}
         <img
@@ -1231,22 +1456,22 @@ export default function App() {
                     {paginatedServices.map((srv) => (
                       <article
                         key={srv.id}
-                        className="relative group h-[145px] sm:h-[155px] lg:h-[160px] border-r border-b border-[#0a1628]/15 p-4 sm:p-5 bg-white hover:bg-[#0a1628] transition-colors duration-300 select-none overflow-hidden"
+                        className="relative group h-[135px] sm:h-[145px] lg:h-[150px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4.5 bg-white hover:bg-[#0a1628] transition-colors duration-300 select-none overflow-hidden"
                       >
                         {/* DEFAULT VIEW: Detailed SVG Vector Logo + Centered Title Below (Removed on Hover) */}
-                        <div className="h-full flex flex-col items-center justify-center text-center gap-2.5 transition-all duration-300 ease-out group-hover:opacity-0 group-hover:scale-95 group-hover:pointer-events-none">
-                          <div className="scale-90">
+                        <div className="h-full flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 ease-out group-hover:opacity-0 group-hover:scale-95 group-hover:pointer-events-none">
+                          <div className="scale-[0.82] sm:scale-[0.88]">
                             <ServiceVectorLogo id={srv.id} />
                           </div>
 
-                          <h3 className="text-[15px] sm:text-[16px] font-semibold tracking-[-0.015em] text-[#0a1628] leading-tight">
+                          <h3 className="text-[14.5px] sm:text-[15.5px] font-semibold tracking-[-0.015em] text-[#0a1628] leading-tight">
                             {srv.name}
                           </h3>
                         </div>
 
                         {/* HOVER VIEW: Description Only (Replaces Logo & Title on Hover) */}
-                        <div className="absolute inset-0 p-5 flex items-center justify-center text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none">
-                          <p className="text-[12.5px] sm:text-[13px] text-white/95 leading-[1.55]">
+                        <div className="absolute inset-0 p-4 sm:p-5 flex items-center justify-center text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none">
+                          <p className="text-[12px] sm:text-[12.5px] text-white/95 leading-[1.5]">
                             {srv.description}
                           </p>
                         </div>
@@ -1266,8 +1491,8 @@ export default function App() {
                         (prev - 1 + totalServicePages) % totalServicePages
                     );
                   }}
-                  aria-label="Show previous 8 services"
-                  title="Previous 8 services"
+                  aria-label="Show previous services"
+                  title="Previous services"
                   className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -left-4 sm:-left-5 -translate-y-1/2 z-20"
                 >
                   <ArrowLeft className="w-4 h-4" />
@@ -1282,8 +1507,8 @@ export default function App() {
                       setServiceDir(1);
                       setServicePage((prev) => (prev + 1) % totalServicePages);
                     }}
-                    aria-label="Show next 8 services"
-                    title="Next 8 services"
+                    aria-label="Show next services"
+                    title="Next services"
                     className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -right-4 sm:-right-5 -translate-y-1/2 z-20"
                   >
                     <ArrowRight className="w-4 h-4" />
@@ -1616,106 +1841,203 @@ export default function App() {
           ==================================================================== */}
       <section
         id="whats-new"
-        className="relative py-16 sm:py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 overflow-hidden scroll-mt-24"
+        className="relative py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
       >
-        {/* Subtle Mandala Watermark (Greyish on Cream) */}
-        <img
-          src="/images/mandala-grand-navy.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[600px] h-[600px] object-contain absolute -top-36 -right-36 opacity-[0.04] grayscale pointer-events-none select-none"
-        />
-
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          {/* Centered Heading */}
-          <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.15]">
-              News and <span className="text-[#ff5500]">Updates</span>
+        <div className="max-w-[1200px] mx-auto w-full">
+          {/* Clean, Human Editorial Header */}
+          <div className="max-w-xl mx-auto text-center mb-12 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#0a1628]">
+              News & Updates
             </h2>
-            <p className="text-xs sm:text-[14px] text-[#64748b] mt-2.5 max-w-lg mx-auto leading-relaxed">
-              Official circulars, skill initiatives, and grassroots breakthroughs across 5,50,000+ gram panchayats.
+            <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed">
+              Official circulars, nationwide initiatives, and grassroots announcements.
             </p>
           </div>
 
-          {/* 3 Modern Clean Cards with Bespoke Vector Artwork matching Image 2 */}
+          {/* 3 Bespoke CSC Network Story Cards: Vector Illustration Stage + Seamless Navy Blue Bottom */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 items-stretch">
-            {NEWS_CARDS.map((card) => {
-              const isOlympiad = card.id === 'news-02';
-              return (
-                <article
-                  key={card.id}
-                  onClick={() => setSelectedStory(card)}
-                  className="bg-white rounded-[22px] border border-[#0a1628]/10 shadow-[0_8px_25px_-8px_rgba(10,22,40,0.08)] overflow-hidden flex flex-col justify-between hover:shadow-[0_18px_40px_-10px_rgba(10,22,40,0.14)] hover:border-[#ff5500]/30 transition-all duration-300 group cursor-pointer"
-                >
-                  {/* Top Vector Artwork Frame */}
-                  <div className="relative h-[180px] sm:h-[190px] w-full overflow-hidden">
-                    {card.vector === 'security' && <NewsVectorSecurity />}
-                    {card.vector === 'academy' && <NewsVectorAcademy />}
-                    {card.vector === 'community' && <NewsVectorCommunity />}
-                  </div>
+            {NEWS_CARDS.map((card) => (
+              <article
+                key={card.id}
+                onClick={() => setSelectedStory(card)}
+                className="bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden flex flex-col justify-between hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+              >
+                <div>
+                  {/* Top Bespoke Vector Illustration Stage matching Website Content */}
+                  <NewsIllustrationStage variant={card.variant} />
 
-                  {/* Card Content */}
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3
-                        className={`text-lg sm:text-[19px] font-bold leading-snug mb-2 transition-colors ${
-                          isOlympiad
-                            ? 'text-[#ff5500]'
-                            : 'text-[#0a1628] group-hover:text-[#ff5500]'
-                        }`}
-                      >
-                        {card.title}
-                      </h3>
-                      <p className="text-xs sm:text-[13px] text-[#64748b] leading-relaxed mb-5 line-clamp-3">
-                        {card.description}
-                      </p>
+                  {/* Card Body - Deep Navy Blue with White/Light Text */}
+                  <div className="p-6 pt-5 pb-2 text-left">
+                    {/* Category Pill & Date */}
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border-0">
+                        {card.categoryTag}
+                      </span>
+                      <span className="text-[11px] text-slate-400 font-medium">
+                        {card.date}
+                      </span>
                     </div>
 
-                    {/* Bottom Meta & Action */}
-                    <div className="pt-3.5 border-t border-[#0a1628]/8 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 text-xs text-[#64748b] font-medium">
-                        <Calendar className="w-3.5 h-3.5 text-[#64748b]" />
-                        <span>{card.date}</span>
-                      </div>
+                    {/* Title - Consistent white with NO color change on hover */}
+                    <h3 className="text-[17px] sm:text-[18px] font-bold text-white tracking-tight leading-snug mb-2">
+                      {card.cardTitle}
+                    </h3>
 
-                      {isOlympiad ? (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedStory(card);
-                          }}
-                          className="px-4 py-1.5 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold flex items-center gap-1 shadow-sm transition-colors cursor-pointer"
-                        >
-                          <span>View Detail</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      ) : (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedStory(card);
-                          }}
-                          className="px-3.5 py-1.5 rounded-lg bg-slate-100/90 hover:bg-slate-200/80 text-slate-700 text-xs font-semibold flex items-center gap-1 border border-slate-200/80 transition-colors cursor-pointer"
-                        >
-                          <span>View Detail</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      )}
-                    </div>
+                    {/* Description */}
+                    <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed font-normal">
+                      {card.cardSummary}
+                    </p>
                   </div>
-                </article>
-              );
-            })}
+                </div>
+
+                {/* Footer Row (Seamless Navy bg-[#0c1a2e], NO dividing border line, White Icon) */}
+                <div className="px-6 pb-6 pt-2 bg-[#0c1a2e] flex items-center justify-between text-xs">
+                  {/* Left Action Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedStory(card);
+                    }}
+                    className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
+                  >
+                    {card.actionText}
+                  </button>
+
+                  {/* Right Status Indicator with White Icon */}
+                  <div className="flex items-center gap-1.5 text-xs text-slate-300">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span className="truncate max-w-[155px] font-medium">{card.statusNote}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
 
-          {/* Bottom 'View All' Orange Button matching Image 2 */}
-          <div className="flex justify-end mt-8 sm:mt-10">
-            <button
-              onClick={() => setSelectedStory(NEWS_CARDS[0])}
-              className="px-7 py-2.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-md hover:shadow-lg flex items-center gap-1.5"
-            >
-              <span>View All</span>
-            </button>
+          {/* ==========================================================
+              INTERACTIVE NEWSLETTER & SCHEMES SUBSCRIPTION BANNER
+              Allows citizens and VLEs to subscribe to official circulars,
+              new scheme rollouts, welfare subsidies, and promotion alerts
+              ========================================================== */}
+          <div className="mt-12 sm:mt-16 rounded-[28px] bg-gradient-to-br from-[#0c1a2e] via-[#0d1f38] to-[#122847] p-7 sm:p-10 lg:p-12 text-white border border-slate-700/60 shadow-lg relative overflow-hidden">
+            {/* Subtle Mandala Background Art Graphic */}
+            <img
+              src="/images/mandala-grand-white.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute -right-20 -bottom-20 w-80 h-80 object-contain opacity-[0.06] pointer-events-none select-none"
+            />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Column: Heading, Value Proposition & Trust Badges */}
+              <div className="lg:col-span-7">
+                {/* Pill Tag */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 text-xs font-semibold mb-3.5">
+                  <Mail className="w-3.5 h-3.5 text-[#ff7733]" />
+                  <span>OFFICIAL DIGITAL SEVA DISPATCH</span>
+                </div>
+
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+                  Stay Informed on New Schemes, Directives & VLE Promotions
+                </h3>
+
+                <p className="mt-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                  Get official circulars from MeitY, launch notices for upcoming G2C welfare schemes, subsidy calendars, and special VLE commission incentive alerts delivered straight to your inbox.
+                </p>
+
+                {/* 3 Value Pillars */}
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-200">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>New Scheme Rollouts</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Security Advisories</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>VLE Earning Incentives</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Interactive Subscription Form */}
+              <div className="lg:col-span-5">
+                <div className="bg-[#081322]/85 backdrop-blur-md rounded-2xl p-6 sm:p-7 border border-white/12 shadow-xl">
+                  {newsletterSubscribed ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-4"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 grid place-items-center mx-auto mb-3">
+                        <CheckCircle2 className="w-6 h-6" />
+                      </div>
+                      <h4 className="text-base font-bold text-white mb-1">
+                        Subscription Confirmed!
+                      </h4>
+                      <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+                        We have registered <strong className="text-white">{newsletterEmail}</strong>. You will receive official weekly digests, scheme launches, and emergency advisories.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setNewsletterSubscribed(false);
+                          setNewsletterEmail('');
+                        }}
+                        className="text-xs text-[#ff7733] hover:text-white font-medium underline underline-offset-4 cursor-pointer transition-colors"
+                      >
+                        Subscribe another email address
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleNewsletterSubmit} className="space-y-3.5">
+                      <div>
+                        <label
+                          htmlFor="newsletter-email"
+                          className="block text-xs font-semibold text-white/90 mb-1.5"
+                        >
+                          Official or Personal Email
+                        </label>
+                        <div className="relative">
+                          <input
+                            id="newsletter-email"
+                            type="email"
+                            value={newsletterEmail}
+                            onChange={(e) => {
+                              setNewsletterEmail(e.target.value);
+                              if (newsletterError) setNewsletterError('');
+                            }}
+                            placeholder="Enter your email (e.g. vle@csc.gov.in)"
+                            className="w-full px-4 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] focus:bg-white/[0.14] border border-white/15 focus:border-white/15 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-xs sm:text-sm placeholder:text-slate-400 transition-all pr-10"
+                            required
+                          />
+                          <Mail className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                        {newsletterError && (
+                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
+                            <span>⚠</span>
+                            <span>{newsletterError}</span>
+                          </p>
+                        )}
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full py-3 px-5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 shadow-xs"
+                      >
+                        <Send className="w-4 h-4 text-white" />
+                        <span>Subscribe to Scheme & Circular Alerts</span>
+                      </button>
+
+                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/10">
+                        <span>🔒 100% Privacy Protected</span>
+                        <span>Zero Spam · Unsubscribe Anytime</span>
+                      </div>
+                    </form>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1728,58 +2050,83 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedStory(null)}
-            className="fixed inset-0 bg-[#0a1628]/60 backdrop-blur-sm z-50 grid place-items-center p-4"
+            className="fixed inset-0 bg-[#0a1628]/70 backdrop-blur-sm z-50 grid place-items-center p-4"
           >
             <motion.div
               initial={{ scale: 0.95, y: 15, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 15, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white text-[#0a1628] w-full max-w-lg rounded-3xl p-7 sm:p-8 shadow-2xl relative border border-slate-200 overflow-hidden"
+              className="bg-[#0c1a2e] text-white w-full max-w-xl rounded-3xl shadow-2xl relative border border-white/20 overflow-hidden"
             >
-              {/* Corner Mandala Watermark (Greyish on Cream) */}
-              <img
-                src="/images/mandala-floral-navy.png"
-                alt=""
-                aria-hidden="true"
-                className="w-64 h-64 object-contain absolute -bottom-20 -right-20 opacity-[0.05] grayscale pointer-events-none select-none"
-              />
+              {/* Header Image with dark gradient scrim */}
+              <div className="relative aspect-[21/9] w-full overflow-hidden bg-slate-950">
+                <img
+                  src={selectedStory.image}
+                  alt={selectedStory.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent" />
 
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedStory(null)}
-                className="absolute top-6 right-6 w-8 h-8 rounded-full bg-slate-100 hover:bg-[#ff5500] hover:text-white text-[#0a1628] grid place-items-center cursor-pointer z-10 transition-colors"
-                aria-label="Close story"
-              >
-                <X className="w-4 h-4" />
-              </button>
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedStory(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff5500] text-white grid place-items-center cursor-pointer z-10 transition-colors backdrop-blur-md"
+                  aria-label="Close story"
+                >
+                  <X className="w-4 h-4" />
+                </button>
 
-              <div className="relative z-10">
-                {/* Meta Header */}
-                <div className="flex items-center gap-2.5 mb-3">
-                  <span className="px-3 py-0.5 rounded-full text-xs font-semibold border bg-[#fff1eb] text-[#c2410c] border-[#ffedd5]">
-                    {selectedStory.brandBadge || 'Official Announcement'}
+                {/* Tags on modal header */}
+                <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs text-white/90">
+                  <span className="px-2.5 py-0.5 rounded bg-[#ff5500] font-bold text-[11px] tracking-wide text-white shadow-sm">
+                    {selectedStory.category}
                   </span>
-                  <span className="text-xs text-[#64748b] font-medium">
-                    {selectedStory.date}
+                  <span className="font-mono text-[10.5px] text-white/90 bg-black/50 px-2 py-0.5 rounded border border-white/20">
+                    {selectedStory.refCode}
                   </span>
                 </div>
+              </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0a1628] mb-3 leading-snug">
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8">
+                {/* Authority & Date */}
+                <div className="flex items-center justify-between text-xs text-slate-400 font-medium pb-3 mb-4 border-b border-white/10">
+                  <span className="text-slate-300">{selectedStory.authority}</span>
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#ff5500]" />
+                    <span>{selectedStory.date}</span>
+                    <span>· {selectedStory.readTime}</span>
+                  </div>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-4 leading-snug">
                   {selectedStory.title}
                 </h3>
 
-                <div className="text-xs sm:text-sm text-[#334155] leading-relaxed space-y-3 mb-6 whitespace-pre-line border-t border-slate-100 pt-4">
+                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3 mb-6 whitespace-pre-line max-h-[42vh] overflow-y-auto pr-2">
                   {selectedStory.fullStory}
                 </div>
 
-                <div className="flex items-center justify-end pt-4 border-t border-slate-100">
-                  <button
-                    onClick={() => setSelectedStory(null)}
-                    className="px-5 py-2.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs"
-                  >
-                    Close
-                  </button>
+                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                  <span className="text-[11px] font-mono text-emerald-400 font-semibold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>STATUS: ACTIVE CIRCULAR</span>
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => window.print()}
+                      className="px-4 py-2 rounded-xl border border-white/15 hover:bg-white/5 text-slate-300 text-xs font-semibold transition-colors cursor-pointer"
+                    >
+                      Print Notice
+                    </button>
+                    <button
+                      onClick={() => setSelectedStory(null)}
+                      className="px-5 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs"
+                    >
+                      Done
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -1840,7 +2187,7 @@ export default function App() {
                           {item.description}
                         </p>
                       </div>
-                      <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-[inset_0_1px_0.5px_rgba(255,255,255,0.3)]">
+                      <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
                         {item.action}
                       </span>
                     </div>
@@ -1900,21 +2247,28 @@ export default function App() {
           ==================================================================== */}
       <section
         id="get-started"
-        className="relative min-h-[580px] lg:min-h-[640px] flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-br from-[#06142e] via-[#0d2757] to-[#040e22] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-20 lg:py-24"
+        className="relative min-h-[70vh] flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-12 sm:py-14 lg:py-16"
       >
-        {/* Luminous Multi-Spectrum Radial Lighting */}
-        <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[820px] h-[520px] rounded-full opacity-35 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, #ff5500 0%, #1d4ed8 45%, transparent 75%)' }}
-        />
-        <div
-          className="absolute -bottom-16 -left-16 w-[360px] h-[360px] rounded-full opacity-40 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)' }}
-        />
-        <div
-          className="absolute -bottom-16 -right-16 w-[360px] h-[360px] rounded-full opacity-40 blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
-        />
+        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          <img
+            src="/images/grainy-gradient-bg-4k.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle deep navy gradient integration on top & bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/40 via-transparent to-[#0a1628]/50" />
+
+          {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
+          <div
+            className="absolute inset-0 opacity-[0.22] mix-blend-overlay pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'repeat',
+            }}
+          />
+        </div>
 
         {/* BOTTOM-LEFT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
         <motion.div
@@ -1924,15 +2278,11 @@ export default function App() {
           transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
           className="absolute -bottom-32 sm:-bottom-40 -left-32 sm:-left-40 pointer-events-none select-none z-1"
         >
-          <div
-            className="absolute inset-0 w-full h-full rounded-full opacity-40 blur-3xl pointer-events-none"
-            style={{ background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)' }}
-          />
           <img
             src="/images/mandala-grand-white.png"
             alt=""
             aria-hidden="true"
-            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.18] drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
           />
         </motion.div>
 
@@ -1944,15 +2294,11 @@ export default function App() {
           transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
           className="absolute -bottom-32 sm:-bottom-40 -right-32 sm:-right-40 pointer-events-none select-none z-1"
         >
-          <div
-            className="absolute inset-0 w-full h-full rounded-full opacity-40 blur-3xl pointer-events-none"
-            style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
-          />
           <img
             src="/images/mandala-grand-white.png"
             alt=""
             aria-hidden="true"
-            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.18] drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
           />
         </motion.div>
 
@@ -1961,62 +2307,104 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 max-w-[1040px] mx-auto w-full text-center"
+          className="relative z-10 max-w-[1000px] mx-auto w-full text-center"
         >
           {/* Frosted Glass Credential Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/25 text-white text-xs font-semibold tracking-wider uppercase mb-5 shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.45),0_6px_20px_rgba(0,0,0,0.3)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase mb-3 shadow-md">
             <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
             <span>JOIN 5,50,000+ VILLAGE LEVEL ENTREPRENEURS</span>
           </div>
 
           {/* Display Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-white tracking-[-0.035em] leading-[1.12] mb-5 max-w-3xl mx-auto drop-shadow-sm">
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-tight mb-2.5 max-w-2xl mx-auto drop-shadow-sm">
             Ready to Bring Digital Services to Your Community?
           </h2>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base lg:text-lg text-[#c5d5ec] max-w-2xl mx-auto leading-relaxed mb-9 font-normal">
+          <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-6 font-normal">
             Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ essential banking, welfare, and public desks while building a respected neighborhood enterprise.
           </p>
 
-          {/* 3 Authentic Frosted Glassmorphism Key Prerequisite Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4.5 max-w-3xl mx-auto mb-10 text-left">
-            <div className="p-5 sm:p-5.5 rounded-2xl bg-gradient-to-b from-white/[0.14] via-white/[0.07] to-white/[0.03] backdrop-blur-2xl border border-white/20 shadow-[0_12px_36px_-8px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4),inset_0_-1px_1px_rgba(255,255,255,0.06)] hover:from-white/[0.18] hover:via-white/[0.09] hover:border-white/35 transition-all duration-300 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff5500]/30 to-[#ff5500]/10 text-[#ff884d] border border-[#ff5500]/35 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Building2 className="w-4 h-4" />
+          {/* 3 Authentic Frosted Glassmorphism Key Prerequisite Cards matching User Reference Images */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-6 text-left">
+            {/* Card 01 — Simple Eligibility */}
+            <div className="relative overflow-hidden rounded-[20px] p-4 sm:p-4.5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+              <div className="relative z-10 flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Building2 className="w-4 h-4 text-white" />
+                </div>
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-[10px] font-semibold text-white/90">
+                  Step 01
+                </span>
               </div>
-              <div className="text-[14px] font-bold text-white mb-1">Simple Eligibility</div>
-              <div className="text-xs text-[#c5d5ec] leading-relaxed">
+
+              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                Simple Eligibility
+              </div>
+              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
                 Age 18+ with minimum 10th pass qualification and local panchayat residency.
               </div>
+
+              {/* Sub-Card Metric Slider Hairline in Clean White */}
+              <div className="relative z-10 w-full h-1 rounded-full bg-white/15 mt-3.5 overflow-hidden">
+                <div className="h-full bg-white/90 rounded-full w-2/3 group-hover:w-full transition-all duration-500" />
+              </div>
             </div>
 
-            <div className="p-5 sm:p-5.5 rounded-2xl bg-gradient-to-b from-white/[0.14] via-white/[0.07] to-white/[0.03] backdrop-blur-2xl border border-white/20 shadow-[0_12px_36px_-8px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4),inset_0_-1px_1px_rgba(255,255,255,0.06)] hover:from-white/[0.18] hover:via-white/[0.09] hover:border-white/35 transition-all duration-300 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff5500]/30 to-[#ff5500]/10 text-[#ff884d] border border-[#ff5500]/35 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Award className="w-4 h-4" />
+            {/* Card 02 — MeitY Certification */}
+            <div className="relative overflow-hidden rounded-[20px] p-4 sm:p-4.5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+              <div className="relative z-10 flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Award className="w-4 h-4 text-white" />
+                </div>
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-[10px] font-semibold text-white/90">
+                  Step 02
+                </span>
               </div>
-              <div className="text-[14px] font-bold text-white mb-1">MeitY Certification</div>
-              <div className="text-xs text-[#c5d5ec] leading-relaxed">
+
+              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                MeitY Certification
+              </div>
+              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
                 Complete Telecentre Entrepreneur Course (TEC) with dedicated district onboarding.
               </div>
+
+              {/* Sub-Card Metric Slider Hairline in Clean White */}
+              <div className="relative z-10 w-full h-1 rounded-full bg-white/15 mt-3.5 overflow-hidden">
+                <div className="h-full bg-white/90 rounded-full w-4/5 group-hover:w-full transition-all duration-500" />
+              </div>
             </div>
 
-            <div className="p-5 sm:p-5.5 rounded-2xl bg-gradient-to-b from-white/[0.14] via-white/[0.07] to-white/[0.03] backdrop-blur-2xl border border-white/20 shadow-[0_12px_36px_-8px_rgba(0,0,0,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4),inset_0_-1px_1px_rgba(255,255,255,0.06)] hover:from-white/[0.18] hover:via-white/[0.09] hover:border-white/35 transition-all duration-300 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff5500]/30 to-[#ff5500]/10 text-[#ff884d] border border-[#ff5500]/35 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Wallet className="w-4 h-4" />
+            {/* Card 03 — Unified Digital Wallet */}
+            <div className="relative overflow-hidden rounded-[20px] p-4 sm:p-4.5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+              <div className="relative z-10 flex items-center justify-between mb-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Wallet className="w-4 h-4 text-white" />
+                </div>
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-[10px] font-semibold text-white/90">
+                  Step 03
+                </span>
               </div>
-              <div className="text-[14px] font-bold text-white mb-1">Unified Digital Wallet</div>
-              <div className="text-xs text-[#c5d5ec] leading-relaxed">
+
+              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                Unified Digital Wallet
+              </div>
+              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
                 Instant commission payouts and real-time reconciliation across 400+ desks.
+              </div>
+
+              {/* Sub-Card Metric Slider Hairline in Clean White */}
+              <div className="relative z-10 w-full h-1 rounded-full bg-white/15 mt-3.5 overflow-hidden">
+                <div className="h-full bg-white/90 rounded-full w-full" />
               </div>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-7">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
             <button
               onClick={() => setLoginOpen(true)}
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-sm transition-all shadow-[0_10px_25px_-5px_rgba(255,85,0,0.45)] hover:scale-105 active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
             >
               <span>Start VLE Registration</span>
               <ArrowRight className="w-4 h-4 text-white" />
@@ -2024,7 +2412,7 @@ export default function App() {
 
             <button
               onClick={() => setLoginOpen(true)}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.1] backdrop-blur-2xl border border-white/25 text-white font-semibold text-sm transition-all shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.4),0_8px_25px_rgba(0,0,0,0.35)] hover:scale-105 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.1] backdrop-blur-2xl border border-white/20 text-white font-semibold text-xs sm:text-sm transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
             >
               <span>VLE Portal Login</span>
               <ArrowUpRight className="w-4 h-4 text-white/70" />
@@ -2032,7 +2420,7 @@ export default function App() {
           </div>
 
           {/* Direct Support Assistance */}
-          <div className="inline-flex items-center gap-2 text-xs text-white/70">
+          <div className="inline-flex items-center gap-2 text-[11.5px] text-white/70">
             <span>Need assistance with VLE registration?</span>
             <span className="text-white font-medium">
               Call Toll-Free Helpdesk: <span className="text-[#ff7733] font-bold">14599</span>
@@ -2045,7 +2433,7 @@ export default function App() {
           J. FOOTER (PROPOSAL SECTION 12)
           Headline: Explore More. Stay Informed. Stay Connected.
           ==================================================================== */}
-      <footer className="relative bg-[#071120] text-[#9cb1d4] py-16 px-5 sm:px-8 text-xs border-t-4 border-[#ff5500] overflow-hidden">
+      <footer className="relative bg-[#071120] text-[#9cb1d4] py-16 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
         <img
           src="/images/mandala-grand-white.png"
           alt=""
@@ -2054,6 +2442,44 @@ export default function App() {
         />
 
         <div className="relative z-10 max-w-[1240px] mx-auto">
+          {/* Quick Newsletter Subscribe Bar in Footer */}
+          <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-5">
+            <div className="flex items-center gap-3.5 text-left w-full lg:w-auto">
+              <div className="w-10 h-10 rounded-xl bg-[#ff5500]/20 text-[#ff7733] border border-[#ff5500]/30 grid place-items-center shrink-0">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-white font-bold text-sm">
+                  Subscribe to Scheme & Circular Alerts
+                </div>
+                <div className="text-xs text-[#9cb1d4]">
+                  Official MeitY notifications, new welfare launches, and VLE commission updates.
+                </div>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleNewsletterSubmit}
+              className="flex items-center gap-2 w-full lg:w-auto shrink-0"
+            >
+              <input
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="Enter email address"
+                className="w-full sm:w-64 px-3.5 py-2 rounded-xl bg-white/[0.08] focus:bg-white/[0.14] border border-white/15 focus:border-white/15 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-xs placeholder:text-slate-400 transition-all"
+                required
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs transition-all shadow-xs active:scale-95 cursor-pointer whitespace-nowrap flex items-center gap-1.5"
+              >
+                <span>Subscribe</span>
+                <Send className="w-3 h-3" />
+              </button>
+            </form>
+          </div>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 mb-10 border-b border-white/10">
             <div className="col-span-2 sm:col-span-3 lg:col-span-1">
               <div className="flex items-center gap-2.5 mb-3">
@@ -2213,6 +2639,204 @@ export default function App() {
                     Login to Digital Seva
                   </button>
                 </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+        {/* Find Nearest CSC Centre Modal */}
+        {locatorOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLocatorOpen(false)}
+            className="fixed inset-0 bg-[#0a1628]/75 backdrop-blur-md z-50 grid place-items-center p-4 overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 15, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.96, y: 10, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-2xl rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative border border-white/20 overflow-hidden my-8 max-h-[88vh] flex flex-col"
+            >
+              {/* Corner Watermark Mandala */}
+              <img
+                src="/images/mandala-card-01.png"
+                alt=""
+                aria-hidden="true"
+                className="w-56 h-56 object-contain absolute -top-20 -right-20 opacity-[0.08] pointer-events-none select-none"
+              />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setLocatorOpen(false)}
+                className="absolute top-5 right-5 w-8 h-8 rounded-lg bg-white/[0.12] hover:bg-[#ff5500] text-white border border-white/20 grid place-items-center cursor-pointer z-10 transition-colors shadow-sm"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <div className="relative z-10 mb-5">
+                <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#ff7733] mb-1.5">
+                  <LotusBadge className="w-4 h-4" />
+                  <span>NATIONWIDE CSC KENDRA LOCATOR</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
+                  Find Your Nearest CSC Centre
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[#9cb1d4] leading-relaxed">
+                  Locate government-authorized Common Service Centres and verified VLE desks in your Gram Panchayat or neighborhood ward.
+                </p>
+              </div>
+
+              {/* Search Bar + Quick Pincode Filter */}
+              <div className="relative z-10 mb-4 space-y-2.5">
+                <div className="relative">
+                  <Search className="w-4 h-4 text-[#ff5500] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <input
+                    type="text"
+                    value={locatorQuery}
+                    onChange={(e) => setLocatorQuery(e.target.value)}
+                    placeholder="Enter 6-digit PIN code (e.g., 503185, 226001) or village / district..."
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#071120] border border-white/20 text-white text-xs sm:text-sm outline-none focus:border-[#ff5500] transition-colors placeholder:text-white/40"
+                  />
+                  {locatorQuery && (
+                    <button
+                      onClick={() => setLocatorQuery('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-xs"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+
+                {/* Quick Selection Pills */}
+                <div className="flex flex-wrap items-center gap-2 text-xs">
+                  <span className="text-white/50 text-[11px]">Popular:</span>
+                  {[
+                    { label: '503185 (Bodhan)', q: '503185' },
+                    { label: '226001 (Lucknow)', q: '226001' },
+                    { label: '380001 (Ahmedabad)', q: '380001' },
+                  ].map((p) => (
+                    <button
+                      key={p.q}
+                      onClick={() => setLocatorQuery(p.q)}
+                      className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors cursor-pointer border ${
+                        locatorQuery === p.q
+                          ? 'bg-[#ff5500] text-white border-[#ff5500]'
+                          : 'bg-white/[0.06] text-white/75 border-white/15 hover:bg-white/[0.12] hover:text-white'
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                  {locatorQuery && (
+                    <button
+                      onClick={() => setLocatorQuery('')}
+                      className="text-[11px] text-[#ff7733] hover:underline cursor-pointer ml-1"
+                    >
+                      Show All
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Centre Results List */}
+              <div className="relative z-10 flex-1 overflow-y-auto space-y-3 pr-1 max-h-[380px]">
+                {SAMPLE_CENTRES.filter((c) => {
+                  const q = locatorQuery.trim().toLowerCase();
+                  if (!q) return true;
+                  return (
+                    c.name.toLowerCase().includes(q) ||
+                    c.vle.toLowerCase().includes(q) ||
+                    c.pincode.includes(q) ||
+                    c.address.toLowerCase().includes(q) ||
+                    c.services.some((s) => s.toLowerCase().includes(q))
+                  );
+                }).map((centre) => (
+                  <div
+                    key={centre.id}
+                    className="p-4 rounded-2xl bg-white/[0.05] border border-white/15 hover:border-white/25 transition-all text-left space-y-2.5"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-sm sm:text-[15px] font-bold text-white">
+                            {centre.name}
+                          </h4>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                            <span>MeitY Verified</span>
+                          </span>
+                        </div>
+                        <div className="text-xs text-white/60 mt-0.5">
+                          Operator: <span className="text-white/90 font-medium">{centre.vle}</span> · CSC ID: <span className="font-mono text-white/80">{centre.vleId}</span>
+                        </div>
+                      </div>
+
+                      <span className="shrink-0 px-2.5 py-1 rounded-full bg-[#0284c7]/20 border border-[#0284c7]/40 text-[#38bdf8] text-[11px] font-medium flex items-center gap-1">
+                        <MapPin className="w-3 h-3" />
+                        <span>{centre.distance}</span>
+                      </span>
+                    </div>
+
+                    <p className="text-xs text-white/75 leading-relaxed flex items-start gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-[#ff7733] shrink-0 mt-0.5" />
+                      <span>{centre.address} — PIN: <strong className="text-white">{centre.pincode}</strong></span>
+                    </p>
+
+                    {/* Services Offered Tags */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {centre.services.map((svc) => (
+                        <span
+                          key={svc}
+                          className="px-2 py-0.5 rounded bg-white/[0.08] text-[10.5px] text-white/80 font-medium"
+                        >
+                          {svc}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Footer Actions */}
+                    <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
+                      <span className="text-white/60 text-[11px]">
+                        Timing: <strong className="text-white/90">{centre.timing}</strong>
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={`tel:${centre.phone}`}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors"
+                        >
+                          <Phone className="w-3 h-3 text-[#ff7733]" />
+                          <span>Call VLE</span>
+                        </a>
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.name + ' ' + centre.address)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors shadow-xs"
+                        >
+                          <span>Directions</span>
+                          <ArrowUpRight className="w-3 h-3 text-white" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom National Directory Notice */}
+              <div className="relative z-10 pt-3 mt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/60">
+                <span>Looking for all 5,50,000+ pan-India centres?</span>
+                <a
+                  href="https://locator.csccloud.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[#ff7733] hover:text-[#ff9966] font-semibold transition-colors"
+                >
+                  <span>Open Official CSC Cloud Locator</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </motion.div>
           </motion.div>
