@@ -814,9 +814,9 @@ export default function App() {
       {/* ====================================================================
           05. CHOOSE YOUR JOURNEY — TWO SIDES OF THE SAME ECOSYSTEM
           Headline: Every Journey Begins with a Different Need.
-          Format: Side-by-Side Clean Editorial Cards on Warm Ivory (Zero AI Transparent Boxes)
+          Format: Regal Dual-Portal Architectural Folios on Deep Navy & Warm Ivory
           05A: For Aspiring VLEs — Turn Your Ambition into an Opportunity
-          05B: For Citizens — The Help You Need, Right Next Door
+          05B: For Citizens — The Help You Need. The Services You Can Access.
           ==================================================================== */}
       <section
         id="choose-journey"
@@ -845,124 +845,166 @@ export default function App() {
             </p>
           </div>
 
-          {/* Clean Dual-Portal Editorial Cards (Zero AI Containers · Effortless Cognitive Scan) */}
+          {/* Regal Dual-Portal Architectural Folios (Zero AI Containers · Pure Typographic Authority) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {/* 05A — For Aspiring VLEs */}
-            <div className="relative rounded-[26px] bg-white border border-[#0a1628]/10 p-7 sm:p-9 flex flex-col justify-between shadow-[0_10px_35px_-12px_rgba(10,22,40,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(10,22,40,0.12)] hover:border-[#ff5500]/30 transition-all duration-300 group">
-              <div>
+            <div className="relative rounded-[28px] bg-[#0a1628] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#ff5500]/40 transition-all duration-300 overflow-hidden group">
+              {/* Corner Traditional Mandala Art Watermark */}
+              <img
+                src="/images/mandala-grand-white.png"
+                alt=""
+                aria-hidden="true"
+                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 opacity-[0.06] pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
+              />
+
+              <div className="relative z-10">
                 {/* Top Bar: Pill Badge & Counter */}
-                <div className="flex items-center justify-between gap-3 mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ff5500]/10 text-[#e04800] text-xs font-bold tracking-wider uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500]" />
-                    <span>For Entrepreneurs</span>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.08] border border-white/15 text-white text-[11px] font-semibold tracking-wider uppercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500] animate-pulse" />
+                    <span>FOR ASPIRING VLES</span>
                   </span>
-                  <span className="text-xs font-mono text-[#64748b]/60">01 / 02</span>
+                  <span className="text-xs font-mono text-white/40 tracking-wider">01 / 02</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-[26px] font-bold text-[#0a1628] tracking-[-0.02em] leading-tight mb-2.5 group-hover:text-[#ff5500] transition-colors">
-                  Turn Ambition into an Opportunity.
+                <h3 className="text-2xl sm:text-[28px] lg:text-[30px] font-bold text-white tracking-[-0.03em] leading-[1.15] mb-3 mt-3 group-hover:text-[#ff7733] transition-colors">
+                  Turn Your Ambition into an Opportunity.
                 </h3>
 
-                <p className="text-xs sm:text-[13.5px] text-[#64748b] leading-relaxed mb-6">
-                  Establish an authorized Common Service Centre in your gram panchayat. Deliver 400+ public and banking services while building a respected neighborhood enterprise.
+                <p className="text-xs sm:text-[13.5px] text-[#b4c6e4] leading-relaxed mb-6 font-normal">
+                  Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ public and banking services while building a respected neighborhood enterprise.
                 </p>
 
-                {/* Scannable Value Checklist (Zero Glass Boxes) */}
-                <div className="pt-5 border-t border-[#0a1628]/8 space-y-3 mb-8">
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+                {/* Pure-Typographic Broadsheet Spec Strip (Zero AI Containers) */}
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4.5 border-y border-white/10 my-6 divide-x divide-white/10 text-left">
+                  <div className="first:pl-0">
+                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
+                      400<span className="text-[#ff5500]">+</span>
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Deliver 400+ central, state, banking, and utility desks from one counter
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Public Desks
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      Central & state portals
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+
+                  <div className="pl-3 sm:pl-4">
+                    <div className="text-2xl sm:text-[26px] font-bold text-[#ff7733] tracking-tight leading-none mb-1">
+                      MeitY
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Single unified wallet with instant settlement & transparent commissions
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Accreditation
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      Official village license
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+
+                  <div className="pl-3 sm:pl-4">
+                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
+                      Instant
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Official MeitY accreditation, TEC certification, and district nodal training
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Wallet DBT
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      Direct commission credit
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <button
-                onClick={() => setLoginOpen(true)}
-                className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-md hover:shadow-lg group/btn"
-              >
-                <span>Explore What It Means to Be a CSC VLE</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
+              <div className="relative z-10 pt-2">
+                <button
+                  onClick={() => setLoginOpen(true)}
+                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-[0_10px_25px_-5px_rgba(255,85,0,0.35)] hover:shadow-lg group/btn"
+                >
+                  <span>Explore What It Means to Be a CSC VLE</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </div>
             </div>
 
             {/* 05B — For Citizens */}
-            <div className="relative rounded-[26px] bg-white border border-[#0a1628]/10 p-7 sm:p-9 flex flex-col justify-between shadow-[0_10px_35px_-12px_rgba(10,22,40,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(10,22,40,0.12)] hover:border-[#0284c7]/30 transition-all duration-300 group">
-              <div>
+            <div className="relative rounded-[28px] bg-[#07132b] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#0284c7]/40 transition-all duration-300 overflow-hidden group">
+              {/* Corner Traditional Mandala Art Watermark */}
+              <img
+                src="/images/mandala-card-02.png"
+                alt=""
+                aria-hidden="true"
+                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 opacity-[0.06] pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
+              />
+
+              <div className="relative z-10">
                 {/* Top Bar: Pill Badge & Counter */}
-                <div className="flex items-center justify-between gap-3 mb-5">
-                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0284c7]/10 text-[#0284c7] text-xs font-bold tracking-wider uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
-                    <span>For Citizens</span>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.08] border border-white/15 text-white text-[11px] font-semibold tracking-wider uppercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
+                    <span>FOR CITIZENS</span>
                   </span>
-                  <span className="text-xs font-mono text-[#64748b]/60">02 / 02</span>
+                  <span className="text-xs font-mono text-white/40 tracking-wider">02 / 02</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-[26px] font-bold text-[#0a1628] tracking-[-0.02em] leading-tight mb-2.5 group-hover:text-[#0284c7] transition-colors">
-                  The Services You Need, Right Next Door.
+                <h3 className="text-2xl sm:text-[28px] lg:text-[30px] font-bold text-white tracking-[-0.03em] leading-[1.15] mb-3 mt-3 group-hover:text-[#38bdf8] transition-colors">
+                  The Help You Need. The Services You Can Access.
                 </h3>
 
-                <p className="text-xs sm:text-[13.5px] text-[#64748b] leading-relaxed mb-6">
-                  From verified government certificates to everyday utility payments — access doorstep public services in your neighborhood with assisted guidance and instant printed receipts.
+                <p className="text-xs sm:text-[13.5px] text-[#b4c6e4] leading-relaxed mb-6 font-normal">
+                  From verified income and caste certificates to pension disbursements and utility bills — access assisted doorstep services in your neighborhood with official printed receipts.
                 </p>
 
-                {/* Scannable Value Checklist (Zero Glass Boxes) */}
-                <div className="pt-5 border-t border-[#0a1628]/8 space-y-3 mb-8">
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+                {/* Pure-Typographic Broadsheet Spec Strip (Zero AI Containers) */}
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4.5 border-y border-white/10 my-6 divide-x divide-white/10 text-left">
+                  <div className="first:pl-0">
+                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
+                      5.5<span className="text-[#38bdf8]">L+</span>
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Assisted applications for caste, income, domicile, and welfare schemes
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Neighbourhoods
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      Pan-India coverage
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+
+                  <div className="pl-3 sm:pl-4">
+                    <div className="text-2xl sm:text-[26px] font-bold text-[#38bdf8] tracking-tight leading-none mb-1">
+                      ₹0 Extra
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Official printed receipts with transparent government fees & SMS tracking
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Official Rates
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      No middlemen markup
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 stroke-[2.5]" />
+
+                  <div className="pl-3 sm:pl-4">
+                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
+                      Instant
                     </div>
-                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
-                      Over 5,50,000 active neighborhood counters operating across 28 states
-                    </span>
+                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
+                      Govt Receipts
+                    </div>
+                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
+                      SMS tracking reference
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <a
-                href="#services"
-                className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0a1628] hover:bg-[#15243b] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-md hover:shadow-lg group/btn"
-              >
-                <span>Find Services at Your Nearest CSC</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </a>
+              <div className="relative z-10 pt-2">
+                <a
+                  href="#services"
+                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-[0_10px_25px_-5px_rgba(2,132,199,0.35)] hover:shadow-lg group/btn"
+                >
+                  <span>Find Services at Your Nearest CSC</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
