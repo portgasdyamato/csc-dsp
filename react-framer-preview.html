@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSC Digital Seva Portal — React + Framer Motion (Instant Preview)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.3.1",
+          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+          "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react,react-dom",
+          "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      body {
+        background-color: #f8fafc;
+        color: #0f172a;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      .benefit-sheet-tab {
+        position: relative;
+        border-top-right-radius: 22px;
+      }
+      .benefit-sheet-tab::before {
+        content: "";
+        position: absolute;
+        top: -33px;
+        left: 0;
+        width: 128px;
+        height: 34px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 22px;
+        background-color: inherit;
+      }
+      .benefit-sheet-tab::after {
+        content: "";
+        position: absolute;
+        top: -18px;
+        left: 127px;
+        width: 18px;
+        height: 18px;
+        background: transparent;
+        border-bottom-left-radius: 16px;
+      }
+      .benefit-sheet-indigo::after {
+        box-shadow: -8px 8px 0 0 #030338;
+      }
+      .benefit-sheet-silver::after {
+        box-shadow: -8px 8px 0 0 #e5eaf3;
+      }
+      .benefit-sheet-obsidian::after {
+        box-shadow: -8px 8px 0 0 #0b1117;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect, useRef } from 'react';
+      import ReactDOM from 'react-dom/client';
+      import {
+        motion,
+        AnimatePresence,
+        useScroll,
+        useMotionValueEvent,
+        useMotionValue,
+        useSpring,
+        useTransform,
+      } from 'framer-motion';
+      import {
+        Search,
+        ArrowRight,
+        ArrowUpRight,
+        ChevronLeft,
+        ChevronRight,
+        ShieldCheck,
+        MapPin,
+        Sparkles,
+        CheckCircle2,
+        X,
+        Landmark,
+        CreditCard,
+        Stethoscope,
+        GraduationCap,
+        Sprout,
+        Zap,
+        Globe,
+      } from 'lucide-react';
+
+      const PILLARS_DATA = [
+        {
+          id: '01',
+          tag: 'G2C Governance • 180+ Services',
+          title: 'Citizen Governance & e-District',
+          subtitle:
+            'Seamless access to Passport Seva, e-PAN, Aadhaar updates, income/caste/domicile certificates, and electoral services right in your Gram Panchayat.',
+          image:
+            'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1400&q=85',
+        },
+        {
+          id: '02',
+          tag: 'Financial Inclusion • DigiPay AEPS',
+          title: 'Banking & Micro-ATM Network',
+          subtitle:
+            'Aadhaar-enabled cash withdrawals, Jan Dhan account opening, PM SVANidhi micro-credit, and instant domestic remittances across rural India.',
+          image:
+            'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=85',
+        },
+        {
+          id: '03',
+          tag: 'Agri-Tech • PM-KISAN & e-Pashu',
+          title: 'Smart Agriculture & Kisan e-Mart',
+          subtitle:
+            'Soil health cards, PM-KISAN biometric e-KYC, Pradhan Mantri Fasal Bima crop insurance, and direct farm-to-market supply chains.',
+          image:
+            'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1400&q=85',
+        },
+        {
+          id: '04',
+          tag: 'Healthcare • Ayushman PM-JAY',
+          title: 'Tele-Health & Wellness Centres',
+          subtitle:
+            'Video consultations with specialist doctors, Ayushman Bharat ₹5 Lakh Golden Card issuance, and Jan Aushadhi generic medicines.',
+          image:
+            'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400&q=85',
+        },
+        {
+          id: '05',
+          tag: 'Last-Mile Connectivity • BharatNet',
+          title: 'Into the Wild & Rural Frontiers',
+          subtitle:
+            'Digital empowerment in its purest form — connecting remotest mountain valleys, islands, and tribal panchayats full of possibility.',
+          image:
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85',
+        },
+      ];
+
+      const BENEFITS_DATA = [
+        {
+          number: '01',
+          title: 'Simple and easy to use',
+          description:
+            'Fully customized single-window biometric & OTP authentication (e-Pramaan) tailored for rapid citizen checkouts across 400+ state & central portals.',
+          badges: ['Single Sign-On', 'UIDAI L1 e-KYC'],
+          outerBg: 'bg-[#04042e]',
+          sheetBg: 'bg-[#030338] text-white benefit-sheet-indigo',
+          pillBg: 'bg-white/15 text-indigo-100',
+          artwork: 'indigo',
+        },
+        {
+          number: '02',
+          title: 'Instant Digital Wallet & Ledger',
+          description:
+            'Real-time T+0 commission settlement, instant BBPS bill reconciliation, and automated TDS refunds directly into the VLE Digital Seva wallet.',
+          badges: ['T+0 Settlement', 'Zero Downtime'],
+          outerBg: 'bg-[#cfd8e6]',
+          sheetBg: 'bg-[#e5eaf3] text-slate-900 benefit-sheet-silver',
+          pillBg: 'bg-slate-900/10 text-slate-800',
+          artwork: 'chromatic',
+        },
+        {
+          number: '03',
+          title: 'Bank-grade security, built to scale',
+          description:
+            'End-to-end UIDAI L1 RD-service encryption, ISO 27001 certified cloud infrastructure, and multilingual voice assistance across every village.',
+          badges: ['ISO 27001 Certified', '22 Languages'],
+          outerBg: 'bg-[#080c11]',
+          sheetBg: 'bg-[#0b1117] text-white benefit-sheet-obsidian',
+          pillBg: 'bg-white/15 text-slate-200',
+          artwork: 'obsidian',
+        },
+      ];
+
+      const STORIES_DATA = [
+        {
+          id: 0,
+          title: 'Green Gram Panchayat',
+          subtitle: '100% paperless revenue & land mutation delivery across 140 mountain villages',
+          location: 'Kullu, Himachal Pradesh',
+          category: 'e-District & Revenue',
+          cardLabel: 'Paperless Land Records',
+          metric: '19,400+ Certificates Issued • 12 Mins Turnaround',
+          image:
+            'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=85',
+        },
+        {
+          id: 1,
+          title: 'Doorway to Micro-Banking',
+          subtitle: 'Bringing Aadhaar-enabled cash withdrawal and doorstep pension to rural elders',
+          location: 'Jodhpur, Rajasthan',
+          category: 'DigiPay Sakhi',
+          cardLabel: 'Doorstep Banking',
+          metric: '₹4.8 Cr Monthly DigiPay Volume • Zero Fee',
+          image:
+            'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=85',
+        },
+        {
+          id: 2,
+          title: 'Low Tide',
+          subtitle: 'Still water before the turn — 4,200 coastal families insured & connected via CSC',
+          location: 'Porbandar, Gujarat',
+          category: 'Fisheries & PMMSY',
+          cardLabel: 'Coastal CSC Hub',
+          metric: 'Verified Citizen Impact • 18 Mins Avg Turnaround',
+          image:
+            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=85',
+        },
+        {
+          id: 3,
+          title: 'Nari Shakti Digital Kendra',
+          subtitle: 'Women VLEs leading Tele-Law, Ayushman e-KYC, and rural entrepreneurship',
+          location: 'Varanasi, Uttar Pradesh',
+          category: 'Aadhaar & Tele-Law',
+          cardLabel: 'Women-Led Digital Kendra',
+          metric: '1.4 Lakh+ Active Women VLE Entrepreneurs',
+          image:
+            'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=85',
+        },
+        {
+          id: 4,
+          title: 'Rural Coding & AI Hub',
+          subtitle: 'First-generation learners mastering Python, CAD, and financial literacy at CSC Academy',
+          location: 'Kamrup, Assam',
+          category: 'PMGDISHA Academy',
+          cardLabel: '100% Digital Literacy Village',
+          metric: '6.2 Crore Citizens Certified under PMGDISHA',
+          image:
+            'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=85',
+        },
+      ];
+
+      const SERVICES_CATALOG = [
+        {
+          title: 'Aadhaar Demographic & Mobile Update',
+          cat: 'g2c',
+          catLabel: 'G2C & Identity',
+          sla: 'Instant Biometric',
+          desc: 'Update address, mobile number, email, and DOB via UIDAI L1 biometric authentication.',
+          icon: Landmark,
+        },
+        {
+          title: 'Ayushman Bharat (PM-JAY) Golden Card',
+          cat: 'health',
+          catLabel: 'Health & Education',
+          sla: '₹5 Lakh Cover',
+          desc: 'Check beneficiary eligibility, complete e-KYC, and download your cashless health card.',
+          icon: Stethoscope,
+        },
+        {
+          title: 'DigiPay AEPS & Micro-ATM Banking',
+          cat: 'banking',
+          catLabel: 'Banking & Insurance',
+          sla: 'Zero Fee',
+          desc: 'Cash withdrawal, balance inquiry, mini statement, and Aadhaar-to-Aadhaar fund transfers.',
+          icon: CreditCard,
+        },
+        {
+          title: 'Instant e-PAN Card (NSDL / UTIITSL)',
+          cat: 'g2c',
+          catLabel: 'G2C & Identity',
+          sla: '2 Hours e-PAN',
+          desc: 'Apply for a new PAN card or corrections with paperless Aadhaar OTP / biometric e-KYC.',
+          icon: ShieldCheck,
+        },
+        {
+          title: 'PM-KISAN Samman Nidhi e-KYC',
+          cat: 'g2c',
+          catLabel: 'G2C & Identity',
+          sla: '₹6,000 / Year',
+          desc: 'Mandatory biometric e-KYC, land seeding verification, and installment status checks.',
+          icon: Sprout,
+        },
+        {
+          title: 'Bharat BillPay (BBPS) & Utilities',
+          cat: 'utility',
+          catLabel: 'Bills & Travel',
+          sla: 'Instant Receipt',
+          desc: 'Pay electricity, piped gas, water, FASTag, and DTH bills with instant confirmation.',
+          icon: Zap,
+        },
+        {
+          title: 'PMGDISHA & CSC Academy Courses',
+          cat: 'health',
+          catLabel: 'Health & Education',
+          sla: 'Govt Certified',
+          desc: 'Digital literacy, Tally, Cyber Security, and AI skill certifications for rural youth.',
+          icon: GraduationCap,
+        },
+        {
+          title: 'e-Shram & PM-SYM Pension Scheme',
+          cat: 'banking',
+          catLabel: 'Banking & Insurance',
+          sla: '₹3,000/mo Pension',
+          desc: 'Universal UAN card registration and assured monthly pension for unorganized workers.',
+          icon: Globe,
+        },
+      ];
+
+      function ScrollExpandingPillars({ onSelectService }) {
+        const sectionRef = useRef(null);
+        const [activeIndex, setActiveIndex] = useState(0);
+
+        const { scrollYProgress } = useScroll({
+          target: sectionRef,
+          offset: ['start start', 'end end'],
+        });
+
+        useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+          const clamped = Math.max(0, Math.min(0.999, latest));
+          const idx = Math.floor(clamped * PILLARS_DATA.length);
+          if (idx !== activeIndex) setActiveIndex(idx);
+        });
+
+        return (
+          <section
+            ref={sectionRef}
+            id="scroll-pillars"
+            className="relative h-[320vh] bg-white border-y border-slate-200/80"
+          >
+            <div className="sticky top-[68px] h-[calc(100vh-68px)] max-w-7xl mx-auto px-4 sm:px-8 flex flex-col justify-center">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+                <div>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-3.5 py-1.5 rounded-full mb-2.5">
+                    <Sparkles className="w-3.5 h-3.5" /> Scroll-Driven Interactive Showcase
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                    Core Pillars of Digital Seva
+                  </h2>
+                  <p className="text-slate-600 text-sm sm:text-base mt-1">
+                    Expands automatically as you scroll — or click any vertical capsule to inspect.
+                  </p>
+                </div>
+
+                <div className="inline-flex items-center gap-3 bg-slate-100 px-4 py-2 rounded-full self-start md:self-auto">
+                  <span className="text-xs font-bold text-slate-700 tabular-nums">
+                    0{activeIndex + 1} / 0{PILLARS_DATA.length}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {PILLARS_DATA.map((item, idx) => (
+                      <button
+                        key={item.id}
+                        onClick={() => setActiveIndex(idx)}
+                        className="relative h-2 rounded-full transition-all duration-300 cursor-pointer"
+                        style={{
+                          width: activeIndex === idx ? 28 : 8,
+                          backgroundColor: activeIndex === idx ? '#1d4ed8' : '#cbd5e1',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-stretch gap-2.5 sm:gap-3.5 h-[430px] sm:h-[500px] w-full select-none">
+                {PILLARS_DATA.map((pillar, idx) => {
+                  const isActive = idx === activeIndex;
+                  return (
+                    <motion.article
+                      key={pillar.id}
+                      layout
+                      onClick={() => setActiveIndex(idx)}
+                      initial={false}
+                      animate={{
+                        flex: isActive ? 5.6 : 0.65,
+                        borderRadius: isActive ? 32 : 44,
+                      }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 210,
+                        damping: 28,
+                        mass: 0.9,
+                      }}
+                      className="relative h-full overflow-hidden cursor-pointer bg-slate-900 shadow-xl"
+                    >
+                      <motion.img
+                        src={pillar.image}
+                        alt={pillar.title}
+                        initial={false}
+                        animate={{
+                          scale: isActive ? 1.0 : 1.12,
+                          filter: isActive ? 'brightness(0.92)' : 'brightness(0.82)',
+                        }}
+                        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+                      />
+                      <motion.div
+                        initial={false}
+                        animate={{ opacity: isActive ? 1 : 0.15 }}
+                        className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent pointer-events-none"
+                      />
+
+                      <AnimatePresence>
+                        {!isActive && (
+                          <motion.span
+                            initial={{ opacity: 0, scale: 0.6 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.6 }}
+                            className="absolute bottom-5 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur-md text-slate-900 text-xs font-extrabold grid place-items-center shadow"
+                          >
+                            {pillar.id}
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 22 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 14 }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 240,
+                              damping: 24,
+                              delay: 0.12,
+                            }}
+                            className="absolute inset-x-0 bottom-0 p-6 sm:p-9 flex items-end justify-between gap-4 z-10"
+                          >
+                            <div className="max-w-xl text-white">
+                              <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white mb-2.5">
+                                {pillar.tag}
+                              </span>
+                              <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                                {pillar.title}
+                              </h3>
+                              <p className="text-xs sm:text-sm text-slate-200/90 mt-1.5 leading-relaxed">
+                                {pillar.subtitle}
+                              </p>
+                            </div>
+
+                            <motion.button
+                              whileHover={{ scale: 1.12, x: 3 }}
+                              whileTap={{ scale: 0.94 }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onSelectService(pillar.title);
+                              }}
+                              className="w-12 h-12 rounded-full bg-white text-slate-900 grid place-items-center shrink-0 shadow-2xl cursor-pointer"
+                            >
+                              <ArrowRight className="w-5 h-5" />
+                            </motion.button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.article>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function BenefitArtwork({ type }) {
+        if (type === 'indigo') {
+          return (
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" className="w-full h-full block">
+              <defs>
+                <radialGradient id="indigoGlowP" cx="65%" cy="22%" r="70%">
+                  <stop offset="0%" stopColor="#6366f1" />
+                  <stop offset="40%" stopColor="#312e81" />
+                  <stop offset="85%" stopColor="#050542" />
+                  <stop offset="100%" stopColor="#020224" />
+                </radialGradient>
+                <linearGradient id="ribbon1P" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#93c5fd" stopOpacity="0.95" />
+                  <stop offset="50%" stopColor="#4f46e5" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#1e1b4b" stopOpacity="0.95" />
+                </linearGradient>
+              </defs>
+              <rect width="400" height="500" fill="url(#indigoGlowP)" />
+              <path d="M145 52 L238 24 L238 212 L178 212 L178 90 L130 106 Z" fill="url(#ribbon1P)" stroke="#a5b4fc" strokeWidth="2.5" />
+              <circle cx="290" cy="85" r="56" fill="none" stroke="rgba(165,180,252,0.28)" strokeWidth="18" />
+            </svg>
+          );
+        }
+        if (type === 'chromatic') {
+          return (
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" className="w-full h-full block">
+              <defs>
+                <linearGradient id="bg2P" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f97316" />
+                  <stop offset="35%" stopColor="#7c2d12" />
+                  <stop offset="70%" stopColor="#0f172a" />
+                  <stop offset="100%" stopColor="#1d4ed8" />
+                </linearGradient>
+                <linearGradient id="chromeRibbonP" x1="0%" y1="0%" x2="100%" y2="80%">
+                  <stop offset="0%" stopColor="#1e293b" />
+                  <stop offset="35%" stopColor="#38bdf8" />
+                  <stop offset="70%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#fb923c" />
+                </linearGradient>
+                <linearGradient id="redGlowP" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#ef4444" />
+                  <stop offset="50%" stopColor="#1e1b4b" />
+                  <stop offset="100%" stopColor="#3b82f6" />
+                </linearGradient>
+              </defs>
+              <rect width="400" height="500" fill="url(#bg2P)" />
+              <path d="M52 58 L272 22 L336 78 L112 128 L96 158 L318 134 L344 228 L128 242 Z" fill="url(#chromeRibbonP)" stroke="#e2e8f0" strokeWidth="3" strokeLinejoin="round" />
+              <path d="M128 152 L318 134 L338 215 L145 225 Z" fill="url(#redGlowP)" stroke="#f8fafc" strokeWidth="2" />
+            </svg>
+          );
+        }
+        return (
+          <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" className="w-full h-full block">
+            <defs>
+              <radialGradient id="silverHorizonP" cx="72%" cy="18%" r="65%">
+                <stop offset="0%" stopColor="#f8fafc" />
+                <stop offset="28%" stopColor="#93c5fd" />
+                <stop offset="60%" stopColor="#1e293b" />
+                <stop offset="100%" stopColor="#05080c" />
+              </radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#silverHorizonP)" />
+            <circle cx="275" cy="95" r="78" fill="rgba(255,255,255,0.12)" stroke="rgba(226,232,240,0.4)" strokeWidth="2" />
+            <path d="M90 165 Q210 60 350 155" fill="none" stroke="rgba(147,197,253,0.55)" strokeWidth="6" strokeLinecap="round" />
+          </svg>
+        );
+      }
+
+      function BenefitsSection({ onSelectBenefit }) {
+        const [hoveredIdx, setHoveredIdx] = useState(null);
+        const springConfig = { type: 'spring', stiffness: 230, damping: 26, mass: 0.85 };
+
+        return (
+          <section id="benefits" className="py-24 px-4 sm:px-8 bg-gradient-to-b from-[#eef2f8] to-[#e3eaf4]">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center max-w-2xl mx-auto mb-14">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3">
+                  Engineered for Citizens & VLEs
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                  Why Choose CSC Digital Seva
+                </h2>
+                <p className="text-slate-600 mt-2 text-sm sm:text-base">
+                  Hover over any card — the folder-tab detail sheet slides down with Framer Motion spring physics.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+                {BENEFITS_DATA.map((card, idx) => {
+                  const isHovered = hoveredIdx === idx;
+                  return (
+                    <motion.article
+                      key={card.number}
+                      onMouseEnter={() => setHoveredIdx(idx)}
+                      onMouseLeave={() => setHoveredIdx(null)}
+                      onClick={() => onSelectBenefit(card.title)}
+                      whileHover={{ y: -6 }}
+                      transition={springConfig}
+                      className={`relative h-[490px] rounded-[30px] p-[6px] cursor-pointer shadow-2xl ${card.outerBg}`}
+                    >
+                      <div className="relative w-full h-full rounded-[24px] overflow-hidden">
+                        <motion.div
+                          animate={{ scale: isHovered ? 1.07 : 1.0 }}
+                          transition={springConfig}
+                          className="absolute inset-0 w-full h-full"
+                        >
+                          <BenefitArtwork type={card.artwork} />
+                        </motion.div>
+
+                        <motion.div
+                          initial={false}
+                          animate={{ y: isHovered ? '38%' : '0%' }}
+                          transition={springConfig}
+                          className={`benefit-sheet-tab absolute inset-x-0 bottom-0 h-[82%] z-10 flex flex-col justify-between px-7 pt-5 pb-7 ${card.sheetBg}`}
+                        >
+                          <div className="flex items-start justify-between -mt-3">
+                            <span className="text-[42px] font-medium tracking-tight leading-none">
+                              {card.number}
+                            </span>
+                            <motion.span
+                              animate={{
+                                x: isHovered ? 4 : 0,
+                                y: isHovered ? -4 : 0,
+                                scale: isHovered ? 1.15 : 1,
+                              }}
+                              transition={springConfig}
+                              className="w-8 h-8 rounded-full grid place-items-center"
+                            >
+                              <ArrowUpRight className="w-5 h-5" />
+                            </motion.span>
+                          </div>
+
+                          <motion.div
+                            initial={false}
+                            animate={{ y: isHovered ? -148 : 0 }}
+                            transition={springConfig}
+                          >
+                            <h3 className="text-lg font-bold leading-snug mb-2">
+                              {card.title}
+                            </h3>
+                            <p className="text-sm leading-relaxed opacity-75">
+                              {card.description}
+                            </p>
+                            <div className="flex flex-wrap gap-1.5 mt-3.5">
+                              {card.badges.map((b) => (
+                                <span
+                                  key={b}
+                                  className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${card.pillBg}`}
+                                >
+                                  {b}
+                                </span>
+                              ))}
+                            </div>
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                    </motion.article>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      const FAN_SLOT_STYLES = {
+        0: { x: 0, y: -12, rotate: 0, scale: 1.06, zIndex: 30, brightness: 1.02 },
+        '-1': { x: -185, y: 12, rotate: -7.5, scale: 0.91, zIndex: 20, brightness: 0.93 },
+        1: { x: 185, y: 12, rotate: 7.5, scale: 0.91, zIndex: 20, brightness: 0.93 },
+        '-2': { x: -335, y: 38, rotate: -15, scale: 0.79, zIndex: 10, brightness: 0.84 },
+        2: { x: 335, y: 38, rotate: 15, scale: 0.79, zIndex: 10, brightness: 0.84 },
+      };
+
+      function CustomerStoriesCarousel({ onSelectStory }) {
+        const [activeIndex, setActiveIndex] = useState(2);
+        const total = STORIES_DATA.length;
+
+        const paginate = (dir) => {
+          setActiveIndex((prev) => ((prev + dir) % total + total) % total);
+        };
+
+        const getSignedOffset = (index) => {
+          let diff = index - activeIndex;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
+          return diff;
+        };
+
+        const activeStory = STORIES_DATA[activeIndex];
+
+        return (
+          <section id="stories" className="py-24 px-4 sm:px-8 bg-white overflow-hidden">
+            <div className="max-w-6xl mx-auto text-center">
+              <div className="max-w-2xl mx-auto mb-10">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-3.5 py-1.5 rounded-full mb-3">
+                  Customer & VLE Stories
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                  Stories of Rural Transformation
+                </h2>
+                <p className="text-slate-600 mt-2 text-sm sm:text-base">
+                  Click any fanned card, drag left/right, or use the arrow buttons to rotate through citizen stories.
+                </p>
+              </div>
+
+              <div className="relative h-[410px] sm:h-[430px] flex items-center justify-center my-4 select-none">
+                {STORIES_DATA.map((story, idx) => {
+                  const offset = getSignedOffset(idx);
+                  const slot = FAN_SLOT_STYLES[offset] || {
+                    x: 0,
+                    y: 60,
+                    rotate: 0,
+                    scale: 0.6,
+                    zIndex: 1,
+                    brightness: 0.7,
+                  };
+                  const isCenter = offset === 0;
+
+                  return (
+                    <motion.div
+                      key={story.id}
+                      onClick={() => {
+                        if (!isCenter) setActiveIndex(idx);
+                        else onSelectStory(story.title);
+                      }}
+                      drag={isCenter ? 'x' : false}
+                      dragConstraints={{ left: 0, right: 0 }}
+                      onDragEnd={(_, info) => {
+                        if (info.offset.x < -50) paginate(1);
+                        else if (info.offset.x > 50) paginate(-1);
+                      }}
+                      initial={false}
+                      animate={{
+                        x: slot.x,
+                        y: slot.y,
+                        rotate: slot.rotate,
+                        scale: slot.scale,
+                        zIndex: slot.zIndex,
+                        filter: `brightness(${slot.brightness})`,
+                      }}
+                      whileHover={
+                        isCenter
+                          ? { scale: 1.09, y: -16 }
+                          : { scale: slot.scale + 0.03, y: slot.y - 6 }
+                      }
+                      transition={{ type: 'spring', stiffness: 240, damping: 25, mass: 0.9 }}
+                      className="absolute w-[230px] sm:w-[265px] h-[330px] sm:h-[365px] rounded-[22px] overflow-hidden cursor-pointer bg-slate-900 border-[3px] border-white shadow-[0_24px_55px_rgba(15,23,42,0.22)]"
+                    >
+                      <img
+                        src={story.image}
+                        alt={story.title}
+                        className="w-full h-full object-cover pointer-events-none"
+                      />
+                      <span className="absolute top-3.5 left-3.5 bg-slate-950/70 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                        {story.location}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent flex flex-col justify-end p-4 text-left text-white">
+                        <span className="text-[11px] font-semibold text-blue-300">
+                          {story.category}
+                        </span>
+                        <h4 className="text-base font-bold leading-snug">
+                          {story.cardLabel}
+                        </h4>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center justify-center gap-8 sm:gap-14 mt-3">
+                <motion.button
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => paginate(-1)}
+                  className="w-11 h-11 rounded-full bg-slate-950 text-white grid place-items-center shadow-lg cursor-pointer hover:bg-blue-700"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </motion.button>
+
+                <div className="min-w-[260px] sm:min-w-[360px] max-w-md min-h-[84px] flex flex-col items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeStory.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.22 }}
+                      className="flex flex-col items-center"
+                    >
+                      <h3 className="text-xl font-extrabold text-slate-900">
+                        {activeStory.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-500 mt-1 tracking-wide">
+                        {activeStory.subtitle}
+                      </p>
+                      <span className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">
+                        <CheckCircle2 className="w-3.5 h-3.5" /> {activeStory.metric}
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.12 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => paginate(1)}
+                  className="w-11 h-11 rounded-full bg-slate-950 text-white grid place-items-center shadow-lg cursor-pointer hover:bg-blue-700"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </motion.button>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function App() {
+        const [searchQuery, setSearchQuery] = useState('');
+        const [searchOpen, setSearchOpen] = useState(false);
+        const [activeCategory, setActiveCategory] = useState('all');
+        const [pincode, setPincode] = useState('');
+        const [kendraZone, setKendraZone] = useState('Block A — Connaught Place (110001)');
+        const [modalState, setModalState] = useState({ open: false, title: '', badge: '' });
+        const [toastMessage, setToastMessage] = useState(null);
+        const [tickerIdx, setTickerIdx] = useState(0);
+        const [isHindi, setIsHindi] = useState(false);
+
+        const mouseX = useMotionValue(0.5);
+        const mouseY = useMotionValue(0.5);
+        const rotateX = useSpring(useTransform(mouseY, [0, 1], [8, -8]), { stiffness: 180, damping: 22 });
+        const rotateY = useSpring(useTransform(mouseX, [0, 1], [-8, 8]), { stiffness: 180, damping: 22 });
+
+        useEffect(() => {
+          if (!toastMessage) return;
+          const t = setTimeout(() => setToastMessage(null), 3200);
+          return () => clearTimeout(t);
+        }, [toastMessage]);
+
+        const TICKER_MESSAGES = [
+          '⚡ VLE Rajesh (Varanasi) issued Ayushman Card • 2s ago',
+          '💳 DigiPay AEPS ₹5,000 withdrawal in Satara, MH • 4s ago',
+          '📄 Instant e-PAN generated at CSC Thrissur, KL • 6s ago',
+          '🌾 PM-KISAN e-KYC verified in Karnal, HR • 9s ago',
+        ];
+
+        useEffect(() => {
+          const id = setInterval(() => {
+            setTickerIdx((prev) => (prev + 1) % TICKER_MESSAGES.length);
+          }, 3400);
+          return () => clearInterval(id);
+        }, []);
+
+        const openServiceModal = (title, badge = 'Instant Service Gateway') => {
+          setModalState({ open: true, title, badge });
+        };
+
+        const filteredServices =
+          activeCategory === 'all'
+            ? SERVICES_CATALOG
+            : SERVICES_CATALOG.filter((s) => s.cat === activeCategory);
+
+        return (
+          <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+            <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 sm:px-8 flex items-center justify-between border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 font-semibold text-white">
+                  <span className="w-2 h-2 rounded-full bg-[#ff9933]" />
+                  <span className="w-2 h-2 rounded-full bg-white" />
+                  <span className="w-2 h-2 rounded-full bg-[#138808]" />
+                  <span className="ml-1">Ministry of Electronics & IT (MeitY)</span>
+                </span>
+                <span className="hidden sm:inline text-slate-500">•</span>
+                <span className="hidden sm:inline">Common Services Centres (CSC 2.0) — Digital India</span>
+              </div>
+              <button
+                onClick={() => {
+                  setIsHindi((h) => !h);
+                  setToastMessage(!isHindi ? 'भाषा बदली गई: हिंदी' : 'Switched to English');
+                }}
+                className="bg-white/10 hover:bg-white/20 text-white px-2.5 py-0.5 rounded-md font-semibold cursor-pointer"
+              >
+                {isHindi ? 'हिंदी / EN' : 'EN / हिंदी'}
+              </button>
+            </div>
+
+            <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80">
+              <div className="max-w-7xl mx-auto px-4 sm:px-8 h-[68px] flex items-center justify-between gap-4">
+                <a href="#" className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-900 via-blue-600 to-orange-500 grid place-items-center text-white font-black text-base shadow-lg">
+                    CSC
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 font-extrabold text-lg tracking-tight text-slate-900 leading-none">
+                      <span>Digital Seva</span>
+                      <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                        React + Motion
+                      </span>
+                    </div>
+                    <span className="text-xs text-slate-500 font-medium">Empowering Rural & Urban India</span>
+                  </div>
+                </a>
+
+                <nav className="hidden lg:flex items-center gap-1 text-sm font-medium text-slate-600">
+                  <a href="#scroll-pillars" className="px-3.5 py-2 rounded-full hover:bg-slate-100">Service Pillars</a>
+                  <a href="#benefits" className="px-3.5 py-2 rounded-full hover:bg-slate-100">Benefits</a>
+                  <a href="#stories" className="px-3.5 py-2 rounded-full hover:bg-slate-100">Customer Stories</a>
+                  <a href="#directory" className="px-3.5 py-2 rounded-full hover:bg-slate-100">All Services</a>
+                </nav>
+
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => openServiceModal('VLE Digital Seva Console Sign-In', 'Digital Seva Connect')}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-700 to-indigo-700 text-white shadow-lg cursor-pointer"
+                >
+                  <span>Digital Seva Connect</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </div>
+            </header>
+
+            <section className="relative py-14 sm:py-20 px-4 sm:px-8 overflow-hidden bg-gradient-to-b from-white to-slate-100">
+              <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="lg:col-span-7"
+                >
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-200 shadow-sm text-xs font-semibold text-blue-800 mb-5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                    <span>5.84 Lakh+ Active Centres Across 36 States & UTs</span>
+                  </div>
+
+                  <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 leading-[1.08] mb-5">
+                    Every Citizen Service,
+                    <br />
+                    <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-orange-600 bg-clip-text text-transparent">
+                      One Unified Digital Portal.
+                    </span>
+                  </h1>
+
+                  <p className="text-base sm:text-lg text-slate-600 max-w-xl mb-7 leading-relaxed">
+                    Access 400+ Government-to-Citizen (G2C), Banking, Aadhaar, Healthcare, Insurance, and Skill Development services seamlessly through your nearest Village Level Entrepreneur (VLE).
+                  </p>
+
+                  <div className="flex items-center bg-white border-2 border-slate-200 focus-within:border-blue-600 rounded-2xl p-1.5 pl-4 shadow-xl max-w-xl mb-6">
+                    <Search className="w-5 h-5 text-slate-400 mr-2.5 shrink-0" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search e.g. Ayushman Card, PAN, DigiPay, PM-KISAN..."
+                      className="w-full text-sm sm:text-base text-slate-900 outline-none bg-transparent"
+                    />
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.96 }}
+                      onClick={() => openServiceModal(searchQuery.trim() || 'Universal Citizen Service Portal')}
+                      className="px-5 py-2.5 rounded-xl bg-blue-700 text-white text-sm font-semibold cursor-pointer"
+                    >
+                      Explore
+                    </motion.button>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/80">
+                    {[
+                      { val: '5.84L+', label: 'Active CSC Centres' },
+                      { val: '420+', label: 'Live Digital Services' },
+                      { val: '1.24B+', label: 'Annual Transactions' },
+                      { val: '99.4%', label: 'Panchayat Coverage' },
+                    ].map((stat) => (
+                      <div key={stat.label}>
+                        <div className="text-2xl font-black text-slate-900">{stat.val}</div>
+                        <div className="text-xs font-medium text-slate-500">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+
+                <div
+                  className="lg:col-span-5"
+                  style={{ perspective: 1200 }}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    mouseX.set((e.clientX - rect.left) / rect.width);
+                    mouseY.set((e.clientY - rect.top) / rect.height);
+                  }}
+                  onMouseLeave={() => {
+                    mouseX.set(0.5);
+                    mouseY.set(0.5);
+                  }}
+                >
+                  <motion.div
+                    style={{ rotateX, rotateY }}
+                    className="bg-slate-950 text-white rounded-[28px] p-6 sm:p-7 border border-white/15 shadow-2xl"
+                  >
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                        <span>Live Digital Seva Console</span>
+                      </div>
+                      <span className="text-xs font-bold text-blue-400">BBPS & e-Pramaan Ready</span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3.5 mb-5">
+                      {[
+                        { title: 'e-District & G2C', sub: 'Income, Caste & Birth', badge: 'Instant', emoji: '🏛️' },
+                        { title: 'DigiPay Banking', sub: 'AEPS Cash & Micro-ATM', badge: 'Zero Fee', emoji: '💳' },
+                        { title: 'Health & PM-JAY', sub: 'Golden Card & Tele-Med', badge: '₹5L Cover', emoji: '🩺' },
+                        { title: 'CSC Academy', sub: 'PMGDISHA & AI Skills', badge: 'Certified', emoji: '🎓' },
+                      ].map((tile) => (
+                        <motion.button
+                          key={tile.title}
+                          whileHover={{ y: -4 }}
+                          whileTap={{ scale: 0.97 }}
+                          onClick={() => openServiceModal(tile.title)}
+                          className="bg-white/10 border border-white/10 rounded-2xl p-4 text-left cursor-pointer"
+                        >
+                          <div className="flex items-center justify-between mb-2.5">
+                            <span className="w-9 h-9 rounded-xl bg-white/10 grid place-items-center text-lg">{tile.emoji}</span>
+                            <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300">{tile.badge}</span>
+                          </div>
+                          <div className="font-bold text-sm">{tile.title}</div>
+                          <div className="text-xs text-slate-400 mt-0.5">{tile.sub}</div>
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 flex items-center justify-between text-xs text-slate-300">
+                      <span className="truncate pr-2">{TICKER_MESSAGES[tickerIdx]}</span>
+                      <span className="text-emerald-400 font-bold shrink-0">99.98% Uptime</span>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </section>
+
+            <ScrollExpandingPillars onSelectService={(srv) => openServiceModal(srv)} />
+            <BenefitsSection onSelectBenefit={(title) => openServiceModal(title, 'CSC Platform Advantage')} />
+            <CustomerStoriesCarousel onSelectStory={(title) => setToastMessage(`Viewing full story: ${title}`)} />
+
+            <section id="directory" className="py-24 px-4 sm:px-8 bg-slate-950 text-white">
+              <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                  <div>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Explore Digital Seva Services</h2>
+                    <p className="text-slate-400 text-sm sm:text-base mt-1">Filter by citizen category with Framer Motion layout animations.</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 bg-white/5 p-1.5 rounded-full border border-white/10">
+                    {[
+                      { id: 'all', label: 'All Services' },
+                      { id: 'g2c', label: 'G2C & Identity' },
+                      { id: 'banking', label: 'Banking & Pension' },
+                      { id: 'health', label: 'Health & Skills' },
+                      { id: 'utility', label: 'Bills & Utilities' },
+                    ].map((tab) => {
+                      const active = activeCategory === tab.id;
+                      return (
+                        <button
+                          key={tab.id}
+                          onClick={() => setActiveCategory(tab.id)}
+                          className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-semibold cursor-pointer ${
+                            active ? 'text-white' : 'text-slate-300 hover:text-white'
+                          }`}
+                        >
+                          {active && (
+                            <motion.span
+                              layoutId="activeFilterBubblePreview"
+                              transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+                              className="absolute inset-0 rounded-full bg-blue-600 -z-0"
+                            />
+                          )}
+                          <span className="relative z-10">{tab.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  <AnimatePresence mode="popLayout">
+                    {filteredServices.map((srv) => {
+                      const IconComponent = srv.icon;
+                      return (
+                        <motion.article
+                          key={srv.title}
+                          layout
+                          initial={{ opacity: 0, scale: 0.92 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.92 }}
+                          whileHover={{ y: -6 }}
+                          onClick={() => openServiceModal(srv.title)}
+                          className="bg-white/5 border border-white/10 hover:border-blue-400/50 rounded-3xl p-6 flex flex-col justify-between cursor-pointer"
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="w-11 h-11 rounded-2xl bg-blue-600/20 border border-blue-400/30 grid place-items-center text-blue-300">
+                                <IconComponent className="w-5 h-5" />
+                              </div>
+                              <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-300">{srv.sla}</span>
+                            </div>
+                            <h4 className="font-bold text-base sm:text-lg leading-snug mb-2">{srv.title}</h4>
+                            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-5">{srv.desc}</p>
+                          </div>
+                          <div className="pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-bold text-blue-400">
+                            <span>{srv.catLabel}</span>
+                            <span>Launch →</span>
+                          </div>
+                        </motion.article>
+                      );
+                    })}
+                  </AnimatePresence>
+                </motion.div>
+              </div>
+            </section>
+
+            <AnimatePresence>
+              {modalState.open && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setModalState((s) => ({ ...s, open: false }))}
+                  className="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 grid place-items-center p-4"
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, y: 18, opacity: 0 }}
+                    animate={{ scale: 1, y: 0, opacity: 1 }}
+                    exit={{ scale: 0.9, y: 18, opacity: 0 }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-white text-slate-900 w-full max-w-md rounded-3xl p-7 shadow-2xl relative"
+                  >
+                    <button
+                      onClick={() => setModalState((s) => ({ ...s, open: false }))}
+                      className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 grid place-items-center cursor-pointer"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                    <span className="inline-block text-xs font-bold uppercase px-3 py-1 rounded-full bg-blue-100 text-blue-700 mb-2.5">
+                      {modalState.badge}
+                    </span>
+                    <h3 className="text-xl font-extrabold mb-1.5">{modalState.title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-500 mb-5">
+                      Enter your 12-digit CSC VLE ID or Aadhaar Reference Number to proceed with OTP verification.
+                    </p>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setModalState((s) => ({ ...s, open: false }));
+                        setToastMessage('OTP dispatched to your registered mobile number!');
+                      }}
+                      className="space-y-3.5"
+                    >
+                      <input
+                        type="text"
+                        required
+                        placeholder="CSC ID / Reference Number"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm outline-none"
+                      />
+                      <button
+                        type="submit"
+                        className="w-full py-3 rounded-xl bg-blue-700 text-white font-semibold text-sm cursor-pointer"
+                      >
+                        Proceed with OTP Verification →
+                      </button>
+                    </form>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {toastMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  className="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-2.5 text-sm font-semibold z-50"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>{toastMessage}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+  </body>
+</html>
+
