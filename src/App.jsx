@@ -812,201 +812,157 @@ export default function App() {
       </section>
 
       {/* ====================================================================
-          05. CHOOSE YOUR JOURNEY — TWO SIDES OF THE SAME ECOSYSTEM (PROPOSAL SECTION 05)
+          05. CHOOSE YOUR JOURNEY — TWO SIDES OF THE SAME ECOSYSTEM
           Headline: Every Journey Begins with a Different Need.
-          Format: Side-by-Side Dual-Portal Architectural Cards on Warm Ivory
+          Format: Side-by-Side Clean Editorial Cards on Warm Ivory (Zero AI Transparent Boxes)
           05A: For Aspiring VLEs — Turn Your Ambition into an Opportunity
-          05B: For Citizens — The Help You Need. The Services You Can Access
+          05B: For Citizens — The Help You Need, Right Next Door
           ==================================================================== */}
       <section
         id="choose-journey"
-        className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 scroll-mt-24 py-12 sm:py-16"
+        className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 scroll-mt-24 py-16 sm:py-20"
       >
         {/* Subtle Grand Mandala Background Art (Greyish on Cream) */}
         <img
           src="/images/mandala-grand-navy.png"
           alt=""
           aria-hidden="true"
-          className="w-[780px] h-[780px] object-contain absolute -top-48 left-1/2 -translate-x-1/2 opacity-[0.05] grayscale pointer-events-none select-none"
+          className="w-[780px] h-[780px] object-contain absolute -top-48 left-1/2 -translate-x-1/2 opacity-[0.04] grayscale pointer-events-none select-none"
         />
 
         <div className="relative z-10 max-w-[1240px] mx-auto w-full">
           {/* Section Header */}
-          <div className="max-w-2xl mx-auto text-center mb-4 sm:mb-6">
-            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748b] mb-1.5">
+          <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748b] mb-2">
               <LotusBadge gray className="w-4 h-4 opacity-70" />
               <span>01 / CHOOSE YOUR JOURNEY</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.1] mb-1.5">
+            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.15] mb-2.5">
               Every Journey Begins with a Different Need.
             </h2>
-            <p className="text-xs sm:text-[13px] text-[#64748b] leading-relaxed max-w-lg mx-auto">
-              Two sides of the same ecosystem — empowering rural entrepreneurs to establish thriving digital service enterprises, and connecting citizens to essential government and business services.
+            <p className="text-xs sm:text-[14px] text-[#64748b] leading-relaxed max-w-xl mx-auto">
+              Two sides of the same ecosystem — empowering local entrepreneurs to establish thriving digital service counters, and connecting citizens to essential public and banking desks.
             </p>
           </div>
 
-          {/* Clean Dual-Portal Cards matching Section #support Visual Caliber */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 items-stretch">
+          {/* Clean Dual-Portal Editorial Cards (Zero AI Containers · Effortless Cognitive Scan) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
             {/* 05A — For Aspiring VLEs */}
-            <div className="relative rounded-[24px] bg-[#0a1628] text-white p-5 sm:p-6 lg:p-6 flex flex-col justify-between overflow-hidden shadow-xl border border-white/10 group">
-              {/* Subtle Mandala Watermark in bottom corner */}
-              <img
-                src="/images/mandala-card-01.png"
-                alt=""
-                aria-hidden="true"
-                className="w-[280px] h-[280px] object-contain absolute -bottom-20 -right-20 opacity-[0.08] pointer-events-none select-none"
-              />
-
-              <div className="relative z-10">
-                {/* Top Bar: Pill Badge & Counter + Arrow */}
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white text-[10.5px] font-semibold tracking-wide uppercase">
+            <div className="relative rounded-[26px] bg-white border border-[#0a1628]/10 p-7 sm:p-9 flex flex-col justify-between shadow-[0_10px_35px_-12px_rgba(10,22,40,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(10,22,40,0.12)] hover:border-[#ff5500]/30 transition-all duration-300 group">
+              <div>
+                {/* Top Bar: Pill Badge & Counter */}
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ff5500]/10 text-[#e04800] text-xs font-bold tracking-wider uppercase">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500]" />
-                    <span>For Aspiring VLEs</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-white/40 font-medium">
-                      01 / 02
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#ff5500]" />
-                  </div>
+                    <span>For Entrepreneurs</span>
+                  </span>
+                  <span className="text-xs font-mono text-[#64748b]/60">01 / 02</span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl lg:text-[21px] font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
-                  Turn Your Ambition into an Opportunity.
+                <h3 className="text-2xl sm:text-[26px] font-bold text-[#0a1628] tracking-[-0.02em] leading-tight mb-2.5 group-hover:text-[#ff5500] transition-colors">
+                  Turn Ambition into an Opportunity.
                 </h3>
 
-                <p className="text-xs text-[#b4c6e4] leading-relaxed mb-3 line-clamp-2">
-                  Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ public and banking services while building a respected neighborhood enterprise.
+                <p className="text-xs sm:text-[13.5px] text-[#64748b] leading-relaxed mb-6">
+                  Establish an authorized Common Service Centre in your gram panchayat. Deliver 400+ public and banking services while building a respected neighborhood enterprise.
                 </p>
 
-                {/* 3 Clean Structured Highlights */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#ff5500]/15 text-[#ff7733] flex items-center justify-center shrink-0">
-                      <Building2 className="w-3.5 h-3.5" />
+                {/* Scannable Value Checklist (Zero Glass Boxes) */}
+                <div className="pt-5 border-t border-[#0a1628]/8 space-y-3 mb-8">
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">400+ Authorized Service Desks</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">Central, state, banking, utility bills, pensions & insurance</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Deliver 400+ central, state, banking, and utility desks from one counter
+                    </span>
                   </div>
-
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#ff5500]/15 text-[#ff7733] flex items-center justify-center shrink-0">
-                      <Wallet className="w-3.5 h-3.5" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">Single Unified Digital Wallet</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">Instant transaction reconciliation and transparent payouts</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Single unified wallet with instant settlement & transparent commissions
+                    </span>
                   </div>
-
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#ff5500]/15 text-[#ff7733] flex items-center justify-center shrink-0">
-                      <Award className="w-3.5 h-3.5" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#ff5500]/10 text-[#ff5500] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">Official Certification & Training</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">Recognized MeitY credentials, TEC certification & support</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Official MeitY accreditation, TEC certification, and district nodal training
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <div className="relative z-10 pt-0.5">
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="w-full inline-flex items-center justify-between px-5 py-2.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[12.5px] tracking-wide cursor-pointer transition-colors shadow-md group/btn"
-                >
-                  <span>Explore What It Means to Be a CSC VLE</span>
-                  <div className="w-6 h-6 rounded-full bg-white/20 group-hover/btn:bg-white/30 flex items-center justify-center transition-colors">
-                    <ArrowRight className="w-3 h-3 text-white" />
-                  </div>
-                </button>
-              </div>
+              <button
+                onClick={() => setLoginOpen(true)}
+                className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-md hover:shadow-lg group/btn"
+              >
+                <span>Explore What It Means to Be a CSC VLE</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
             </div>
 
             {/* 05B — For Citizens */}
-            <div className="relative rounded-[24px] bg-[#071739] text-white p-5 sm:p-6 lg:p-6 flex flex-col justify-between overflow-hidden shadow-xl border border-white/10 group">
-              {/* Subtle Mandala Watermark in bottom corner */}
-              <img
-                src="/images/mandala-card-02.png"
-                alt=""
-                aria-hidden="true"
-                className="w-[280px] h-[280px] object-contain absolute -bottom-20 -right-20 opacity-[0.08] pointer-events-none select-none"
-              />
-
-              <div className="relative z-10">
-                {/* Top Bar: Pill Badge & Counter + Arrow */}
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white text-[10.5px] font-semibold tracking-wide uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
+            <div className="relative rounded-[26px] bg-white border border-[#0a1628]/10 p-7 sm:p-9 flex flex-col justify-between shadow-[0_10px_35px_-12px_rgba(10,22,40,0.06)] hover:shadow-[0_20px_50px_-12px_rgba(10,22,40,0.12)] hover:border-[#0284c7]/30 transition-all duration-300 group">
+              <div>
+                {/* Top Bar: Pill Badge & Counter */}
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0284c7]/10 text-[#0284c7] text-xs font-bold tracking-wider uppercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
                     <span>For Citizens</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-white/40 font-medium">
-                      02 / 02
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#38bdf8]" />
-                  </div>
+                  </span>
+                  <span className="text-xs font-mono text-[#64748b]/60">02 / 02</span>
                 </div>
 
-                <h3 className="text-lg sm:text-xl lg:text-[21px] font-semibold text-white tracking-[-0.02em] leading-snug mb-1.5">
-                  The Help You Need. The Services You Can Access.
+                <h3 className="text-2xl sm:text-[26px] font-bold text-[#0a1628] tracking-[-0.02em] leading-tight mb-2.5 group-hover:text-[#0284c7] transition-colors">
+                  The Services You Need, Right Next Door.
                 </h3>
 
-                <p className="text-xs text-[#b4c6e4] leading-relaxed mb-3 line-clamp-2">
-                  From essential government certificates to everyday utility payments — access verified public services in your neighborhood with assisted guidance and instant printed receipts.
+                <p className="text-xs sm:text-[13.5px] text-[#64748b] leading-relaxed mb-6">
+                  From verified government certificates to everyday utility payments — access doorstep public services in your neighborhood with assisted guidance and instant printed receipts.
                 </p>
 
-                {/* 3 Clean Structured Highlights */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#2563eb]/20 text-[#60a5fa] flex items-center justify-center shrink-0">
-                      <FileText className="w-3.5 h-3.5" />
+                {/* Scannable Value Checklist (Zero Glass Boxes) */}
+                <div className="pt-5 border-t border-[#0a1628]/8 space-y-3 mb-8">
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">Essential Public & Welfare Services</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">Income, caste, domicile, pensions, voter cards & certificates</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Assisted applications for caste, income, domicile, and welfare schemes
+                    </span>
                   </div>
-
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#2563eb]/20 text-[#60a5fa] flex items-center justify-center shrink-0">
-                      <Receipt className="w-3.5 h-3.5" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">Official Printed Receipts & SMS Alerts</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">Transparent government fees with instant tracking ID</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Official printed receipts with transparent government fees & SMS tracking
+                    </span>
                   </div>
-
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] transition-colors">
-                    <div className="w-7 h-7 rounded-lg bg-[#2563eb]/20 text-[#60a5fa] flex items-center justify-center shrink-0">
-                      <MapPin className="w-3.5 h-3.5" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-[#0284c7]/10 text-[#0284c7] flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.5]" />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="text-[12.5px] font-semibold text-white truncate">Assisted Walk-In Neighborhood Counters</div>
-                      <div className="text-[11px] text-[#9cb1d4] truncate">5,50,000+ functional centres operating nationwide</div>
-                    </div>
+                    <span className="text-xs sm:text-[13px] text-[#334155] font-medium leading-snug">
+                      Over 5,50,000 active neighborhood counters operating across 28 states
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <div className="relative z-10 pt-0.5">
-                <a
-                  href="#services"
-                  className="w-full inline-flex items-center justify-between px-5 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs sm:text-[12.5px] tracking-wide cursor-pointer transition-colors shadow-md group/btn"
-                >
-                  <span>Find Services at Your Nearest CSC</span>
-                  <div className="w-6 h-6 rounded-full bg-white/20 group-hover/btn:bg-white/30 flex items-center justify-center transition-colors">
-                    <ArrowRight className="w-3 h-3 text-white" />
-                  </div>
-                </a>
-              </div>
+              <a
+                href="#services"
+                className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0a1628] hover:bg-[#15243b] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-md hover:shadow-lg group/btn"
+              >
+                <span>Find Services at Your Nearest CSC</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </a>
             </div>
           </div>
         </div>
