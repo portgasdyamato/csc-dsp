@@ -1835,141 +1835,126 @@ export default function App() {
       </section>
 
       {/* ====================================================================
-          I. CONVERSION & ACTION (Fits Viewport)
-          Headline: Your CSC Journey Starts with One Step.
-          Format: Dual Pathway High-Craft Action Portals on Deep Navy
+          I. FINAL CALL TO ACTION — DEDICATED VLE CONVERSION STAGE
+          Headline: Ready to Bring Digital Services to Your Community?
+          Art Graphics: Traditional Indian Mandalas on Bottom-Left & Bottom-Right
+          Zero Citizen Split · 100% Dedicated to Village Level Entrepreneurs
           ==================================================================== */}
       <section
         id="get-started"
-        className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-b from-[#0a1628] to-[#071120] text-white border-b border-white/10 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+        className="relative min-h-[580px] lg:min-h-[640px] flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-b from-[#0a1628] to-[#071120] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-20 lg:py-24"
       >
-        <img
-          src="/images/mandala-grand-orange.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[680px] h-[680px] object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none select-none"
+        {/* Subtle Background Radial Glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full opacity-25 blur-3xl pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, #ff5500 0%, #1d4ed8 50%, transparent 80%)',
+          }}
         />
 
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          {/* Section Heading */}
-          <div className="max-w-2xl mx-auto text-center mb-5 sm:mb-6">
-            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#ff7733] mb-2">
-              <LotusBadge white className="w-4 h-4 opacity-80" />
-              <span>07 / TAKE THE FIRST STEP</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1] mb-2">
-              Your CSC Journey Starts with One Step.
-            </h2>
-            <p className="text-xs sm:text-[13.5px] text-[#b4c6e4] leading-relaxed max-w-xl mx-auto">
-              Whether establishing an authorized village enterprise or locating assisted digital services in your panchayat — choose your path forward.
-            </p>
+        {/* Ambient Corner Radial Glows for Art Graphics */}
+        <div
+          className="absolute -bottom-24 -left-24 w-[320px] h-[320px] rounded-full opacity-25 blur-3xl pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-24 -right-24 w-[320px] h-[320px] rounded-full opacity-25 blur-3xl pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #ff5500 0%, transparent 70%)' }}
+        />
+
+        {/* BOTTOM-LEFT CORNER ART GRAPHIC */}
+        <img
+          src="/images/mandala-grand-white.png"
+          alt=""
+          aria-hidden="true"
+          className="w-[320px] sm:w-[420px] lg:w-[480px] h-[320px] sm:h-[420px] lg:h-[480px] object-contain absolute -bottom-32 sm:-bottom-40 -left-32 sm:-left-40 opacity-[0.14] pointer-events-none select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.08)]"
+        />
+
+        {/* BOTTOM-RIGHT CORNER ART GRAPHIC */}
+        <img
+          src="/images/mandala-grand-white.png"
+          alt=""
+          aria-hidden="true"
+          className="w-[320px] sm:w-[420px] lg:w-[480px] h-[320px] sm:h-[420px] lg:h-[480px] object-contain absolute -bottom-32 sm:-bottom-40 -right-32 sm:-right-40 opacity-[0.14] pointer-events-none select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.08)]"
+        />
+
+        <div className="absolute inset-0 grain-surface pointer-events-none z-0" />
+
+        <div className="relative z-10 max-w-[1040px] mx-auto w-full text-center">
+          {/* Government / VLE Credential Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white text-xs font-semibold tracking-wider uppercase mb-5 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
+            <span>JOIN 5,50,000+ VILLAGE LEVEL ENTREPRENEURS</span>
           </div>
 
-          {/* Dual Action Gateway Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 max-w-4xl mx-auto">
-            {/* Card 1: For Aspiring VLEs */}
-            <div className="relative rounded-[28px] bg-[#071120]/90 backdrop-blur-sm border border-white/12 hover:border-[#ff5500]/50 p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-xl transition-all duration-300 group">
-              <img
-                src="/images/mandala-card-01.png"
-                alt=""
-                aria-hidden="true"
-                className="w-48 h-48 object-contain absolute -bottom-14 -right-14 opacity-[0.07] pointer-events-none select-none"
-              />
+          {/* Display Headline */}
+          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-white tracking-[-0.035em] leading-[1.12] mb-5 max-w-3xl mx-auto">
+            Ready to Bring Digital Services to Your Community?
+          </h2>
 
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-white/10 border border-white/15 text-white">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500]" />
-                    <span>For Entrepreneurs</span>
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[#ff5500]" />
-                </div>
+          {/* Subtitle */}
+          <p className="text-sm sm:text-base lg:text-lg text-[#b4c6e4] max-w-2xl mx-auto leading-relaxed mb-9 font-normal">
+            Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ essential banking, welfare, and public desks while building a respected neighborhood enterprise.
+          </p>
 
-                <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-2">
-                  Launch Your CSC Counter
-                </h3>
-                <p className="text-xs sm:text-[13px] text-[#9cb1d4] leading-relaxed mb-4">
-                  Set up a verified digital counter in your panchayat. Deliver 400+ authorized public, banking, and utility desks while building local respect.
-                </p>
-
-                <div className="space-y-2 mb-5">
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#ff5500] shrink-0" />
-                    <span>Age 18+ and minimum 10th pass qualification</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#ff5500] shrink-0" />
-                    <span>Telecentre Entrepreneur Course (TEC) certification</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#ff5500] shrink-0" />
-                    <span>Kiosk premises with PC, biometric scanner & printer</span>
-                  </div>
-                </div>
+          {/* 3 Clean Key Prerequisites */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 max-w-3xl mx-auto mb-10 text-left">
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+              <div className="w-8 h-8 rounded-xl bg-[#ff5500]/15 text-[#ff7733] border border-[#ff5500]/25 flex items-center justify-center mb-2.5">
+                <Building2 className="w-4 h-4" />
               </div>
-
-              <div className="relative z-10">
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-colors shadow-md cursor-pointer"
-                >
-                  <span>Start VLE Registration</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-white" />
-                </button>
+              <div className="text-[13.5px] font-bold text-white mb-1">Simple Eligibility</div>
+              <div className="text-xs text-[#9cb1d4] leading-relaxed">
+                Age 18+ with minimum 10th pass qualification and local panchayat residency.
               </div>
             </div>
 
-            {/* Card 2: For Citizens */}
-            <div className="relative rounded-[28px] bg-[#071120]/90 backdrop-blur-sm border border-white/12 hover:border-[#2563eb]/50 p-6 sm:p-7 flex flex-col justify-between overflow-hidden shadow-xl transition-all duration-300 group">
-              <img
-                src="/images/mandala-card-02.png"
-                alt=""
-                aria-hidden="true"
-                className="w-48 h-48 object-contain absolute -bottom-14 -right-14 opacity-[0.07] pointer-events-none select-none"
-              />
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-white/10 border border-white/15 text-white">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8]" />
-                    <span>For Citizens</span>
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[#38bdf8]" />
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-2">
-                  Find Services at Nearest CSC
-                </h3>
-                <p className="text-xs sm:text-[13px] text-[#9cb1d4] leading-relaxed mb-4">
-                  Walk into any of the 5,50,000+ functional centres across India for assisted certificates, Aadhaar updates, pensions, utility bills, and cash withdrawals.
-                </p>
-
-                <div className="space-y-2 mb-5">
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
-                    <span>Assisted walk-in counter in your local gram panchayat</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
-                    <span>Transparent government fees with official printed receipts</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/85">
-                    <Check className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
-                    <span>Instant SMS reference tracking for all applications</span>
-                  </div>
-                </div>
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+              <div className="w-8 h-8 rounded-xl bg-[#ff5500]/15 text-[#ff7733] border border-[#ff5500]/25 flex items-center justify-center mb-2.5">
+                <Award className="w-4 h-4" />
               </div>
-
-              <div className="relative z-10">
-                <a
-                  href="#services"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs sm:text-[13px] font-semibold transition-colors shadow-md cursor-pointer"
-                >
-                  <span>Explore Services & Locate Centre</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-white" />
-                </a>
+              <div className="text-[13.5px] font-bold text-white mb-1">MeitY Certification</div>
+              <div className="text-xs text-[#9cb1d4] leading-relaxed">
+                Complete Telecentre Entrepreneur Course (TEC) with dedicated district onboarding.
               </div>
             </div>
+
+            <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+              <div className="w-8 h-8 rounded-xl bg-[#ff5500]/15 text-[#ff7733] border border-[#ff5500]/25 flex items-center justify-center mb-2.5">
+                <Wallet className="w-4 h-4" />
+              </div>
+              <div className="text-[13.5px] font-bold text-white mb-1">Unified Digital Wallet</div>
+              <div className="text-xs text-[#9cb1d4] leading-relaxed">
+                Instant commission payouts and real-time reconciliation across 400+ desks.
+              </div>
+            </div>
+          </div>
+
+          {/* Action CTAs */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-7">
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-sm transition-all shadow-[0_10px_25px_-5px_rgba(255,85,0,0.4)] hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>Start VLE Registration</span>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </button>
+
+            <button
+              onClick={() => setLoginOpen(true)}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm transition-all hover:scale-105 cursor-pointer"
+            >
+              <span>VLE Portal Login</span>
+              <ArrowUpRight className="w-4 h-4 text-white/70" />
+            </button>
+          </div>
+
+          {/* Direct Support Assistance */}
+          <div className="inline-flex items-center gap-2 text-xs text-white/60">
+            <span>Need assistance with VLE registration?</span>
+            <span className="text-white font-medium">
+              Call Toll-Free Helpdesk: <span className="text-[#ff7733] font-bold">14599</span>
+            </span>
           </div>
         </div>
       </section>
