@@ -925,6 +925,7 @@ export default function App() {
               autoPlay
               loop
               muted
+              defaultMuted
               playsInline
               className="w-full h-full object-cover object-center opacity-95"
             >
