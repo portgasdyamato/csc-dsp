@@ -927,20 +927,22 @@ export default function App() {
               muted
               defaultMuted
               playsInline
-              className="w-full h-full object-cover object-center opacity-95"
+              className="w-full h-full object-cover object-center"
             >
               <source src="/Hero-bg.mp4" type="video/mp4" />
             </video>
-            {/* Gentle Left-Side Scrim Overlay — light, airy gradient for text legibility without obscuring the video */}
+            {/* Semi-transparent black overlay above the video */}
+            <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+            {/* Gentle Left-Side Scrim Overlay — extra gradient for text legibility */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(to right, rgba(10, 22, 40, 0.6) 0%, rgba(10, 22, 40, 0.35) 25%, rgba(10, 22, 40, 0.08) 45%, transparent 60%)',
+                  'linear-gradient(to right, rgba(10, 22, 40, 0.5) 0%, rgba(10, 22, 40, 0.25) 30%, transparent 60%)',
               }}
             />
             {/* Top vignette for floating header and soft bottom fade into solid #0a1628 impact strip */}
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a1628]/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a1628]/60 to-transparent pointer-events-none" />
             <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" />
           </div>
 
