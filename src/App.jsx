@@ -3,6 +3,7 @@ import {
   motion,
   AnimatePresence,
   useScroll,
+  useTransform,
   useMotionValueEvent,
 } from 'framer-motion';
 import {
@@ -40,12 +41,16 @@ import {
 } from 'lucide-react';
 
 import ServiceVectorLogo from './components/ServiceVectorLogo';
+import MultiLayerMandala from './components/MultiLayerMandala';
+import VillageServicesSlideshow from './components/VillageServicesSlideshow';
 
 import {
   VLE_JOURNEY_STAGES,
   CITIZEN_NEEDS,
   PLATFORM_CARDS,
   SERVICE_DIRECTORY,
+  VLE_OPPORTUNITY_PILLARS,
+  VLE_DAY_TIMELINE,
   WORKFLOW_STEPS,
   VLE_CAROUSEL_ITEMS,
   SUPPORT_ITEMS,
@@ -197,299 +202,28 @@ function getFanSlot(offset, width = 1200) {
 }
 
 // ============================================================================
-// BESPOKE ISOMETRIC STAGE FOR CSC WEBSITE NEWS (MATCHING USER REFERENCE DESIGN)
-// 3 custom vector illustrations directly illustrating CSC services:
-// 1. Security Advisory: Isometric Phone with Security Shield & Anti-Phishing Alert
-// 2. CSC Academy: Isometric Workstation with AI Neural Network & Academic Honor
-// 3. Financial Inclusion: Isometric DigiPay Micro-ATM & Biometric Fingerprint Sensor
+// SOLID DARK NAVY BLUE INDIAN ART ARCHITECTURAL SHAPES (60% CARD STAGE)
+// Authentic Indian heritage jharokha & stepped architectural silhouettes
+// 1. Security Advisory: Scalloped Indian Jharokha Medallion (Shape 01)
+// 2. CSC Academy: Stepped Architectural Diamond Jharokha (Shape 02)
+// 3. Financial Inclusion: Lotus-Scalloped Temple Arch Medallion (Shape 03)
 // ============================================================================
 function NewsIllustrationStage({ variant }) {
-  if (variant === 'security') {
-    return (
-      <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
-        {/* Black Squircle Badge in Top-Right Corner */}
-        <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
-          <ShieldAlert className="w-4 h-4 text-white" />
-        </div>
-
-        <svg
-          viewBox="0 0 320 200"
-          className="w-full h-full object-contain"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Base Pedestal Platform */}
-          <polygon
-            points="50,135 160,85 270,135 160,185"
-            fill="#ffffff"
-            stroke="#d1d5db"
-            strokeWidth="1.2"
-          />
-          <polygon
-            points="50,135 160,185 160,195 50,145"
-            fill="#e5e7eb"
-            stroke="#9ca3af"
-            strokeWidth="1.2"
-          />
-          <polygon
-            points="160,185 270,135 270,145 160,195"
-            fill="#d1d5db"
-            stroke="#9ca3af"
-            strokeWidth="1.2"
-          />
-
-          {/* Grid lines on platform */}
-          <line x1="86" y1="118" x2="196" y2="168" stroke="#f3f4f6" strokeWidth="1" />
-          <line x1="123" y1="101" x2="233" y2="151" stroke="#f3f4f6" strokeWidth="1" />
-          <line x1="196" y1="101" x2="86" y2="151" stroke="#f3f4f6" strokeWidth="1" />
-          <line x1="233" y1="118" x2="123" y2="168" stroke="#f3f4f6" strokeWidth="1" />
-
-          {/* Smartphone lying flat in isometric angle */}
-          {/* Phone drop shadow */}
-          <polygon points="105,142 165,115 195,128 135,155" fill="#cbd5e1" opacity="0.7" />
-          {/* Phone body bottom thickness */}
-          <polygon points="102,136 132,150 132,154 102,140" fill="#334155" />
-          <polygon points="132,150 192,123 192,127 132,154" fill="#1e293b" />
-          {/* Phone surface face */}
-          <polygon
-            points="102,136 162,109 192,123 132,150"
-            fill="#0f172a"
-            stroke="#334155"
-            strokeWidth="1.5"
-          />
-          {/* Phone Screen Glass */}
-          <polygon points="108,133 160,110 186,121 134,144" fill="#022c22" />
-          {/* Message bubble on screen */}
-          <polygon points="115,130 152,113 168,120 131,137" fill="#065f46" />
-          <line x1="122" y1="127" x2="148" y2="116" stroke="#a7f3d0" strokeWidth="2" strokeLinecap="round" />
-          <line x1="126" y1="132" x2="156" y2="119" stroke="#34d399" strokeWidth="1.5" strokeLinecap="round" />
-
-          {/* Floating 3D Security Shield above phone */}
-          <g transform="translate(136, 42)">
-            {/* Left Shield Half */}
-            <path
-              d="M24 6 L6 14 C6 35 24 50 24 55 C24 50 24 6 24 6 Z"
-              fill="#10b981"
-              stroke="#047857"
-              strokeWidth="1.5"
-            />
-            {/* Right Shield Half */}
-            <path
-              d="M24 6 L42 14 C42 35 24 50 24 55 C24 50 24 6 24 6 Z"
-              fill="#34d399"
-              stroke="#047857"
-              strokeWidth="1.5"
-            />
-            {/* Checkmark inside Shield */}
-            <path
-              d="M16 28 L22 34 L32 20"
-              stroke="#ffffff"
-              strokeWidth="3.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </g>
-
-          {/* Floating WhatsApp / Alert Notification Pill */}
-          <g transform="translate(56, 68)">
-            <rect x="0" y="0" width="48" height="28" rx="8" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
-            <circle cx="12" cy="14" r="5" fill="#ef4444" />
-            <line x1="22" y1="11" x2="40" y2="11" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
-            <line x1="22" y1="17" x2="34" y2="17" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" />
-          </g>
-
-          {/* Floating Official Cyber Lock Badge */}
-          <g transform="translate(225, 78)">
-            <rect x="0" y="8" width="30" height="22" rx="5" fill="#ffffff" stroke="#9ca3af" strokeWidth="1.2" />
-            <path d="M8 8 V4 C8 0 22 0 22 4 V8" stroke="#10b981" strokeWidth="2.5" fill="none" />
-            <circle cx="15" cy="17" r="2.5" fill="#10b981" />
-            <line x1="15" y1="19" x2="15" y2="24" stroke="#10b981" strokeWidth="1.8" />
-          </g>
-        </svg>
-      </div>
-    );
-  }
-
+  let shapeSrc = '/images/indian-shape-01.svg';
   if (variant === 'academy') {
-    return (
-      <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
-        {/* Black Squircle Badge in Top-Right Corner */}
-        <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
-          <Sparkles className="w-4 h-4 text-white" />
-        </div>
-
-        <svg
-          viewBox="0 0 320 200"
-          className="w-full h-full object-contain"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Base Pedestal Platform */}
-          <polygon
-            points="50,135 160,85 270,135 160,185"
-            fill="#ffffff"
-            stroke="#d1d5db"
-            strokeWidth="1.2"
-          />
-          <polygon
-            points="50,135 160,185 160,195 50,145"
-            fill="#e5e7eb"
-            stroke="#9ca3af"
-            strokeWidth="1.2"
-          />
-          <polygon
-            points="160,185 270,135 270,145 160,195"
-            fill="#d1d5db"
-            stroke="#9ca3af"
-            strokeWidth="1.2"
-          />
-
-          {/* Desktop Monitor Stand */}
-          <polygon points="135,142 185,142 175,152 125,152" fill="#cbd5e1" stroke="#9ca3af" strokeWidth="1" />
-          <rect x="152" y="112" width="16" height="32" rx="3" fill="#94a3b8" />
-
-          {/* Computer Screen Frame */}
-          <polygon points="80,48 240,48 248,56 88,56" fill="#f8fafc" stroke="#9ca3af" strokeWidth="1.2" />
-          <polygon points="240,48 248,56 248,118 240,112" fill="#cbd5e1" stroke="#9ca3af" strokeWidth="1.2" />
-          <rect x="80" y="48" width="160" height="66" rx="8" fill="#ffffff" stroke="#9ca3af" strokeWidth="1.5" />
-
-          {/* Screen Display (AI Diagnostic Testing UI) */}
-          <rect x="88" y="54" width="144" height="54" rx="5" fill="#0f172a" />
-
-          {/* AI Neural Network Graph */}
-          <circle cx="108" cy="80" r="4" fill="#0284c7" />
-          <circle cx="128" cy="68" r="3.5" fill="#38bdf8" />
-          <circle cx="128" cy="92" r="3.5" fill="#38bdf8" />
-          <circle cx="160" cy="81" r="5" fill="#818cf8" />
-          <circle cx="192" cy="70" r="3.5" fill="#c084fc" />
-          <circle cx="192" cy="92" r="3.5" fill="#38bdf8" />
-          <circle cx="212" cy="81" r="4" fill="#0284c7" />
-
-          {/* Interconnecting AI vectors */}
-          <line x1="108" y1="80" x2="128" y2="68" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
-          <line x1="108" y1="80" x2="128" y2="92" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
-          <line x1="128" y1="68" x2="160" y2="81" stroke="#818cf8" strokeWidth="1.5" opacity="0.9" />
-          <line x1="128" y1="92" x2="160" y2="81" stroke="#818cf8" strokeWidth="1.5" opacity="0.9" />
-          <line x1="160" y1="81" x2="192" y2="70" stroke="#c084fc" strokeWidth="1.5" opacity="0.9" />
-          <line x1="160" y1="81" x2="192" y2="92" stroke="#38bdf8" strokeWidth="1.5" opacity="0.9" />
-          <line x1="192" y1="70" x2="212" y2="81" stroke="#0284c7" strokeWidth="1.5" opacity="0.8" />
-          <line x1="192" y1="92" x2="212" y2="81" stroke="#0284c7" strokeWidth="1.5" opacity="0.8" />
-
-          {/* Floating Academic Olympiad Medal */}
-          <g transform="translate(48, 92)">
-            <path d="M12 18 L6 36 L16 31 L26 36 L20 18" fill="#f59e0b" stroke="#d97706" strokeWidth="1" />
-            <circle cx="16" cy="14" r="13" fill="#fbbf24" stroke="#d97706" strokeWidth="1.5" />
-            <circle cx="16" cy="14" r="9" fill="#fef3c7" />
-            <path d="M16 8 L18 12 L22 13 L19 16 L20 20 L16 17 L12 20 L13 16 L10 13 L14 12 Z" fill="#d97706" />
-          </g>
-
-          {/* Floating Certificate Badge */}
-          <g transform="translate(225, 96)">
-            <rect x="0" y="0" width="46" height="34" rx="5" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
-            <line x1="8" y1="8" x2="26" y2="8" stroke="#0284c7" strokeWidth="2.5" strokeLinecap="round" />
-            <line x1="8" y1="15" x2="38" y2="15" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="8" y1="21" x2="32" y2="21" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="36" cy="24" r="4" fill="#0284c7" />
-          </g>
-        </svg>
-      </div>
-    );
+    shapeSrc = '/images/indian-shape-02.svg';
+  } else if (variant === 'banking') {
+    shapeSrc = '/images/indian-shape-03.svg';
   }
 
-  // Financial Inclusion / Grassroots Banking (variant === 'banking')
   return (
-    <div className="relative w-full h-[180px] sm:h-[195px] bg-[#f4f5f7] flex items-center justify-center overflow-hidden select-none">
-      {/* Black Squircle Badge in Top-Right Corner */}
-      <div className="absolute top-3.5 right-3.5 w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center shadow-xs z-10">
-        <IndianRupee className="w-4 h-4 text-white" />
-      </div>
-
-      <svg
-        viewBox="0 0 320 200"
-        className="w-full h-full object-contain"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Base Pedestal Platform */}
-        <polygon
-          points="50,135 160,85 270,135 160,185"
-          fill="#ffffff"
-          stroke="#d1d5db"
-          strokeWidth="1.2"
-        />
-        <polygon
-          points="50,135 160,185 160,195 50,145"
-          fill="#e5e7eb"
-          stroke="#9ca3af"
-          strokeWidth="1.2"
-        />
-        <polygon
-          points="160,185 270,135 270,145 160,195"
-          fill="#d1d5db"
-          stroke="#9ca3af"
-          strokeWidth="1.2"
-        />
-
-        {/* Micro-ATM Terminal (Isometric POS Device) */}
-        {/* Terminal Depth & Shadow */}
-        <polygon points="78,135 152,90 192,113 118,158" fill="#cbd5e1" />
-        <polygon points="78,135 118,158 118,170 78,147" fill="#475569" />
-        <polygon points="118,158 192,113 192,125 118,170" fill="#334155" />
-
-        {/* Terminal Face Plate */}
-        <polygon
-          points="78,130 152,85 192,108 118,153"
-          fill="#ffffff"
-          stroke="#94a3b8"
-          strokeWidth="1.5"
-        />
-
-        {/* POS Screen (DigiPay Terminal Screen) */}
-        <polygon points="112,102 158,76 182,90 136,116" fill="#0f172a" stroke="#0284c7" strokeWidth="1" />
-        <line x1="122" y1="100" x2="152" y2="83" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
-        <line x1="128" y1="107" x2="162" y2="88" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" />
-
-        {/* Numeric Keypad on POS */}
-        {[
-          { x: 96, y: 126 }, { x: 105, y: 121 }, { x: 114, y: 116 },
-          { x: 101, y: 133 }, { x: 110, y: 128 }, { x: 119, y: 123 },
-          { x: 106, y: 140 }, { x: 115, y: 135 }, { x: 124, y: 130 },
-        ].map((dot, i) => (
-          <circle key={i} cx={dot.x} cy={dot.y} r="1.8" fill="#64748b" />
-        ))}
-
-        {/* Micro-ATM Card Swipe Slot / Saffron Accent */}
-        <line x1="156" y1="118" x2="178" y2="130" stroke="#ff5500" strokeWidth="3" strokeLinecap="round" />
-
-        {/* Biometric Fingerprint Scanner Pad (Right Side) */}
-        <g transform="translate(195, 102)">
-          {/* Scanner Pad base */}
-          <polygon points="10,25 45,5 75,22 40,42" fill="#e2e8f0" stroke="#94a3b8" strokeWidth="1.2" />
-          {/* Sensor pad */}
-          <polygon points="18,24 43,10 65,22 40,36" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
-          {/* Concentric Fingerprint Arcs */}
-          <path d="M33 26 Q40 21 47 26" stroke="#0284c7" strokeWidth="1.5" fill="none" />
-          <path d="M30 28 Q40 20 50 28" stroke="#0284c7" strokeWidth="1.5" fill="none" />
-          <path d="M36 24 Q40 22 44 24" stroke="#0284c7" strokeWidth="1.5" fill="none" />
-        </g>
-
-        {/* Floating Golden Rupee Coin */}
-        <g transform="translate(68, 48)">
-          <ellipse cx="22" cy="52" rx="14" ry="4" fill="#94a3b8" opacity="0.4" />
-          <polygon points="10,24 10,29 34,29 34,24" fill="#d97706" />
-          <circle cx="22" cy="22" r="16" fill="#f59e0b" stroke="#d97706" strokeWidth="1.5" />
-          <circle cx="22" cy="22" r="13" fill="#fbbf24" />
-          <text x="22" y="27" textAnchor="middle" fill="#78350f" fontSize="14" fontWeight="bold" fontFamily="sans-serif">₹</text>
-        </g>
-
-        {/* DBT Instant Welfare Status Pill */}
-        <g transform="translate(208, 50)">
-          <rect x="0" y="0" width="56" height="24" rx="12" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.2" />
-          <circle cx="12" cy="12" r="7" fill="#10b981" />
-          <path d="M9 12 L11 14 L15 10" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          <text x="24" y="16" fill="#0f172a" fontSize="10" fontWeight="bold" fontFamily="sans-serif">DBT ₹</text>
-        </g>
-      </svg>
+    <div className="relative w-full h-full bg-[#f8fafc] flex items-center justify-center p-8 sm:p-10 pb-12 sm:pb-14 overflow-hidden select-none">
+      <img
+        src={shapeSrc}
+        alt=""
+        aria-hidden="true"
+        className="w-full h-full max-h-[165px] sm:max-h-[180px] object-contain pointer-events-none select-none group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+      />
     </div>
   );
 }
@@ -511,6 +245,16 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Hero Curtain Recess Physics
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const heroScale = useTransform(heroScroll, [0, 1], [1, 0.95]);
+  const heroDimOpacity = useTransform(heroScroll, [0, 0.85], [0, 0.45]);
+
   // Choose Journey Interactive Step states
   const [vleJourneyIdx, setVleJourneyIdx] = useState(0);
   const [citizenNeedIdx, setCitizenNeedIdx] = useState(0);
@@ -523,40 +267,6 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [servicePage, setServicePage] = useState(0);
   const [serviceDir, setServiceDir] = useState(1);
-
-  // E. How Digital Seva Works (Scroll-Expanding Pill Gallery — Image 2)
-  const workflowRef = useRef(null);
-  const [activeWorkflowIdx, setActiveWorkflowIdx] = useState(0);
-
-  const { scrollYProgress: workflowScroll } = useScroll({
-    target: workflowRef,
-    offset: ['start start', 'end end'],
-  });
-
-  useMotionValueEvent(workflowScroll, 'change', (v) => {
-    const idx = Math.min(
-      WORKFLOW_STEPS.length - 1,
-      Math.max(0, Math.floor(v * WORKFLOW_STEPS.length))
-    );
-    if (idx !== activeWorkflowIdx) setActiveWorkflowIdx(idx);
-  });
-
-  const selectWorkflowStep = (idx) => {
-    setActiveWorkflowIdx(idx);
-    if (workflowRef.current) {
-      const rect = workflowRef.current.getBoundingClientRect();
-      const sectionTop = window.scrollY + rect.top;
-      const scrollableDistance =
-        workflowRef.current.offsetHeight - window.innerHeight;
-      if (scrollableDistance > 0) {
-        const targetProgress = (idx + 0.2) / WORKFLOW_STEPS.length;
-        window.scrollTo({
-          top: sectionTop + targetProgress * scrollableDistance,
-          behavior: 'smooth',
-        });
-      }
-    }
-  };
 
   // F. For VLEs 5-Card Fanned Carousel state (Default to Rajeshwar Rao at index 0)
   const [fanActive, setFanActive] = useState(0);
@@ -1039,135 +749,154 @@ export default function App() {
       </header>
 
       {/* ====================================================================
-          03. FLAGSHIP EDITORIAL HERO & NATIONWIDE METRICS
-          Pure Typographic Authority · Functional Service Finder · Hairline Scale Strip
-          Zero Hero Image · Zero AI Bento Cards
+          03. FLAGSHIP EDITORIAL HERO
+          Dedicated 100vh Full Viewport · Pristine CTA Grainy Gradient Wallpaper
+          Tactile SVG Micro-Grain · Authentic Rotating Mandala Art Watermarks
+          Sticky Curtain Parallax: Stays pinned in place as the next section slides over
           ==================================================================== */}
-      <section
+      <motion.section
+        ref={heroRef}
         id="home"
-        className="relative bg-[#0a1628] text-white border-b border-white/10 overflow-hidden"
+        style={{ scale: heroScale }}
+        className="sticky top-0 z-0 h-screen min-h-[640px] flex items-center justify-center bg-[#0a1628] text-white overflow-hidden pt-20 sm:pt-24 origin-top will-change-transform"
       >
-        {/* HERO STAGE — VIDEO FITS HERE ONLY */}
-        <div className="relative pt-36 sm:pt-40 lg:pt-44 pb-20 sm:pb-24 overflow-hidden">
-          {/* Ambient Video confined strictly to Hero */}
-          <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-            <video
-              autoPlay
-              loop
-              muted
-              defaultMuted
-              playsInline
-              className="w-full h-full object-cover object-center"
-            >
-              <source src="/Hero-bg.mp4" type="video/mp4" />
-            </video>
-            {/* Semi-transparent black overlay above the video */}
-            <div className="absolute inset-0 bg-black/45 pointer-events-none" />
-            {/* Gentle Left-Side Scrim Overlay — extra gradient for text legibility */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  'linear-gradient(to right, rgba(10, 22, 40, 0.5) 0%, rgba(10, 22, 40, 0.25) 30%, transparent 60%)',
-              }}
-            />
-            {/* Top vignette for floating header and soft bottom fade into solid #0a1628 impact strip */}
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0a1628]/60 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#0a1628] to-transparent pointer-events-none" />
-          </div>
+        {/* Physical depth scrim that dims the pinned hero subtly as the curtain slides over */}
+        <motion.div
+          style={{ opacity: heroDimOpacity }}
+          className="absolute inset-0 bg-[#071120] z-20 pointer-events-none"
+        />
 
-          <div className="relative z-10 w-full max-w-[1240px] mx-auto px-5 sm:px-8">
-            {/* Left-Aligned Editorial Header Stage */}
-            <div className="max-w-3xl text-left">
-              {/* Government Credential Pill — Frosted Glassmorphism */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.04] backdrop-blur-2xl border border-white/20 text-white/90 text-xs font-semibold tracking-wide mb-6 shadow-md">
-                <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
-                <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
-              </div>
+        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer (Exact CTA Background) */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+          <img
+            src="/images/grainy-gradient-bg-4k.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle deep navy gradient integration on top & bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/55 via-[#0a1628]/25 to-[#0a1628]/75" />
 
-              {/* Display Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-bold tracking-[-0.035em] text-white leading-[1.08] mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
-                Bringing Essential Services Closer to Every Indian.
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-base sm:text-lg text-[#c5d5ec] max-w-2xl leading-relaxed mb-9 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
-                India's unified assisted public service network — connecting citizens across 28 states to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs.
-              </p>
-
-              {/* Actions: 1. Become a VLE  2. Find Nearest Centre */}
-              <div className="flex flex-wrap items-center justify-start gap-3.5 sm:gap-4">
-                <a
-                  href="#get-started"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
-                >
-                  <span>Become a VLE</span>
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </a>
-
-                <button
-                  onClick={() => setLocatorOpen(true)}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.14] to-white/[0.05] hover:from-white/[0.22] hover:to-white/[0.10] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
-                >
-                  <MapPin className="w-4 h-4 text-[#38bdf8]" />
-                  <span>Find Nearest Centre</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
+          <div
+            className="absolute inset-0 opacity-[0.24] mix-blend-overlay pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              backgroundRepeat: 'repeat',
+            }}
+          />
         </div>
 
-        {/* IMPACT METRICS STAGE — SOLID #0a1628 (NO VIDEO) */}
-        <div className="relative z-10 bg-[#0a1628] border-t border-white/10 py-10 sm:py-12">
-          <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:divide-x lg:divide-white/10">
-              <div className="lg:px-8 first:lg:pl-0">
-                <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                  5,50,000<span className="text-[#ff5500]">+</span>
-                </div>
-                <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                  Active Service Centres
-                </div>
-                <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                  Operational entrepreneur counters delivering assisted doorstep services.
-                </p>
-              </div>
+        {/* TOP-RIGHT CORNER ART GRAPHIC — Multi-Layer Concentric Counter-Rotating Mandala */}
+        <div className="absolute -top-72 sm:-top-84 lg:-top-96 -right-48 sm:-right-60 lg:-right-72 pointer-events-none select-none z-1">
+          <MultiLayerMandala
+            idPrefix="hero-tr"
+            className="w-[450px] sm:w-[580px] lg:w-[680px] h-[450px] sm:h-[580px] lg:h-[680px]"
+            opacity={0.16}
+          />
+        </div>
 
-              <div className="lg:px-8">
-                <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                  3,75,000<span className="text-[#ff5500]">+</span>
-                </div>
-                <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                  Gram Panchayats
-                </div>
-                <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                  Direct village infrastructure covering over 90% of rural India.
-                </p>
-              </div>
+        {/* BOTTOM-LEFT CORNER ART GRAPHIC — Multi-Layer Concentric Counter-Rotating Mandala */}
+        <div className="absolute -bottom-52 sm:-bottom-60 lg:-bottom-72 -left-44 sm:-left-52 lg:-left-64 pointer-events-none select-none z-1">
+          <MultiLayerMandala
+            idPrefix="hero-bl"
+            className="w-[400px] sm:w-[500px] lg:w-[600px] h-[400px] sm:h-[500px] lg:h-[600px]"
+            opacity={0.14}
+          />
+        </div>
 
-              <div className="lg:px-8">
-                <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                  400<span className="text-[#ff5500]">+</span>
-                </div>
-                <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                  Essential Desks
-                </div>
-                <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                  Central, state, banking, utility bills and pensions on one unified ledger.
-                </p>
-              </div>
+        {/* Main Center Content — Filling the 100vh Viewport Comfortably */}
+        <div className="relative z-10 w-full max-w-[1100px] mx-auto px-5 sm:px-8 text-center py-8">
+          {/* Government Credential Pill — Frosted Glassmorphism */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-xs font-semibold tracking-wide mb-6 sm:mb-7 shadow-md mx-auto">
+            <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
+            <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
+          </div>
 
-              <div className="lg:px-8 last:lg:pr-0">
-                <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                  ₹1,200<span className="text-[#ff5500]">+</span> <span className="text-lg sm:text-xl font-normal text-white/70">Cr</span>
-                </div>
-                <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                  Monthly DBT Disbursed
-                </div>
-                <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                  Doorstep widow pensions and government welfare payouts to beneficiaries.
-                </p>
+          {/* Monumental Display Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-bold tracking-[-0.035em] text-white leading-[1.06] mb-5 sm:mb-6 max-w-4xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.65)]">
+            Bringing Essential Services Closer to Every Indian.
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-sm sm:text-base lg:text-[18px] text-[#c5d5ec] max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+            India's unified assisted public service network — connecting citizens across 28 states and every Gram Panchayat to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs.
+          </p>
+
+          {/* Primary Action Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#get-started"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+            >
+              <span>Become a VLE</span>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </a>
+
+            <button
+              onClick={() => setLocatorOpen(true)}
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] hover:from-white/[0.26] hover:to-white/[0.12] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-md"
+            >
+              <MapPin className="w-4 h-4 text-[#38bdf8]" />
+              <span>Find Nearest Centre</span>
+            </button>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ====================================================================
+          04. IMPACT METRICS STRIP — BELOW THE HERO VIEWPORT
+          Curtain Overlay: Slides up over the sticky hero section with physical edge & shadow
+          ==================================================================== */}
+      <section className="relative z-10 bg-[#0a1628] border-t border-white/20 border-b border-white/10 shadow-[0_-25px_60px_rgba(0,0,0,0.85)] py-10 sm:py-12">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:divide-x lg:divide-white/10 text-left">
+            <div className="lg:px-8 first:lg:pl-0">
+              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
+                5,50,000<span className="text-[#ff5500]">+</span>
               </div>
+              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
+                Active Service Centres
+              </div>
+              <p className="text-xs text-[#9cb1d4] leading-relaxed">
+                Operational entrepreneur counters delivering assisted doorstep services.
+              </p>
+            </div>
+
+            <div className="lg:px-8">
+              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
+                3,75,000<span className="text-[#ff5500]">+</span>
+              </div>
+              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
+                Gram Panchayats
+              </div>
+              <p className="text-xs text-[#9cb1d4] leading-relaxed">
+                Direct village infrastructure covering over 90% of rural India.
+              </p>
+            </div>
+
+            <div className="lg:px-8">
+              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
+                400<span className="text-[#ff5500]">+</span>
+              </div>
+              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
+                Essential Desks
+              </div>
+              <p className="text-xs text-[#9cb1d4] leading-relaxed">
+                Central, state, banking, utility bills and pensions on one unified ledger.
+              </p>
+            </div>
+
+            <div className="lg:px-8 last:lg:pr-0">
+              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
+                ₹1,200<span className="text-[#ff5500]">+</span> <span className="text-lg sm:text-xl font-normal text-white/70">Cr</span>
+              </div>
+              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
+                Monthly DBT Disbursed
+              </div>
+              <p className="text-xs text-[#9cb1d4] leading-relaxed">
+                Doorstep widow pensions and government welfare payouts to beneficiaries.
+              </p>
             </div>
           </div>
         </div>
@@ -1184,25 +913,9 @@ export default function App() {
         id="choose-journey"
         className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 scroll-mt-24 py-16 sm:py-20"
       >
-        {/* Subtle Grand Mandala Background Art (Greyish on Cream) — Animated on scroll */}
-        <motion.img
-          src="/images/mandala-grand-navy.png"
-          alt=""
-          aria-hidden="true"
-          initial={{ opacity: 0, scale: 0.85, rotate: -15 }}
-          whileInView={{ opacity: 0.045, scale: 1, rotate: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-[780px] h-[780px] object-contain absolute -top-48 left-1/2 -translate-x-1/2 grayscale pointer-events-none select-none"
-        />
-
         <div className="relative z-10 max-w-[1240px] mx-auto w-full">
           {/* Section Header */}
           <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#64748b] mb-2">
-              <LotusBadge gray className="w-4 h-4 opacity-70" />
-              <span>CHOOSE YOUR JOURNEY</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.15] mb-2.5">
               Every Journey Begins with a Different Need.
             </h2>
@@ -1402,10 +1115,6 @@ export default function App() {
           {/* Editorial Section Header with Generous Space After Title */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-12 lg:mb-14">
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#ff7733] mb-2.5">
-                <LotusBadge className="w-4 h-4" />
-                <span>VLE PLATFORM OVERVIEW</span>
-              </div>
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
                 Explore What It Means to Be a CSC VLE.
               </h2>
@@ -1664,169 +1373,10 @@ export default function App() {
       </section>
 
       {/* ====================================================================
-          E. HOW DIGITAL SEVA WORKS (IMAGE 2: SCROLL-EXPANDING PILL GALLERY)
-          Deep Navy Blue Stage with Intricate White & Saffron Mandala Art
+          VILLAGE DIGITAL SEVA SLIDESHOW — GROUND REALITIES & SERVICE DELIVERY
+          Cinematic documentary slideshow showing clean Indian village centres
           ==================================================================== */}
-      <section
-        ref={workflowRef}
-        id="how-it-works"
-        className="relative h-[260vh] bg-[#0a1628] text-white border-b border-white/10"
-      >
-        <div className="sticky top-14 h-[calc(100vh-3.5rem)] w-full flex flex-col justify-center overflow-hidden">
-          {/* Authentic High-Res Mandala Watermark Aligned to Right Edge of Screen */}
-          <img
-            src="/images/mandala-card-01.png"
-            alt=""
-            aria-hidden="true"
-            className="w-[540px] h-[540px] object-contain absolute -top-36 -right-36 opacity-[0.07] pointer-events-none select-none"
-          />
-
-          <div className="relative z-10 w-full max-w-[1240px] mx-auto px-5 sm:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 sm:mb-6">
-              <div>
-                <h2 className="text-2xl sm:text-[32px] font-semibold tracking-[-0.03em] text-white leading-tight">
-                  How Digital Seva Works
-                </h2>
-                <p className="text-xs sm:text-[13.5px] text-white/70 mt-1 max-w-lg">
-                  See how assisted service delivery unfolds from walk-in to instant printed receipt.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                {WORKFLOW_STEPS.map((st, idx) => (
-                  <button
-                    key={st.step}
-                    onClick={() => selectWorkflowStep(idx)}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
-                      activeWorkflowIdx === idx
-                        ? 'bg-[#2563eb] text-white shadow-md shadow-blue-500/20'
-                        : 'bg-white/10 text-[#b4c6e4] hover:bg-white/20 hover:text-white'
-                    }`}
-                  >
-                    {st.step}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Exact Pill-to-Landscape Expanding Gallery with Refined Blue Accents & Rich Closed State */}
-            <div className="flex items-stretch gap-3 sm:gap-3.5 h-[370px] sm:h-[410px] lg:h-[430px] w-full select-none">
-              {WORKFLOW_STEPS.map((item, idx) => {
-                const isExpanded = idx === activeWorkflowIdx;
-                return (
-                  <motion.div
-                    key={item.step}
-                    layout
-                    onClick={() => selectWorkflowStep(idx)}
-                    initial={false}
-                    animate={{
-                      flexGrow: isExpanded ? 1 : 0,
-                      flexShrink: 0,
-                      flexBasis: isExpanded ? '0%' : '84px',
-                      borderRadius: isExpanded ? 28 : 22,
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 210,
-                      damping: 28,
-                      mass: 0.9,
-                    }}
-                    className="relative h-full overflow-hidden cursor-pointer bg-[#071120] border border-white/10 hover:border-white/20 transition-colors group"
-                  >
-                    <motion.img
-                      src={item.image}
-                      alt={item.title}
-                      initial={false}
-                      animate={{
-                        scale: isExpanded ? 1.0 : 1.15,
-                        opacity: isExpanded ? 1 : 0.18,
-                        filter: isExpanded ? 'blur(0px)' : 'blur(3px)',
-                      }}
-                      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-                    />
-
-                    <motion.div
-                      initial={false}
-                      animate={{ opacity: isExpanded ? 1 : 0.35 }}
-                      className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/95 via-[#0a1628]/30 to-transparent pointer-events-none"
-                    />
-
-                    {/* REFINED CLOSED STATE: Dark Glass Overlay + Step Number Badge + Vertical Title */}
-                    {!isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute inset-0 z-20 flex flex-col justify-between items-center py-6 px-2 bg-[#071120]/90 backdrop-blur-md group-hover:bg-[#071120]/80 transition-colors pointer-events-none border-l border-white/10"
-                      >
-                        {/* Top: Step Number Badge */}
-                        <div className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white font-bold text-xs grid place-items-center shadow-md">
-                          {item.step}
-                        </div>
-
-                        {/* Middle: Vertical Step Title */}
-                        <div className="flex-1 flex items-center justify-center my-4 overflow-hidden">
-                          <span
-                            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
-                            className="text-[12px] font-semibold tracking-[0.2em] text-white/85 group-hover:text-white uppercase whitespace-nowrap"
-                          >
-                            {item.shortTitle || item.title}
-                          </span>
-                        </div>
-
-                        {/* Bottom: Click indicator */}
-                        <div className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-[#2563eb] text-white/70 group-hover:text-white grid place-items-center transition-colors shadow-xs">
-                          <Plus className="w-4 h-4" />
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* EXPANDED STATE: Full Detail Card with Blue Accent Badges & Action */}
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 12 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 6 }}
-                          transition={{ duration: 0.28, delay: 0.08 }}
-                          className="absolute inset-x-0 bottom-0 p-6 sm:p-8 flex items-end justify-between gap-6 z-10"
-                        >
-                          <div className="max-w-xl text-white">
-                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2563eb] text-white text-[10.5px] uppercase font-semibold mb-2.5 tracking-wider shadow-md shadow-blue-500/25">
-                              <span>STEP {item.step}</span>
-                            </div>
-                            <h3 className="text-xl sm:text-2xl lg:text-[28px] font-semibold tracking-[-0.02em] leading-tight">
-                              {item.title}
-                            </h3>
-                            <p className="text-xs sm:text-[13px] text-[#d6e2f5] mt-1.5 leading-relaxed">
-                              {item.subtitle}
-                            </p>
-                          </div>
-
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              selectWorkflowStep(
-                                (idx + 1) % WORKFLOW_STEPS.length
-                              );
-                            }}
-                            aria-label="Next workflow step"
-                            className="w-11 h-11 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white grid place-items-center shrink-0 shadow-lg shadow-blue-600/30 cursor-pointer hover:scale-105 transition-all"
-                          >
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <VillageServicesSlideshow />
 
       {/* ====================================================================
           F. FOR VILLAGE LEVEL ENTREPRENEURS (Fits Viewport)
@@ -1962,14 +1512,23 @@ export default function App() {
         className="relative py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
       >
         <div className="max-w-[1200px] mx-auto w-full">
-          {/* Clean, Human Editorial Header */}
-          <div className="max-w-xl mx-auto text-center mb-12 sm:mb-14">
+          {/* Section Header with 'View all' on the top right */}
+          <div className="relative flex flex-col items-center text-center mb-12 sm:mb-14">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#0a1628]">
               News & Updates
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed max-w-xl">
               Official circulars, nationwide initiatives, and grassroots announcements.
             </p>
+
+            {/* View All link on top right */}
+            <a
+              href="#newsletter"
+              className="sm:absolute sm:right-0 sm:bottom-1 mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-[#ff5500] hover:text-[#e04800] transition-colors group cursor-pointer"
+            >
+              <span>View all</span>
+              <ArrowRight className="w-4 h-4 text-[#ff5500] group-hover:text-[#e04800] transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
 
           {/* 3 Bespoke CSC Network Story Cards: Vector Illustration Stage + Seamless Navy Blue Bottom */}
@@ -1978,12 +1537,15 @@ export default function App() {
               <article
                 key={card.id}
                 onClick={() => setSelectedStory(card)}
-                className="bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden flex flex-col justify-between hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+                className="relative h-[460px] sm:h-[485px] bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
               >
-                <div>
-                  {/* Top Bespoke Vector Illustration Stage matching Website Content */}
+                {/* Visual Stage Container (Upper ~60% in normal state) */}
+                <div className="absolute top-0 inset-x-0 h-[280px] sm:h-[295px]">
                   <NewsIllustrationStage variant={card.variant} />
+                </div>
 
+                {/* Sliding Navy Text Container: Fixed to bottom of card, slides UP over the shape on hover */}
+                <div className="absolute inset-x-0 bottom-0 bg-[#0c1a2e] flex flex-col justify-between h-[180px] sm:h-[190px] group-hover:h-[280px] sm:group-hover:h-[295px] transition-all duration-500 ease-out z-10 shadow-[0_-10px_25px_rgba(12,26,46,0.3)]">
                   {/* Card Body - Deep Navy Blue with White/Light Text */}
                   <div className="p-6 pt-5 pb-2 text-left">
                     {/* Category Pill & Date */}
@@ -1996,35 +1558,39 @@ export default function App() {
                       </span>
                     </div>
 
-                    {/* Title - Consistent white with NO color change on hover */}
-                    <h3 className="text-[17px] sm:text-[18px] font-bold text-white tracking-tight leading-snug mb-2">
+                    {/* Title */}
+                    <h3 className="text-[17px] sm:text-[18px] font-bold text-white tracking-tight leading-snug line-clamp-2">
                       {card.cardTitle}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed font-normal">
-                      {card.cardSummary}
-                    </p>
+                    {/* Body Description - Slides up & reveals as container height expands */}
+                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                      <div className="overflow-hidden">
+                        <p className="text-[12.5px] sm:text-[13px] text-slate-300 leading-relaxed pt-3 line-clamp-3 opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 transition-all duration-500 ease-out delay-75">
+                          {card.cardSummary}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Footer Row (Seamless Navy bg-[#0c1a2e], NO dividing border line, White Icon) */}
-                <div className="px-6 pb-6 pt-2 bg-[#0c1a2e] flex items-center justify-between text-xs">
-                  {/* Left Action Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedStory(card);
-                    }}
-                    className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
-                  >
-                    {card.actionText}
-                  </button>
+                  {/* Footer Row (Seamless Navy bg-[#0c1a2e], NO dividing border line, White Icon) */}
+                  <div className="px-6 pb-6 pt-2 bg-[#0c1a2e] flex items-center justify-between text-xs">
+                    {/* Left Action Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedStory(card);
+                      }}
+                      className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
+                    >
+                      {card.actionText}
+                    </button>
 
-                  {/* Right Status Indicator with White Icon */}
-                  <div className="flex items-center gap-1.5 text-xs text-slate-300">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
-                    <span className="truncate max-w-[155px] font-medium">{card.statusNote}</span>
+                    {/* Right Status Indicator with White Icon */}
+                    <div className="flex items-center gap-1.5 text-xs text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                      <span className="truncate max-w-[155px] font-medium">{card.statusNote}</span>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -2590,7 +2156,7 @@ export default function App() {
               <h4 className="font-semibold text-white mb-3">About CSC</h4>
               <ul className="space-y-2">
                 <li><a href="#about" className="hover:text-[#ff5500]">Platform Overview</a></li>
-                <li><a href="#how-it-works" className="hover:text-[#ff5500]">How Digital Seva Works</a></li>
+                <li><a href="#about" className="hover:text-[#ff5500]">VLE Opportunity</a></li>
                 <li><a href="#whats-new" className="hover:text-[#ff5500]">Network Announcements</a></li>
               </ul>
             </div>

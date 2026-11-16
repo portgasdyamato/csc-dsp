@@ -272,8 +272,151 @@ export const SERVICE_DIRECTORY = [
   },
 ];
 
-// E. How Digital Seva Works (4-Step Visual Flow — Scroll-Expanding Pill Accordion)
-// Follows Proposal Sequence: A citizen arrives -> VLE welcomes & understands -> Assisted delivery -> Leaves with clarity & receipt
+// ============================================================================
+// 07. VLE OPPORTUNITY — EXPLORE WHAT IT MEANS TO BE A CSC VLE
+// Interactive CSC Workspace & Enterprise Explorer (Proposal Section 07)
+// ============================================================================
+export const VLE_OPPORTUNITY_PILLARS = [
+  {
+    id: 'services',
+    label: 'Digital Services',
+    badge: 'Core Portfolio',
+    headline: 'Deliver 400+ Central, State & Commercial Portals',
+    subheadline: 'One authenticated operator login connects your village counter to India’s complete e-Governance ecosystem.',
+    description:
+      'As a certified Village Level Entrepreneur, you provide doorstep access to essential government and business services that previously required a full day of travel to the tehsil or district headquarters. From revenue certificates and pension life certificates to micro-ATM banking and utility bill collections, your centre becomes the indispensable digital lifeline for your Gram Panchayat.',
+    capabilities: [
+      'G2C State Revenue & Civic Certificates (Income, Caste, Domicile, Land Records)',
+      'Aadhaar Demographic Updates & Digital Life Certificates (Jeevan Pramaan)',
+      'DigiPay AEPS Micro-ATM Cash Withdrawals & Domestic Money Transfers',
+      'Bharat BillPay (BBPS) Electricity, Gas, Water & FASTag Top-ups',
+    ],
+    highlight: '400+ Government & Business Services',
+    iconName: 'Building2',
+    image: '/images/step-03-biometric.jpg?v=6',
+  },
+  {
+    id: 'enterprise',
+    label: 'Your Enterprise',
+    badge: 'Local Ownership',
+    headline: 'Establish an Independent, Respected Village Business',
+    subheadline: 'Build a sustainable commercial enterprise while serving your local community with dignity.',
+    description:
+      'Operating a Common Service Centre gives you autonomous business ownership backed by the Ministry of Electronics & IT. You set your operating schedule, manage your walk-in counter, guide non-tech-savvy neighbours with patience and care, and establish yourself as a trusted village leader and digital educator.',
+    capabilities: [
+      'Autonomous rural entrepreneurship with official Government of India accreditation',
+      'Daily citizen walk-in counter for assisted public service delivery',
+      'Official CSC branding kit, shopfront signage, and authorized certificate framing',
+      'Multi-operator capability to expand workstations as village demand grows',
+    ],
+    highlight: 'Autonomous Local Business Ownership',
+    iconName: 'Package',
+    image: '/images/step-01-visit.jpg?v=6',
+  },
+  {
+    id: 'earning',
+    label: 'Earning Model',
+    badge: 'Sustainable Revenue',
+    headline: 'Transparent Per-Transaction Revenue & Instant Wallet Settlement',
+    subheadline: 'Automated commission splits credited directly to your Digital Seva wallet in real time.',
+    description:
+      'The CSC business model ensures financial viability from day one. Every bill payment collected, cash withdrawal dispensed via DigiPay, insurance policy enrolled, and official certificate generated earns a transparent, pre-negotiated service commission with zero hidden deductions and instant reconciliation.',
+    capabilities: [
+      'Instant automated commission credits on BBPS bill payments and AEPS transactions',
+      'Pre-disclosed government fee structures with zero arbitrary intermediary cuts',
+      'Unified Digital Seva prepaid wallet balance across all integrated ministries',
+      'Comprehensive monthly statements with downloadable GST and TDS certificates',
+    ],
+    highlight: 'Real-Time Commission Splits',
+    iconName: 'IndianRupee',
+    image: '/images/vle-gurpreet.jpg',
+  },
+  {
+    id: 'infrastructure',
+    label: 'Infrastructure',
+    badge: 'Minimum Setup',
+    headline: 'Accessible Centre Setup with Modest Capital Investment',
+    subheadline: 'Clear, standardized hardware requirements to pass district premises verification.',
+    description:
+      'You do not need an expensive commercial complex to launch a CSC. Any accessible 100 to 150 sq. ft. room equipped with standard computing hardware, a reliable internet connection, and biometric authentication devices satisfies the official physical audit criteria.',
+    capabilities: [
+      'Accessible 100–150 sq. ft. room with public counter and visitor seating',
+      'Desktop PC or Laptop (Windows 10/11, 4GB+ RAM, 120GB SSD/HDD)',
+      'All-in-one multi-function laser printer & flatbed document scanner',
+      'STQC-certified biometric scanner (fingerprint / single iris) for Aadhaar auth',
+    ],
+    highlight: 'Accessible Hardware Requirements',
+    iconName: 'Clock',
+    image: '/images/step-02-review.jpg?v=6',
+  },
+  {
+    id: 'training',
+    label: 'Training & Certification',
+    badge: 'National Accreditation',
+    headline: 'Telecentre Entrepreneur Course (TEC) & Professional Skilling',
+    subheadline: 'Accredited training modules on CSC Academy to verify your operational competence.',
+    description:
+      'Before opening your counter, prospective VLEs complete the Telecentre Entrepreneur Course (TEC) on the CSC Academy portal. Covering basic accounting, service delivery ethics, cybersecurity guidelines, and portal operations, this certification ensures every operator meets national standards.',
+    capabilities: [
+      'Structured 10-module online TEC curriculum with digital study materials',
+      'Proctored online assessment with verifiable digital certification number',
+      'IRDAI Rural Insurance Point of Presence (RAP / POSP) certification',
+      'Continuous weekly webinars on newly launched central schemes and services',
+    ],
+    highlight: 'Government-Certified Professional Credentials',
+    iconName: 'GraduationCap',
+    image: '/images/vle-rajeshwar.jpg',
+  },
+  {
+    id: 'support',
+    label: 'District Support',
+    badge: 'Field Ecosystem',
+    headline: 'Dedicated District Managers & 5,50,000+ Peer Community',
+    subheadline: 'Comprehensive operational, technical, and on-ground backing across all 700+ districts.',
+    description:
+      'You never work in isolation. Every VLE is paired with their District e-Governance Manager (DeGM) and local field team for physical premises verification, hardware configuration, and escalation resolution. Plus, an active community of 5.5 lakh fellow entrepreneurs shares guidance daily.',
+    capabilities: [
+      'Designated District Manager for on-ground physical audit and activation',
+      'Centralized 14599 toll-free technical helpdesk and online grievance ticketing',
+      'District VLE peer networks on official WhatsApp & Telegram channels',
+      'Public outreach banner templates and Gram Sabha awareness camp support',
+    ],
+    highlight: 'Designated District e-Governance Managers',
+    iconName: 'Users',
+    image: '/images/step-04-delivery.jpg?v=6',
+  },
+];
+
+// Operational Walkthrough: A Day in the Life of a VLE (Proposal Section 07 / 5B)
+export const VLE_DAY_TIMELINE = [
+  {
+    time: '08:30 AM',
+    title: 'Opening & System Check',
+    detail: 'Powering on terminal, checking biometric devices, verifying broadband, and reviewing wallet balance.',
+  },
+  {
+    time: '10:00 AM',
+    title: 'Morning Citizen Rush',
+    detail: 'Assisting farmers with PM-KISAN biometric e-KYC and senior citizens with monthly pension withdrawals.',
+  },
+  {
+    time: '01:30 PM',
+    title: 'Revenue & Certificate Processing',
+    detail: 'Uploading supporting documents for income and caste certificates to state e-District portals.',
+  },
+  {
+    time: '04:00 PM',
+    title: 'Utility BillPay & Travel Bookings',
+    detail: 'Collecting electricity and water bill payments via BBPS and issuing official printed receipts.',
+  },
+  {
+    time: '07:00 PM',
+    title: 'Ledger Audit & Next Day Prep',
+    detail: 'Reconciling daily transactions, downloading commission reports, and planning Gram Panchayat outreach.',
+  },
+];
+
+// E. How Digital Seva Works (Legacy reference)
 export const WORKFLOW_STEPS = [
   {
     step: '01',
