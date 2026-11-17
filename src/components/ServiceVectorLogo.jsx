@@ -4,13 +4,13 @@ import React from 'react';
 // LARGE, INTRICATELY DETAILED MONOCHROME NAVY BLUE (#0A1628) SVG VECTORS
 // Standalone detailed vector illustrations in pure deep navy blue
 // ============================================================================
-const NAVY = '#0A1628';
+const NAVY = 'currentColor';
 
-export default function ServiceVectorLogo({ id }) {
+export default function ServiceVectorLogo({ id, className = 'w-[88px] h-[88px] sm:w-[96px] sm:h-[96px] shrink-0 select-none' }) {
   return (
     <svg
       viewBox="0 0 100 100"
-      className="w-[88px] h-[88px] sm:w-[96px] sm:h-[96px] shrink-0 select-none text-[#0a1628]"
+      className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

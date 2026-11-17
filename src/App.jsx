@@ -13,6 +13,7 @@ import {
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Plus,
   Minus,
   X,
@@ -38,11 +39,24 @@ import {
   IndianRupee,
   Mail,
   Send,
+  Calculator,
 } from 'lucide-react';
 
 import ServiceVectorLogo from './components/ServiceVectorLogo';
 import MultiLayerMandala from './components/MultiLayerMandala';
 import VillageServicesSlideshow from './components/VillageServicesSlideshow';
+import ImpactScaleSection from './components/ImpactScaleSection';
+import SarthiChatbot from './components/SarthiChatbot';
+import AppDownloadSection from './components/AppDownloadSection';
+import VleEarningCalculatorModal from './components/VleEarningCalculatorModal';
+import {
+  CardArt01Boss,
+  CardArt02Income,
+  CardArt03Respect,
+  CardArt04Govt,
+  CardArt05Franchise,
+  CardArt06Impact,
+} from './components/VleCardArt';
 
 import {
   VLE_JOURNEY_STAGES,
@@ -73,16 +87,16 @@ function LotusBadge({ white = false, gray = false, className = 'w-5 h-5' }) {
 }
 
 // ============================================================================
-// PURE WHITE INTRICATE INDIAN MANDALA LINE-ART FOR THE 3 FOLDER-TAB CARDS
-// Each card features its own distinct 1200x1200 pure-white Mandala illustration
+// BALANCED INDIAN SACRED GEOMETRY ART FOR WHY-VLE CARDS
+// Golden-ratio geometric motifs: Refined, elegant, cohesive, neither crowded nor crude
 // ============================================================================
 function CardVisualStage({ variant, isHovered }) {
   if (variant === 'cobalt') {
-    // Card 01: "Unified Digital Seva ledger" — Intricate Multi-Ring Lotus & Arch Mandala (Pure White)
+    // Card 01: "Be Your Own Boss" — Intricate Ink Lotus Mandala with Fine Diagonal Hatching
     return (
-      <div className="relative w-full h-full bg-[#071120] overflow-hidden flex items-start justify-center">
+      <div className="relative w-full h-full bg-[#071120] overflow-hidden flex items-start justify-center pt-2">
         <div
-          className="absolute -top-10 left-1/2 -translate-x-1/2 w-[350px] h-[250px] rounded-full opacity-95 blur-2xl pointer-events-none transition-transform duration-700"
+          className="absolute -top-10 left-1/2 -translate-x-1/2 w-[350px] h-[250px] rounded-full opacity-90 blur-2xl pointer-events-none transition-transform duration-700"
           style={{
             background:
               'radial-gradient(circle, #1d4ed8 0%, #0a1628 58%, #ff5500 98%)',
@@ -90,17 +104,16 @@ function CardVisualStage({ variant, isHovered }) {
           }}
         />
 
-        <motion.img
-          src="/images/mandala-card-01.png"
-          alt=""
-          aria-hidden="true"
+        <motion.div
           animate={{
-            rotate: isHovered ? 12 : 0,
-            scale: isHovered ? 1.06 : 0.96,
+            rotate: isHovered ? 4 : 0,
+            scale: isHovered ? 1.05 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
-        />
+          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+        >
+          <CardArt01Boss className="w-full h-full" />
+        </motion.div>
 
         <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
       </div>
@@ -108,9 +121,9 @@ function CardVisualStage({ variant, isHovered }) {
   }
 
   if (variant === 'chromatic') {
-    // Card 02: "Assisted counter delivery" — Intricate 24-Petal Kolam & Yantra Mandala (Pure White)
+    // Card 02: "Earn Every Single Day" — Banknote Guilloche Moiré Rosette
     return (
-      <div className="relative w-full h-full bg-[#0a1628] overflow-hidden flex items-start justify-center">
+      <div className="relative w-full h-full bg-[#0a1628] overflow-hidden flex items-start justify-center pt-2">
         <div
           className="absolute inset-0"
           style={{
@@ -119,46 +132,130 @@ function CardVisualStage({ variant, isHovered }) {
           }}
         />
 
-        <motion.img
-          src="/images/mandala-card-02.png"
-          alt=""
-          aria-hidden="true"
+        <motion.div
           animate={{
-            rotate: isHovered ? -10 : 0,
-            scale: isHovered ? 1.06 : 0.96,
+            rotate: isHovered ? -4 : 0,
+            scale: isHovered ? 1.05 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
-        />
+          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.2)]"
+        >
+          <CardArt02Income className="w-full h-full" />
+        </motion.div>
 
         <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
       </div>
     );
   }
 
-  // Card 03: "Transparent VLE settlement" — Bold Ornamental Indian Star & Paisley Mandala (Pure White)
+  if (variant === 'sapphire') {
+    // Card 03: "Deep Community Trust & Respect" — 12-Ray Surya Starburst & Sacred Kolam
+    return (
+      <div className="relative w-full h-full bg-[#061224] overflow-hidden flex items-start justify-center pt-2">
+        <div
+          className="absolute -top-10 left-1/2 -translate-x-1/2 w-[340px] h-[240px] rounded-full opacity-90 blur-2xl pointer-events-none transition-transform duration-700"
+          style={{
+            background:
+              'radial-gradient(circle, #0284c7 0%, #0369a1 45%, #061224 88%)',
+            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+          }}
+        />
+
+        <motion.div
+          animate={{
+            rotate: isHovered ? 4 : 0,
+            scale: isHovered ? 1.05 : 0.96,
+          }}
+          transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+        >
+          <CardArt03Respect className="w-full h-full" />
+        </motion.div>
+
+        <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
+      </div>
+    );
+  }
+
+  if (variant === 'obsidian') {
+    // Card 04: "Official Government Backing" — 24-Spoke Ashoka & Guilloche Sovereign Emblem
+    return (
+      <div className="relative w-full h-full bg-[#071120] overflow-hidden flex items-start justify-center pt-2">
+        <div
+          className="absolute -top-10 left-1/2 -translate-x-1/2 w-[340px] h-[240px] rounded-full opacity-90 blur-2xl pointer-events-none transition-transform duration-700"
+          style={{
+            background:
+              'radial-gradient(circle, #6366f1 0%, #1e3a8a 50%, #071120 88%)',
+            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+          }}
+        />
+
+        <motion.div
+          animate={{
+            rotate: isHovered ? -4 : 0,
+            scale: isHovered ? 1.05 : 0.96,
+          }}
+          transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+        >
+          <CardArt04Govt className="w-full h-full" />
+        </motion.div>
+
+        <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
+      </div>
+    );
+  }
+
+  if (variant === 'emerald') {
+    // Card 05: "Zero Franchise Fee & Royalties" — Lakshmi Padma & Faceted Diamond Rosette
+    return (
+      <div className="relative w-full h-full bg-[#0a1628] overflow-hidden flex items-start justify-center pt-2">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(circle at 50% 34%, #059669 0%, #047857 44%, #0a1628 90%)',
+          }}
+        />
+
+        <motion.div
+          animate={{
+            rotate: isHovered ? 4 : 0,
+            scale: isHovered ? 1.05 : 0.96,
+          }}
+          transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.22)]"
+        >
+          <CardArt05Franchise className="w-full h-full" />
+        </motion.div>
+
+        <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
+      </div>
+    );
+  }
+
+  // Card 06: "Digital Empowerment & Social Impact" — Interconnected Digital Bharat Network Mandala
   return (
-    <div className="relative w-full h-full bg-[#071120] overflow-hidden flex items-start justify-center">
+    <div className="relative w-full h-full bg-[#061224] overflow-hidden flex items-start justify-center pt-2">
       <div
-        className="absolute -top-10 right-0 w-[330px] h-[240px] rounded-full opacity-95 blur-2xl pointer-events-none transition-transform duration-700"
+        className="absolute -top-10 left-1/2 -translate-x-1/2 w-[340px] h-[240px] rounded-full opacity-90 blur-2xl pointer-events-none transition-transform duration-700"
         style={{
           background:
-            'radial-gradient(circle, #ff5500 0%, #1e3a8a 48%, #071120 86%)',
+            'radial-gradient(circle, #0284c7 0%, #0f766e 48%, #061224 88%)',
           transform: isHovered ? 'scale(1.15)' : 'scale(1)',
         }}
       />
 
-      <motion.img
-        src="/images/mandala-card-03.png"
-        alt=""
-        aria-hidden="true"
+      <motion.div
         animate={{
-          rotate: isHovered ? 10 : 0,
-          scale: isHovered ? 1.06 : 0.96,
+          rotate: isHovered ? -4 : 0,
+          scale: isHovered ? 1.05 : 0.96,
         }}
         transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-        className="relative z-10 w-[240px] h-[240px] -mt-2 object-contain pointer-events-none select-none"
-      />
+        className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+      >
+        <CardArt06Impact className="w-full h-full" />
+      </motion.div>
 
       <div className="absolute inset-0 grain-surface pointer-events-none z-20" />
     </div>
@@ -245,15 +342,16 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Hero Curtain Recess Physics
+  // Hero Curtain Parallax Physics (Zero shrinking, authentic parallax drift & depth scrim)
   const heroRef = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
 
-  const heroScale = useTransform(heroScroll, [0, 1], [1, 0.95]);
-  const heroDimOpacity = useTransform(heroScroll, [0, 0.85], [0, 0.45]);
+  const heroContentY = useTransform(heroScroll, [0, 1], ['0%', '16%']);
+  const heroBgY = useTransform(heroScroll, [0, 1], ['0%', '24%']);
+  const heroDimOpacity = useTransform(heroScroll, [0, 0.9], [0, 0.45]);
 
   // Choose Journey Interactive Step states
   const [vleJourneyIdx, setVleJourneyIdx] = useState(0);
@@ -264,6 +362,8 @@ export default function App() {
 
   // D. Explore Services state
   const [categoryFilter, setCategoryFilter] = useState('ALL');
+  const [g2cSubFilter, setG2cSubFilter] = useState('ALL'); // 'ALL' | 'CENTRAL' | 'STATE' | 'OTHER'
+  const [g2cDropdownOpen, setG2cDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [servicePage, setServicePage] = useState(0);
   const [serviceDir, setServiceDir] = useState(1);
@@ -279,44 +379,43 @@ export default function App() {
 
   // Find Nearest Centre Locator Modal state
   const [locatorOpen, setLocatorOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
   const [locatorQuery, setLocatorQuery] = useState('');
+  const [calculatorOpen, setCalculatorOpen] = useState(false);
 
   const SAMPLE_CENTRES = [
     {
       id: 'csc-01',
-      name: 'CSC Gram Panchayat Kendra — Bodhan',
+      name: 'Gram Panchayat Kendra, Bodhan',
       vle: 'Rajeshwar Rao',
-      vleId: '4892 1048 2910',
       pincode: '503185',
       distance: '0.8 km away',
-      address: 'Main Gram Panchayat Bhavan, Bodhan Mandal, Nizamabad, Telangana',
-      services: ['Aadhaar UCL', 'DigiPay AePS', 'e-District', 'PM-KISAN', 'Electricity BillPay'],
+      address: 'Panchayat Bhavan, Bodhan, Telangana',
+      services: ['Aadhaar Updates', 'Cash Withdrawal', 'Caste & Income Certificates', 'PM-Kisan', 'Bill Payments'],
       timing: '9:00 AM – 7:00 PM',
       phone: '+91 98480 14599',
       verified: true,
     },
     {
       id: 'csc-02',
-      name: 'Digital Seva Kendra — Ward 4',
+      name: 'Digital Seva Kendra, Lucknow Rural',
       vle: 'Sunita Devi',
-      vleId: '5102 9384 1029',
       pincode: '226001',
       distance: '1.4 km away',
-      address: 'Near Primary Health Centre, Rural Block 3, Lucknow, Uttar Pradesh',
-      services: ['Ayushman Bharat PM-JAY', 'Jeevan Pramaan', 'Micro-ATM', 'FASTag'],
+      address: 'Near Health Centre, Block 3, Lucknow, Uttar Pradesh',
+      services: ['Ayushman Health Card', 'Pension Life Certificate', 'Aadhaar ATM', 'FASTag'],
       timing: '9:30 AM – 6:30 PM',
       phone: '+91 94150 14599',
       verified: true,
     },
     {
       id: 'csc-03',
-      name: 'CSC Digital Seva Counter — Civil Lines',
+      name: 'Tehsil Seva Counter, Ahmedabad',
       vle: 'Amit Verma',
-      vleId: '3901 8472 6150',
       pincode: '380001',
       distance: '2.1 km away',
-      address: 'Shop No. 12, Tehsil Complex, District Headquarters, Ahmedabad, Gujarat',
-      services: ['Passport Seva', 'PAN Card', 'Tele-Law', 'BBPS Utilities'],
+      address: 'Shop 12, Tehsil Complex, Civil Lines, Ahmedabad, Gujarat',
+      services: ['Passport Application', 'PAN Card', 'Free Legal Advice', 'Electricity & Water Bills'],
       timing: '10:00 AM – 7:30 PM',
       phone: '+91 98250 14599',
       verified: true,
@@ -443,21 +542,7 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrolled(currentScrollY > 20);
-
-      // If at or near top of page, always show
-      if (currentScrollY < 60) {
-        setNavVisible(true);
-      } else if (currentScrollY > lastScrollY.current + 8) {
-        // Scrolling down -> hide navbar
-        setNavVisible(false);
-      } else if (currentScrollY < lastScrollY.current - 8) {
-        // Scrolling up -> show navbar
-        setNavVisible(true);
-      }
-
-      lastScrollY.current = currentScrollY;
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -465,8 +550,15 @@ export default function App() {
   }, []);
 
   const filteredServices = SERVICE_DIRECTORY.filter((item) => {
-    const matchCat =
-      categoryFilter === 'ALL' || item.category === categoryFilter;
+    let matchCat = true;
+    if (categoryFilter === 'B2C') {
+      matchCat = item.category === 'B2C';
+    } else if (categoryFilter === 'G2C') {
+      matchCat = item.category === 'G2C';
+      if (g2cSubFilter !== 'ALL') {
+        matchCat = matchCat && item.subCategory === g2cSubFilter;
+      }
+    }
     const q = searchQuery.trim().toLowerCase();
     const matchSearch =
       !q ||
@@ -510,80 +602,50 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fc] text-[#0a1628]">
       {/* ====================================================================
-          01. IMPORTANT NOTICE STRIP (PROPOSAL SECTION 01)
-          Keep People Informed — Functional Entry Point
-          ==================================================================== */}
-      <div className="bg-[#071120] border-b border-white/10 text-xs py-2 px-4 text-center text-white/90 relative z-50">
-        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5 truncate">
-            <span className="px-2 py-0.5 rounded-full bg-[#ff5500] text-white font-semibold text-[10px] uppercase tracking-wider shrink-0">
-              Notice
-            </span>
-            <span className="text-white/85 text-[12px] truncate">
-              Digital Seva VLE Re-Registration & e-KYC Update 2026 is now live across all authorized centres.
-            </span>
-          </div>
-          <a
-            href="#whats-new"
-            className="shrink-0 text-[#ff7733] hover:text-[#ff9966] font-medium text-[11.5px] transition-colors"
-          >
-            Read Update →
-          </a>
-        </div>
-      </div>
-
-      {/* ====================================================================
-          02. HEADER — FLOATING PILL NAVIGATION (PROPOSAL SECTION 02)
-          Minimal Navigation with Clear Hierarchy & Key Journeys (Hides on Downscroll, Shows on Upscroll)
+          PERSISTENT FULL-WIDTH NAVIGATION BAR (NEVER HIDES ON SCROLL, NEVER BLOCKED BY NOTICE)
+          Clean edge-to-edge navbar fixed at top, 100% visible across the entire site
           ==================================================================== */}
       <header
-        className={`fixed inset-x-0 z-40 px-4 sm:px-8 pointer-events-none transition-all duration-300 ease-in-out ${
-          scrolled ? 'top-3.5 sm:top-4' : 'top-10 sm:top-12'
-        } ${
-          navVisible || mobileNavOpen
-            ? 'translate-y-0 opacity-100'
-            : '-translate-y-28 opacity-0 pointer-events-none'
+        className={`fixed top-0 inset-x-0 z-50 w-full transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#0a1628]/95 backdrop-blur-2xl border-b border-white/12 shadow-[0_12px_30px_rgba(0,0,0,0.35)]'
+            : 'bg-[#0a1628]/90 backdrop-blur-xl border-b border-white/10'
         }`}
       >
-        <div
-          className={`max-w-[1360px] mx-auto rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-3 sm:gap-5 pointer-events-auto transition-all duration-300 ${
-            scrolled
-              ? 'bg-gradient-to-b from-[#0a1628]/95 via-[#08152c]/90 to-[#050e1f]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.4)]'
-              : 'bg-gradient-to-b from-[#0a1628]/85 via-[#08152c]/80 to-[#050e1f]/85 backdrop-blur-xl border border-white/15 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.3)]'
-          }`}
-        >
+        <div className="w-full px-5 sm:px-8 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
           {/* Clean Brand Wordmark */}
           <a
             href="#home"
-            className="flex items-center gap-2.5 shrink-0 font-semibold text-[14.5px] sm:text-[15.5px] tracking-[-0.02em] text-white"
+            className="flex items-center gap-2.5 shrink-0 font-semibold text-[15px] sm:text-[16px] tracking-[-0.02em] text-white"
           >
             <span className="w-2 h-2 rounded-full bg-[#ff5500]" />
             <span>CSC Digital Seva</span>
           </a>
 
-          {/* Centered Primary Navigation Links — Ordered by User Priority (Citizen Needs First, Clean Text Only) */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-5 2xl:gap-6 text-[12px] xl:text-[12.5px] 2xl:text-[13px] font-medium text-white/75">
-            <a href="#services" className="hover:text-white transition-colors whitespace-nowrap">
-              Services
-            </a>
+          {/* Centered Primary Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12.5px] xl:text-[13px] font-medium text-white/75">
             <a href="#services" className="hover:text-white transition-colors whitespace-nowrap">
               Jankari Suvidha
             </a>
-            <button
-              onClick={() => setLocatorOpen(true)}
-              className="hover:text-white transition-colors flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+            <a
+              href="#locator"
+              onClick={(e) => {
+                const el = document.getElementById('locator');
+                if (el) {
+                  e.preventDefault();
+                  el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="hover:text-white transition-colors flex items-center gap-1.5 whitespace-nowrap"
             >
               <MapPin className="w-3.5 h-3.5 text-sky-400" />
               <span>Find Centre</span>
-            </button>
-            <a href="#about" className="hover:text-white transition-colors whitespace-nowrap">
-              Why Become a VLE
             </a>
             <a href="#whats-new" className="hover:text-white transition-colors whitespace-nowrap">
               News & Updates
             </a>
             <a href="#support" className="hover:text-white transition-colors whitespace-nowrap">
-              Support
+              Help
             </a>
           </nav>
 
@@ -639,20 +701,12 @@ export default function App() {
 
         {/* Structured Mobile Drawer */}
         {mobileNavOpen && (
-          <div className="lg:hidden max-w-[1240px] mx-auto mt-2 rounded-2xl bg-[#0a1628]/95 backdrop-blur-xl border border-white/12 p-5 text-sm font-medium text-white pointer-events-auto shadow-xl space-y-4">
+          <div className="lg:hidden w-full bg-[#0a1628]/98 backdrop-blur-xl border-b border-white/12 px-5 py-4 text-sm font-medium text-white pointer-events-auto shadow-2xl space-y-4">
             <div>
               <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-2">
                 Citizen Access
               </div>
               <div className="space-y-1">
-                <a
-                  href="#services"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="flex items-center justify-between py-1.5 text-white/85 hover:text-white"
-                >
-                  <span>Services</span>
-                  <span className="text-[11px] text-white/40 uppercase">Directory</span>
-                </a>
                 <a
                   href="#services"
                   onClick={() => setMobileNavOpen(false)}
@@ -664,7 +718,9 @@ export default function App() {
                 <button
                   onClick={() => {
                     setMobileNavOpen(false);
-                    setLocatorOpen(true);
+                    const el = document.getElementById('locator');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    else setLocatorOpen(true);
                   }}
                   className="w-full flex items-center justify-between py-1.5 text-left text-white/85 hover:text-white cursor-pointer"
                 >
@@ -683,13 +739,6 @@ export default function App() {
               </div>
               <div className="space-y-1">
                 <a
-                  href="#about"
-                  onClick={() => setMobileNavOpen(false)}
-                  className="block py-1.5 text-white/85 hover:text-white"
-                >
-                  Why Become a VLE
-                </a>
-                <a
                   href="#get-started"
                   onClick={() => setMobileNavOpen(false)}
                   className="flex items-center justify-between py-1.5 text-white/85 hover:text-white"
@@ -702,7 +751,7 @@ export default function App() {
 
             <div className="pt-2 border-t border-white/10">
               <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-2">
-                Network & Support
+                Network & Help
               </div>
               <div className="space-y-1">
                 <a
@@ -717,7 +766,7 @@ export default function App() {
                   onClick={() => setMobileNavOpen(false)}
                   className="block py-1.5 text-white/85 hover:text-white"
                 >
-                  Help & Support (14599)
+                  Help (Toll-Free 14599)
                 </a>
               </div>
             </div>
@@ -749,16 +798,14 @@ export default function App() {
       </header>
 
       {/* ====================================================================
-          03. FLAGSHIP EDITORIAL HERO
-          Dedicated 100vh Full Viewport · Pristine CTA Grainy Gradient Wallpaper
-          Tactile SVG Micro-Grain · Authentic Rotating Mandala Art Watermarks
-          Sticky Curtain Parallax: Stays pinned in place as the next section slides over
+          03. FLAGSHIP EDITORIAL HERO — STICKY CURTAIN PARALLAX
+          Pinned in place as the rest of the site rolls over like a theater curtain.
+          Full-width, full-height, zero shrinking!
           ==================================================================== */}
-      <motion.section
+      <section
         ref={heroRef}
         id="home"
-        style={{ scale: heroScale }}
-        className="sticky top-0 z-0 h-screen min-h-[640px] flex items-center justify-center bg-[#0a1628] text-white overflow-hidden pt-20 sm:pt-24 origin-top will-change-transform"
+        className="sticky top-0 z-0 w-full h-screen min-h-[640px] flex items-center justify-center bg-[#0a1628] text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
       >
         {/* Physical depth scrim that dims the pinned hero subtly as the curtain slides over */}
         <motion.div
@@ -766,13 +813,16 @@ export default function App() {
           className="absolute inset-0 bg-[#071120] z-20 pointer-events-none"
         />
 
-        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer (Exact CTA Background) */}
-        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer with Parallax */}
+        <motion.div
+          style={{ y: heroBgY }}
+          className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden"
+        >
           <img
             src="/images/grainy-gradient-bg-4k.jpg"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center scale-105"
           />
           {/* Subtle deep navy gradient integration on top & bottom */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/55 via-[#0a1628]/25 to-[#0a1628]/75" />
@@ -785,28 +835,37 @@ export default function App() {
               backgroundRepeat: 'repeat',
             }}
           />
-        </div>
+        </motion.div>
 
-        {/* TOP-RIGHT CORNER ART GRAPHIC — Multi-Layer Concentric Counter-Rotating Mandala */}
-        <div className="absolute -top-72 sm:-top-84 lg:-top-96 -right-48 sm:-right-60 lg:-right-72 pointer-events-none select-none z-1">
+        {/* TOP-RIGHT CORNER ART GRAPHIC with Parallax */}
+        <motion.div
+          style={{ y: heroBgY }}
+          className="absolute -top-72 sm:-top-84 lg:-top-96 -right-48 sm:-right-60 lg:-right-72 pointer-events-none select-none z-1"
+        >
           <MultiLayerMandala
             idPrefix="hero-tr"
             className="w-[450px] sm:w-[580px] lg:w-[680px] h-[450px] sm:h-[580px] lg:h-[680px]"
             opacity={0.16}
           />
-        </div>
+        </motion.div>
 
-        {/* BOTTOM-LEFT CORNER ART GRAPHIC — Multi-Layer Concentric Counter-Rotating Mandala */}
-        <div className="absolute -bottom-52 sm:-bottom-60 lg:-bottom-72 -left-44 sm:-left-52 lg:-left-64 pointer-events-none select-none z-1">
+        {/* BOTTOM-LEFT CORNER ART GRAPHIC with Parallax */}
+        <motion.div
+          style={{ y: heroBgY }}
+          className="absolute -bottom-52 sm:-bottom-60 lg:-bottom-72 -left-44 sm:-left-52 lg:-left-64 pointer-events-none select-none z-1"
+        >
           <MultiLayerMandala
             idPrefix="hero-bl"
             className="w-[400px] sm:w-[500px] lg:w-[600px] h-[400px] sm:h-[500px] lg:h-[600px]"
             opacity={0.14}
           />
-        </div>
+        </motion.div>
 
-        {/* Main Center Content — Filling the 100vh Viewport Comfortably */}
-        <div className="relative z-10 w-full max-w-[1100px] mx-auto px-5 sm:px-8 text-center py-8">
+        {/* Main Center Content with Parallax Drift (NO SHRINKING!) */}
+        <motion.div
+          style={{ y: heroContentY }}
+          className="relative z-10 w-full max-w-[1100px] mx-auto px-5 sm:px-8 text-center py-8"
+        >
           {/* Government Credential Pill — Frosted Glassmorphism */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-xs font-semibold tracking-wide mb-6 sm:mb-7 shadow-md mx-auto">
             <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
@@ -834,362 +893,28 @@ export default function App() {
             </a>
 
             <button
-              onClick={() => setLocatorOpen(true)}
+              onClick={() => {
+                const el = document.getElementById('locator');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else setLocatorOpen(true);
+              }}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] hover:from-white/[0.26] hover:to-white/[0.12] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-md"
             >
               <MapPin className="w-4 h-4 text-[#38bdf8]" />
               <span>Find Nearest Centre</span>
             </button>
           </div>
-        </div>
-      </motion.section>
-
-      {/* ====================================================================
-          04. IMPACT METRICS STRIP — BELOW THE HERO VIEWPORT
-          Curtain Overlay: Slides up over the sticky hero section with physical edge & shadow
-          ==================================================================== */}
-      <section className="relative z-10 bg-[#0a1628] border-t border-white/20 border-b border-white/10 shadow-[0_-25px_60px_rgba(0,0,0,0.85)] py-10 sm:py-12">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:divide-x lg:divide-white/10 text-left">
-            <div className="lg:px-8 first:lg:pl-0">
-              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                5,50,000<span className="text-[#ff5500]">+</span>
-              </div>
-              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                Active Service Centres
-              </div>
-              <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                Operational entrepreneur counters delivering assisted doorstep services.
-              </p>
-            </div>
-
-            <div className="lg:px-8">
-              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                3,75,000<span className="text-[#ff5500]">+</span>
-              </div>
-              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                Gram Panchayats
-              </div>
-              <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                Direct village infrastructure covering over 90% of rural India.
-              </p>
-            </div>
-
-            <div className="lg:px-8">
-              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                400<span className="text-[#ff5500]">+</span>
-              </div>
-              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                Essential Desks
-              </div>
-              <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                Central, state, banking, utility bills and pensions on one unified ledger.
-              </p>
-            </div>
-
-            <div className="lg:px-8 last:lg:pr-0">
-              <div className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-white tracking-tight leading-none mb-1.5">
-                ₹1,200<span className="text-[#ff5500]">+</span> <span className="text-lg sm:text-xl font-normal text-white/70">Cr</span>
-              </div>
-              <div className="text-xs font-semibold text-white/90 uppercase tracking-[0.1em] mb-1">
-                Monthly DBT Disbursed
-              </div>
-              <p className="text-xs text-[#9cb1d4] leading-relaxed">
-                Doorstep widow pensions and government welfare payouts to beneficiaries.
-              </p>
-            </div>
-          </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ====================================================================
-          05. CHOOSE YOUR JOURNEY — TWO SIDES OF THE SAME ECOSYSTEM
-          Headline: Every Journey Begins with a Different Need.
-          Format: Regal Dual-Portal Architectural Folios on Deep Navy & Warm Ivory
-          05A: For Aspiring VLEs — Turn Your Ambition into an Opportunity
-          05B: For Citizens — The Help You Need. The Services You Can Access.
+          SOLID CURTAIN OVERLAY WRAPPER (Z-10)
+          Slides smoothly OVER the sticky hero with physical elevation shadow.
+          Completely opaque to guarantee ZERO bleed-through between sections!
           ==================================================================== */}
-      <section
-        id="choose-journey"
-        className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 scroll-mt-24 py-16 sm:py-20"
-      >
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          {/* Section Header */}
-          <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.15] mb-2.5">
-              Every Journey Begins with a Different Need.
-            </h2>
-            <p className="text-xs sm:text-[14px] text-[#64748b] leading-relaxed max-w-xl mx-auto">
-              Empowering local entrepreneurs and connecting citizens to essential public and banking services.
-            </p>
-          </div>
-
-          {/* Regal Dual-Portal Architectural Folios (Zero AI Containers · Pure Typographic Authority) */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
-            {/* 05A — For Aspiring VLEs */}
-            <div className="relative rounded-[28px] bg-[#0a1628] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#ff5500]/40 transition-all duration-300 overflow-hidden group">
-              {/* Corner Traditional Mandala Art Watermark — Animated on scroll */}
-              <motion.img
-                src="/images/mandala-grand-white.png"
-                alt=""
-                aria-hidden="true"
-                initial={{ opacity: 0, scale: 0.7, x: 40, y: 40, rotate: -30 }}
-                whileInView={{ opacity: 0.07, scale: 1, x: 0, y: 0, rotate: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
-              />
-
-              <div className="relative z-10">
-                {/* Top Bar: Pill Badge */}
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500] animate-pulse" />
-                    <span>FOR ASPIRING VLES</span>
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-[28px] lg:text-[30px] font-bold text-white tracking-[-0.03em] leading-[1.15] mb-3 mt-3 group-hover:text-[#ff7733] transition-colors">
-                  Turn Your Ambition into an Opportunity.
-                </h3>
-
-                <p className="text-xs sm:text-[13.5px] text-[#b4c6e4] leading-relaxed mb-6 font-normal">
-                  Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ public and banking services while building a respected neighborhood enterprise.
-                </p>
-
-                {/* Pure-Typographic Broadsheet Spec Strip (Zero AI Containers) */}
-                <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4.5 border-y border-white/10 my-6 divide-x divide-white/10 text-left">
-                  <div className="first:pl-0">
-                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
-                      400<span className="text-[#ff5500]">+</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Public Desks
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      Central & state portals
-                    </div>
-                  </div>
-
-                  <div className="pl-3 sm:pl-4">
-                    <div className="text-2xl sm:text-[26px] font-bold text-[#ff7733] tracking-tight leading-none mb-1">
-                      MeitY
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Accreditation
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      Official village license
-                    </div>
-                  </div>
-
-                  <div className="pl-3 sm:pl-4">
-                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
-                      Instant
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Wallet DBT
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      Direct commission credit
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="relative z-10 pt-2">
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-xs group/btn"
-                >
-                  <span>Explore What It Means to Be a CSC VLE</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </div>
-
-            {/* 05B — For Citizens */}
-            <div className="relative rounded-[28px] bg-[#07132b] text-white border border-white/12 p-8 sm:p-9 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(7,17,32,0.35)] hover:border-[#0284c7]/40 transition-all duration-300 overflow-hidden group">
-              {/* Corner Traditional Mandala Art Watermark — Animated on scroll */}
-              <motion.img
-                src="/images/mandala-card-02.png"
-                alt=""
-                aria-hidden="true"
-                initial={{ opacity: 0, scale: 0.7, x: 40, y: 40, rotate: 30 }}
-                whileInView={{ opacity: 0.07, scale: 1, x: 0, y: 0, rotate: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                className="w-[320px] h-[320px] object-contain absolute -bottom-24 -right-24 pointer-events-none select-none group-hover:scale-105 transition-transform duration-700"
-              />
-
-              <div className="relative z-10">
-                {/* Top Bar: Pill Badge */}
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.05] backdrop-blur-xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
-                    <span>FOR CITIZENS</span>
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-[28px] lg:text-[30px] font-bold text-white tracking-[-0.03em] leading-[1.15] mb-3 mt-3 group-hover:text-[#38bdf8] transition-colors">
-                  The Help You Need. The Services You Can Access.
-                </h3>
-
-                <p className="text-xs sm:text-[13.5px] text-[#b4c6e4] leading-relaxed mb-6 font-normal">
-                  From verified income and caste certificates to pension disbursements and utility bills — access assisted doorstep services in your neighborhood with official printed receipts.
-                </p>
-
-                {/* Pure-Typographic Broadsheet Spec Strip (Zero AI Containers) */}
-                <div className="grid grid-cols-3 gap-3 sm:gap-4 py-4.5 border-y border-white/10 my-6 divide-x divide-white/10 text-left">
-                  <div className="first:pl-0">
-                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
-                      5.5<span className="text-[#38bdf8]">L+</span>
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Neighbourhoods
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      Pan-India coverage
-                    </div>
-                  </div>
-
-                  <div className="pl-3 sm:pl-4">
-                    <div className="text-2xl sm:text-[26px] font-bold text-[#38bdf8] tracking-tight leading-none mb-1">
-                      ₹0 Extra
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Official Rates
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      No middlemen markup
-                    </div>
-                  </div>
-
-                  <div className="pl-3 sm:pl-4">
-                    <div className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none mb-1">
-                      Instant
-                    </div>
-                    <div className="text-[11px] font-semibold text-white/90 uppercase tracking-wider">
-                      Govt Receipts
-                    </div>
-                    <div className="text-[10px] text-[#9cb1d4] mt-0.5 leading-tight">
-                      SMS tracking reference
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="relative z-10 pt-2">
-                <a
-                  href="#services"
-                  className="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-white font-semibold text-xs sm:text-[13.5px] tracking-wide cursor-pointer transition-all shadow-xs group/btn"
-                >
-                  <span>Find Services at Your Nearest CSC</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================================
-          C. VLE OPPORTUNITY & PLATFORM OVERVIEW (PROPOSAL SECTION 07)
-          Headline: Explore What It Means to Be a CSC VLE.
-          ==================================================================== */}
-      <section
-        id="about"
-        className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
-      >
-        {/* Top-Left Mandala Art on Deep Navy Section */}
-        <img
-          src="/images/mandala-grand-white.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[620px] h-[620px] object-contain absolute -top-48 -left-48 opacity-[0.08] pointer-events-none select-none"
-        />
-
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          {/* Editorial Section Header with Generous Space After Title */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-12 lg:mb-14">
-            <div className="lg:col-span-7">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
-                Explore What It Means to Be a CSC VLE.
-              </h2>
-            </div>
-            <p className="lg:col-span-5 text-xs sm:text-[13.5px] text-[#b4c6e4] leading-[1.5]">
-              Step inside the world of a Village Level Entrepreneur — a unified digital platform built for assisted delivery, transparent commissions, and community impact.
-            </p>
-          </div>
-
-          {/* Exact 3 Hover-Drop Folder-Tab Cards with Full Tall Height & Distinct Pure White Mandalas */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            {PLATFORM_CARDS.map((card, idx) => {
-              const isHovered = hoveredCard === idx;
-              return (
-                <motion.article
-                  key={card.number}
-                  onMouseEnter={() => setHoveredCard(idx)}
-                  onFocus={() => setHoveredCard(idx)}
-                  tabIndex={0}
-                  className={`relative h-[430px] sm:h-[455px] lg:h-[470px] rounded-[30px] p-[5px] cursor-pointer select-none shadow-[0_24px_55px_-15px_rgba(0,0,0,0.45)] ${card.outerBg}`}
-                >
-                  <div className="relative w-full h-full rounded-[25px] overflow-hidden">
-                    {/* Top Pure White Mandala Stage */}
-                    <CardVisualStage variant={card.variant} isHovered={isHovered} />
-
-                    {/* Folder-Tab Detail Sheet */}
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: isHovered ? '45%' : '80%',
-                      }}
-                      transition={springTransition}
-                      style={{ backgroundColor: card.sheetColor }}
-                      className={`absolute inset-x-0 bottom-0 z-30 rounded-tr-[22px] flex flex-col justify-between px-7 pb-7 pt-1 ${card.textColor}`}
-                    >
-                      {/* Seamless SVG Folder-Tab Top Shoulder */}
-                      <svg
-                        viewBox="0 0 400 36"
-                        preserveAspectRatio="none"
-                        className="absolute -top-[35px] left-0 w-full h-[36px] pointer-events-none block"
-                      >
-                        <path
-                          d="M 0,36 L 0,18 Q 0,0 18,0 L 102,0 Q 118,0 130,13 L 144,28 Q 152,36 168,36 L 400,36 Z"
-                          fill={card.sheetColor}
-                        />
-                      </svg>
-
-                      {/* Number inside top-left tab + ↗ arrow on right */}
-                      <div className="relative z-10 flex items-start justify-between -mt-3.5">
-                        <span className="text-[42px] font-normal tracking-[-0.04em] leading-none">
-                          {card.number}
-                        </span>
-                        <ArrowUpRight className="w-4 h-4 text-[#ff5500] mt-3" />
-                      </div>
-
-                      {/* Bottom Title & Description */}
-                      <div className="relative z-10">
-                        <h3 className="text-[16px] font-semibold tracking-[-0.01em] leading-snug mb-1.5">
-                          {card.title}
-                        </h3>
-                        <p className={`text-[13px] leading-[1.55] ${card.subColor}`}>
-                          {card.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <div className="relative z-10 w-full bg-[#0a1628] shadow-[0_-30px_60px_rgba(0,0,0,0.85)]">
+        {/* 04. IMPACT SCALE & INFRASTRUCTURE SECTION */}
+        <ImpactScaleSection />
 
       {/* ====================================================================
           D. EXPLORE SERVICES (Fits Viewport)
@@ -1234,27 +959,108 @@ export default function App() {
                 />
               </div>
 
-              <div className="inline-flex bg-[#0a1628] p-1 rounded-xl">
-                {[
-                  { id: 'ALL', label: 'All Services' },
-                  { id: 'G2C', label: 'G2C' },
-                  { id: 'B2C', label: 'B2C' },
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => {
-                      setCategoryFilter(tab.id);
-                      setServicePage(0);
-                    }}
-                    className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                      categoryFilter === tab.id
-                        ? 'bg-[#ff5500] text-white'
-                        : 'text-[#b4c6e4] hover:text-white'
+              {/* Segmented Filter Bar with Full Forms & G2C Dropdown */}
+              <div className="relative inline-flex items-center bg-[#0a1628] p-1 rounded-xl">
+                {/* 1. All Services */}
+                <button
+                  onClick={() => {
+                    setCategoryFilter('ALL');
+                    setG2cSubFilter('ALL');
+                    setG2cDropdownOpen(false);
+                    setServicePage(0);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'ALL'
+                    ? 'bg-[#ff5500] text-white'
+                    : 'text-[#b4c6e4] hover:text-white'
                     }`}
+                >
+                  All Services
+                </button>
+
+                {/* 2. Government to Citizen (G2C) with Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      if (categoryFilter !== 'G2C') {
+                        setCategoryFilter('G2C');
+                        setServicePage(0);
+                      }
+                      setG2cDropdownOpen((prev) => !prev);
+                    }}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'G2C'
+                      ? 'bg-[#ff5500] text-white'
+                      : 'text-[#b4c6e4] hover:text-white'
+                      }`}
                   >
-                    {tab.label}
+                    <span>
+                      {categoryFilter === 'G2C' && g2cSubFilter !== 'ALL'
+                        ? `Government (G2C): ${g2cSubFilter === 'CENTRAL'
+                          ? 'Central'
+                          : g2cSubFilter === 'STATE'
+                            ? 'State'
+                            : 'Other'
+                        }`
+                        : 'Government to Citizen (G2C)'}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${g2cDropdownOpen ? 'rotate-180' : ''
+                        }`}
+                    />
                   </button>
-                ))}
+
+                  {/* Dropdown Menu */}
+                  {g2cDropdownOpen && (
+                    <>
+                      {/* Invisible backdrop to dismiss dropdown on outside click */}
+                      <div
+                        className="fixed inset-0 z-30"
+                        onClick={() => setG2cDropdownOpen(false)}
+                      />
+                      <div className="absolute left-0 top-full mt-2 w-56 py-1.5 rounded-xl bg-[#0a1628] border border-white/20 shadow-2xl z-40 divide-y divide-white/10 text-left backdrop-blur-xl">
+                        {[
+                          { id: 'ALL', label: 'All Government Services' },
+                          { id: 'CENTRAL', label: 'Central Government' },
+                          { id: 'STATE', label: 'State Government' },
+                          { id: 'OTHER', label: 'Other Civic & Local' },
+                        ].map((sub) => (
+                          <button
+                            key={sub.id}
+                            onClick={() => {
+                              setCategoryFilter('G2C');
+                              setG2cSubFilter(sub.id);
+                              setServicePage(0);
+                              setG2cDropdownOpen(false);
+                            }}
+                            className={`w-full px-3.5 py-2 text-xs text-left flex items-center justify-between transition-colors cursor-pointer ${categoryFilter === 'G2C' && g2cSubFilter === sub.id
+                              ? 'bg-[#ff5500] text-white font-bold'
+                              : 'text-slate-200 hover:bg-white/10 hover:text-white'
+                              }`}
+                          >
+                            <span>{sub.label}</span>
+                            {categoryFilter === 'G2C' && g2cSubFilter === sub.id && (
+                              <Check className="w-3.5 h-3.5 text-white" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* 3. Business to Consumer (B2C) */}
+                <button
+                  onClick={() => {
+                    setCategoryFilter('B2C');
+                    setG2cDropdownOpen(false);
+                    setServicePage(0);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'B2C'
+                    ? 'bg-[#ff5500] text-white'
+                    : 'text-[#b4c6e4] hover:text-white'
+                    }`}
+                >
+                  Business to Consumer (B2C)
+                </button>
               </div>
             </div>
           </div>
@@ -1293,22 +1099,23 @@ export default function App() {
                     {paginatedServices.map((srv) => (
                       <article
                         key={srv.id}
-                        className="relative group h-[135px] sm:h-[145px] lg:h-[150px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4.5 bg-white hover:bg-[#0a1628] transition-colors duration-300 select-none overflow-hidden"
+                        className="relative group h-[142px] sm:h-[150px] lg:h-[155px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4 bg-white hover:bg-[#0a1628] transition-colors duration-500 select-none overflow-hidden cursor-pointer"
                       >
-                        {/* DEFAULT VIEW: Detailed SVG Vector Logo + Centered Title Below (Removed on Hover) */}
-                        <div className="h-full flex flex-col items-center justify-center text-center gap-2 transition-all duration-300 ease-out group-hover:opacity-0 group-hover:scale-95 group-hover:pointer-events-none">
-                          <div className="scale-[0.82] sm:scale-[0.88]">
-                            <ServiceVectorLogo id={srv.id} />
-                          </div>
+                        {/* ICON: Centered in default state, smoothly scales down and glides to top-left corner on hover in pure white */}
+                        <div className="absolute z-20 pointer-events-none transition-all duration-500 ease-out top-1/2 left-1/2 -translate-x-1/2 -translate-y-9 scale-[0.82] sm:scale-[0.88] text-[#0a1628] group-hover:top-3 group-hover:left-3.5 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-[0.40] group-hover:text-white origin-top-left">
+                          <ServiceVectorLogo id={srv.id} className="w-[88px] h-[88px]" />
+                        </div>
 
-                          <h3 className="text-[14.5px] sm:text-[15.5px] font-semibold tracking-[-0.015em] text-[#0a1628] leading-tight">
+                        {/* ANIMATED TITLE: Centered at bottom in default state; on hover glides smoothly beside icon with clean spacing, vertically centered */}
+                        <div className="absolute inset-x-2 bottom-3.5 text-center transition-all duration-500 ease-out z-20 pointer-events-none group-hover:bottom-auto group-hover:top-[19px] group-hover:left-[56px] group-hover:right-3 group-hover:text-left origin-left">
+                          <h3 className="text-[14px] sm:text-[15px] font-semibold tracking-[-0.015em] text-[#0a1628] leading-tight line-clamp-1 transition-all duration-500 group-hover:text-white group-hover:font-bold group-hover:text-[13px] sm:group-hover:text-[13.5px]">
                             {srv.name}
                           </h3>
                         </div>
 
-                        {/* HOVER VIEW: Description Only (Replaces Logo & Title on Hover) */}
-                        <div className="absolute inset-0 p-4 sm:p-5 flex items-center justify-center text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none">
-                          <p className="text-[12px] sm:text-[12.5px] text-white/95 leading-[1.5]">
+                        {/* HOVER DESCRIPTION: Left-aligned and comfortably positioned below the icon & title */}
+                        <div className="absolute inset-x-3.5 top-[52px] bottom-2 flex items-start justify-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-10 pointer-events-none">
+                          <p className="text-[11.5px] sm:text-[12px] text-[#c5d5ec] leading-[1.55] text-left line-clamp-3">
                             {srv.description}
                           </p>
                         </div>
@@ -1373,10 +1180,108 @@ export default function App() {
       </section>
 
       {/* ====================================================================
-          VILLAGE DIGITAL SEVA SLIDESHOW — GROUND REALITIES & SERVICE DELIVERY
-          Cinematic documentary slideshow showing clean Indian village centres
+          C. VLE OPPORTUNITY & PLATFORM OVERVIEW (PROPOSAL SECTION 07)
+          Headline: Explore What It Means to Be a CSC VLE.
           ==================================================================== */}
-      <VillageServicesSlideshow />
+      <section
+        id="about"
+        className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
+      >
+        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
+          {/* Editorial Section Header with Generous Space After Title */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-12 lg:mb-14">
+            <div className="lg:col-span-7">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
+                Why Join As A VLE Today?
+              </h2>
+            </div>
+
+          </div>
+
+          {/* ALL 6 CARDS IN A BALANCED 3x2 RESPONSIVE GRID (Card 04 is now a normal card) */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            {PLATFORM_CARDS.map((card, idx) => {
+              const isHovered = hoveredCard === idx;
+              return (
+                <motion.article
+                  key={card.number}
+                  onMouseEnter={() => setHoveredCard(idx)}
+                  onFocus={() => setHoveredCard(idx)}
+                  tabIndex={0}
+                  className={`group relative h-[480px] sm:h-[500px] lg:h-[515px] rounded-[30px] p-[5px] cursor-pointer select-none shadow-[0_24px_55px_-15px_rgba(0,0,0,0.45)] transition-shadow duration-300 ${card.outerBg}`}
+                >
+                  <div className="relative w-full h-full rounded-[25px] overflow-hidden">
+                    {/* Top Pure White Mandala Stage */}
+                    <CardVisualStage variant={card.variant} isHovered={isHovered} />
+
+                    {/* Folder-Tab Detail Sheet */}
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: isHovered ? '86%' : '50%',
+                      }}
+                      transition={springTransition}
+                      style={{ backgroundColor: card.sheetColor }}
+                      className={`absolute inset-x-0 bottom-0 z-30 rounded-tr-[22px] flex flex-col justify-between px-6 pb-6 pt-1 ${card.textColor}`}
+                    >
+                      {/* Seamless SVG Folder-Tab Top Shoulder */}
+                      <svg
+                        viewBox="0 0 400 36"
+                        preserveAspectRatio="none"
+                        className="absolute -top-[35px] left-0 w-full h-[36px] pointer-events-none block"
+                      >
+                        <path
+                          d="M 0,36 L 0,18 Q 0,0 18,0 L 102,0 Q 118,0 130,13 L 144,28 Q 152,36 168,36 L 400,36 Z"
+                          fill={card.sheetColor}
+                        />
+                      </svg>
+
+                      {/* Number inside top-left tab + ↗ arrow on right */}
+                      <div className="relative z-10 flex items-start justify-between -mt-3.5">
+                        <span className="text-[38px] sm:text-[40px] font-normal tracking-[-0.04em] leading-none">
+                          {card.number}
+                        </span>
+                        <ArrowUpRight className="w-4 h-4 text-[#ff5500] mt-3" />
+                      </div>
+
+                      {/* Bottom Title & Rich Justified Description */}
+                      <div className="relative z-10 flex-1 flex flex-col justify-end">
+                        {card.tag && (
+                          <div className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-[#ff7733] mb-1">
+                            {card.tag}
+                          </div>
+                        )}
+                        <h3 className="text-[17px] sm:text-[18px] lg:text-[19px] font-bold tracking-[-0.015em] leading-snug mb-2">
+                          {card.title}
+                        </h3>
+                        <p
+                          className={`text-justify [text-align:justify] [text-justify:inter-word] text-[12px] sm:text-[12.5px] leading-[1.62] transition-all duration-300 ${card.subColor}`}
+                        >
+                          {isHovered ? card.detailedDescription : card.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ====================================================================
+          VILLAGE DIGITAL SEVA SLIDESHOW — GROUND REALITIES & SERVICE DELIVERY
+          Clean, low-cognitive centre locator with authentic rural photography
+          ==================================================================== */}
+      <VillageServicesSlideshow
+        onOpenLocator={(q) => {
+          setLocatorQuery(q || '');
+          setLocatorOpen(true);
+        }}
+      />
 
       {/* ====================================================================
           F. FOR VILLAGE LEVEL ENTREPRENEURS (Fits Viewport)
@@ -1485,9 +1390,8 @@ export default function App() {
                   key={dotIdx}
                   onClick={() => setFanActive(dotIdx)}
                   aria-label={`Go to story ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all cursor-pointer ${
-                    fanActive === dotIdx ? 'w-6 bg-[#ff5500]' : 'w-2 bg-[#0a1628]/20 hover:bg-[#0a1628]/40'
-                  }`}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${fanActive === dotIdx ? 'w-6 bg-[#ff5500]' : 'w-2 bg-[#0a1628]/20 hover:bg-[#0a1628]/40'
+                    }`}
                 />
               ))}
             </div>
@@ -1515,7 +1419,7 @@ export default function App() {
           {/* Section Header with 'View all' on the top right */}
           <div className="relative flex flex-col items-center text-center mb-12 sm:mb-14">
             <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#0a1628]">
-              News & Updates
+              What's Happening Across the CSC Network?
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed max-w-xl">
               Official circulars, nationwide initiatives, and grassroots announcements.
@@ -1915,10 +1819,34 @@ export default function App() {
                   );
                 })}
               </div>
+
+              {/* Still have questions? Ask Sarthi AI callout matching user reference */}
+              <div className="mt-8 pt-6 border-t border-[#0a1628]/12 flex flex-col items-center text-center">
+                <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
+                  Still have questions?
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
+                  Get instant answers from Sarthi, our official AI assistant in your language.
+                </p>
+                <button
+                  onClick={() => setChatbotOpen(true)}
+                  className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#1e293b] hover:bg-[#ff5500] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-[#ff7733]" />
+                  <span>Ask Sarthi our AI chat bot</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ====================================================================
+          APP DOWNLOAD SECTION — SCAN & DOWNLOAD
+          Headline: Get Our App: Scan & Download
+          Features: Authentic Vector QR Code with CSC Emblem, Store Links & App Pillars
+          ==================================================================== */}
+      <AppDownloadSection />
 
       {/* ====================================================================
           I. FINAL CALL TO ACTION — DEDICATED VLE CONVERSION STAGE
@@ -1998,12 +1926,12 @@ export default function App() {
 
           {/* Display Headline */}
           <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-tight mb-2.5 max-w-2xl mx-auto drop-shadow-sm">
-            Ready to Bring Digital Services to Your Community?
+            Your CSC Journey Starts with One Step.
           </h2>
 
           {/* Subtitle */}
           <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-6 font-normal">
-            Establish a government-authorized Common Service Centre in your gram panchayat. Deliver 400+ essential banking, welfare, and public desks while building a respected neighborhood enterprise.
+            Explore the requirements, understand the registration process, and take the first step towards establishing your own Village Level Enterprise.
           </p>
 
           {/* 3 Authentic Frosted Key Prerequisite Cards */}
@@ -2062,10 +1990,11 @@ export default function App() {
             </button>
 
             <button
-              onClick={() => setLoginOpen(true)}
+              onClick={() => setCalculatorOpen(true)}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.1] backdrop-blur-2xl border border-white/20 text-white font-semibold text-xs sm:text-sm transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
             >
-              <span>VLE Portal Login</span>
+              <Calculator className="w-4 h-4 text-[#ff884d]" />
+              <span>Earning Calculator</span>
               <ArrowUpRight className="w-4 h-4 text-white/70" />
             </button>
           </div>
@@ -2100,6 +2029,9 @@ export default function App() {
                 <Mail className="w-5 h-5" />
               </div>
               <div>
+                <div className="text-[11px] font-bold text-[#ff884d] tracking-wider uppercase mb-0.5">
+                  Explore More · Stay Informed · Stay Connected
+                </div>
                 <div className="text-white font-bold text-sm">
                   Subscribe to Scheme & Circular Alerts
                 </div>
@@ -2209,6 +2141,7 @@ export default function App() {
           </div>
         </div>
       </footer>
+      </div>
 
       {/* VLE Login Modal in Deep Navy & Saffron Orange */}
       <AnimatePresence>
@@ -2294,67 +2227,67 @@ export default function App() {
             </motion.div>
           </motion.div>
         )}
-        {/* Find Nearest CSC Centre Modal */}
+        {/* VLE Monthly Earning Calculator Modal */}
+        <VleEarningCalculatorModal
+          isOpen={calculatorOpen}
+          onClose={() => setCalculatorOpen(false)}
+          onStartRegistration={() => setLoginOpen(true)}
+        />
+
+        {/* Find Nearest CSC Centre Modal — Clean, Low-Cognitive & Citizen-Friendly */}
         {locatorOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLocatorOpen(false)}
-            className="fixed inset-0 bg-[#0a1628]/75 backdrop-blur-md z-50 grid place-items-center p-4 overflow-y-auto"
+            className="fixed inset-0 bg-[#0a1628]/60 backdrop-blur-sm z-50 grid place-items-center p-4 overflow-y-auto"
           >
             <motion.div
               initial={{ scale: 0.95, y: 15, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.96, y: 10, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-2xl rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative border border-white/20 overflow-hidden my-8 max-h-[88vh] flex flex-col"
+              className="bg-white text-[#0a1628] w-full max-w-2xl rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative border border-slate-200 overflow-hidden my-8 max-h-[88vh] flex flex-col"
             >
-              {/* Corner Watermark Mandala */}
-              <img
-                src="/images/mandala-card-01.png"
-                alt=""
-                aria-hidden="true"
-                className="w-56 h-56 object-contain absolute -top-20 -right-20 opacity-[0.08] pointer-events-none select-none"
-              />
-
               {/* Close Button */}
               <button
                 onClick={() => setLocatorOpen(false)}
-                className="absolute top-5 right-5 w-8 h-8 rounded-lg bg-white/[0.12] hover:bg-[#ff5500] text-white border border-white/20 grid place-items-center cursor-pointer z-10 transition-colors shadow-sm"
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 grid place-items-center cursor-pointer z-10 transition-colors"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="relative z-10 mb-5">
-                <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-[#ff7733] mb-1.5">
-                  <LotusBadge className="w-4 h-4" />
-                  <span>NATIONWIDE CSC KENDRA LOCATOR</span>
+              {/* Simple Friendly Header */}
+              <div className="relative z-10 mb-4">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-orange-50 border border-orange-200/70 text-[#ff5500] text-[11px] font-semibold mb-2">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>CENTRE LOCATOR</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0a1628] mb-1.5">
                   Find Your Nearest CSC Centre
                 </h3>
-                <p className="text-xs sm:text-[13px] text-[#9cb1d4] leading-relaxed">
-                  Locate government-authorized Common Service Centres and verified VLE desks in your Gram Panchayat or neighborhood ward.
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed">
+                  Visit your local Kendra for Aadhaar updates, cash withdrawal, certificates, and government schemes.
                 </p>
               </div>
 
               {/* Search Bar + Quick Pincode Filter */}
               <div className="relative z-10 mb-4 space-y-2.5">
                 <div className="relative">
-                  <Search className="w-4 h-4 text-[#ff5500] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <input
                     type="text"
                     value={locatorQuery}
                     onChange={(e) => setLocatorQuery(e.target.value)}
-                    placeholder="Enter 6-digit PIN code (e.g., 503185, 226001) or village / district..."
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#071120] border border-white/20 focus:border-white/20 text-white text-xs sm:text-sm outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 transition-colors placeholder:text-white/40"
+                    placeholder="Enter pincode or village (e.g. 503185)..."
+                    className="w-full pl-10 pr-14 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#ff5500] text-slate-900 text-xs sm:text-sm outline-none transition-colors placeholder:text-slate-400"
                   />
                   {locatorQuery && (
                     <button
                       onClick={() => setLocatorQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-xs"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs font-medium cursor-pointer"
                     >
                       Clear
                     </button>
@@ -2362,21 +2295,20 @@ export default function App() {
                 </div>
 
                 {/* Quick Selection Pills */}
-                <div className="flex flex-wrap items-center gap-2 text-xs">
-                  <span className="text-white/50 text-[11px]">Popular:</span>
+                <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                  <span className="text-slate-400 text-[11px]">Popular:</span>
                   {[
-                    { label: '503185 (Bodhan)', q: '503185' },
-                    { label: '226001 (Lucknow)', q: '226001' },
-                    { label: '380001 (Ahmedabad)', q: '380001' },
+                    { label: 'Bodhan (503185)', q: '503185' },
+                    { label: 'Lucknow (226001)', q: '226001' },
+                    { label: 'Ahmedabad (380001)', q: '380001' },
                   ].map((p) => (
                     <button
                       key={p.q}
                       onClick={() => setLocatorQuery(p.q)}
-                      className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors cursor-pointer border ${
-                        locatorQuery === p.q
-                          ? 'bg-[#ff5500] text-white border-[#ff5500]'
-                          : 'bg-white/[0.06] text-white/75 border-white/15 hover:bg-white/[0.12] hover:text-white'
-                      }`}
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-medium transition-colors cursor-pointer border ${locatorQuery === p.q
+                        ? 'bg-[#ff5500] text-white border-[#ff5500]'
+                        : 'bg-slate-100 text-slate-600 border-slate-200/80 hover:bg-slate-200/80 hover:text-slate-900'
+                        }`}
                     >
                       {p.label}
                     </button>
@@ -2384,7 +2316,7 @@ export default function App() {
                   {locatorQuery && (
                     <button
                       onClick={() => setLocatorQuery('')}
-                      className="text-[11px] text-[#ff7733] hover:underline cursor-pointer ml-1"
+                      className="text-[11px] text-[#ff5500] hover:underline cursor-pointer ml-1 font-medium"
                     >
                       Show All
                     </button>
@@ -2404,88 +2336,112 @@ export default function App() {
                     c.address.toLowerCase().includes(q) ||
                     c.services.some((s) => s.toLowerCase().includes(q))
                   );
-                }).map((centre) => (
-                  <div
-                    key={centre.id}
-                    className="p-4 rounded-2xl bg-white/[0.05] border border-white/15 hover:border-white/25 transition-all text-left space-y-2.5"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4 className="text-sm sm:text-[15px] font-bold text-white">
-                            {centre.name}
-                          </h4>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                            <span>MeitY Verified</span>
-                          </span>
+                }).length === 0 ? (
+                  <div className="text-center py-8 text-slate-500">
+                    <p className="text-sm font-medium">No centres found for &ldquo;{locatorQuery}&rdquo;</p>
+                    <button
+                      onClick={() => setLocatorQuery('')}
+                      className="mt-2 text-xs text-[#ff5500] hover:underline font-semibold cursor-pointer"
+                    >
+                      Show all centres
+                    </button>
+                  </div>
+                ) : (
+                  SAMPLE_CENTRES.filter((c) => {
+                    const q = locatorQuery.trim().toLowerCase();
+                    if (!q) return true;
+                    return (
+                      c.name.toLowerCase().includes(q) ||
+                      c.vle.toLowerCase().includes(q) ||
+                      c.pincode.includes(q) ||
+                      c.address.toLowerCase().includes(q) ||
+                      c.services.some((s) => s.toLowerCase().includes(q))
+                    );
+                  }).map((centre) => (
+                    <div
+                      key={centre.id}
+                      className="p-4 sm:p-4.5 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-slate-300 transition-all text-left space-y-2.5 shadow-xs"
+                    >
+                      {/* Top Title & Distance */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm sm:text-[15px] font-bold text-[#0a1628]">
+                              {centre.name}
+                            </h4>
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-semibold">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              <span>Verified</span>
+                            </span>
+                          </div>
+                          <div className="text-xs text-slate-500 mt-0.5 flex items-center gap-2 flex-wrap">
+                            <span>Run by <strong className="text-slate-800 font-medium">{centre.vle}</strong></span>
+                            <span>·</span>
+                            <span className="flex items-center gap-1 text-slate-600">
+                              <Clock className="w-3 h-3 text-slate-400" />
+                              <span>Open: {centre.timing}</span>
+                            </span>
+                          </div>
                         </div>
-                        <div className="text-xs text-white/60 mt-0.5">
-                          Operator: <span className="text-white/90 font-medium">{centre.vle}</span> · CSC ID: <span className="font-mono text-white/80">{centre.vleId}</span>
-                        </div>
+
+                        <span className="shrink-0 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-semibold flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          <span>{centre.distance}</span>
+                        </span>
                       </div>
 
-                      <span className="shrink-0 px-2.5 py-1 rounded-full bg-[#0284c7]/20 border border-[#0284c7]/40 text-[#38bdf8] text-[11px] font-medium flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        <span>{centre.distance}</span>
-                      </span>
-                    </div>
+                      {/* Location */}
+                      <p className="text-xs text-slate-600 leading-relaxed flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-[#ff5500] shrink-0" />
+                        <span>{centre.address} · PIN <strong className="text-slate-800 font-semibold">{centre.pincode}</strong></span>
+                      </p>
 
-                    <p className="text-xs text-white/75 leading-relaxed flex items-start gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-[#ff7733] shrink-0 mt-0.5" />
-                      <span>{centre.address} — PIN: <strong className="text-white">{centre.pincode}</strong></span>
-                    </p>
+                      {/* Plain-Language Services Pills */}
+                      <div className="flex flex-wrap gap-1.5 pt-0.5">
+                        {centre.services.map((svc) => (
+                          <span
+                            key={svc}
+                            className="px-2 py-0.5 rounded-md bg-white border border-slate-200 text-[11px] text-slate-700 font-medium shadow-2xs"
+                          >
+                            {svc}
+                          </span>
+                        ))}
+                      </div>
 
-                    {/* Services Offered Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {centre.services.map((svc) => (
-                        <span
-                          key={svc}
-                          className="px-2 py-0.5 rounded bg-white/[0.08] text-[10.5px] text-white/80 font-medium"
-                        >
-                          {svc}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Footer Actions */}
-                    <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs">
-                      <span className="text-white/60 text-[11px]">
-                        Timing: <strong className="text-white/90">{centre.timing}</strong>
-                      </span>
-                      <div className="flex items-center gap-2">
+                      {/* Footer Actions */}
+                      <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-200/80">
                         <a
                           href={`tel:${centre.phone}`}
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors border border-slate-200"
                         >
-                          <Phone className="w-3 h-3 text-[#ff7733]" />
-                          <span>Call VLE</span>
+                          <Phone className="w-3.5 h-3.5 text-slate-600" />
+                          <span>Call Centre</span>
                         </a>
                         <a
                           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(centre.name + ' ' + centre.address)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors shadow-xs"
+                          className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors shadow-xs"
                         >
-                          <span>Directions</span>
-                          <ArrowUpRight className="w-3 h-3 text-white" />
+                          <span>Get Directions</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-white" />
                         </a>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
 
               {/* Bottom National Directory Notice */}
-              <div className="relative z-10 pt-3 mt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/60">
+              <div className="relative z-10 pt-3 mt-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
                 <span>Looking for all 5,50,000+ pan-India centres?</span>
                 <a
                   href="https://locator.csccloud.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[#ff7733] hover:text-[#ff9966] font-semibold transition-colors"
+                  className="inline-flex items-center gap-1 text-[#ff5500] hover:text-[#d94800] font-semibold transition-colors"
                 >
-                  <span>Open Official CSC Cloud Locator</span>
+                  <span>Open CSC National Directory</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -2493,6 +2449,13 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Floating Sarthi AI Chatbot Assistant */}
+      <SarthiChatbot
+        isOpen={chatbotOpen}
+        onOpen={() => setChatbotOpen(true)}
+        onClose={() => setChatbotOpen(false)}
+      />
     </div>
   );
 }

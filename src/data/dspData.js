@@ -86,9 +86,17 @@ export const CITIZEN_NEEDS = [
 export const PLATFORM_CARDS = [
   {
     number: '01',
-    title: 'Digital Services & Unified Ledger',
+    title: 'Be Your Own Boss',
+    tag: 'WORK FROM HOME',
     description:
-      'One operator login connecting 400+ central, state, and commercial portals with a single wallet balance.',
+      'Run an independent digital centre directly from your village or local neighborhood. Enjoy self-employment without migration expenses, high commercial rents, or rigid corporate work hours.',
+    detailedDescription:
+      'Establish an independent digital enterprise right inside your gram panchayat or home locality. As an authorized VLE, you eliminate the heavy costs of urban migration, avoid exorbitant commercial shop rentals, and operate with complete professional freedom. You set your own working hours, serve your neighboring families, and build a lasting business as a respected local entrepreneur with full operational independence.',
+    features: [
+      'Zero city migration or urban rent expenses',
+      'Complete freedom to set your working hours',
+    ],
+    actionLabel: 'Work from Your Hometown',
     outerBg: 'bg-[#0a1628]',
     sheetColor: '#071120',
     textColor: 'text-white',
@@ -98,11 +106,19 @@ export const PLATFORM_CARDS = [
   },
   {
     number: '02',
-    title: 'Your Enterprise & Assisted Delivery',
+    title: 'Multi-Stream Daily Revenue',
+    tag: 'FINANCIAL INDEPENDENCE',
     description:
-      'Built for Village Level Entrepreneurs to verify documents, capture biometrics, and issue receipts on the spot.',
+      'Collect consistent daily transaction income across AEPS cash disbursals, BBPS utility bill commissions, PM Kisan KYC verification, and insurance enrollments. No salary delays.',
+    detailedDescription:
+      'Generate reliable daily income with direct commission payouts across 400+ government and utility services. Earn instant margins on every Aadhaar cash withdrawal, electricity and water bill collection, PM-Kisan biometric authentication, and vehicle insurance policy issued. All earnings reconcile in real time into your unified Digital Seva wallet without corporate payroll delays or intermediaries.',
+    features: [
+      'Direct commission credited instantly to wallet',
+      '400+ government & utility services in demand',
+    ],
+    actionLabel: 'Keep up to 80-90% Commission',
     outerBg: 'bg-white',
-    sheetColor: '#f3f6fc',
+    sheetColor: '#f8fafc',
     textColor: 'text-[#0a1628]',
     subColor: 'text-[#334766]',
     accentColor: 'text-[#ff5500]',
@@ -110,15 +126,83 @@ export const PLATFORM_CARDS = [
   },
   {
     number: '03',
-    title: 'Earning Model & Transparent Settlement',
+    title: 'Deep Community Trust & Respect',
+    tag: 'VILLAGE RESPECT',
     description:
-      'Automated commission splits, instant BBPS bill reconciliation, and downloadable tax statements.',
+      'Become the trusted digital lifeline for your entire gram panchayat. Assist village elders with pension disbursals, guide farmers with crop insurance, and help students register for national examinations.',
+    detailedDescription:
+      'Transform into the most vital digital anchor in your panchayat community. You become the trusted guide who delivers monthly pension life certificates to elderly neighbors, helps marginal farmers secure crop insurance benefits, and enables local students to fill competitive examination forms without travelling to distant cities. The entire village community relies upon your guidance, knowledge, and integrity.',
+    features: [
+      'Trusted helper for every family in your panchayat',
+      'High social standing and community leadership',
+    ],
+    actionLabel: 'Respected Village Leader',
+    outerBg: 'bg-[#091830]',
+    sheetColor: '#061224',
+    textColor: 'text-white',
+    subColor: 'text-[#9cb1d4]',
+    accentColor: 'text-[#ff5500]',
+    variant: 'sapphire',
+  },
+  {
+    number: '04',
+    title: 'Official Government Backing',
+    tag: 'GOVERNMENT BACKED',
+    description:
+      'Operate with direct Digital India credentials under MeitY. Receive an authorized Digital Seva Kendra ID, free specialized training from CSC Academy, and dedicated guidance from your District Manager.',
+    detailedDescription:
+      'Operate as an officially authorized digital services partner under the Ministry of Electronics and Information Technology (MeitY). Your centre is certified with a verified Digital Seva ID on the national portal, backed by structured skilling from CSC Academy, and supported directly by district administrative managers to ensure fast approvals, continuous compliance, and priority access to newly launched state and central schemes.',
+    features: [
+      'Official Digital Seva ID & MeitY certificate',
+      'Direct on-ground guidance from District Manager',
+    ],
+    actionLabel: 'Authorized Digital India Centre',
     outerBg: 'bg-[#0d1e3a]',
-    sheetColor: '#0a1628',
+    sheetColor: '#081427',
     textColor: 'text-white',
     subColor: 'text-[#9cb1d4]',
     accentColor: 'text-[#ff5500]',
     variant: 'obsidian',
+  },
+  {
+    number: '05',
+    title: 'Zero Franchise Fee & Royalties',
+    tag: 'TRANSPARENT MODEL',
+    description:
+      'Unlike private franchises charging lakhs, CSC government portal onboarding has zero setup license fees. Repurpose your existing laptop and room with low upfront capital.',
+    detailedDescription:
+      'Unlike private commercial franchises that charge heavy non-refundable upfront license fees, recurring monthly royalties, or compulsory branding packages, CSC onboarding is completely free of franchise royalties. You can begin operations immediately from your home or existing village shop using your current laptop, basic biometric scanner, and a standard printer, keeping your upfront investment close to zero.',
+    features: [
+      'Zero franchise license fees or hidden charges',
+      'Get started with existing laptop and printer',
+    ],
+    actionLabel: '100% Free Portal Application',
+    outerBg: 'bg-white',
+    sheetColor: '#f8fafc',
+    textColor: 'text-[#0a1628]',
+    subColor: 'text-[#334766]',
+    accentColor: 'text-[#ff5500]',
+    variant: 'emerald',
+  },
+  {
+    number: '06',
+    title: 'Digital Empowerment & Social Impact',
+    tag: 'NATION BUILDING',
+    description:
+      'Bridge the rural-urban digital divide by delivering 400+ essential welfare schemes, telemedicine, and banking to doorstep citizens who previously had to travel tens of kilometers to district headquarters.',
+    detailedDescription:
+      'Lead true digital democratization at the grassroots level of rural Bharat. By delivering essential healthcare consultations, government welfare disbursements, certificates, and digital literacy right to village doorsteps, you save your community members from losing full days of daily wages and travelling long distances to district headquarters. Every transaction directly uplifts your village and fosters socioeconomic dignity.',
+    features: [
+      'Empower farmers, women, and rural youth',
+      'Drive digital financial inclusion across Bharat',
+    ],
+    actionLabel: 'Grassroots Digital India Impact',
+    outerBg: 'bg-[#0a1b36]',
+    sheetColor: '#071328',
+    textColor: 'text-white',
+    subColor: 'text-[#9cb1d4]',
+    accentColor: 'text-[#ff5500]',
+    variant: 'cyan',
   },
 ];
 
@@ -127,6 +211,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'uidai',
     category: 'G2C',
+    subCategory: 'CENTRAL',
     code: 'G2C · UIDAI SERVICES',
     name: 'Aadhaar',
     description:
@@ -136,6 +221,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'edistrict',
     category: 'G2C',
+    subCategory: 'STATE',
     code: 'G2C · STATE PORTALS',
     name: 'e-District Certificates',
     description:
@@ -145,6 +231,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'identity',
     category: 'G2C',
+    subCategory: 'CENTRAL',
     code: 'G2C · IDENTITY & TAX',
     name: 'PAN & Passport Seva',
     description:
@@ -154,6 +241,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'municipal',
     category: 'G2C',
+    subCategory: 'OTHER',
     code: 'G2C · URBAN & LOCAL BODIES',
     name: 'Municipal & Civic Services',
     description:
@@ -201,6 +289,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'welfare',
     category: 'G2C',
+    subCategory: 'CENTRAL',
     code: 'G2C · SOCIAL SECURITY',
     name: 'Ayushman & Welfare',
     description:
@@ -210,6 +299,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'pension',
     category: 'G2C',
+    subCategory: 'STATE',
     code: 'G2C · PENSION & RETIREMENT',
     name: 'Jeevan Pramaan & Pension',
     description:
@@ -219,6 +309,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'telelaw',
     category: 'G2C',
+    subCategory: 'OTHER',
     code: 'G2C · ACCESS TO JUSTICE',
     name: 'Tele-Law Legal Aid',
     description:
@@ -228,6 +319,7 @@ export const SERVICE_DIRECTORY = [
   {
     id: 'agriculture',
     category: 'G2C',
+    subCategory: 'CENTRAL',
     code: 'G2C · AGRI & FARMER WELFARE',
     name: 'PMFBY Crop Insurance',
     description:
