@@ -758,4 +758,8 @@ export const FAQ_LIST = [
     q: 'How does CSC ensure safety and secure transactions for citizens?',
     a: 'All transactions use official Aadhaar-based biometric or OTP consent, encrypted central server gateways, and generate instant system-printed receipts with unique reference IDs for end-to-end auditability.',
   },
+  {
+    q: 'Can I start a CSC Digital Seva Kendra using my existing laptop and printer?',
+    a: 'Yes. Existing laptops or PCs with Windows 10/11, broadband or 4G connectivity, and standard all-in-one printers can be repurposed with zero forced hardware tie-in. You only need an STQC-certified biometric scanner for Aadhaar-based authentications.',
+  },
 ];

@@ -383,6 +383,9 @@ export default function App() {
   // H. FAQ state
   const [openFaqIdx, setOpenFaqIdx] = useState(0);
 
+  // Welcome Entry Pop-up (shown on every homepage load)
+  const [welcomePopupOpen, setWelcomePopupOpen] = useState(true);
+
   // Login Modal state
   const [loginOpen, setLoginOpen] = useState(false);
 
@@ -891,7 +894,6 @@ export default function App() {
         >
           {/* Government Credential Pill — Frosted Glassmorphism */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-xs font-semibold tracking-wide mb-6 sm:mb-7 shadow-md mx-auto">
-            <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
             <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
           </div>
 
@@ -1216,6 +1218,9 @@ export default function App() {
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
                 Why Join As A VLE Today?
               </h2>
+              <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mt-2.5 font-normal">
+                Build a respected digital enterprise in your community with steady daily income and official government backing.
+              </p>
             </div>
 
             {/* 4 COMPACT CARDS IN A SINGLE ROW (Body hidden in normal state, concise body revealed on hover) */}
@@ -1714,23 +1719,27 @@ export default function App() {
           )}
         </AnimatePresence>
 
-        <VleSupportAndHardwareSection />
-
         {/* ====================================================================
-          H. TRUST, SAFETY & SUPPORT (Fits Viewport)
-          Headline: Your Safety Is Part of Every Service.
+          H. TRUST, SAFETY & SUPPORT (2 Side-by-Side Navy Cards + Full-Width FAQ)
           ==================================================================== */}
         <section
           id="support"
-          className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+          className="relative px-6 sm:px-12 lg:px-20 bg-[#fffaf5] overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
         >
-          <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              {/* Left 5 Cols: Deep Navy Support Channels Card */}
-              <div className="lg:col-span-5 relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-7 overflow-hidden shadow-xl border border-white/10">
+          <div className="relative z-10 max-w-[1160px] mx-auto w-full">
+            {/* Top Row: 2 Matching Deep Navy Cards Side-by-Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+              {/* Left Card: Safety & Official Channels */}
+              <div className="relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-8 overflow-hidden shadow-xl border border-white/10 flex flex-col justify-between">
+                <img
+                  src="/images/mandala-card-01.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="w-48 h-48 object-contain absolute -bottom-16 -right-16 opacity-[0.08] pointer-events-none select-none"
+                />
                 <div className="relative z-10">
-                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.1] mb-2.5">
-                    Your Safety Is Part of Every Service.
+                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.12] mb-2.5">
+                    Safety &amp; Protection in Every Service.
                   </h2>
                   <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
                     Recognise official channels, identify fraudulent communication, and access verified assistance safely.
@@ -1740,7 +1749,7 @@ export default function App() {
                     {SUPPORT_ITEMS.map((item) => (
                       <div
                         key={item.code}
-                        className="py-2.5 sm:py-3 flex items-start justify-between gap-3"
+                        className="py-3 flex items-start justify-between gap-3"
                       >
                         <div>
                           <div className="text-xs sm:text-[13px] font-semibold text-white">
@@ -1759,56 +1768,136 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right 7 Cols: Expandable FAQs */}
-              <div className="lg:col-span-7 lg:pl-4">
-                <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
-                  Frequently Asked Questions
-                </h3>
-
-                <div className="divide-y divide-[#0a1628]/12 border-t border-b border-[#0a1628]/12">
-                  {FAQ_LIST.map((faq, idx) => {
-                    const open = openFaqIdx === idx;
-                    return (
-                      <div key={faq.q} className="py-3 sm:py-3.5">
-                        <button
-                          onClick={() => setOpenFaqIdx(open ? -1 : idx)}
-                          className="w-full text-left flex items-center justify-between gap-4 text-[14px] sm:text-[15px] font-semibold text-[#0a1628] transition-colors cursor-pointer"
-                        >
-                          <span>{faq.q}</span>
-                          <span className="w-6 h-6 rounded-full bg-[#0a1628] text-white grid place-items-center shrink-0">
-                            {open ? (
-                              <Minus className="w-3.5 h-3.5" />
-                            ) : (
-                              <Plus className="w-3.5 h-3.5" />
-                            )}
-                          </span>
-                        </button>
-                        {open && (
-                          <p className="mt-2 text-xs sm:text-[13px] text-[#334766] leading-[1.6] pr-6">
-                            {faq.a}
-                          </p>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Still have questions? Ask Sarthi AI callout matching user reference */}
-                <div className="mt-7 pt-2 flex flex-col items-center text-center">
-                  <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
-                    Still have questions?
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
-                    Get instant answers from Sarthi, our official AI assistant in your language.
+              {/* Right Card: Unwavering VLE Support (Matching Deep Navy UI) */}
+              <div className="relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-8 overflow-hidden shadow-xl border border-white/10 flex flex-col justify-between">
+                <img
+                  src="/images/mandala-grand-white.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="w-48 h-48 object-contain absolute -bottom-16 -right-16 opacity-[0.08] pointer-events-none select-none"
+                />
+                <div className="relative z-10">
+                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.12] mb-2.5">
+                    Dedicated Support at Every Step.
+                  </h2>
+                  <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
+                    From regulatory assistance to daily technical help, the CSC SPV network provides dedicated enablement in your language.
                   </p>
-                  <button
-                    onClick={() => setChatbotOpen(true)}
-                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#0a1628] hover:bg-[#162844] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                  >
-                    <Sparkles className="w-4 h-4 text-white" />
-                    <span>Ask Sarthi our AI chat bot</span>
-                  </button>
+
+                  <div className="divide-y divide-white/10 border-t border-b border-white/10">
+                    {[
+                      {
+                        title: 'District Manager (DM) On-Call',
+                        description:
+                          'Assigned local government nodal officers to unblock banking credentials and service approvals.',
+                        action: 'Nodal Officer',
+                      },
+                      {
+                        title: 'National Helpdesk: 14599',
+                        description:
+                          'Toll-free portal support available in 12 Indian languages, 6 days a week.',
+                        action: 'Call 14599',
+                      },
+                      {
+                        title: 'CSC Academy LMS',
+                        description:
+                          'Self-paced video modules, marketing banner toolkits, and compliance checklists updated weekly.',
+                        action: 'Free Training',
+                      },
+                      {
+                        title: 'Vernacular Onboarding Desk',
+                        description:
+                          'Step-by-step portal guidance and hardware setup troubleshooting in your regional language.',
+                        action: '12 Languages',
+                      },
+                    ].map((pillar) => (
+                      <div
+                        key={pillar.title}
+                        className="py-3 flex items-start justify-between gap-3"
+                      >
+                        <div>
+                          <div className="text-xs sm:text-[13px] font-semibold text-white">
+                            {pillar.title}
+                          </div>
+                          <p className="text-[11px] sm:text-[11.5px] text-white/65 mt-0.5 leading-snug">
+                            {pillar.description}
+                          </p>
+                        </div>
+                        <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
+                          {pillar.action}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Bottom Row: Full-Width Expandable FAQs with Smooth Slide Open/Close */}
+            <div className="mt-12 sm:mt-14 w-full">
+              <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
+                Frequently Asked Questions
+              </h3>
+
+              <div className="divide-y divide-[#0a1628]/12 border-t border-b border-[#0a1628]/12">
+                {FAQ_LIST.map((faq, idx) => {
+                  const open = openFaqIdx === idx;
+                  return (
+                    <div key={faq.q} className="py-3.5 sm:py-4">
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaqIdx(open ? -1 : idx)}
+                        className="w-full text-left flex items-center justify-between gap-4 text-[14px] sm:text-[15.5px] font-semibold text-[#0a1628] transition-colors cursor-pointer"
+                      >
+                        <span>{faq.q}</span>
+                        <motion.span
+                          animate={{ rotate: open ? 180 : 0 }}
+                          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                          className="w-6 h-6 rounded-full bg-[#0a1628] text-white grid place-items-center shrink-0"
+                        >
+                          {open ? (
+                            <Minus className="w-3.5 h-3.5" />
+                          ) : (
+                            <Plus className="w-3.5 h-3.5" />
+                          )}
+                        </motion.span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {open && (
+                          <motion.div
+                            key="content"
+                            initial={{ height: 0, opacity: 0, y: -4 }}
+                            animate={{ height: 'auto', opacity: 1, y: 0 }}
+                            exit={{ height: 0, opacity: 0, y: -4 }}
+                            transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <p className="pt-2.5 pb-1 text-xs sm:text-[13.5px] text-[#334766] leading-[1.6] pr-8">
+                              {faq.a}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Still have questions? Ask Sarthi AI callout */}
+              <div className="mt-10 pt-2 flex flex-col items-center text-center">
+                <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
+                  Still have questions?
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
+                  Get instant answers from Sarthi, our official AI assistant in your language.
+                </p>
+                <button
+                  onClick={() => setChatbotOpen(true)}
+                  className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#0a1628] hover:bg-[#162844] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-white" />
+                  <span>Ask Sarthi our AI chat bot</span>
+                </button>
               </div>
             </div>
           </div>
@@ -1893,7 +1982,6 @@ export default function App() {
           >
             {/* Frosted Glass Credential Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase mb-3 shadow-md">
-              <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
               <span>JOIN 5,50,000+ VILLAGE LEVEL ENTREPRENEURS</span>
             </div>
 
@@ -1986,14 +2074,6 @@ export default function App() {
           J. FOOTER — CLEAN ARCHITECTURAL INSTITUTIONAL FOOTER
           ==================================================================== */}
         <footer className="relative bg-[#071120] text-[#9cb1d4] pt-14 sm:pt-16 pb-10 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
-          {/* Subtle Corner Mandala Watermark (Tucked in Bottom-Right, Never Behind Middle Columns) */}
-          <img
-            src="/images/mandala-grand-white.png"
-            alt=""
-            aria-hidden="true"
-            className="w-[420px] h-[420px] object-contain absolute -bottom-48 -right-40 opacity-[0.04] pointer-events-none select-none"
-          />
-
           <div className="relative z-10 max-w-[1240px] mx-auto">
             {/* 12-Column Main Footer Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 mb-8 border-b border-white/10">
@@ -2194,6 +2274,87 @@ export default function App() {
           </div>
         </footer>
       </div>
+
+      {/* Welcome Entry Pop-up — Shown on every homepage visit */}
+      <AnimatePresence>
+        {welcomePopupOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setWelcomePopupOpen(false)}
+            className="fixed inset-0 bg-[#071120]/80 backdrop-blur-md z-50 grid place-items-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 12, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 12, opacity: 0 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-md rounded-2xl p-7 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)] relative border border-white/15 overflow-hidden"
+            >
+              <img
+                src="/images/mandala-card-01.png"
+                alt=""
+                aria-hidden="true"
+                className="w-52 h-52 object-contain absolute -top-16 -right-16 opacity-[0.1] pointer-events-none select-none"
+              />
+
+              <button
+                type="button"
+                onClick={() => setWelcomePopupOpen(false)}
+                className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white grid place-items-center cursor-pointer z-30 transition-colors shadow-md"
+                aria-label="Close popup"
+              >
+                <X className="w-4.5 h-4.5 stroke-[2.25] pointer-events-none" />
+              </button>
+
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 text-[11px] font-mono-code uppercase tracking-wider text-[#ff7733] mb-3">
+                  <LotusBadge className="w-4 h-4" />
+                  <span>DIGITAL SEVA PORTAL</span>
+                </div>
+
+                <h3 className="text-2xl font-medium tracking-tight text-white mb-2">
+                  Welcome to CSC Digital Seva
+                </h3>
+                <p className="text-sm text-[#a6bad8] leading-relaxed mb-6">
+                  Start your own Village Level Entrepreneur centre in your community or stay updated with the latest government schemes and circulars.
+                </p>
+
+                <div className="flex flex-col gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setWelcomePopupOpen(false);
+                      const el = document.getElementById('get-started');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="w-full py-3.5 px-5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all shadow-lg"
+                  >
+                    <span>Join as VLE</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setWelcomePopupOpen(false);
+                      setTimeout(() => {
+                        scrollToNewsletter();
+                      }, 150);
+                    }}
+                    className="w-full py-3.5 px-5 rounded-full bg-white/[0.08] hover:bg-white/[0.15] text-white border border-white/15 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all"
+                  >
+                    <Mail className="w-4 h-4 text-white" />
+                    <span>Subscribe to Newsletter</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* VLE Login Modal in Deep Navy & Saffron Orange */}
       <AnimatePresence>

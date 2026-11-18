@@ -1,301 +1,250 @@
-# CSC Digital Seva: UI/UX Product Architecture & Funnel Strategy
-**A Comprehensive Section-by-Section Analysis of the Live Web Platform & Human Decision Journey**
+# CSC Digital Seva Portal: Complete Conversion Business Funnel, Product Architecture & Human Psychology Strategy
+
+**A Fully Detailed Section-by-Section Analysis of What Was Built, Why Every Decision Was Made, and How Each Element Drives Awareness, Consideration, Conversion, and Retention**
 
 ---
 
-## Executive Summary & Product Mandate
+## 1. Executive Summary & Dual-Audience Business Mandate
 
-The **CSC Digital Seva Portal** operates under a dual-mission mandate:
-1. **Primary Commercial Conversion**: Onboarding educated rural and semi-urban youth into accredited **Village Level Entrepreneurs (VLEs)**, creating dignified rural micro-enterprises and self-employment.
-2. **Citizen Utility & Public Trust**: Allowing everyday citizens (farmers, rural women, village elders) to immediately find their nearest Gram Panchayat Kendra to access 400+ government, financial, and utility services without language intimidation or exploitation.
+The **CSC Digital Seva Portal** operates under the **Ministry of Electronics & Information Technology (MeitY)** and **CSC e-Governance Services India Limited** with a dual-sided business and public-service mandate:
+
+1. **Primary Business Conversion (`Join as VLE`)**: Converting aspiring rural, semi-urban, and urban youth into accredited **Village Level Entrepreneurs (VLEs)** who operate self-sustaining local Digital Seva Kendras.
+2. **Citizen Utility & Peer Trust (`Find CSC Centre`)**: Enabling citizens to locate verified nearby CSC centres for 400+ essential services—and enabling anxious prospective VLEs to discover, inspect, and directly contact operating VLEs in their own area.
+
+Every layout decision, copy refinement, interactive modal, visual hierarchy, and animation was engineered around **four conversion funnel stages** and **grounded human psychology**—specifically overcoming **scam skepticism, startup anxiety, financial uncertainty, language intimidation, and cognitive overload**.
 
 ---
 
-## The Dual-Persona Framework
+## 2. End-to-End Conversion Business Funnel
 
+```text
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 1: AWARENESS (First 3 Seconds — Curiosity, Authority & Intent Routing)    │
+│                                                                                 │
+│ • Every-Visit Entry Pop-Up ("Join as VLE" primary + "Subscribe to Newsletter")  │
+│ • Sticky Global Navbar ("Join as VLE", "Login", "Newsletter", "EN / हिं")       │
+│ • MeitY Credentialed Hero ("Bringing Essential Services Closer to Every Indian")│
+│ • Impact & Scale Strip ("5.5 Lakh+ VLEs · 700+ Districts · 500+ Services")      │
+└───────────────────────────────────────┬─────────────────────────────────────────┘
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 2: CONSIDERATION (Reducing Anxiety, Proving Viability & Building Trust)   │
+│                                                                                 │
+│ • "Why Join As A VLE Today?" (4 Reasons & Life-Impact Cards, Hover-Revealed)    │
+│ • "Explore Opportunities Through Digital Seva" (Search + G2C / B2C Filters)     │
+│ • CSC Centre Locator ("Find CSC Centre" + "Contact VLE" + "Earning Calculator") │
+│ • Fanned VLE Stories Carousel (Real Operators, Real Towns, Real Income)         │
+│ • Safety & Protection Card + Dedicated Support Card + 5-Item Animated FAQ       │
+└───────────────────────────────────────┬─────────────────────────────────────────┘
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 3: CONVERSION (Low-Friction Action & Unified CTA Language)                │
+│                                                                                 │
+│ • Unified "Join as VLE" CTA across Pop-Up, Navbar, Hero, & News Story Modals    │
+│ • Interactive Earning Calculator Modal → Direct Registration Trigger            │
+│ • "#get-started" Prerequisites + "Start VLE Registration" + 14599 Helpline      │
+│ • Zero-Friction Newsletter Capture ("#newsletter" + Welcome Pop-Up Shortcut)    │
+└───────────────────────────────────────┬─────────────────────────────────────────┘
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│ STAGE 4: RETENTION & CLOSED-LOOP RE-ENGAGEMENT                                  │
+│                                                                                 │
+│ • Newsletter Emails (Short Overview → Full Scheme Link → Website News/Blog)     │
+│ • Website News & Gazette Modals (Built-In "Join as VLE" Re-Conversion CTA)      │
+│ • Full-Time Floating "Sarthi AI" Chatbot (All Indian Languages + Voice Input)   │
+│ • Mobile App Companion Banner (QR Code + App Store / Google Play)               │
+└─────────────────────────────────────────────────────────────────────────────────┘
 ```
-                     ┌──────────────────────────────────────────────┐
-                     │          VISITOR LANDS ON HOMEPAGE           │
-                     └──────────────────────┬───────────────────────┘
-                                            │
-                    ┌───────────────────────┴───────────────────────┐
-                    ▼                                               ▼
-     ┌─────────────────────────────┐                 ┌─────────────────────────────┐
-     │  PERSONA A: ASPIRING VLE    │                 │ PERSONA B: RURAL CITIZEN    │
-     │  (Primary Commercial Goal)  │                 │ (Primary Utility Goal)      │
-     │                             │                 │                             │
-     │ • Educated rural youth      │                 │ • Villager, farmer, elder   │
-     │ • Wants dignified income    │                 │ • Needs urgent paperwork    │
-     │ • Seeks local social status │                 │ • Fears complicated tech    │
-     │ • Target: Submit VLE App    │                 │ • Target: Find Local Kendra │
-     └──────────────┬──────────────┘                 └──────────────┬──────────────┘
-                    │                                               │
-                    ▼                                               ▼
-         [BECOME A VLE FUNNEL]                           [FIND CENTRE UTILITY]
-```
 
 ---
 
-## Complete Section-by-Section Breakdown
+## 3. Deep-Dive: Human Psychology Principles Applied
 
----
-
-### Section 1: Global Sticky Navigation Header (`<header>`, lines 539–750)
-* **Exact Information Present:**
-  * Official branding: **CSC Digital Seva** with live saffron pulsing beacon.
-  * Primary navigation anchors: *Services (`#services`)*, *Jankari Suvidha (`#about`)*, *Find Centre* (triggers interactive locator modal), *Why Become a VLE (`#for-vles`)*, *News & Updates (`#whats-new`)*.
-  * Utility controls: Newsletter archive shortcut (`#newsletter`), language toggle (`EN / हिंदी`), Sign In button, and high-contrast saffron CTA button: **"Join as VLE"**.
-  * Mobile: Responsive backdrop blur drawer with identical navigation items.
-* **Why Created:** Serves as the constant global anchor. No matter where the user scrolls, they should never feel lost or have to scroll back up to take action.
-* **Funnel Stage:** **Awareness & Conversion** (persistent conversion anchor).
-* **User Journey & Psychological Impact:**
-  * *Persona A (Aspiring VLE):* Seeing *"Join as VLE"* immediately sets the expectation: *“This site is inviting people like me to start something official.”*
-  * *Persona B (Citizen):* The prominent *"Find Centre"* anchor reassures them that if they don’t want to read and just need immediate help, they can jump straight to a kiosk locator.
-* **UX Implementation:** Pinned `z-50` glassmorphism backdrop (`bg-[#0a1628]/95 backdrop-blur-md`) maintains maximum readability over moving content while keeping top-level actions visible at 0px scroll distance.
-
----
-
-### Section 2: Flagship Editorial Hero (`<motion.section id="home">`, lines 757–846)
-* **Exact Information Present:**
-  * **Ministry Credential Pill:** Frosted glass badge with live pulsing beacon: `MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK`.
-  * **Display Headline:** *"Bringing Essential Services Closer to Every Indian."*
-  * **Mission Subtitle:** *"India's unified assisted public service network — connecting citizens across 28 states and every Gram Panchayat to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs."*
-  * **Dual Action CTAs:**
-    1. **Primary VLE Action:** Solid saffron pill button: **"Become a VLE →"** (smooth scrolls to `#get-started`).
-    2. **Citizen Utility Action:** Frosted glass pill button with map pin: **"Find Nearest Centre"** (triggers the live geolocation modal).
-  * **Visual Backdrop:** Pristine grainy gradient wallpaper (`grainy-gradient-bg-4k.jpg`), authentic SVG tactile micro-grain noise, and two counter-rotating multi-layer concentric mandalas in opposite corners.
-  * *(Note: There is no search bar here. Search is deliberately reserved for Section 6 where it acts as a functional filter for actual service cards).*
-* **Why Created:** Establishes unshakeable institutional trust within the first 3 seconds. Rural users are frequently preyed upon by fake government portals; a monumental, dignified hero proves legitimacy instantly.
-* **Funnel Stage:** **Awareness**.
-* **User Journey & Psychological Impact:** Eliminates the common fear: *“Is this an official government site or a scam?”* The Ministry pill, deep navy palette, and precise typography eliminate hesitation. Both personas immediately recognize their designated path via the two distinct buttons.
-* **UX Implementation:** Employs a **sticky curtain parallax**: the hero stays pinned in place as the rest of the page slides physically up over it. This gives a sense of physical weight and premium finish.
-
----
-
-### Section 3: Unmatched Scale & Infrastructure (`<ImpactScaleSection>`, lines 848–853)
-* **Exact Information Present:**
-  * **Kicker:** `UNMATCHED SCALE & INFRASTRUCTURE`
-  * **Display Headline:** *"Powering India's Largest Citizen Service Network"*
-  * **Subtitle:** *"Serving remote corners across every pin code with trusted digital accessibility."*
-  * **Pure Typographic Broadsheet Spec Strip:**
-    1. **5.5 Lakh+** Registered VLEs (*"Active across 36 States & Union Territories."*)
-    2. **700+** Districts Serviced (*"Deep penetration reaching remote tribal & border belts."*)
-    3. **500+** G2C & B2C Services (*"Single sign-on gateway for welfare, banking, & utilities."*)
-    4. **10 Crore+** Citizens Empowered (*"Processed Aadhaar, pension, and banking authentications."*)
-* **Why Created:** Pure empirical social proof. Headlines make promises; numbers prove them.
-* **Funnel Stage:** **Consideration (Scale & Viability)**: Demonstrates proven institutional backing and commercial viability to aspiring VLEs and citizens.
-* **UX Implementation:** Grounded typographic broadsheet strip on deep navy (`#0a1628`) with clean vertical dividers (`divide-x divide-white/10`).
-  * **Smooth Count-Up Odometer Animation:** When scrolled into view, each metric dynamically counts up with cubic-out easing curve (`0.0` → `5.5 Lakh+`, `0` → `700+`, `0` → `500+`, `0` → `10 Crore+`) with tabular figure alignment.
-  * **Seamless Upper Drop Shadow:** Uses a direct negative-spread shadow (`shadow-[0_-30px_35px_-12px_rgba(0,0,0,0.9)]`) originating directly from the section top border with **zero gap** at the top and **zero downward bleed** at the bottom. Zero artificial glow, zero gimmicky telemetry containers—pure government-grade credibility.
-
----
-
-### Section 5: What is CSC Digital Seva? (`<section id="about">`, lines 860–950)
-* **Exact Information Present:**
-  * Tag: `WHY JOIN AS A VLE TODAY?`
-  * Header: *"Why Join As A VLE Today?"* Subtitle: *"Step inside the world of a Village Level Entrepreneur — a unified digital platform built for assisted delivery, transparent commissions, and community impact."*
-  * 3 Interactive Folder-Tab Platform Cards:
-    1. **01 / Digital Services & Unified Ledger:** Single sign-on architecture connecting 400+ G2C welfare schemes, Aadhaar updates, and state utilities with pre-funded DigiPay ledger.
-    2. **02 / Your Enterprise & Assisted Delivery:** Government-recognized digital front desk providing hands-on assistance for elderly pensions, PM-KISAN KYC, and student scholarships.
-    3. **03 / Earning Model & Transparent Settlement:** Non-discretionary government commissions per transaction, automated daily bank transfers, zero deduction fee, and annual Form 26AS/TDS tax slips.
-* **Why Created:** Clarifies the institutional and economic mechanism of becoming an entrepreneur. Prospective VLEs understand the exact operational tools, social stature, and daily revenue streams.
-* **Funnel Stage:** **Consideration & Intent**: Converts curiosity into tangible conviction by showing operational transparency.
-* **User Journey & Psychological Impact:** Validates the VLE's dignity and business stability. An aspiring applicant realizes: *“I’m running an official, technology-backed government enterprise with transparent commissions.”*
-* **UX Implementation:**
-  * **Clean Navy Canvas:** Background decorative art stripped away for zero distraction and pure broadsheet clarity.
-  * **Enlarged Prominent Headings:** Card titles enlarged to `text-[18px] sm:text-[19px] lg:text-[20px] font-bold` for superior legibility.
-  * **Inverted Progressive Disclosure (Folder-Tab Animation):**
-    * *Default State (45% Sheet Height):* The card showcases the glowing authentic Indian mandala visual stage above a crisp folder-tab summary.
-    * *Hover State (80% Sheet Height):* The folder sheet smoothly glides upward, revealing an expanded in-depth capability description and bulleted institutional features (`Universal SSO`, `DigiPay sync`, `Audit logs`, `Transparent commissions`, etc.).
-
----
-
-### Section 6: Citizen Services Catalog & Live Engine (`<section id="services">`, lines 1198–1378)
-* **Exact Information Present:**
-  * Tag: `DIGITAL SEVA KENDRA DIRECTORY`
-  * Header: *"One Centre. A World of Essential Services."* Subtitle: *"Browse authorized services delivered by your village VLE with transparent government fees and no hidden costs."*
-  * **Interactive Search Bar:** `placeholder="What are you looking for? (e.g. Aadhaar, PM-KISAN, Land Record, Passport)"` with real-time match counter: `Found X of Y services`.
-  * **Category Tabs:** `All`, `Government (G2C)`, `Financial & Banking`, `Education & Skilling`, `Agriculture & Utilities`.
-  * **Interactive Card Grid with Corner-Gliding Icon Motion:**
-    * *Default State:* Prominently centered SVG vector emblem + centered service title in deep navy.
-    * *Hover State:* The background turns deep navy, the vector emblem smoothly shrinks and glides to the top-left corner in pure white (`text-white`). The category tag and bottom department row are stripped away to prevent visual clutter, and the service description body copy is cleanly center-aligned (`text-center`) in the spacious center of the card.
-  * Smooth carousel pagination arrows (`<` and `>`) to browse all offerings without cluttering the page.
-* **Why Created:** **Tactile Transparency.** This is the functional utility engine of the site. It demystifies government paperwork and eliminates the fear of being extorted by middlemen.
-* **Funnel Stage:** **Consideration & Citizen Conversion**: Citizens find their required service; aspiring VLEs evaluate the breadth of services they will be authorized to sell.
-* **User Journey & Psychological Impact:**
-  * *Persona B (Citizen):* Searches *"Aadhaar"*, sees the fixed official government fee and required documents, and thinks: *“I don’t need to pay ₹500 to a middleman at tehsil. My local VLE will do this legally.”*
-  * *Persona A (Aspiring VLE):* Browses the 400+ services and computes business volume: *“Every farmer needs PM-KISAN, every student needs scholarship filing, every elder needs pension KYC. The customer base already exists in my village.”*
-* **UX Implementation:** Placing search *here* instead of the Hero aligns with actual user intent: users search when they are ready to explore services, not during the first visual impression of the brand.
-
----
-
-### Section 5: Real Grassroots VLE Motivation Slideshow (`<VillageServicesSlideshow />`)
-* **Exact Information Present:**
-  * **Status Pill:** `PEOPLE NEAR YOU ARE DOING IT` (with live pulsing saffron beacon).
-  * **Motivational Headline:** *"Look Around You. <br />Youth in Your Own District <br /><span className="text-[#ff5500]">Are Running Thriving Kendras.</span>"*
-  * **Peer Social Proof Copy:** *"You don't need to leave your village to build a respected, independent livelihood. Over 5.5 lakh young entrepreneurs are delivering 400+ authorized services from their own panchayats. Check out what active centres near you are achieving every day."*
-  * **Action CTAs:**
-    1. Primary Button: `<MapPin /> Check Kendras Near You` (triggers interactive locator modal with pin code & district search).
-    2. Direct Registration Link: `Start Your Own Kendra →` (smooth scrolls to `#get-started`).
-  * **Documentary Proof Captions with Named VLEs:**
-    * *Pooja Verma, VLE* · Doorstep Biometric & Pension Desk (Haliyapur, UP)
-    * *Rajesh Meena, VLE* · Land Records & Revenue Deed Centre (Rampura, Rajasthan)
-    * *Tariq Ahmed, VLE* · Micro-ATM & Welfare Cash Kiosk (Baramulla, J&K)
-    * *Deepak Shrivastava, VLE* · CSC Academy & Youth Digital Skilling (Chhatarpur, MP)
-* **Why Created:** **Peer Social Proof & Localized Motivation.** Reassures prospective VLEs that entrepreneurship is not an abstract concept or a distant urban scheme—people right in their own district and neighboring panchayats are actively making a living from it.
-* **Funnel Stage:** **Consideration to Conversion (VLE Activation)**: Bridges the gap between reading about CSC services and actually picturing oneself running a Kendra.
-* **User Journey & Psychological Impact:** Disarms the fear of the unknown. An educated rural youth sees photos and names of peers from UP, MP, Rajasthan, and J&K running active centres, realizing: *“If young people in my district are already doing this, I can start one in my panchayat too.”*
-* **UX Implementation:** Low cognitive load, high visual contrast (solid navy text panel on the left, clear human documentary photo on the right), and zero artificial glow on the action buttons.
-
----
-
-### Section 8: Why Become a Village Level Entrepreneur? (`<section id="for-vles">`, lines 1385–1509)
-* **Exact Information Present:**
-  * Tag: `THE VLE ADVANTAGE`
-  * Header: *"Build a Respected Enterprise in Your Own Village."* Subtitle: *"Join over 5.5 lakh entrepreneurs delivering essential services to their communities. Earn stable income while leading digital transformation at the grassroots."*
-  * 4 Commercial Value Propositions:
-    1. **Earn Up to ₹45,000+/Month:** Transparent commission structure across banking, welfare registrations, and utility payments.
-    2. **MeitY Authorized License:** Official accreditation carrying governmental authority and social status.
-    3. **Minimal Initial Setup:** Basic PC, biometric reader, laser printer, and standard internet connection. No expensive real estate required.
-    4. **CSC Academy Upskilling:** Free vocational certifications in digital domains and banking correspondent rules.
-  * Reassurance Callout: *"Ready to take the first step? Complete your Telecentre Entrepreneur Course (TEC) certification and begin serving your Gram Panchayat within 14 days."*
-  * Direct Action CTA: **"Apply to Become a VLE →"**.
-* **Why Created:** **The Primary Commercial Conversion Engine.** Directly serves the core product mandate: converting educated rural youth into micro-franchise operators.
-* **Funnel Stage:** **Conversion (VLE Persona)**: Provides the financial rationale, hardware requirements, and timeline to turn curiosity into an application.
-* **User Journey & Psychological Impact:** Solves the three core objections of aspiring youth: income potential, low startup capital, and family/community prestige.
-* **UX Implementation:** Breaks down what could feel like an intimidating bureaucratic licensing procedure into 4 practical, achievable pillars.
-
----
-
-### Section 9: News, Updates & Security Advisories (`<section id="whats-new">`, lines 1510–1827)
-* **Exact Information Present:**
-  * Header: *"News & Updates"* · Subtitle: *"Official circulars, nationwide initiatives, and grassroots announcements."*
-  * Top-right utility anchor: **"View all →"** (links directly to `#newsletter`).
-  * 3 Architectural Cards with Vector SVG Glyphs & Gliding Drawers:
-    * **Card 1 (Security Advisory):** Anti-phishing advisory warning against fake WhatsApp channels and counterfeit portals (*Smooth scalloped Jharokha arch shape*).
-    * **Card 2 (CSC Academy · AI):** Launch of CSC Olympiad 6.0 adaptive testing (*4-petaled Lotus Quatrefoil shape*).
-    * **Card 3 (Financial Inclusion):** Milestone of ₹1,200+ Cr doorstep welfare cash disbursed (*Stepped-shoulder Temple Arch shape*).
-  * Fixed-Height Gliding Interaction: Cards stay strictly locked at `460px / 485px` height. On hover, the navy text drawer glides smoothly upward from `180px` to `280px` (shifting visual/text ratio from 60/40 to 40/60) to reveal full details with zero layout shift.
-  * Interactive Modal Reader: Clicking any card opens the official circular with a **"Print Notice"** option.
-  * Integrated Circular Dispatch: Email subscription box (`#newsletter`) for official gazettes.
-* **Why Created:** **Active Governance & Security.** Government portals that look static or abandoned lose trust. Showing live advisories and recent dates proves the network is actively supervised and protected against fraud.
-* **Funnel Stage:** **Retention & Institutional Trust**: Keeps current VLEs updated and reassures prospects that the government actively polices counterfeiters.
-* **User Journey & Psychological Impact:** Seeing an explicit warning against *“Fake WhatsApp Channels”* shows the visitor that the administration cares about citizen safety. It builds protective authority.
-* **UX Implementation:** The fixed-height gliding drawer allows users to preview complex circulars without page stutter or jumpy hover reflows.
-
----
-
-### Section 10: Public Safety Guidelines & FAQ (`<section id="faq">`, lines 1828–1928)
-* **Exact Information Present:**
-  * Tag: `SAFETY & INTEGRITY PROTOCOL`
-  * Header: *"Your Safety Is Part of Every Service."* Subtitle: *"Transparent processes, official receipts, and zero tolerance for unauthorized charges. Here is what you should always expect at any authorized CSC."*
-  * **3 Ground Safety Rules (Left):**
-    * *Always Demand a Printed Receipt*
-    * *Fixed Government Fees (Check the official rate card)*
-    * *Verified VLE Credentials (Look for the displayed MeitY certificate)*
-  * **Interactive FAQ Accordion (Right):**
-    * *How do I verify if a CSC centre is officially authorized?*
-    * *What should I do if a VLE charges more than the displayed fee?*
-    * *What documents do I need to carry for Aadhaar updates?*
-    * *How does a village elder authenticate their pension without traveling?*
-    * *Can I register as a VLE if another centre already exists in my panchayat?*
-  * **"Still have questions?" Sarthi AI Callout Box:**
-    * Headline: *"Still have questions?"*
-    * Subtitle: *"Get instant answers from Sarthi, our official AI assistant in your language."*
-    * Action Button: `<Sparkles /> Ask Sarthi our AI chat bot` (opens the floating multilingual AI assistant).
-  * **Floating Sarthi AI Chatbot Assistant:**
-    * Persistent circular FAB at bottom-right with saffron pulse beacon.
-    * Multilingual switcher supporting 6 Indian languages (English, हिन्दी, বাংলা, मराठी, தமிழ், తెలుగు).
-    * Integrated voice input with speech recognition (`<Mic />`) and automated contextual answers for VLE registration, government fees, and Kendra locations.
-* **Why Created:** **Pre-empting Grievances & Removing Friction.** Answers the lingering doubts that prevent someone from visiting a centre or submitting an application.
-* **Funnel Stage:** **Consideration to Retention**: Codifies citizen rights and provides dispute-resolution transparency.
-* **User Journey & Psychological Impact:** Gives citizens agency. By explicitly stating *“Never pay without a printed receipt,”* the portal transforms villagers from vulnerable subjects into empowered consumers of public services.
-* **UX Implementation:** The 2-column split pairs non-negotiable safety rules on the left with interactive, expandable accordions on the right, keeping vertical scroll length compact.
-
----
-
-### Section 11: Get Our App: Scan & Download (`<AppDownloadSection />`, `<section id="mobile-app">`)
-* **Exact Information Present:**
-  * Tag: `OFFICIAL MOBILE PORTAL · DIGITAL INDIA`
-  * Header: *"Get Our App: Scan & Download"*
-  * Subtitle: *"Carry India’s largest public service network in your pocket. Built for both citizens seeking doorstep assistance and VLEs managing daily centre operations."*
-  * **Interactive Dual-Card Showcase:**
-    * **Left Scanner Hub Card:**
-      * High-fidelity SVG QR Code with saffron alignment markers and official central `CSC` national tricolor emblem.
-      * Corner targeting brackets `[ ]` mimicking a camera viewfinder.
-      * Direct link copy utility with instant confirmation toast (`digitalseva.csc.gov.in/app`).
-      * Compatibility badge: `Android 8.0+ · iOS 14.0+ · 18 MB`.
-    * **Right Capabilities & App Store Card:**
-      * Social proof badges: `4.7 ★ Rated (180K+ Reviews)` and `50 Lakh+ Downloads`.
-      * 4 Core App Pillars:
-        1. *Real-Time Status Alerts:* Aadhaar, passport, pensions, and certificates via push alerts.
-        2. *Offline GPS Kendra Locator:* Find verified VLEs in remote areas without active internet.
-        3. *Sarthi AI Voice Assistant:* Multilingual voice interactions across 12+ Indian languages.
-        4. *DigiLocker Document Vault:* Pull and authenticate digital certificates on demand.
-      * Official store download buttons:
-        * *Google Play* (Vector Play Store badge)
-        * *Apple App Store* (Vector Apple badge)
-        * *Direct APK Download* (Lightweight package for remote low-bandwidth rural operators)
-      * MeitY verification tag & 256-bit SSL encryption assurance.
-* **Why Created:** Bridges mobile accessibility for rural citizens and operators who rely primarily on smartphones rather than desktop browsers.
-* **Funnel Stage:** **Mobile Conversion & Daily Engagement**: Drives persistent app adoption, reducing web drop-offs and ensuring long-term citizen engagement through push notifications.
-* **UX Implementation:** High-contrast dual card design (clean white scanner card on the left + deep navy capability sheet on the right) with scannable QR targeting brackets and instant click-to-copy convenience.
-
----
-
-### Section 12: Final Launchpad / Get Started (`<section id="get-started">`, lines 1929–2086)
-* **Exact Information Present:**
-  * Tag: `DIGITAL INDIA MISSION`
-  * Header: *"Ready to Bring Digital Services to Your Community?"* Subtitle: *"Whether you want to establish a new Kendra or find services near you, our network is here to assist every citizen across India."*
-  * **4-Step Progressive Onboarding Roadmap:**
-    * *Step 1: TEC Certification* — Complete online modules and assessment.
-    * *Step 2: Hardware Setup* — Equip desktop, printer, and biometric scanner.
-    * *Step 3: Online Application* — Submit KYC and Gram Panchayat geo-tag.
-    * *Step 4: Kendra Activation* — Receive CSC ID, certificate, and go live.
-  * **Dual Action Launchpad:**
-    * Primary CTA: Saffron pill button: **"Start VLE Registration"** (opens application modal).
-    * Secondary Action: Frosted glass button: **"VLE Portal Login"** (for existing operators).
-* **Why Created:** **The Final Conversion Decision Point.** After educating, proving scale, presenting earnings, and answering questions, this section provides the immediate transactional climax.
-* **Funnel Stage:** **Conversion**: Direct registration capture.
-* **User Journey & Psychological Impact:** The 4 numbered steps demystify what happens next, removing any remaining anxiety about bureaucratic red tape.
-* **UX Implementation:** Linear step progression numbers (`01 → 02 → 03 → 04`) reduce the perceived complexity of government licensing to a clear, straightforward checklist.
-
----
-
-### Section 12: Institutional Footer (`<footer>`, lines 2087–2280)
-* **Exact Information Present:**
-  * **Top Utility Strip:** Quick VLE Sign-In banner and Newsletter subscription field.
-  * **4 Structural Link Columns:**
-    * *Explore:* Platform Overview, VLE Opportunity, Network Announcements, Safety & Integrity.
-    * *Services:* G2C Services, B2C Services, Financial Inclusion, CSC Academy.
-    * *Support & Helpdesk:* National Toll-Free (`1800 121 3468`), Helpdesk Email (`helpdesk@csc.gov.in`), Ministry Portal, Citizen Grievance Portal.
-    * *Legal & Compliance:* Terms of Service, Privacy Policy, Hyperlinking Policy, Security Guidelines.
-  * **Bottom Accreditation Strip:** Government of India copyright, MeitY authorization badge, Digital India partnership watermark.
-* **Why Created:** Compliance, legal recourse, and persistent fallback navigation.
-* **Funnel Stage:** **Retention & Support**: Offers direct grievance helplines and toll-free numbers for users who need human assistance.
-* **User Journey & Psychological Impact:** Reinforces national dignity. Seeing official toll-free telephone numbers and Ministry links provides peace of mind that there is accountability behind the screen.
-* **UX Implementation:** Standard 4-column hierarchy adhering to official Government of India web guidelines (GIGW), ensuring complete accessibility for screen readers and search crawlers.
-
----
-
-### Section 13: Interactive Modal Ecosystem (Lines 2281–2498)
-* **A. VLE Login & Registration Modal (`loginOpen`):**
-  * Clean, focused dialog with credentials input, password visibility toggle, and instant redirect to the Telecentre Entrepreneur Course (TEC) portal for new candidates.
-* **B. Interactive Kiosk Locator Modal (`locatorOpen`):**
-  * Real-time search by Pincode, District, or Gram Panchayat.
-  * Instant capability filter chips (*All Centres, Aadhaar Biometric, Banking / Micro-ATM, Land Records*).
-  * Direct result cards displaying VLE name, exact panchayat address, verified badge, and a **"Call VLE"** one-tap mobile trigger.
-* **Why Created:** Zero-latency goal completion. Neither an aspiring VLE nor a citizen should be kicked to an external slow-loading page just to search their pin code or log in.
-* **Funnel Stage:** **Fulfillment**: The exact moment where intent converts into real-world action (an application started, or a phone call placed to a local VLE).
-
----
-
-## Funnel Summary Table
-
-| Funnel Stage | Corresponding Live Sections | Psychological State of the User |
+| Psychological Barrier | How Users Actually Feel | How Our Design Solves It |
 | :--- | :--- | :--- |
-| **1. Awareness** | Section 1 (Header), Section 2 (Hero), Section 3 (Metrics) | *“What is this portal? Is it genuine? Can it help me or give me a livelihood?”* |
-| **2. Consideration** | Section 4 (Journey Fork), Section 5 (About Pillars), Section 6 (Services Catalog), Section 7 (Village Slideshow) | *“How does this work? What services exist? Do they speak my language? Is this a viable business for me?”* |
-| **3. Conversion** | Section 8 (VLE Benefits), Section 11 (Get Started Launchpad), Modal Engines | *“I understand the income, setup, and steps. I am ready to submit my application / find my local centre.”* |
-| **4. Retention & Trust** | Section 9 (News/Advisories), Section 10 (Safety & FAQ), Section 12 (Footer Support) | *“How am I protected against fraud? Where can I call if I have a problem? How do I stay updated?”* |
+| **1. First-Visit Directionlessness** | *"What is this portal for? Am I supposed to read everything or can I apply?"* | The **Every-Visit Welcome Pop-Up** immediately presents **"Join as VLE"** (sparking curiosity: *"What is a VLE?"*) and **"Subscribe to Newsletter"** (capturing undecided visitors early). |
+| **2. Scam & Fraud Skepticism** | *"There are so many fake government websites asking for money. Is this real?"* | Official **MeitY** framing, institutional `#0a1628` navy palette, **Impact Scale Strip** (`5.5 Lakh+` VLEs, `10 Crore+` citizens), and a dedicated **Safety & Protection** card highlighting `@csc.gov.in` verification and `14599`. |
+| **3. Startup Anxiety & Self-Doubt** | *"What if I don't know how to run a centre? Will anyone help me if I get stuck?"* | The **CSC Centre Locator (`#locator`)** lets prospects look up **real nearby VLEs**, see their ratings/services, and click **"Contact VLE"** to talk to a real peer—paired with **Dedicated Support** (District Manager on-call, `14599` in 12 languages, CSC Academy LMS). |
+| **4. Financial Uncertainty** | *"Will I actually earn enough monthly income, or will I have to buy expensive equipment?"* | Side-by-side **Earning Calculator** lets prospects estimate monthly commissions, while the **5th FAQ item** explicitly confirms **zero forced hardware tie-in** (existing Windows 10/11 laptops and standard printers work). |
+| **5. Cognitive & Language Intimidation** | *"Too much English text and complicated government jargon."* | **`EN / हिं` translator switcher** in the header, progressive-disclosure cards (clean title first, body on hover), **Sarthi AI** with **multi-language + voice input**, and high-contrast typography (`Season Mix` + `Matter`). |
 
+---
+
+## 4. Complete Section-by-Section Architecture & Funnel Mapping
+
+### 4.1 Always-On Welcome Entry Pop-Up (`src/App.jsx`, `welcomePopupOpen`)
+* **What We Built:**
+  * Initialized `welcomePopupOpen` to `true` without `localStorage`/`sessionStorage` suppression so it opens **every time** someone visits the homepage.
+  * Styled in deep `#0c1c38` → `#071328` navy with subtle mandala watermark, crisp `#ff5500` **Join as VLE** primary pill CTA (scrolls to `#get-started`), secondary glass pill **Subscribe to Newsletter** with a clean white `Mail` icon (triggers `scrollToNewsletter()`), and a solid `#ff5500` circular close button (`X`) with `z-30` stacking priority so the entire button surface is clickable and hoverable.
+* **Funnel Stage:** **Awareness & Early Capture**
+* **Why & Psychological Impact:**
+  * Even when someone lands on the website for the **first time**, the very first thing they encounter is **"Join as VLE"**. This creates an immediate **curiosity hook** (*"What is a VLE? How does it work?"*) that pulls them into the onboarding narrative.
+  * If they are not ready to register today, the secondary **"Subscribe to Newsletter"** button captures their intent early and routes them into the long-term **updates → website blog → Join as VLE** loop.
+
+---
+
+### 4.2 Global Sticky Navigation Header (`<header>`, `src/App.jsx`)
+* **What We Built:**
+  * Pinned `z-50` frosted navy bar featuring the official transparent **CSC Digital Seva Portal** brand lockup, 5 clear section anchors (*Services*, *Jankari Suvidha*, *Find CSC Centre*, *News & Updates*, *Help*), primary **"Join as VLE"** `#ff5500` CTA, **Login** modal trigger, **Newsletter** quick-scroll button, **`EN / हिं`** language switcher, and responsive mobile drawer.
+* **Funnel Stage:** **Awareness & Persistent Conversion**
+* **Why & Psychological Impact:**
+  * **Zero Disorientation:** No matter how deep a visitor scrolls, they are always one click away from **Join as VLE**, **Find CSC Centre**, or switching between **English and Hindi (`EN / हिं`)**.
+
+---
+
+### 4.3 Flagship Editorial Hero (`#home`, `src/App.jsx`)
+* **What We Built:**
+  * Clean frosted credential pill (`MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK` — orange dot removed for clean institutional polish), display headline (*"Bringing Essential Services Closer to Every Indian."*), clear mission subtitle, and two balanced action pills: **"Join as VLE"** (`#ff5500`) and **"Find CSC Centre"** (frosted glass).
+  * Uses sticky curtain parallax over grainy deep-navy gradient art and counter-rotating mandalas.
+* **Funnel Stage:** **Awareness**
+* **Why & Psychological Impact:**
+  * Establishes unmistakable government-grade legitimacy in under 3 seconds while immediately segmenting visitors into **entrepreneur onboarding (`Join as VLE`)** or **local centre lookup (`Find CSC Centre`)**.
+
+---
+
+### 4.4 Impact & Government-Scale Trust Section (`ImpactScaleSection.jsx`)
+* **What We Built:**
+  * Positioned directly beneath the hero as a grounded broadsheet proof strip on `#0a1628` navy with animated odometer count-ups, `#7ca5e8` accent `+` signs, and a masked 5-petal lotus motif:
+    1. **5.5 Lakh+** Registered VLEs (*Active across 36 States & Union Territories*)
+    2. **700+** Districts Serviced (*Deep penetration reaching remote tribal & border belts*)
+    3. **500+** G2C & B2C Services (*Single sign-on gateway for welfare, banking, & utilities*)
+    4. **10 Crore+** Citizens Empowered (*Processed Aadhaar, pension, and banking authentications*)
+* **Funnel Stage:** **Awareness → Consideration Bridge**
+* **Why & Psychological Impact:**
+  * **Herd Confidence & Institutional Proof:** First-time visitors often wonder *"Are real people actually doing this, and is it genuinely backed by the government?"* Seeing **5.5 Lakh+ VLEs** and **10 Crore+ citizens** under official MeitY infrastructure eliminates isolation fear and proves both national scale and operational stability before the user evaluates the details.
+
+---
+
+### 4.5 Why Join As A VLE Today? (`#about`, `src/App.jsx`, `VleCardArt.jsx`, `dspData.js`)
+* **What We Built:**
+  * Section header with clear subheading (*"Build a respected digital enterprise in your community with steady daily income and official government backing."*) above **4 alternating navy/white cards in a single row** (`max-w-[1180px]`).
+  * Default state displays only the card number, crisp geometric artwork, category tag, and 2-line title; hovering or keyboard-focusing (`tabIndex={0}`) smoothly reveals the concise justified body copy:
+    1. **01 — Run Your Own Hometown Enterprise (`WORK FROM YOUR TOWN`):** Shows what practically changes—you stay in your own town or village and run your own enterprise rather than migrating for low-wage work.
+    2. **02 — Earn Financial Independence Daily (`FINANCIAL INDEPENDENCE`):** Details steady daily commissions across AEPS cash disbursals, utility bills, PM-Kisan KYC, and insurance.
+    3. **03 — Community Respect & National Impact (`NATION BUILDING & IMPACT`):** Highlights the social dignity of becoming your community's trusted digital service anchor.
+    4. **04 — Official Government Portal Backing (`GOVERNMENT BACKED`):** Reinforces security and legitimacy through an accredited MeitY / Digital India gateway.
+* **Funnel Stage:** **Consideration (Value & Life Impact)**
+* **Why & Psychological Impact:**
+  * Once the Welcome Pop-Up sparks curiosity (*"What is a VLE?"*), this section answers **"How will this change my life, and why should I join?"** Using progressive disclosure prevents visual fatigue while balancing rational incentives (income, hometown independence, government backing) with emotional pride (community respect).
+
+---
+
+### 4.6 Explore Opportunities Through Digital Seva (`#services`, `src/App.jsx`, `dspData.js`)
+* **What We Built:**
+  * Full-width headline, explanatory subheader, live search bar (`"What are you looking for?"`), warm recessed segmented filter (**All**, **G2C**, **B2C** with G2C sub-category reset when switching tabs), smooth `550ms` hover card transitions, and paginated cards detailing citizen benefits and VLE earning potential.
+* **Funnel Stage:** **Consideration (Product & Demand Validation)**
+* **Why & Psychological Impact:**
+  * Lets prospective VLEs verify tangible local demand—seeing over 400+ real services (Aadhaar, PAN, DigiPay, PM-Kisan, Insurance, Utility Bills) proves they will have daily footfall in their village or ward.
+
+---
+
+### 4.7 CSC Centre Locator (`#locator`, `VillageServicesSlideshow.jsx`)
+* **What We Built:**
+  * **Left 4-Column Editorial Panel:**
+    * Headline: *"See Other VLEs & CSC Centres Right Around You."*
+    * Reassurance subtitle: *"Have questions or doubts before starting? Look up thriving VLEs near you, explore their centres, and contact them directly for real-world guidance."*
+    * Side-by-side pill CTAs: **"Find CSC Centre"** (primary `#ff5500`, focuses `#locator-pin-input`) + **"Earning Calculator"** (secondary frosted glass, opens `VleEarningCalculatorModal`).
+  * **Right 8-Column Interactive Map Panel:**
+    * Frosted-glass outer container (`backdrop-blur-2xl`), empty default PIN input (`Enter PIN` — no dummy `110092` clutter), clean `#ff5500` highlighted map pin with dynamic `#0a1628` area pill, and an interactive `#0a1628` VLE detail card featuring a zoomed-in VLE portrait (`scale-[1.85]`), star rating (`★ 4.8`), review count, address, working hours, services, **"Get Directions"**, and **"Contact VLE"**.
+* **Funnel Stage:** **Consideration (Anxiety Elimination & Peer Reassurance)**
+* **Why & Psychological Impact:**
+  * **Talking to a Real Peer Clears Doubt:** Prospective VLEs naturally feel anxious about how daily operations work, how much support exists, and whether centres in their locality actually succeed. By letting them find nearby VLEs, inspect real centre details, and click **"Contact VLE"** to speak directly with an existing operator—right next to the **Earning Calculator**—we replace abstract marketing claims with verifiable human assurance.
+
+---
+
+### 4.8 For VLEs Stories Carousel (`#for-vles`, `src/App.jsx`)
+* **What We Built:**
+  * 5-card fanned testimonial carousel spotlighting real-world VLE journeys across rural and semi-urban India with previous/next controls and dot indicators.
+* **Funnel Stage:** **Consideration (Relatable Role Models)**
+* **Why & Psychological Impact:**
+  * Shows relatable peers from diverse regions succeeding, reinforcing *"If they can run a Digital Seva Kendra in their village, so can I."*
+
+---
+
+### 4.9 News, Schemes & Circulars Gazette + Closed-Loop Newsletter Funnel (`#whats-new` & `#newsletter`, `src/App.jsx`)
+* **What We Built:**
+  * **News & Updates Gazette (`#whats-new`):** Filterable official advisories, new scheme launches, and MeitY circulars (`Security Advisory`, `Scheme Update`, etc.) with a clean black `View all →` link and full story reading modal containing a **"Join as VLE"** / action CTA.
+  * **Newsletter Subscription Banner (`#newsletter`):** Email input with validation (`newsletterEmail`, `newsletterError`, `newsletterSubscribed`) accessible both inline and directly from the **Welcome Pop-Up** and **Navbar**.
+* **Funnel Stage:** **Conversion (Lead Capture) & Retention (Re-Engagement Loop)**
+* **How the Closed-Loop Email → Website Blog → `Join as VLE` Funnel Works:**
+
+```text
+[1. Visitor Subscribes via Welcome Pop-Up, Navbar, or #newsletter]
+                              │
+                              ▼
+[2. Email Update Sent: New Schemes, Circulars & Advisories]
+    • Short, scannable overview (what changed, who benefits, VLE impact)
+    • High-clarity "Read Full Details on Portal →" blog/news link
+                              │
+                              ▼
+[3. Subscriber Clicks Link Back to Website News/Blog Modal]
+    • Reads complete scheme guidelines, deadlines, & official status
+    • Sees built-in "Join as VLE" CTA directly inside the article/page
+                              │
+                              ▼
+[4. Warm, Informed Reader Converts into a VLE Registration Lead]
+```
+
+* **Why & Psychological Impact:**
+  * Most visitors do not convert on their very first session. Capturing their email for **high-value government schemes and circulars** keeps CSC authoritative in their inbox. Sending a **short overview** in the email creates curiosity without clutter, driving click-backs to the **website news/blog detail**, where a persistent **"Join as VLE"** CTA turns repeat readers into applicants.
+
+---
+
+### 4.10 Mobile App Companion Banner (`AppDownloadSection.jsx`)
+* **What We Built:**
+  * Deep-navy showcase banner with vertical center side-edge notches (`mask-image`), subtle bottom-right mandala watermark, phone mockup with scannable **QR code**, and App Store / Google Play badges.
+* **Funnel Stage:** **Retention & Daily Utility**
+* **Why:** Extends engagement from desktop research into daily mobile operations and instant on-the-go access.
+
+---
+
+### 4.11 Safety, Support, Animated FAQ & Chatbot Escalation (`#support`, `src/App.jsx`, `dspData.js`)
+* **What We Built:**
+  * Generous side spacing (`px-6 sm:px-12 lg:px-20`, `max-w-[1160px]`) housing:
+    1. **Left `#0a1628` Card — `Safety & Protection in Every Service.`**: Official `14599` helpline, `@csc.gov.in` anti-phishing awareness, grievance redressal, and application tracking, accented with bottom-right mandala art (`w-48 h-48`).
+    2. **Right `#0a1628` Card — `Dedicated Support at Every Step.`**: District Manager (DM) on-call, National Helpdesk (`14599` in 12 languages), CSC Academy LMS free training, and Vernacular Onboarding Desk, accented with matching bottom-right mandala art (`w-48 h-48`).
+    3. **Full-Width 5-Question Animated FAQ**: Smooth Framer Motion `<AnimatePresence>` slide-open/close transitions (`height`, `opacity`, `y`, rotating `+`/`−`), including the **5th question** clarifying that prospective VLEs can start with their **existing Windows 10/11 laptop and standard printer** with zero forced hardware tie-in.
+    4. **FAQ-to-Chatbot Escalation (`Still have questions?`):** Dedicated **"Ask Sarthi our AI chat bot"** button directly below the FAQs so if static content doesn't answer a user's question, one click opens live AI help.
+* **Funnel Stage:** **Consideration → Conversion (Final Objection Removal)**
+* **Why & Psychological Impact:**
+  * Systematically removes the final three psychological blockers (*scam fear*, *fear of being unsupported*, *fear of hidden hardware costs*) and ensures zero dead ends if a visitor still has a unique question.
+
+---
+
+### 4.12 Get Started & Institutional Footer (`#get-started` & `<footer>`, `src/App.jsx`)
+* **What We Built:**
+  * `#get-started`: Clean eligibility/prerequisites summary, **"Start VLE Registration"** (`#ff5500`), **"Earning Calculator"**, and Toll-Free Helpdesk **`14599`**.
+  * `<footer>`: Clean `#071120` institutional footer (watermark clutter removed) with official CSC Digital Seva Portal lockup, MeitY credentials, `14599` helpline pill, and structured navigation/compliance links.
+* **Funnel Stage:** **Conversion & Institutional Trust**
+
+---
+
+### 4.13 Always-On Multilingual Voice-Enabled Chatbot (`SarthiChatbot.jsx`)
+* **What We Built:**
+  * Persistent **`Ask Sarthi AI`** floating dock pinned across all scroll positions (accessible full-time at any moment) plus direct trigger from the `#support` FAQ fallback CTA.
+  * Supports **all major Indian languages** and **spoken voice input**.
+* **Funnel Stage:** **Consideration, Conversion & Retention**
+* **Why & Accessibility Impact:**
+  * Typing detailed questions in English is a major friction point for many rural and semi-urban users. Offering **full-time floating access**, **multilingual responses**, and **voice input** ensures every user—regardless of literacy comfort or device—gets instant, empathetic answers instead of bouncing.
+
+---
+
+## 5. Accessibility & Inclusive Design Standards
+
+* **Bilingual Language Switcher (`EN / हिं`):** Always accessible in the sticky header and mobile drawer so visitors can switch language comfort immediately.
+* **High-Contrast Visual System:** `#0a1628` deep navy, `#fffaf5` warm cream, and `#ff5500` saffron maintain strong legibility on budget Android screens and bright outdoor conditions.
+* **Keyboard & Screen-Reader Readiness:** Focusable interactive cards (`tabIndex={0}`), explicit `aria-label` attributes on icon buttons/modals, and `pointer-events-none` on decorative overlays so hit targets never get blocked.
+* **Low Cognitive Load:** Short scannable headlines (`Season Mix`), clean body copy (`Matter`), progressive disclosure on cards, and smooth non-jarring Framer Motion transitions.
+
+---
+
+## 6. Summary of Key Implementation & Funnel Refinements
+
+| Area | What Changed | Business & Psychological Purpose |
+| :--- | :--- | :--- |
+| **Welcome Entry Pop-Up** | Always-on modal on every visit with **"Join as VLE"**, **"Subscribe to Newsletter"** (white icon), and solid orange `z-30` close button | Sparks first-visit curiosity (`Join as VLE`) and captures early newsletter leads |
+| **Hero & Scale Strip** | Removed orange dot clutter from credential pills; paired MeitY framing with `ImpactScaleSection` animated counters | Proves government backing and national scale (`5.5 Lakh+` VLEs) in seconds |
+| **Why Join As A VLE** | Added section subheading + 4 single-row progressive-disclosure cards | Explains life impact and 4 concrete reasons to join without text overload |
+| **CSC Centre Locator** | Empty default PIN, frosted glass container, zoomed VLE face avatar, refined pin/label, **"Find CSC Centre"** primary + **"Earning Calculator"** side-by-side | Lets anxious prospects find & contact real nearby VLEs to clear doubts |
+| **Safety, Support & FAQ** | Clear `Safety & Protection` / `Dedicated Support` headings, bottom-right mandala art, wider side margins, 5th FAQ item, smooth slide animations, & `Ask Sarthi` fallback CTA | Removes scam, support, and hardware objections with zero dead-end questions |
+| **Newsletter & Retention** | `#newsletter` email funnel → short scheme/circular overview → website news/blog link → built-in `Join as VLE` CTA + voice-enabled `Sarthi AI` + `EN / हिं` switcher | Closed-loop re-engagement and full-time inclusive accessibility |

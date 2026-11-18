@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin,
@@ -23,34 +23,39 @@ import {
 // ============================================================================
 function StorefrontMapPin({ selected = false, label = '' }) {
   if (selected) {
+    const pillW = Math.max(68, label.length * 6.8 + 22);
+    const pillHalf = pillW / 2;
     return (
       <g className="cursor-pointer">
-        {/* Outer Animated Radar Pulse Rings */}
-        <circle cx="0" cy="-22" r="38" fill="#ff5500" fillOpacity="0.11" />
-        <circle
-          cx="0"
-          cy="-22"
-          r="26"
-          fill="#ff5500"
-          fillOpacity="0.22"
-          stroke="#ff5500"
-          strokeWidth="1"
-          strokeOpacity="0.35"
-        />
-        {/* Ground Shadow */}
-        <ellipse cx="0" cy="4" rx="8.5" ry="3.2" fill="#0a1628" fillOpacity="0.26" />
+        {/* Clean Subtle Soft Halo Around Pin Head (No Overlapping Double Stroke) */}
+        <circle cx="0" cy="-25" r="25" fill="#ff5500" fillOpacity="0.14">
+          <animate
+            attributeName="r"
+            values="22;29;22"
+            dur="2.4s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="fill-opacity"
+            values="0.18;0.05;0.18"
+            dur="2.4s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        {/* Subtle Ground Shadow */}
+        <ellipse cx="0" cy="3" rx="6" ry="2" fill="#0a1628" fillOpacity="0.18" />
         {/* Orange Teardrop Body with Crisp White Rim */}
         <path
-          d="M 0 0 C -5 -7 -19 -14 -19 -25 A 19 19 0 1 1 19 -25 C 19 -14 5 -7 0 0 Z"
+          d="M 0 0 C -4.5 -6.5 -17 -13.5 -17 -24 A 17 17 0 1 1 17 -24 C 17 -13.5 4.5 -6.5 0 0 Z"
           fill="#ff5500"
           stroke="#ffffff"
-          strokeWidth="2"
+          strokeWidth="2.2"
         />
         {/* Storefront Kiosk Icon Inside Pin */}
         <g
-          transform="translate(-8.5, -34)"
+          transform="translate(-8, -32.5)"
           stroke="#ffffff"
-          strokeWidth="1.6"
+          strokeWidth="1.65"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,27 +65,24 @@ function StorefrontMapPin({ selected = false, label = '' }) {
           <path d="M3.2 8V14.5H13.8V8" />
           <rect x="6.5" y="10.2" width="4" height="4.3" />
         </g>
-        {/* Optional Active Area Label Below Selected Pin */}
+        {/* Clean Borderless Dark Navy Area Label Below Selected Pin */}
         {label && (
-          <g transform="translate(0, 17)">
+          <g transform="translate(0, 19)">
             <rect
-              x="-42"
-              y="-10"
-              width="84"
-              height="20"
-              rx="10"
-              fill="#ffffff"
-              fillOpacity="0.95"
-              stroke="#cbd5e1"
-              strokeWidth="1"
+              x={-pillHalf}
+              y="-10.5"
+              width={pillW}
+              height="21"
+              rx="10.5"
+              fill="#0a1628"
             />
             <text
               x="0"
               y="3.5"
               textAnchor="middle"
-              fill="#0a1628"
+              fill="#ffffff"
               fontSize="10.5"
-              fontWeight="700"
+              fontWeight="600"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               {label}
@@ -312,32 +314,33 @@ const DEFAULT_NEARBY_PINS = [
   },
 ];
 
-function buildNearbyPinsForQuery(basePinCode) {
+function buildNearbyPinsForQuery(basePinCode, areaLabel = '') {
   const num = parseInt(basePinCode, 10);
-  if (Number.isNaN(num)) return DEFAULT_NEARBY_PINS;
+  if (Number.isNaN(num)) return [];
   const p1 = String(num).padStart(6, '0');
   const p2 = String(num + 1).padStart(6, '0');
   const p3 = String(Math.max(100000, num - 1)).padStart(6, '0');
+  const primaryTitle = areaLabel ? `${areaLabel}` : `Area ${p1}`;
   return [
     {
       pinId: 'centre-1',
       pincode: p1,
-      title: `Primary Cluster · ${p1}`,
-      subtitle: 'Suman Verma & 18 verified VLEs · 1.2 km away',
+      title: primaryTitle,
+      subtitle: '18 verified VLEs · 1.2 km away',
       badge: `PIN ${p1}`,
     },
     {
       pinId: 'centre-2',
       pincode: p2,
-      title: `Adjacent Block · ${p2}`,
-      subtitle: 'Rajeshwar Rao & 14 active Kendras · 2.1 km away',
+      title: `Nearby Block`,
+      subtitle: '14 active Kendras · 2.1 km away',
       badge: `PIN ${p2}`,
     },
     {
       pinId: 'centre-6',
       pincode: p3,
-      title: `Neighbouring Ward · ${p3}`,
-      subtitle: 'Pooja Verma & 11 active Kendras · 2.8 km away',
+      title: `Adjacent Ward`,
+      subtitle: '11 active Kendras · 2.8 km away',
       badge: `PIN ${p3}`,
     },
   ];
@@ -345,14 +348,73 @@ function buildNearbyPinsForQuery(basePinCode) {
 
 export default function VillageServicesSlideshow({ onOpenCalculator }) {
   const [pinQuery, setPinQuery] = useState('');
-  const [nearbyClusters, setNearbyClusters] = useState(DEFAULT_NEARBY_PINS);
-  const [activeCentre, setActiveCentre] = useState(KENDRA_PINS[0]);
-  const [cardVisible, setCardVisible] = useState(true);
+  const [nearbyClusters, setNearbyClusters] = useState([]);
+  const [locating, setLocating] = useState(false);
+  const [locationHint, setLocationHint] = useState('');
+  const [activeCentre, setActiveCentre] = useState(null);
+  const [cardVisible, setCardVisible] = useState(false);
   const [mapTransform, setMapTransform] = useState({ scale: 1, x: 0, y: 0 });
 
-  const handleSelectPin = (pin, updateInput = false) => {
+  const detectUserLocation = (silent = false) => {
+    if (!navigator?.geolocation) {
+      if (!silent) setLocationHint('Enter your 6-digit PIN code in the search box.');
+      return;
+    }
+    if (!silent) setLocating(true);
+    setLocationHint('');
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const { latitude, longitude } = pos.coords;
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          );
+          const data = await res.json();
+          const addr = data?.address || {};
+          const rawPin = String(addr.postcode || '').replace(/\D/g, '').slice(0, 6);
+          const areaName =
+            addr.suburb || addr.village || addr.town || addr.city_district || addr.city || 'Your Area';
+
+          if (/^\d{6}$/.test(rawPin)) {
+            setNearbyClusters(buildNearbyPinsForQuery(rawPin, areaName));
+          } else {
+            setLocationHint('Could not detect a 6-digit PIN here. Please enter your PIN.');
+          }
+        } catch {
+          if (!silent) {
+            setLocationHint('Unable to look up PIN for your coordinates. Please enter your PIN.');
+          }
+        } finally {
+          setLocating(false);
+        }
+      },
+      () => {
+        setLocating(false);
+        if (!silent) {
+          setLocationHint('Location access declined. Enter your 6-digit PIN code on the map.');
+        }
+      },
+      { timeout: 6000 }
+    );
+  };
+
+  // Auto-detect only if browser location permission is already granted (no intrusive prompt on page load)
+  useEffect(() => {
+    if (navigator?.permissions?.query) {
+      navigator.permissions
+        .query({ name: 'geolocation' })
+        .then((status) => {
+          if (status.state === 'granted') {
+            detectUserLocation(true);
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
+
+  const handleSelectPin = (pin) => {
     setActiveCentre(pin);
-    if (updateInput) setPinQuery(pin.pincode);
     setCardVisible(true);
     setMapTransform({
       scale: 1.07,
@@ -387,15 +449,14 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
       setNearbyClusters(buildNearbyPinsForQuery(q));
     }
 
-    handleSelectPin(updatedPin, true);
+    handleSelectPin(updatedPin);
   };
 
   const handleResetView = () => {
     setMapTransform({ scale: 1, x: 0, y: 0 });
-    setActiveCentre(KENDRA_PINS[0]);
+    setActiveCentre(null);
     setPinQuery('');
-    setNearbyClusters(DEFAULT_NEARBY_PINS);
-    setCardVisible(true);
+    setCardVisible(false);
   };
 
   return (
@@ -424,12 +485,12 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
         />
       </div>
 
-      {/* Subtle Traditional Indian Mandala Corner Art (Bottom-Left & Top-Right) */}
+      {/* Subtle Traditional Indian Mandala Corner Art (Tucked Cleanly Away from Text) */}
       <img
         src="/images/mandala-grand-white.png"
         alt=""
         aria-hidden="true"
-        className="w-[440px] h-[440px] object-contain absolute -bottom-36 -left-36 opacity-[0.13] pointer-events-none select-none z-1"
+        className="w-[400px] h-[400px] object-contain absolute -bottom-56 -left-56 opacity-[0.06] pointer-events-none select-none z-1"
       />
       <img
         src="/images/mandala-grand-white.png"
@@ -450,60 +511,35 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
             </h2>
 
             {/* Concise Subtitle (Matter Sans) */}
-            <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] leading-relaxed mb-6 font-normal">
-              Verified Digital Seva Kendras are already thriving in your neighbourhood. Tap a nearby PIN or search yours.
+            <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] leading-relaxed mb-7 font-normal">
+              Have questions or doubts before starting? Look up thriving VLEs near you, explore their centres, and contact them directly for real-world guidance.
             </p>
 
-            {/* Detected Nearby PIN Codes Label */}
-            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/75 mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Detected 3 PIN codes around you</span>
-            </div>
+            {/* Primary & Secondary Pill CTA Buttons (Side by Side) */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  const input = document.getElementById('locator-pin-input');
+                  if (input) {
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => input.focus(), 250);
+                  }
+                }}
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs whitespace-nowrap shrink-0"
+              >
+                <Search className="w-3.5 h-3.5 text-white shrink-0" />
+                <span>Find CSC Centre</span>
+              </button>
 
-            {/* 3 Clean, Airy Clickable Nearby PIN Pills (Zero Truncation, Zero Clutter) */}
-            <div className="flex flex-wrap gap-2 mb-7">
-              {nearbyClusters.map((cluster) => {
-                const isCurrent = activeCentre?.pincode === cluster.pincode;
-                const basePin =
-                  KENDRA_PINS.find((p) => p.id === cluster.pinId) || KENDRA_PINS[0];
-                const targetPin = {
-                  ...basePin,
-                  pincode: cluster.pincode,
-                  cscId: `CSC0${cluster.pincode}45`,
-                  address: basePin.address.replace(/\d{6}$/, cluster.pincode),
-                };
-                const shortArea = cluster.title.split('·')[0].trim();
-                return (
-                  <button
-                    key={cluster.pincode}
-                    type="button"
-                    onClick={() => handleSelectPin(targetPin, true)}
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
-                      isCurrent
-                        ? 'bg-white text-[#0a1628] border-white shadow-md'
-                        : 'bg-white/[0.06] hover:bg-white/[0.12] text-white border-white/20'
-                    }`}
-                  >
-                    <MapPin className={`w-3.5 h-3.5 ${isCurrent ? 'text-[#ff5500]' : 'text-white/75'}`} />
-                    <span>{cluster.pincode}</span>
-                    <span className={isCurrent ? 'text-slate-500 font-medium' : 'text-white/60 font-medium'}>
-                      · {shortArea}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Clean Pill CTA Button */}
-            <div>
               <button
                 type="button"
                 onClick={() => onOpenCalculator?.()}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] group cursor-pointer shadow-xs"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.10] backdrop-blur-xl border border-white/20 text-white text-xs font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] group cursor-pointer shadow-xs whitespace-nowrap shrink-0"
               >
-                <Calculator className="w-4 h-4 text-white shrink-0" />
+                <Calculator className="w-3.5 h-3.5 text-white shrink-0" />
                 <span>Earning Calculator</span>
-                <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
               </button>
             </div>
           </div>
@@ -512,10 +548,10 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
               RIGHT 8 COLS: CLEAN MAP-FIRST CONTAINER (MINIMAL CHROME)
               ================================================================ */}
           <div className="lg:col-span-8">
-            <div className="relative overflow-hidden rounded-[24px] p-3.5 sm:p-4 bg-white shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20">
+            <div className="relative overflow-hidden rounded-[26px] p-3.5 sm:p-4 bg-gradient-to-br from-white/[0.14] via-white/[0.06] to-white/[0.02] backdrop-blur-2xl backdrop-saturate-150 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20">
               {/* Compact Top Toolbar: Clean Title on Left, PIN Input + Find CSC Centre on Right */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1 pb-3.5">
-                <h3 className="text-base sm:text-[18px] font-bold text-[#0a1628] tracking-tight">
+                <h3 className="text-base sm:text-[18px] font-bold text-white tracking-tight drop-shadow-xs">
                   CSC Centre Locator
                 </h3>
 
@@ -524,9 +560,10 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                   onSubmit={handleSearch}
                   className="flex items-center gap-2 self-stretch sm:self-auto"
                 >
-                  <div className="relative flex-1 sm:w-48 flex items-center bg-[#f4f6fa] border border-slate-200/90 focus-within:border-[#0a1628] rounded-xl px-3 py-2 transition-colors">
+                  <div className="relative flex-1 sm:w-48 flex items-center bg-white/95 border border-white/30 focus-within:border-white rounded-xl px-3 py-2 transition-colors shadow-xs">
                     <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0 mr-1.5" />
                     <input
+                      id="locator-pin-input"
                       type="text"
                       value={pinQuery}
                       onChange={(e) => setPinQuery(e.target.value)}
@@ -787,7 +824,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                               <img
                                 src={activeCentre.avatar}
                                 alt={activeCentre.vleName}
-                                className="w-full h-full object-cover object-top"
+                                className="w-full h-full object-cover object-top scale-[1.85] origin-[50%_12%]"
                               />
                             </div>
 
