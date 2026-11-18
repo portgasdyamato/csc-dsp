@@ -441,30 +441,27 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
       <div className="relative z-10 max-w-[1240px] mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* ================================================================
-              LEFT 4 COLS: EDITORIAL HEADLINE + FROSTED GLASS CLUSTER CARDS
+              LEFT 4 COLS: CALM, LOW-COGNITIVE EDITORIAL + 3 COMPACT PIN PILLS
               ================================================================ */}
           <div className="lg:col-span-4">
-            {/* Frosted Glass Credential Pill */}
-
-
             {/* Display Headline (Season Mix Serif) */}
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-[1.12] mb-2.5 drop-shadow-sm">
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold text-white tracking-[-0.03em] leading-[1.12] mb-3 drop-shadow-sm">
               See Other VLEs &amp; CSC Centres Right Around You.
             </h2>
 
-            {/* Subtitle (Matter Sans) */}
-            <p className="text-xs sm:text-[13px] text-[#c5d5ec] leading-relaxed mb-4 font-normal">
-              People from your own neighbourhood and district are already running successful CSC centres. Check active VLEs near you, if they can do it, so can you.
+            {/* Concise Subtitle (Matter Sans) */}
+            <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] leading-relaxed mb-6 font-normal">
+              Verified Digital Seva Kendras are already thriving in your neighbourhood. Tap a nearby PIN or search yours.
             </p>
 
             {/* Detected Nearby PIN Codes Label */}
-            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/80 mb-2.5">
+            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/75 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Detected 3 PIN codes around you</span>
             </div>
 
-            {/* 3 Interactive Frosted Glass Nearby PIN Cards */}
-            <div className="space-y-2.5">
+            {/* 3 Clean, Airy Clickable Nearby PIN Pills (Zero Truncation, Zero Clutter) */}
+            <div className="flex flex-wrap gap-2 mb-7">
               {nearbyClusters.map((cluster) => {
                 const isCurrent = activeCentre?.pincode === cluster.pincode;
                 const basePin =
@@ -475,39 +472,22 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                   cscId: `CSC0${cluster.pincode}45`,
                   address: basePin.address.replace(/\d{6}$/, cluster.pincode),
                 };
+                const shortArea = cluster.title.split('·')[0].trim();
                 return (
                   <button
                     key={cluster.pincode}
                     type="button"
                     onClick={() => handleSelectPin(targetPin, true)}
-                    className={`w-full text-left relative overflow-hidden rounded-[18px] p-3.5 backdrop-blur-3xl backdrop-saturate-150 border transition-all duration-300 group flex items-start justify-between gap-3 cursor-pointer ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
                       isCurrent
-                        ? 'bg-gradient-to-br from-white/[0.26] via-white/[0.14] to-white/[0.06] border-white/40 shadow-lg -translate-y-0.5'
-                        : 'bg-gradient-to-br from-white/[0.18] via-white/[0.08] to-white/[0.03] border-white/18 hover:from-white/[0.24] hover:border-white/30'
+                        ? 'bg-white text-[#0a1628] border-white shadow-md'
+                        : 'bg-white/[0.06] hover:bg-white/[0.12] text-white border-white/20'
                     }`}
                   >
-                    <div className="flex items-start gap-3 min-w-0">
-                      <div
-                        className={`w-8 h-8 rounded-xl backdrop-blur-md border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
-                          isCurrent
-                            ? 'bg-[#ff5500] border-[#ff5500] text-white shadow-xs'
-                            : 'bg-gradient-to-br from-white/[0.26] to-white/[0.08] border-white/25 text-white'
-                        }`}
-                      >
-                        <Building2 className="w-3.5 h-3.5 text-white" />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-[13.5px] font-bold text-white tracking-tight truncate">
-                          {cluster.title}
-                        </div>
-                        <div className="text-[11.5px] text-white/80 leading-snug mt-0.5 truncate">
-                          {cluster.subtitle}
-                        </div>
-                      </div>
-                    </div>
-
-                    <span className="px-2.5 py-1 rounded-full bg-white/[0.12] border border-white/20 text-[10.5px] font-semibold text-white shrink-0">
-                      {cluster.badge}
+                    <MapPin className={`w-3.5 h-3.5 ${isCurrent ? 'text-[#ff5500]' : 'text-white/75'}`} />
+                    <span>{cluster.pincode}</span>
+                    <span className={isCurrent ? 'text-slate-500 font-medium' : 'text-white/60 font-medium'}>
+                      · {shortArea}
                     </span>
                   </button>
                 );
@@ -515,7 +495,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
             </div>
 
             {/* Clean Pill CTA Button */}
-            <div className="mt-5">
+            <div>
               <button
                 type="button"
                 onClick={() => onOpenCalculator?.()}
@@ -529,35 +509,23 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
           </div>
 
           {/* ================================================================
-              RIGHT 8 COLS: FROSTED GLASS LOCATOR CONTAINER + INTERACTIVE MAP
-              Matches the Frosted Glass Stage of Recommended Hardware Setup
+              RIGHT 8 COLS: CLEAN MAP-FIRST CONTAINER (MINIMAL CHROME)
               ================================================================ */}
           <div className="lg:col-span-8">
-            <div className="relative overflow-hidden rounded-[28px] p-4 sm:p-5 bg-gradient-to-br from-white/[0.16] via-white/[0.07] to-white/[0.03] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-2xl">
-              {/* Compact Top Glass Toolbar: Title on Left, PIN Input + Find Centre Button on Right */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-white/15">
-                <div>
-                  <div className="flex items-center gap-2.5">
-                    <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-tight drop-shadow-sm">
-                      CSC Centre Locator
-                    </h3>
-                    <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.12] border border-white/20 text-[11px] font-semibold text-white/90">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span>{activeCentre?.activeCount || '5.5L+ Active'}</span>
-                    </span>
-                  </div>
-                  <p className="text-[11.5px] sm:text-xs text-white/75 mt-0.5">
-                    Enter your 6-digit PIN code or click any map pin to view VLE profile &amp; services
-                  </p>
-                </div>
+            <div className="relative overflow-hidden rounded-[24px] p-3.5 sm:p-4 bg-white shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20">
+              {/* Compact Top Toolbar: Clean Title on Left, PIN Input + Find CSC Centre on Right */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1 pb-3.5">
+                <h3 className="text-base sm:text-[18px] font-bold text-[#0a1628] tracking-tight">
+                  CSC Centre Locator
+                </h3>
 
-                {/* Compact PIN Search Input + Find Centre CTA */}
+                {/* Compact PIN Search Input + Find CSC Centre CTA */}
                 <form
                   onSubmit={handleSearch}
                   className="flex items-center gap-2 self-stretch sm:self-auto"
                 >
-                  <div className="relative flex-1 sm:w-48 flex items-center bg-white/95 border border-white/30 focus-within:border-white/60 rounded-xl px-3 py-2 shadow-inner transition-colors">
-                    <MapPin className="w-3.5 h-3.5 text-[#0a1628] shrink-0 mr-1.5" />
+                  <div className="relative flex-1 sm:w-48 flex items-center bg-[#f4f6fa] border border-slate-200/90 focus-within:border-[#0a1628] rounded-xl px-3 py-2 transition-colors">
+                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0 mr-1.5" />
                     <input
                       type="text"
                       value={pinQuery}
@@ -580,7 +548,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
 
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-md shrink-0"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs shrink-0"
                   >
                     <Search className="w-3.5 h-3.5 text-white" />
                     <span>Find CSC Centre</span>
@@ -693,32 +661,6 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                       <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
                       <path d="M 118 -15 L 296 435" />
                     </g>
-
-                    {/* Dashed Network Connection Paths Between Selected Centre & Neighbouring Kendras */}
-                    {activeCentre && (
-                      <g>
-                        {KENDRA_PINS.filter((p) => p.id !== activeCentre.id)
-                          .slice(0, 3)
-                          .map((target) => (
-                            <line
-                              key={target.id}
-                              x1={activeCentre.x}
-                              y1={activeCentre.y - 6}
-                              x2={target.x}
-                              y2={target.y - 6}
-                              stroke="#0a1628"
-                              strokeWidth="1.6"
-                              strokeDasharray="4 4"
-                              strokeOpacity="0.28"
-                            />
-                          ))}
-                      </g>
-                    )}
-
-                    {/* Floating Cartographic Hub Badges (Inspired by Live Tracking UI) */}
-                    <MapHubBadge x={252} y={76} name="Laxmi Nagar" count="4" />
-                    <MapHubBadge x={432} y={196} name="Shakarpur" count="2" />
-                    <MapHubBadge x={316} y={338} name="IP Extension" count="3" />
 
                     {/* Interactive CSC Storefront Pins */}
                     {KENDRA_PINS.map((pin) => {
