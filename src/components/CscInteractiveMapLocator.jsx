@@ -285,7 +285,7 @@ export default function CscInteractiveMapLocator({ onOpenLocatorModal }) {
                   href="#get-started"
                   className="inline-flex items-center gap-1 font-semibold text-[#ff884d] hover:text-white transition-colors cursor-pointer"
                 >
-                  <span>Apply to Become a VLE</span>
+                  <span>Join as VLE</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
               </div>

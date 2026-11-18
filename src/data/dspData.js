@@ -86,12 +86,12 @@ export const CITIZEN_NEEDS = [
 export const PLATFORM_CARDS = [
   {
     number: '01',
-    title: 'Be Your Own Boss',
-    tag: 'WORK FROM HOME',
+    title: 'Run Your Own Hometown Enterprise',
+    tag: 'WORK FROM YOUR TOWN',
     description:
-      'Run an independent digital centre directly from your village or local neighborhood. Enjoy self-employment without migration expenses, high commercial rents, or rigid corporate work hours.',
+      'Run an independent digital centre directly from your village or local neighborhood without migration expenses, high rents, or rigid work hours.',
     detailedDescription:
-      'Establish an independent digital enterprise right inside your gram panchayat or home locality. As an authorized VLE, you eliminate the heavy costs of urban migration, avoid exorbitant commercial shop rentals, and operate with complete professional freedom. You set your own working hours, serve your neighboring families, and build a lasting business as a respected local entrepreneur with full operational independence.',
+      'Establish an independent digital enterprise right inside your gram panchayat or home locality. As an authorized VLE, you eliminate urban migration costs, avoid heavy commercial shop rentals, set your own working hours, and build a lasting business with full operational independence.',
     features: [
       'Zero city migration or urban rent expenses',
       'Complete freedom to set your working hours',
@@ -106,12 +106,12 @@ export const PLATFORM_CARDS = [
   },
   {
     number: '02',
-    title: 'Multi-Stream Daily Revenue',
+    title: 'Earn Financial Independence Daily',
     tag: 'FINANCIAL INDEPENDENCE',
     description:
-      'Collect consistent daily transaction income across AEPS cash disbursals, BBPS utility bill commissions, PM Kisan KYC verification, and insurance enrollments. No salary delays.',
+      'Collect consistent daily transaction income across AEPS cash disbursals, utility bill commissions, PM-Kisan KYC, and insurance enrollments.',
     detailedDescription:
-      'Generate reliable daily income with direct commission payouts across 400+ government and utility services. Earn instant margins on every Aadhaar cash withdrawal, electricity and water bill collection, PM-Kisan biometric authentication, and vehicle insurance policy issued. All earnings reconcile in real time into your unified Digital Seva wallet without corporate payroll delays or intermediaries.',
+      'Generate reliable daily income with direct commission payouts across 400+ government and utility services. Earn instant margins on every Aadhaar cash withdrawal, electricity bill collection, and insurance policy issued, credited in real time to your unified Digital Seva wallet.',
     features: [
       'Direct commission credited instantly to wallet',
       '400+ government & utility services in demand',
@@ -126,17 +126,17 @@ export const PLATFORM_CARDS = [
   },
   {
     number: '03',
-    title: 'Deep Community Trust & Respect',
-    tag: 'VILLAGE RESPECT',
+    title: 'Community Respect & National Impact',
+    tag: 'NATION BUILDING & IMPACT',
     description:
-      'Become the trusted digital lifeline for your entire gram panchayat. Assist village elders with pension disbursals, guide farmers with crop insurance, and help students register for national examinations.',
+      'Bridge the digital divide in your gram panchayat by delivering welfare, banking, and telemedicine while earning lasting community respect across Bharat.',
     detailedDescription:
-      'Transform into the most vital digital anchor in your panchayat community. You become the trusted guide who delivers monthly pension life certificates to elderly neighbors, helps marginal farmers secure crop insurance benefits, and enables local students to fill competitive examination forms without travelling to distant cities. The entire village community relies upon your guidance, knowledge, and integrity.',
+      'Lead grassroots digital transformation for both your village and the nation. By bringing essential healthcare, welfare schemes, and financial inclusion to every household, you save families long district journeys and earn deep respect as a pillar of Digital India.',
     features: [
       'Trusted helper for every family in your panchayat',
-      'High social standing and community leadership',
+      'Drive digital inclusion for your village and nation',
     ],
-    actionLabel: 'Respected Village Leader',
+    actionLabel: 'Grassroots Nation Builder',
     outerBg: 'bg-[#091830]',
     sheetColor: '#061224',
     textColor: 'text-white',
@@ -146,27 +146,27 @@ export const PLATFORM_CARDS = [
   },
   {
     number: '04',
-    title: 'Official Government Backing',
+    title: 'Official Government Portal Backing',
     tag: 'GOVERNMENT BACKED',
     description:
-      'Operate with direct Digital India credentials under MeitY. Receive an authorized Digital Seva Kendra ID, free specialized training from CSC Academy, and dedicated guidance from your District Manager.',
+      'Operate with direct Digital India credentials under MeitY, an authorized Digital Seva ID, CSC Academy training, and District Manager support.',
     detailedDescription:
-      'Operate as an officially authorized digital services partner under the Ministry of Electronics and Information Technology (MeitY). Your centre is certified with a verified Digital Seva ID on the national portal, backed by structured skilling from CSC Academy, and supported directly by district administrative managers to ensure fast approvals, continuous compliance, and priority access to newly launched state and central schemes.',
+      'Operate as an officially authorized digital services partner under the Ministry of Electronics and Information Technology (MeitY). Receive a verified Digital Seva ID, structured skilling from CSC Academy, and direct on-ground support from your District Manager for fast approvals.',
     features: [
       'Official Digital Seva ID & MeitY certificate',
       'Direct on-ground guidance from District Manager',
     ],
     actionLabel: 'Authorized Digital India Centre',
-    outerBg: 'bg-[#0d1e3a]',
-    sheetColor: '#081427',
-    textColor: 'text-white',
-    subColor: 'text-[#9cb1d4]',
+    outerBg: 'bg-white',
+    sheetColor: '#f8fafc',
+    textColor: 'text-[#0a1628]',
+    subColor: 'text-[#334766]',
     accentColor: 'text-[#ff5500]',
     variant: 'obsidian',
   },
   {
     number: '05',
-    title: 'Zero Franchise Fee & Royalties',
+    title: 'Zero Franchise Fee',
     tag: 'TRANSPARENT MODEL',
     description:
       'Unlike private franchises charging lakhs, CSC government portal onboarding has zero setup license fees. Repurpose your existing laptop and room with low upfront capital.',

@@ -1,8 +1,99 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   1. SEASON MIX — HEADINGS FONT FAMILY (FROM SEASON COLLECTION)
+   ========================================================================== */
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Season Mix';
+  src: url('/fonts/SeasonMix-TRIAL-Heavy.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   2. MATTER — BODY FONT FAMILY (WITH SEASON SANS WOFF2 FALLBACK)
+   ========================================================================== */
+@font-face {
+  font-family: 'Matter';
+  src: local('Matter Light'), local('Matter-Light'),
+       url('/fonts/SeasonSans-TRIAL-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: local('Matter Regular'), local('Matter-Regular'), local('Matter'),
+       url('/fonts/SeasonSans-TRIAL-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: local('Matter Medium'), local('Matter-Medium'),
+       url('/fonts/SeasonSans-TRIAL-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: local('Matter SemiBold'), local('Matter-SemiBold'),
+       url('/fonts/SeasonSans-TRIAL-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: local('Matter Bold'), local('Matter-Bold'),
+       url('/fonts/SeasonSans-TRIAL-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Season Mix', Georgia, serif;
+    --font-sans: 'Matter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
@@ -11,14 +102,25 @@
     font-family: var(--font-sans);
     background-color: #f6f6f3;
     color: #0d1117;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   body {
+    font-family: var(--font-sans);
     overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
 }
 
 .font-mono-code {

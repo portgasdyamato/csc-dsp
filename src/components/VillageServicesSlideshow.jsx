@@ -1,196 +1,940 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, MapPin } from 'lucide-react';
+import {
+  MapPin,
+  Search,
+  X,
+  Plus,
+  Minus,
+  LocateFixed,
+  Star,
+  Clock,
+  Layers,
+  Navigation,
+  Phone,
+  Building2,
+  Calculator,
+  ArrowUpRight,
+} from 'lucide-react';
 
-const SLIDES = [
+// ============================================================================
+// STOREFRONT TEARDROP PIN SVG
+// High-craft teardrop map marker with CSC storefront kiosk icon inside
+// ============================================================================
+function StorefrontMapPin({ selected = false, label = '' }) {
+  if (selected) {
+    return (
+      <g className="cursor-pointer">
+        {/* Outer Animated Radar Pulse Rings */}
+        <circle cx="0" cy="-22" r="38" fill="#ff5500" fillOpacity="0.11" />
+        <circle
+          cx="0"
+          cy="-22"
+          r="26"
+          fill="#ff5500"
+          fillOpacity="0.22"
+          stroke="#ff5500"
+          strokeWidth="1"
+          strokeOpacity="0.35"
+        />
+        {/* Ground Shadow */}
+        <ellipse cx="0" cy="4" rx="8.5" ry="3.2" fill="#0a1628" fillOpacity="0.26" />
+        {/* Orange Teardrop Body with Crisp White Rim */}
+        <path
+          d="M 0 0 C -5 -7 -19 -14 -19 -25 A 19 19 0 1 1 19 -25 C 19 -14 5 -7 0 0 Z"
+          fill="#ff5500"
+          stroke="#ffffff"
+          strokeWidth="2"
+        />
+        {/* Storefront Kiosk Icon Inside Pin */}
+        <g
+          transform="translate(-8.5, -34)"
+          stroke="#ffffff"
+          strokeWidth="1.6"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M2 6L3.5 2H13.5L15 6" />
+          <path d="M2 6C2 7.2 3 8 4.2 8C5.3 8 6.3 7.2 6.3 6C6.3 7.2 7.3 8 8.5 8C9.7 8 10.7 7.2 10.7 6C10.7 7.2 11.7 8 12.8 8C14 8 15 7.2 15 6" />
+          <path d="M3.2 8V14.5H13.8V8" />
+          <rect x="6.5" y="10.2" width="4" height="4.3" />
+        </g>
+        {/* Optional Active Area Label Below Selected Pin */}
+        {label && (
+          <g transform="translate(0, 17)">
+            <rect
+              x="-42"
+              y="-10"
+              width="84"
+              height="20"
+              rx="10"
+              fill="#ffffff"
+              fillOpacity="0.95"
+              stroke="#cbd5e1"
+              strokeWidth="1"
+            />
+            <text
+              x="0"
+              y="3.5"
+              textAnchor="middle"
+              fill="#0a1628"
+              fontSize="10.5"
+              fontWeight="700"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              {label}
+            </text>
+          </g>
+        )}
+      </g>
+    );
+  }
+
+  return (
+    <g className="cursor-pointer">
+      {/* Ground Shadow */}
+      <ellipse cx="0" cy="3" rx="6.5" ry="2.4" fill="#0a1628" fillOpacity="0.22" />
+      {/* Dark Navy Teardrop Body with Crisp White Rim */}
+      <path
+        d="M 0 0 C -3.5 -5 -14 -11 -14 -19 A 14 14 0 1 1 14 -19 C 14 -11 3.5 -5 0 0 Z"
+        fill="#0a1628"
+        stroke="#ffffff"
+        strokeWidth="1.6"
+      />
+      {/* Storefront Kiosk Icon Inside Pin */}
+      <g
+        transform="translate(-6.5, -26)"
+        stroke="#ffffff"
+        strokeWidth="1.35"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M1.5 5L2.8 1.5H10.2L11.5 5" />
+        <path d="M1.5 5C1.5 6 2.3 6.6 3.2 6.6C4.1 6.6 4.8 6 4.8 5C4.8 6 5.6 6.6 6.5 6.6C7.4 6.6 8.2 6 8.2 5C8.2 6 8.9 6.6 9.8 6.6C10.7 6.6 11.5 6 11.5 5" />
+        <path d="M2.5 6.6V11.5H10.5V6.6" />
+      </g>
+    </g>
+  );
+}
+
+// ============================================================================
+// FLOATING CARTROGRAPHIC HUB BADGE (Matches Live Tracking Reference UI)
+// ============================================================================
+function MapHubBadge({ x, y, name, count }) {
+  const width = Math.max(96, name.length * 6.5 + 38);
+  const half = width / 2;
+  return (
+    <g transform={`translate(${x}, ${y})`} className="pointer-events-none">
+      {/* Subtle Drop Shadow */}
+      <rect
+        x={-half}
+        y="-12"
+        width={width}
+        height="24"
+        rx="8"
+        fill="#0a1628"
+        fillOpacity="0.08"
+        transform="translate(0, 2)"
+      />
+      {/* White Pill Body */}
+      <rect
+        x={-half}
+        y="-12"
+        width={width}
+        height="24"
+        rx="8"
+        fill="#ffffff"
+        stroke="#e2e8f0"
+        strokeWidth="1"
+      />
+      {/* Little Bottom Pointer Triangle */}
+      <polygon points="-4,12 4,12 0,16" fill="#ffffff" />
+      {/* Hub Name + Dot + Count */}
+      <text
+        x="0"
+        y="3.5"
+        textAnchor="middle"
+        fill="#0a1628"
+        fontSize="10.5"
+        fontWeight="700"
+        style={{ fontFamily: 'var(--font-sans)' }}
+      >
+        {name} <tspan fill="#0a1628">•</tspan> <tspan fill="#334155">{count}</tspan>
+      </text>
+    </g>
+  );
+}
+
+// ============================================================================
+// ACTIVE VLE LOCATIONS ON THE INTERACTIVE MAP
+// ============================================================================
+const KENDRA_PINS = [
   {
-    id: 1,
-    image: '/images/csc-service-aadhaar.jpg',
-    vleName: 'Pooja Verma, VLE',
-    service: 'Doorstep Biometric & Pension Desk',
-    location: 'Gram Panchayat Haliyapur, UP',
+    id: 'centre-1',
+    vleName: 'Suman Verma',
+    cscId: 'CSC011092345',
+    rating: '4.8',
+    reviews: 126,
+    avatar: '/images/vle-sunita-cutout.png?v=50',
+    pincode: '110092',
+    areaName: 'Mandawali',
+    districtLabel: 'East Delhi Cluster',
+    activeCount: '18 Active Kendras',
+    address: 'Shop No. 12, Mandawali Main Road, East Delhi – 110092',
+    hours: 'Mon – Sat, 9:00 AM – 6:00 PM',
+    phone: '+91 98765 43210',
+    services: ['Aadhaar', 'PAN', 'Bill Payment'],
+    moreCount: '+6',
+    x: 245,
+    y: 222,
   },
   {
-    id: 2,
-    image: '/images/csc-service-certificate.jpg',
-    vleName: 'Rajesh Meena, VLE',
-    service: 'Land Records & Revenue Deed Centre',
-    location: 'Kendra Rampura, Rajasthan',
+    id: 'centre-2',
+    vleName: 'Rajeshwar Rao',
+    cscId: 'CSC050318518',
+    rating: '4.9',
+    reviews: 142,
+    avatar: '/images/vle-rajeshwar-cutout.png?v=50',
+    pincode: '503185',
+    areaName: 'Nizamabad',
+    districtLabel: 'Telangana Gram Cluster',
+    activeCount: '24 Active Kendras',
+    address: 'Panchayat Road, Block 4, Main Market – 503185',
+    hours: 'Mon – Sat, 8:30 AM – 7:00 PM',
+    phone: '+91 98480 14599',
+    services: ['Aadhaar', 'Banking', 'PM-Kisan'],
+    moreCount: '+8',
+    x: 148,
+    y: 148,
   },
   {
-    id: 3,
-    image: '/images/csc-service-banking.jpg',
-    vleName: 'Tariq Ahmed, VLE',
-    service: 'Micro-ATM & Welfare Cash Kiosk',
-    location: 'Seva Kendra Baramulla, J&K',
+    id: 'centre-3',
+    vleName: 'Gurpreet Singh',
+    cscId: 'CSC014200190',
+    rating: '4.9',
+    reviews: 98,
+    avatar: '/images/vle-gurpreet-cutout.png?v=50',
+    pincode: '142001',
+    areaName: 'Moga Main',
+    districtLabel: 'Punjab Rural Cluster',
+    activeCount: '15 Active Kendras',
+    address: 'Plot 18, Near Community Health Centre, Moga – 142001',
+    hours: 'Mon – Sat, 9:00 AM – 6:30 PM',
+    phone: '+91 94150 14599',
+    services: ['DigiPay', 'FASTag', 'Passport'],
+    moreCount: '+5',
+    x: 96,
+    y: 266,
   },
   {
-    id: 4,
-    image: '/images/csc-service-education.jpg',
-    vleName: 'Deepak Shrivastava, VLE',
-    service: 'CSC Academy & Youth Digital Skilling',
-    location: 'Gram Panchayat Chhatarpur, MP',
+    id: 'centre-4',
+    vleName: 'Meenakshi Nair',
+    cscId: 'CSC067800154',
+    rating: '4.8',
+    reviews: 114,
+    avatar: '/images/vle-meenakshi-cutout.png?v=50',
+    pincode: '678001',
+    areaName: 'Palakkad',
+    districtLabel: 'Kerala Panchayat Hub',
+    activeCount: '21 Active Kendras',
+    address: 'Shop 7, Vikas Marg Main Chowk, Palakkad – 678001',
+    hours: 'Mon – Sat, 9:00 AM – 6:00 PM',
+    phone: '+91 98220 14599',
+    services: ['e-District', 'PAN', 'Insurance'],
+    moreCount: '+7',
+    x: 205,
+    y: 342,
+  },
+  {
+    id: 'centre-5',
+    vleName: 'Arjun Sharma',
+    cscId: 'CSC017100112',
+    rating: '4.7',
+    reviews: 89,
+    avatar: '/images/vle-tashi-cutout.png?v=50',
+    pincode: '171001',
+    areaName: 'Shimla Hub',
+    districtLabel: 'Himachal Valley Cluster',
+    activeCount: '12 Active Kendras',
+    address: 'Station Road, Near GramSeva Kendra – 171001',
+    hours: 'Mon – Sat, 9:30 AM – 6:30 PM',
+    phone: '+91 94140 14599',
+    services: ['Aadhaar', 'Pension', 'Electricity'],
+    moreCount: '+4',
+    x: 345,
+    y: 162,
+  },
+  {
+    id: 'centre-6',
+    vleName: 'Pooja Verma',
+    cscId: 'CSC022600171',
+    rating: '4.9',
+    reviews: 164,
+    avatar: '/images/vle-sunita-cutout.png?v=50',
+    pincode: '226001',
+    areaName: 'Shakarpur',
+    districtLabel: 'Lucknow Division Hub',
+    activeCount: '29 Active Kendras',
+    address: 'Main Bazaar Road, Ward 9, Sector 2 – 226001',
+    hours: 'Mon – Sat, 9:00 AM – 7:00 PM',
+    phone: '+91 98930 14599',
+    services: ['Banking', 'Aadhaar', 'Ayushman'],
+    moreCount: '+6',
+    x: 392,
+    y: 268,
   },
 ];
 
-export default function VillageServicesSlideshow({ onOpenLocator }) {
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [quickQuery, setQuickQuery] = useState('');
+// 3 Nearby PIN Codes Detected Around the User's Area
+const DEFAULT_NEARBY_PINS = [
+  {
+    pinId: 'centre-1',
+    pincode: '110092',
+    title: 'Mandawali · East Delhi',
+    subtitle: 'Suman Verma & 18 verified VLEs · 1.2 km away',
+    badge: 'PIN 110092',
+  },
+  {
+    pinId: 'centre-2',
+    pincode: '110091',
+    title: 'Mayur Vihar · Block 4',
+    subtitle: 'Rajeshwar Rao & 14 active Kendras · 2.1 km away',
+    badge: 'PIN 110091',
+  },
+  {
+    pinId: 'centre-6',
+    pincode: '110093',
+    title: 'Shakarpur · Vikas Marg',
+    subtitle: 'Pooja Verma & 11 active Kendras · 2.8 km away',
+    badge: 'PIN 110093',
+  },
+];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIdx((prev) => (prev + 1) % SLIDES.length);
-    }, 5500);
-    return () => clearInterval(timer);
-  }, []);
+function buildNearbyPinsForQuery(basePinCode) {
+  const num = parseInt(basePinCode, 10);
+  if (Number.isNaN(num)) return DEFAULT_NEARBY_PINS;
+  const p1 = String(num).padStart(6, '0');
+  const p2 = String(num + 1).padStart(6, '0');
+  const p3 = String(Math.max(100000, num - 1)).padStart(6, '0');
+  return [
+    {
+      pinId: 'centre-1',
+      pincode: p1,
+      title: `Primary Cluster · ${p1}`,
+      subtitle: 'Suman Verma & 18 verified VLEs · 1.2 km away',
+      badge: `PIN ${p1}`,
+    },
+    {
+      pinId: 'centre-2',
+      pincode: p2,
+      title: `Adjacent Block · ${p2}`,
+      subtitle: 'Rajeshwar Rao & 14 active Kendras · 2.1 km away',
+      badge: `PIN ${p2}`,
+    },
+    {
+      pinId: 'centre-6',
+      pincode: p3,
+      title: `Neighbouring Ward · ${p3}`,
+      subtitle: 'Pooja Verma & 11 active Kendras · 2.8 km away',
+      badge: `PIN ${p3}`,
+    },
+  ];
+}
 
-  const activeSlide = SLIDES[currentIdx];
+export default function VillageServicesSlideshow({ onOpenCalculator }) {
+  const [pinQuery, setPinQuery] = useState('');
+  const [nearbyClusters, setNearbyClusters] = useState(DEFAULT_NEARBY_PINS);
+  const [activeCentre, setActiveCentre] = useState(KENDRA_PINS[0]);
+  const [cardVisible, setCardVisible] = useState(true);
+  const [mapTransform, setMapTransform] = useState({ scale: 1, x: 0, y: 0 });
+
+  const handleSelectPin = (pin, updateInput = false) => {
+    setActiveCentre(pin);
+    if (updateInput) setPinQuery(pin.pincode);
+    setCardVisible(true);
+    setMapTransform({
+      scale: 1.07,
+      x: (245 - pin.x) * 0.24,
+      y: (222 - pin.y) * 0.24,
+    });
+  };
 
   const handleSearch = (e) => {
     e?.preventDefault();
-    onOpenLocator?.(quickQuery);
+    const q = pinQuery.trim();
+    if (!q) return;
+
+    const exact = KENDRA_PINS.find((p) => p.pincode === q);
+    const basePin =
+      exact ||
+      KENDRA_PINS[
+        q.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) %
+          KENDRA_PINS.length
+      ];
+
+    const updatedPin = /^\d{6}$/.test(q)
+      ? {
+          ...basePin,
+          pincode: q,
+          cscId: `CSC0${q}45`,
+          address: basePin.address.replace(/\d{6}$/, q),
+        }
+      : basePin;
+
+    if (/^\d{6}$/.test(q)) {
+      setNearbyClusters(buildNearbyPinsForQuery(q));
+    }
+
+    handleSelectPin(updatedPin, true);
   };
 
-  const handleQuickSelect = (pincode) => {
-    setQuickQuery(pincode);
-    onOpenLocator?.(pincode);
+  const handleResetView = () => {
+    setMapTransform({ scale: 1, x: 0, y: 0 });
+    setActiveCentre(KENDRA_PINS[0]);
+    setPinQuery('');
+    setNearbyClusters(DEFAULT_NEARBY_PINS);
+    setCardVisible(true);
   };
 
   return (
     <section
       id="locator"
-      className="relative z-10 w-full min-h-[500px] lg:h-[540px] flex items-center bg-[#071120] text-white overflow-hidden border-b border-white/10 scroll-mt-20"
+      className="relative z-10 min-h-screen lg:h-screen flex flex-col justify-center py-14 sm:py-16 lg:py-12 px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-20"
     >
       {/* ====================================================================
-          BACKGROUND PHOTOGRAPHY SLIDESHOW LAYER
-          Image sits on the right, completely unobstructed.
+          UNIFORM BRAND NAVY (#0a1628) STAGE WITH ANALOG FILM GRAIN
+          Matches VleSupportAndHardwareSection & Get Started Section Vibe
           ==================================================================== */}
-      <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSlide.id}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1.0 }}
-            exit={{ opacity: 0, scale: 0.99 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <img
-              src={activeSlide.image}
-              alt={`${activeSlide.vleName} - ${activeSlide.service}`}
-              className="w-full h-full object-cover object-right"
-            />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Ambient Dark Gradient: Solid navy on the left for crisp text contrast, fading smoothly to reveal the clear photo on the right */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071120] via-[#071120]/80 to-transparent lg:hidden" />
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#071120] via-[#071120]/95 via-50% to-transparent w-full" />
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden bg-[#0a1628]">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(circle at 55% 45%, #0f1f38 0%, #0a1628 65%, #071120 100%)',
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.32] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='locatorGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.78  0 0 0 0 0.84  0 0 0 0 0.94  0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23locatorGrain)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+          }}
+        />
       </div>
 
-      {/* ====================================================================
-          CLEAN, LOW-COGNITIVE CENTRE LOCATOR CONTENT
-          Zero cognitive load: Instant headline, 1-line subtext, inline pincode search
-          ==================================================================== */}
-      <div className="relative z-10 max-w-[1240px] mx-auto px-6 sm:px-10 w-full py-14 lg:py-0">
-        <div className="max-w-xl">
-          {/* Subtle Tag */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[#ff884d] text-[11px] font-bold tracking-wider uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff5500]" />
-            <span>CENTRE LOCATOR</span>
-          </div>
+      {/* Subtle Traditional Indian Mandala Corner Art (Bottom-Left & Top-Right) */}
+      <img
+        src="/images/mandala-grand-white.png"
+        alt=""
+        aria-hidden="true"
+        className="w-[440px] h-[440px] object-contain absolute -bottom-36 -left-36 opacity-[0.13] pointer-events-none select-none z-1"
+      />
+      <img
+        src="/images/mandala-grand-white.png"
+        alt=""
+        aria-hidden="true"
+        className="w-[420px] h-[420px] object-contain absolute -top-36 -right-36 opacity-[0.11] pointer-events-none select-none z-1"
+      />
 
-          {/* Crisp, Direct Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-white leading-[1.18] mb-3">
-            Find Your Nearest <br />
-            <span className="text-[#ff5500]">CSC Centre.</span>
-          </h2>
+      <div className="relative z-10 max-w-[1240px] mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          {/* ================================================================
+              LEFT 4 COLS: EDITORIAL HEADLINE + FROSTED GLASS CLUSTER CARDS
+              ================================================================ */}
+          <div className="lg:col-span-4">
+            {/* Frosted Glass Credential Pill */}
 
-          {/* Short, Plain 1-Sentence Subtext */}
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal mb-5 max-w-md">
-            Locate authorized digital desks in your village for Aadhaar, banking, pensions, and 400+ government services.
-          </p>
 
-          {/* Direct Inline Search Bar */}
-          <form
-            onSubmit={handleSearch}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 max-w-lg mb-3.5"
-          >
-            <div className="relative flex-1">
-              <MapPin className="w-4 h-4 text-[#ff5500] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                value={quickQuery}
-                onChange={(e) => setQuickQuery(e.target.value)}
-                placeholder="Enter Pincode or Village (e.g. 503185)..."
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-[#ff5500] text-white placeholder:text-slate-400 text-sm outline-none transition-all backdrop-blur-md"
-              />
+            {/* Display Headline (Season Mix Serif) */}
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-[1.12] mb-2.5 drop-shadow-sm">
+              See Other VLEs &amp; CSC Centres Right Around You.
+            </h2>
+
+            {/* Subtitle (Matter Sans) */}
+            <p className="text-xs sm:text-[13px] text-[#c5d5ec] leading-relaxed mb-4 font-normal">
+              People from your own neighbourhood and district are already running successful CSC centres. Check active VLEs near you, if they can do it, so can you.
+            </p>
+
+            {/* Detected Nearby PIN Codes Label */}
+            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-white/80 mb-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Detected 3 PIN codes around you</span>
             </div>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-sm font-semibold transition-all hover:scale-102 active:scale-98 cursor-pointer shadow-lg shrink-0"
-            >
-              <span>Find Kendra</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
 
-          {/* Quick Pincode Selection Chips */}
-          <div className="flex flex-wrap items-center gap-1.5 text-xs mb-4">
-            <span className="text-slate-400 text-[11px] mr-1">Quick:</span>
-            {[
-              { label: 'Bodhan (503185)', q: '503185' },
-              { label: 'Lucknow (226001)', q: '226001' },
-              { label: 'Chhatarpur (471001)', q: '471001' },
-              { label: 'Ahmedabad (380001)', q: '380001' },
-            ].map((p) => (
+            {/* 3 Interactive Frosted Glass Nearby PIN Cards */}
+            <div className="space-y-2.5">
+              {nearbyClusters.map((cluster) => {
+                const isCurrent = activeCentre?.pincode === cluster.pincode;
+                const basePin =
+                  KENDRA_PINS.find((p) => p.id === cluster.pinId) || KENDRA_PINS[0];
+                const targetPin = {
+                  ...basePin,
+                  pincode: cluster.pincode,
+                  cscId: `CSC0${cluster.pincode}45`,
+                  address: basePin.address.replace(/\d{6}$/, cluster.pincode),
+                };
+                return (
+                  <button
+                    key={cluster.pincode}
+                    type="button"
+                    onClick={() => handleSelectPin(targetPin, true)}
+                    className={`w-full text-left relative overflow-hidden rounded-[18px] p-3.5 backdrop-blur-3xl backdrop-saturate-150 border transition-all duration-300 group flex items-start justify-between gap-3 cursor-pointer ${
+                      isCurrent
+                        ? 'bg-gradient-to-br from-white/[0.26] via-white/[0.14] to-white/[0.06] border-white/40 shadow-lg -translate-y-0.5'
+                        : 'bg-gradient-to-br from-white/[0.18] via-white/[0.08] to-white/[0.03] border-white/18 hover:from-white/[0.24] hover:border-white/30'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3 min-w-0">
+                      <div
+                        className={`w-8 h-8 rounded-xl backdrop-blur-md border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                          isCurrent
+                            ? 'bg-[#ff5500] border-[#ff5500] text-white shadow-xs'
+                            : 'bg-gradient-to-br from-white/[0.26] to-white/[0.08] border-white/25 text-white'
+                        }`}
+                      >
+                        <Building2 className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-[13.5px] font-bold text-white tracking-tight truncate">
+                          {cluster.title}
+                        </div>
+                        <div className="text-[11.5px] text-white/80 leading-snug mt-0.5 truncate">
+                          {cluster.subtitle}
+                        </div>
+                      </div>
+                    </div>
+
+                    <span className="px-2.5 py-1 rounded-full bg-white/[0.12] border border-white/20 text-[10.5px] font-semibold text-white shrink-0">
+                      {cluster.badge}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Clean Pill CTA Button */}
+            <div className="mt-5">
               <button
-                key={p.q}
                 type="button"
-                onClick={() => handleQuickSelect(p.q)}
-                className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-white/10 hover:bg-white/20 text-white/90 border border-white/15 transition-all cursor-pointer"
+                onClick={() => onOpenCalculator?.()}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] group cursor-pointer shadow-xs"
               >
-                {p.label}
+                <Calculator className="w-4 h-4 text-white shrink-0" />
+                <span>Earning Calculator</span>
+                <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
               </button>
-            ))}
-          </div>
-
-          {/* Live Status & Prospective VLE Link */}
-          <div className="space-y-2 pt-2 border-t border-white/10 text-xs">
-            <div className="flex items-center gap-2 text-emerald-400 font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>5,50,000+ Active Kendras across 28 States & 8 UTs</span>
-            </div>
-
-            <div className="flex items-center gap-2 text-slate-400">
-              <span>Looking to open a centre?</span>
-              <a
-                href="#get-started"
-                className="inline-flex items-center gap-1 font-semibold text-[#ff884d] hover:text-white transition-colors"
-              >
-                <span>Apply to Become a VLE</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
             </div>
           </div>
 
-          {/* Minimal Slide Dots with Location Indicator */}
-          <div className="flex items-center gap-2.5 mt-6">
-            {SLIDES.map((slide, idx) => (
-              <button
-                key={slide.id}
-                onClick={() => setCurrentIdx(idx)}
-                aria-label={`Show ${slide.vleName}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentIdx === idx
-                    ? 'w-7 bg-[#ff5500]'
-                    : 'w-2 bg-white/30 hover:bg-white/60'
-                }`}
-              />
-            ))}
-            <span className="text-[11px] text-slate-400 ml-2">
-              {activeSlide.location}
-            </span>
+          {/* ================================================================
+              RIGHT 8 COLS: FROSTED GLASS LOCATOR CONTAINER + INTERACTIVE MAP
+              Matches the Frosted Glass Stage of Recommended Hardware Setup
+              ================================================================ */}
+          <div className="lg:col-span-8">
+            <div className="relative overflow-hidden rounded-[28px] p-4 sm:p-5 bg-gradient-to-br from-white/[0.16] via-white/[0.07] to-white/[0.03] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-2xl">
+              {/* Compact Top Glass Toolbar: Title on Left, PIN Input + Find Centre Button on Right */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-white/15">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <h3 className="text-lg sm:text-[20px] font-bold text-white tracking-tight drop-shadow-sm">
+                      CSC Centre Locator
+                    </h3>
+                    <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.12] border border-white/20 text-[11px] font-semibold text-white/90">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span>{activeCentre?.activeCount || '5.5L+ Active'}</span>
+                    </span>
+                  </div>
+                  <p className="text-[11.5px] sm:text-xs text-white/75 mt-0.5">
+                    Enter your 6-digit PIN code or click any map pin to view VLE profile &amp; services
+                  </p>
+                </div>
+
+                {/* Compact PIN Search Input + Find Centre CTA */}
+                <form
+                  onSubmit={handleSearch}
+                  className="flex items-center gap-2 self-stretch sm:self-auto"
+                >
+                  <div className="relative flex-1 sm:w-48 flex items-center bg-white/95 border border-white/30 focus-within:border-white/60 rounded-xl px-3 py-2 shadow-inner transition-colors">
+                    <MapPin className="w-3.5 h-3.5 text-[#0a1628] shrink-0 mr-1.5" />
+                    <input
+                      type="text"
+                      value={pinQuery}
+                      onChange={(e) => setPinQuery(e.target.value)}
+                      placeholder="Enter PIN"
+                      maxLength={18}
+                      className="w-full bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none"
+                    />
+                    {pinQuery && (
+                      <button
+                        type="button"
+                        onClick={() => setPinQuery('')}
+                        aria-label="Clear PIN"
+                        className="text-slate-400 hover:text-[#0a1628] ml-1 cursor-pointer"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-md shrink-0"
+                  >
+                    <Search className="w-3.5 h-3.5 text-white" />
+                    <span>Find CSC Centre</span>
+                  </button>
+                </form>
+              </div>
+
+              {/* ==============================================================
+                  ARCHITECTURAL VECTOR MAP CANVAS (FITS CLEANLY IN VIEWPORT)
+                  Inspired by Live Tracking Reference: Rich City Blocks, Hub Pills,
+                  Dashed Network Connectors, River Waterway & Floating Navy Card
+                  ============================================================== */}
+              <div className="relative w-full h-[370px] sm:h-[395px] lg:h-[405px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
+                <svg
+                  viewBox="0 0 820 420"
+                  className="w-full h-full object-cover"
+                  preserveAspectRatio="xMidYMid slice"
+                >
+                  <motion.g
+                    animate={{
+                      scale: mapTransform.scale,
+                      x: mapTransform.x,
+                      y: mapTransform.y,
+                    }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ transformOrigin: '245px 222px' }}
+                  >
+                    {/* Base Cartographic Canvas */}
+                    <rect width="820" height="420" fill="#edf1f7" />
+
+                    {/* Architectural Urban & Village Block Polygons (High-Craft Map Depth) */}
+                    <g fill="#e2e8f0">
+                      <polygon points="18,16 128,12 142,86 26,98" />
+                      <polygon points="154,14 278,8 294,76 166,88" />
+                      <polygon points="308,10 442,14 426,92 318,82" />
+                      <polygon points="462,16 610,12 595,96 452,88" />
+                      <polygon points="24,114 138,104 152,196 34,208" />
+                      <polygon points="168,102 298,92 314,188 182,198" />
+                      <polygon points="332,98 456,106 442,196 324,186" />
+                      <polygon points="474,108 618,112 602,208 462,198" />
+                      <polygon points="32,224 148,214 162,312 42,324" />
+                      <polygon points="178,212 312,202 328,302 192,314" />
+                      <polygon points="344,204 468,214 452,306 338,298" />
+                      <polygon points="48,338 168,326 182,408 56,412" />
+                      <polygon points="198,328 322,316 334,404 208,412" />
+                    </g>
+
+                    {/* Secondary Inner Sub-Blocks for Authentic Cartographic Detail */}
+                    <g fill="#e7edf5">
+                      <polygon points="176,110 232,105 240,152 182,158" />
+                      <polygon points="246,104 292,100 298,146 252,150" />
+                      <polygon points="186,220 248,214 256,266 194,272" />
+                      <polygon points="262,212 306,208 314,260 268,264" />
+                      <polygon points="342,108 398,112 392,158 336,152" />
+                    </g>
+
+                    {/* Soft Green Parks & Panchayat Grounds */}
+                    <g fill="#d6ebe1">
+                      <polygon points="168,28 238,22 246,72 176,78" />
+                      <polygon points="344,112 414,118 406,168 338,162" />
+                      <polygon points="56,238 128,230 136,288 64,296" />
+                      <polygon points="212,336 286,328 294,386 220,394" />
+                    </g>
+
+                    {/* Yamuna River / Canal Waterway with Soft Bank Casing */}
+                    <path
+                      d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
+                      stroke="#bae6fd"
+                      strokeWidth="26"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
+                      stroke="#7dd3fc"
+                      strokeWidth="14"
+                      fill="none"
+                      strokeLinecap="round"
+                      opacity="0.75"
+                    />
+
+                    {/* Minor Local Street Grid */}
+                    <g stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" fill="none">
+                      <path d="M 0 96 L 820 74" />
+                      <path d="M 0 162 L 820 142" />
+                      <path d="M 0 210 L 820 192" />
+                      <path d="M 0 272 L 820 254" />
+                      <path d="M 0 322 L 820 308" />
+                      <path d="M 0 378 L 820 362" />
+
+                      <path d="M 88 0 L 128 420" />
+                      <path d="M 156 0 L 194 420" />
+                      <path d="M 238 0 L 274 420" />
+                      <path d="M 318 0 L 352 420" />
+                      <path d="M 402 0 L 436 420" />
+                      <path d="M 468 0 L 504 420" />
+                      <path d="M 552 0 L 588 420" />
+                    </g>
+
+                    {/* Major Arterial Highways & Ring Roads */}
+                    <g stroke="#ffffff" strokeWidth="8.5" strokeLinecap="round" fill="none">
+                      <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
+                      <path d="M 118 -15 L 296 435" />
+                      <path d="M 348 -15 L 478 435" />
+                      <path d="M -15 112 Q 310 175 835 268" />
+                    </g>
+
+                    {/* Subtle Road Centerline Tint on Major Arterials */}
+                    <g stroke="#cbd5e1" strokeWidth="1" strokeDasharray="6 6" fill="none">
+                      <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
+                      <path d="M 118 -15 L 296 435" />
+                    </g>
+
+                    {/* Dashed Network Connection Paths Between Selected Centre & Neighbouring Kendras */}
+                    {activeCentre && (
+                      <g>
+                        {KENDRA_PINS.filter((p) => p.id !== activeCentre.id)
+                          .slice(0, 3)
+                          .map((target) => (
+                            <line
+                              key={target.id}
+                              x1={activeCentre.x}
+                              y1={activeCentre.y - 6}
+                              x2={target.x}
+                              y2={target.y - 6}
+                              stroke="#0a1628"
+                              strokeWidth="1.6"
+                              strokeDasharray="4 4"
+                              strokeOpacity="0.28"
+                            />
+                          ))}
+                      </g>
+                    )}
+
+                    {/* Floating Cartographic Hub Badges (Inspired by Live Tracking UI) */}
+                    <MapHubBadge x={252} y={76} name="Laxmi Nagar" count="4" />
+                    <MapHubBadge x={432} y={196} name="Shakarpur" count="2" />
+                    <MapHubBadge x={316} y={338} name="IP Extension" count="3" />
+
+                    {/* Interactive CSC Storefront Pins */}
+                    {KENDRA_PINS.map((pin) => {
+                      const isSelected = activeCentre?.id === pin.id;
+                      return (
+                        <g
+                          key={pin.id}
+                          transform={`translate(${pin.x}, ${pin.y})`}
+                          onClick={() => handleSelectPin(pin)}
+                        >
+                          <StorefrontMapPin
+                            selected={isSelected}
+                            label={isSelected ? pin.areaName : ''}
+                          />
+                        </g>
+                      );
+                    })}
+                  </motion.g>
+                </svg>
+
+                {/* Left Floating Zoom & Recenter Controls */}
+                <div className="absolute top-3.5 left-3.5 z-20 flex flex-col gap-2">
+                  <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 divide-y divide-slate-200/80 overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMapTransform((prev) => ({
+                          ...prev,
+                          scale: Math.min(1.45, +(prev.scale + 0.14).toFixed(2)),
+                        }))
+                      }
+                      aria-label="Zoom in"
+                      className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMapTransform((prev) => ({
+                          ...prev,
+                          scale: Math.max(0.86, +(prev.scale - 0.14).toFixed(2)),
+                        }))
+                      }
+                      aria-label="Zoom out"
+                      className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleResetView}
+                    aria-label="Reset map view"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                  >
+                    <LocateFixed className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Bottom-Left Legend Pill (Selected Centre | Other Centre) */}
+                <div className="absolute bottom-3.5 left-3.5 z-20 bg-white/95 backdrop-blur-md rounded-xl px-3 py-1.5 shadow-md border border-slate-200/80 flex items-center gap-3 text-[11px] font-semibold text-[#0a1628]">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5500] inline-block" />
+                    <span>Selected Centre</span>
+                  </span>
+                  <span className="h-3 w-px bg-slate-200" />
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0a1628] inline-block" />
+                    <span>Other Centre</span>
+                  </span>
+                </div>
+
+                {/* ============================================================
+                    FLOATING DARK NAVY GLASSMORPHIC VLE PROFILE CARD
+                    ============================================================ */}
+                <AnimatePresence mode="wait">
+                  {cardVisible && activeCentre && (
+                    <motion.div
+                      key={activeCentre.id + activeCentre.pincode}
+                      initial={{ opacity: 0, x: 16, scale: 0.97 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: 12, scale: 0.97 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute top-3.5 bottom-3.5 right-3.5 w-[285px] sm:w-[325px] rounded-[18px] bg-[#0a1628] text-white p-4 shadow-[0_24px_55px_rgba(10,22,40,0.45)] border border-white/15 z-30 flex flex-col justify-between"
+                    >
+                      <div>
+                        {/* Header: Orange Storefront Badge + CSC Centre + Close X */}
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 rounded-full bg-[#ff5500] grid place-items-center shrink-0 shadow-xs">
+                              <svg
+                                viewBox="0 0 16 16"
+                                className="w-3.5 h-3.5 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                              >
+                                <path d="M2 6L3.2 2.5H12.8L14 6" />
+                                <path d="M3 6.5V13.5H13V6.5" />
+                                <rect x="6.5" y="9" width="3" height="4.5" />
+                              </svg>
+                            </div>
+                            <h4 className="text-[15px] font-bold text-white tracking-tight">
+                              CSC Centre
+                            </h4>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => setCardVisible(false)}
+                            aria-label="Close card"
+                            className="p-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                        {/* VLE Profile Row */}
+                        <div className="flex items-center justify-between gap-2.5 pb-3 border-b border-white/12">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className="w-12 h-12 rounded-full bg-white overflow-hidden shrink-0 border-2 border-white/25 shadow-xs">
+                              <img
+                                src={activeCentre.avatar}
+                                alt={activeCentre.vleName}
+                                className="w-full h-full object-cover object-top"
+                              />
+                            </div>
+
+                            <div className="min-w-0">
+                              <div className="text-[14.5px] font-bold text-white leading-tight truncate">
+                                {activeCentre.vleName}
+                              </div>
+                              <div className="text-[10.5px] text-slate-300 mt-1 font-mono">
+                                CSC ID: {activeCentre.cscId}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col items-end shrink-0">
+                            <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-white">
+                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                              <span>{activeCentre.rating}</span>
+                            </span>
+                            <span className="text-[10.5px] text-slate-300 mt-0.5 font-medium">
+                              {activeCentre.reviews} reviews
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Details Table (Address, Working Hours, Services) */}
+                        <div className="divide-y divide-white/10 text-[11.5px]">
+                          <div className="py-2.5 flex items-start gap-2">
+                            <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+                            <span className="text-slate-400 w-18 shrink-0">Address</span>
+                            <span className="text-white/95 font-medium leading-snug line-clamp-2">
+                              {activeCentre.address}
+                            </span>
+                          </div>
+
+                          <div className="py-2.5 flex items-center gap-2">
+                            <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                            <span className="text-slate-400 w-18 shrink-0">Working Hours</span>
+                            <span className="text-white/95 font-medium truncate">
+                              {activeCentre.hours}
+                            </span>
+                          </div>
+
+                          <div className="py-2.5 flex items-center gap-2">
+                            <Layers className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                            <span className="text-slate-400 w-18 shrink-0">Services</span>
+                            <div className="flex flex-wrap items-center gap-1">
+                              {activeCentre.services.map((svc) => (
+                                <span
+                                  key={svc}
+                                  className="px-2 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-medium text-white"
+                                >
+                                  {svc}
+                                </span>
+                              ))}
+                              <span className="px-1.5 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-semibold text-white/85">
+                                {activeCentre.moreCount}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom Action Buttons */}
+                      <div className="grid grid-cols-2 gap-2 pt-1.5">
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            'CSC Centre ' + activeCentre.address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-2 px-3 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-md"
+                        >
+                          <Navigation className="w-3 h-3 fill-white" />
+                          <span>Get Directions</span>
+                        </a>
+
+                        <a
+                          href={`tel:${activeCentre.phone}`}
+                          className="py-2 px-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] border border-white/25 text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                        >
+                          <Phone className="w-3 h-3" />
+                          <span>Contact VLE</span>
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
         </div>
       </div>

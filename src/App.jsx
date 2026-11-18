@@ -40,6 +40,13 @@ import {
   Mail,
   Send,
   Calculator,
+  Laptop,
+  Fingerprint,
+  Printer,
+  Wifi,
+  Headphones,
+  BookOpen,
+  UserCheck,
 } from 'lucide-react';
 
 import ServiceVectorLogo from './components/ServiceVectorLogo';
@@ -49,6 +56,8 @@ import ImpactScaleSection from './components/ImpactScaleSection';
 import SarthiChatbot from './components/SarthiChatbot';
 import AppDownloadSection from './components/AppDownloadSection';
 import VleEarningCalculatorModal from './components/VleEarningCalculatorModal';
+import VleSupportAndHardwareSection from './components/VleSupportAndHardwareSection';
+import CscOfficialLogo from './components/CscLogo';
 import {
   CardArt01Boss,
   CardArt02Income,
@@ -107,10 +116,10 @@ function CardVisualStage({ variant, isHovered }) {
         <motion.div
           animate={{
             rotate: isHovered ? 4 : 0,
-            scale: isHovered ? 1.05 : 0.96,
+            scale: isHovered ? 1.04 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+          className="relative z-10 w-[185px] h-[185px] mt-1 pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
         >
           <CardArt01Boss className="w-full h-full" />
         </motion.div>
@@ -135,10 +144,10 @@ function CardVisualStage({ variant, isHovered }) {
         <motion.div
           animate={{
             rotate: isHovered ? -4 : 0,
-            scale: isHovered ? 1.05 : 0.96,
+            scale: isHovered ? 1.04 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.2)]"
+          className="relative z-10 w-[185px] h-[185px] mt-1 pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.2)]"
         >
           <CardArt02Income className="w-full h-full" />
         </motion.div>
@@ -164,10 +173,10 @@ function CardVisualStage({ variant, isHovered }) {
         <motion.div
           animate={{
             rotate: isHovered ? 4 : 0,
-            scale: isHovered ? 1.05 : 0.96,
+            scale: isHovered ? 1.04 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+          className="relative z-10 w-[185px] h-[185px] mt-1 pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
         >
           <CardArt03Respect className="w-full h-full" />
         </motion.div>
@@ -193,10 +202,10 @@ function CardVisualStage({ variant, isHovered }) {
         <motion.div
           animate={{
             rotate: isHovered ? -4 : 0,
-            scale: isHovered ? 1.05 : 0.96,
+            scale: isHovered ? 1.04 : 0.96,
           }}
           transition={{ type: 'spring', stiffness: 110, damping: 22 }}
-          className="relative z-10 w-[215px] h-[215px] pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
+          className="relative z-10 w-[185px] h-[185px] mt-1 pointer-events-none select-none drop-shadow-[0_2px_14px_rgba(255,255,255,0.18)]"
         >
           <CardArt04Govt className="w-full h-full" />
         </motion.div>
@@ -606,25 +615,34 @@ export default function App() {
           Clean edge-to-edge navbar fixed at top, 100% visible across the entire site
           ==================================================================== */}
       <header
-        className={`fixed top-0 inset-x-0 z-50 w-full transition-all duration-300 ${
-          scrolled
-            ? 'bg-[#0a1628]/95 backdrop-blur-2xl border-b border-white/12 shadow-[0_12px_30px_rgba(0,0,0,0.35)]'
-            : 'bg-[#0a1628]/90 backdrop-blur-xl border-b border-white/10'
-        }`}
+        className={`fixed top-0 inset-x-0 z-50 w-full transition-all duration-300 ${scrolled
+          ? 'bg-[#0a1628]/95 backdrop-blur-2xl border-b border-white/12 shadow-[0_12px_30px_rgba(0,0,0,0.35)]'
+          : 'bg-[#0a1628]/90 backdrop-blur-xl border-b border-white/10'
+          }`}
       >
         <div className="w-full px-5 sm:px-8 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
-          {/* Clean Brand Wordmark */}
+          {/* Official CSC Brand Lockup (No Vertical Lines, Digital Seva Portal Stacked Below) */}
           <a
             href="#home"
-            className="flex items-center gap-2.5 shrink-0 font-semibold text-[15px] sm:text-[16px] tracking-[-0.02em] text-white"
+            className="inline-flex flex-col items-center shrink-0 text-white group leading-none"
           >
-            <span className="w-2 h-2 rounded-full bg-[#ff5500]" />
-            <span>CSC Digital Seva</span>
+            <CscOfficialLogo
+              className="h-6 sm:h-[26px] w-auto"
+              showSubtitle={false}
+              showDividers={false}
+              variant="dark-bg"
+            />
+            <span className="font-semibold text-[9.5px] sm:text-[10px] tracking-[0.03em] text-white/95 mt-0.5 whitespace-nowrap">
+              Digital Seva Portal
+            </span>
           </a>
 
           {/* Centered Primary Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12.5px] xl:text-[13px] font-medium text-white/75">
             <a href="#services" className="hover:text-white transition-colors whitespace-nowrap">
+              Services
+            </a>
+            <a href="#about" className="hover:text-white transition-colors whitespace-nowrap">
               Jankari Suvidha
             </a>
             <a
@@ -636,10 +654,9 @@ export default function App() {
                   el.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="hover:text-white transition-colors flex items-center gap-1.5 whitespace-nowrap"
+              className="hover:text-white transition-colors whitespace-nowrap"
             >
-              <MapPin className="w-3.5 h-3.5 text-sky-400" />
-              <span>Find Centre</span>
+              Find CSC Centre
             </a>
             <a href="#whats-new" className="hover:text-white transition-colors whitespace-nowrap">
               News & Updates
@@ -649,43 +666,43 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Right Action Cluster — Structured Hierarchy (Utility -> Secondary CTA -> Primary CTA) */}
+          {/* Right Action Cluster — Conversion-First Hierarchy (Primary 'Join as VLE' -> Secondary 'Login' -> Utilities Last) */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            {/* Subtle Ghost Newsletter Action */}
-            <button
-              onClick={scrollToNewsletter}
-              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-white/75 hover:text-white hover:bg-white/10 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap"
-              title="Subscribe to Newsletter & Scheme Alerts"
+            {/* Primary Conversion CTA: Join as VLE (Highlighted Solid Saffron Button) */}
+            <a
+              href="#get-started"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-[12px] sm:text-[12.5px] font-semibold transition-all hover:scale-102 active:scale-98 whitespace-nowrap shadow-md"
             >
-              <Mail className="w-3.5 h-3.5 text-[#ff7733]" />
-              <span className="hidden xl:inline">Newsletter</span>
-            </button>
+              <span>Join as VLE</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
+            </a>
 
-            {/* Language Toggle */}
+            {/* Secondary Action: Existing VLE Login */}
             <button
-              onClick={() => setLang((l) => (l === 'EN' ? 'हिं' : 'EN'))}
-              className="px-2 py-1 text-[11.5px] font-medium text-white/70 hover:text-white transition-colors cursor-pointer"
+              onClick={() => setLoginOpen(true)}
+              className="hidden sm:inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/10 text-white text-[12px] font-semibold transition-all cursor-pointer whitespace-nowrap shadow-xs"
             >
-              {lang === 'EN' ? 'EN / हिं' : 'हिं / EN'}
+              <span>Login</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-white/80" />
             </button>
 
             <div className="hidden lg:block h-4 w-px bg-white/15 mx-0.5" />
 
-            {/* Secondary CTA: Join as VLE (Pill Button for Action Distinction) */}
-            <a
-              href="#get-started"
-              className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/10 text-white text-[12px] font-semibold transition-all whitespace-nowrap shadow-xs"
-            >
-              Join as VLE
-            </a>
-
-            {/* Primary CTA: VLE Portal Login (Sole Solid Saffron Button) */}
+            {/* Utility Controls Moved Last (Quiet, Non-Competing) */}
             <button
-              onClick={() => setLoginOpen(true)}
-              className="inline-flex items-center gap-1 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-[12px] sm:text-[12.5px] font-semibold transition-colors cursor-pointer whitespace-nowrap shadow-xs"
+              onClick={scrollToNewsletter}
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-white/65 hover:text-white hover:bg-white/10 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap"
+              title="Subscribe to Newsletter & Scheme Alerts"
             >
-              <span>Login</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+              <Mail className="w-3.5 h-3.5 text-white/75" />
+              <span className="hidden xl:inline">Newsletter</span>
+            </button>
+
+            <button
+              onClick={() => setLang((l) => (l === 'EN' ? 'हिं' : 'EN'))}
+              className="px-2 py-1 text-[11.5px] font-medium text-white/65 hover:text-white transition-colors cursor-pointer"
+            >
+              {lang === 'EN' ? 'EN / हिं' : 'हिं / EN'}
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -712,6 +729,14 @@ export default function App() {
                   onClick={() => setMobileNavOpen(false)}
                   className="flex items-center justify-between py-1.5 text-white/85 hover:text-white"
                 >
+                  <span>Services</span>
+                  <span className="text-[11px] text-white/40 uppercase">Catalogue</span>
+                </a>
+                <a
+                  href="#about"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="flex items-center justify-between py-1.5 text-white/85 hover:text-white"
+                >
                   <span>Jankari Suvidha</span>
                   <span className="text-[11px] text-white/40 uppercase">Information</span>
                 </a>
@@ -726,7 +751,7 @@ export default function App() {
                 >
                   <span className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-sky-400" />
-                    <span>Find Nearest CSC Centre</span>
+                    <span>Find CSC Centre</span>
                   </span>
                   <span className="text-[11px] text-sky-400 font-semibold">Locator</span>
                 </button>
@@ -772,25 +797,23 @@ export default function App() {
             </div>
 
             <div className="pt-3 border-t border-white/10 flex items-center gap-2.5">
-              <button
-                onClick={() => {
-                  setMobileNavOpen(false);
-                  scrollToNewsletter();
-                }}
-                className="flex-1 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-white flex items-center justify-center gap-1.5 cursor-pointer"
+              <a
+                href="#get-started"
+                onClick={() => setMobileNavOpen(false)}
+                className="flex-1 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-xs font-semibold text-white flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
               >
-                <Mail className="w-3.5 h-3.5 text-[#ff7733]" />
-                <span>Subscribe</span>
-              </button>
+                <span>Join as VLE</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white" />
+              </a>
               <button
                 onClick={() => {
                   setMobileNavOpen(false);
                   setLoginOpen(true);
                 }}
-                className="flex-1 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-xs font-semibold text-white flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                className="flex-1 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-white flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <span>Login</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-white/80" />
               </button>
             </div>
           </div>
@@ -878,8 +901,8 @@ export default function App() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base lg:text-[18px] text-[#c5d5ec] max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
-            India's unified assisted public service network — connecting citizens across 28 states and every Gram Panchayat to 400+ authorized government, banking, healthcare, and utility desks through neighborhood Village Level Entrepreneurs.
+          <p className="text-sm sm:text-base lg:text-[17px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+            Connecting citizens across every Gram Panchayat to 400+ government, banking, and utility services through local Village Level Entrepreneurs.
           </p>
 
           {/* Primary Action Buttons */}
@@ -888,7 +911,7 @@ export default function App() {
               href="#get-started"
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
             >
-              <span>Become a VLE</span>
+              <span>Join as VLE</span>
               <ArrowRight className="w-4 h-4 text-white" />
             </a>
 
@@ -900,8 +923,8 @@ export default function App() {
               }}
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] hover:from-white/[0.26] hover:to-white/[0.12] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-md"
             >
-              <MapPin className="w-4 h-4 text-[#38bdf8]" />
-              <span>Find Nearest Centre</span>
+              <MapPin className="w-4 h-4 text-white" />
+              <span>Find CSC Centre</span>
             </button>
           </div>
         </motion.div>
@@ -916,680 +939,653 @@ export default function App() {
         {/* 04. IMPACT SCALE & INFRASTRUCTURE SECTION */}
         <ImpactScaleSection />
 
-      {/* ====================================================================
+        {/* ====================================================================
           D. EXPLORE SERVICES (Fits Viewport)
           Navy & Saffron Orange Service Catalogue with Authentic Mandala Backdrop
           ==================================================================== */}
-      <section
-        id="services"
-        className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-20"
-      >
-        {/* Subtle Floral Mandala Background Art (Greyish on Cream) */}
-        <img
-          src="/images/mandala-floral-navy.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[460px] h-[460px] object-contain absolute -bottom-40 -left-40 opacity-[0.05] grayscale pointer-events-none select-none"
-        />
+        <section
+          id="services"
+          className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-20"
+        >
+          {/* Subtle Floral Mandala Background Art (Greyish on Cream) */}
+          <img
+            src="/images/mandala-floral-navy.png"
+            alt=""
+            aria-hidden="true"
+            className="w-[460px] h-[460px] object-contain absolute -bottom-40 -left-40 opacity-[0.05] grayscale pointer-events-none select-none"
+          />
 
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-4 lg:mb-5">
-            <div>
-              <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.1]">
-                One Centre. A World of Essential Services.
+          <div className="relative z-10 max-w-[1240px] mx-auto w-full">
+            <div className="mb-6 lg:mb-7">
+              <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.1] mb-2.5">
+                Explore Opportunities Through Digital Seva
               </h2>
-              <p className="text-xs sm:text-[13px] text-[#64748b] mt-1 max-w-lg">
-                Choose a category or search verified government and public services available at your nearest centre.
+              <p className="text-xs sm:text-[13px] text-[#64748b] max-w-2xl">
+         Explore essential CSC services, their benefits for citizens, and opportunities for VLEs to deliver them and grow their businesses sustainably.
               </p>
-            </div>
 
-            {/* Search Input + G2C / B2C Segmented Filter */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-              <div className="flex items-center bg-white border border-[#0a1628]/20 focus-within:border-[#0a1628] rounded-xl px-3 py-2 w-full sm:w-64 shadow-xs transition-colors">
-                <Search className="w-3.5 h-3.5 text-[#64748b] mr-2 shrink-0" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setServicePage(0);
-                  }}
-                  placeholder="What are you looking for?"
-                  className="w-full text-xs text-[#0a1628] placeholder:text-[#94a3b8] bg-transparent outline-none"
-                />
-              </div>
-
-              {/* Segmented Filter Bar with Full Forms & G2C Dropdown */}
-              <div className="relative inline-flex items-center bg-[#0a1628] p-1 rounded-xl">
-                {/* 1. All Services */}
-                <button
-                  onClick={() => {
-                    setCategoryFilter('ALL');
-                    setG2cSubFilter('ALL');
-                    setG2cDropdownOpen(false);
-                    setServicePage(0);
-                  }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'ALL'
-                    ? 'bg-[#ff5500] text-white'
-                    : 'text-[#b4c6e4] hover:text-white'
-                    }`}
-                >
-                  All Services
-                </button>
-
-                {/* 2. Government to Citizen (G2C) with Dropdown */}
-                <div className="relative">
-                  <button
-                    onClick={() => {
-                      if (categoryFilter !== 'G2C') {
-                        setCategoryFilter('G2C');
-                        setServicePage(0);
-                      }
-                      setG2cDropdownOpen((prev) => !prev);
+              {/* Search Input + G2C / B2C Segmented Filter on Next Line */}
+              <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center bg-white border border-[#0a1628]/20 focus-within:border-[#0a1628] rounded-xl px-3 py-2 w-full sm:w-72 shadow-xs transition-colors">
+                  <Search className="w-3.5 h-3.5 text-[#64748b] mr-2 shrink-0" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setServicePage(0);
                     }}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'G2C'
-                      ? 'bg-[#ff5500] text-white'
-                      : 'text-[#b4c6e4] hover:text-white'
-                      }`}
-                  >
-                    <span>
-                      {categoryFilter === 'G2C' && g2cSubFilter !== 'ALL'
-                        ? `Government (G2C): ${g2cSubFilter === 'CENTRAL'
-                          ? 'Central'
-                          : g2cSubFilter === 'STATE'
-                            ? 'State'
-                            : 'Other'
-                        }`
-                        : 'Government to Citizen (G2C)'}
-                    </span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 ${g2cDropdownOpen ? 'rotate-180' : ''
-                        }`}
-                    />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {g2cDropdownOpen && (
-                    <>
-                      {/* Invisible backdrop to dismiss dropdown on outside click */}
-                      <div
-                        className="fixed inset-0 z-30"
-                        onClick={() => setG2cDropdownOpen(false)}
-                      />
-                      <div className="absolute left-0 top-full mt-2 w-56 py-1.5 rounded-xl bg-[#0a1628] border border-white/20 shadow-2xl z-40 divide-y divide-white/10 text-left backdrop-blur-xl">
-                        {[
-                          { id: 'ALL', label: 'All Government Services' },
-                          { id: 'CENTRAL', label: 'Central Government' },
-                          { id: 'STATE', label: 'State Government' },
-                          { id: 'OTHER', label: 'Other Civic & Local' },
-                        ].map((sub) => (
-                          <button
-                            key={sub.id}
-                            onClick={() => {
-                              setCategoryFilter('G2C');
-                              setG2cSubFilter(sub.id);
-                              setServicePage(0);
-                              setG2cDropdownOpen(false);
-                            }}
-                            className={`w-full px-3.5 py-2 text-xs text-left flex items-center justify-between transition-colors cursor-pointer ${categoryFilter === 'G2C' && g2cSubFilter === sub.id
-                              ? 'bg-[#ff5500] text-white font-bold'
-                              : 'text-slate-200 hover:bg-white/10 hover:text-white'
-                              }`}
-                          >
-                            <span>{sub.label}</span>
-                            {categoryFilter === 'G2C' && g2cSubFilter === sub.id && (
-                              <Check className="w-3.5 h-3.5 text-white" />
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                    placeholder="What are you looking for?"
+                    className="w-full text-xs text-[#0a1628] placeholder:text-[#94a3b8] bg-transparent outline-none"
+                  />
                 </div>
 
-                {/* 3. Business to Consumer (B2C) */}
-                <button
-                  onClick={() => {
-                    setCategoryFilter('B2C');
-                    setG2cDropdownOpen(false);
-                    setServicePage(0);
-                  }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${categoryFilter === 'B2C'
-                    ? 'bg-[#ff5500] text-white'
-                    : 'text-[#b4c6e4] hover:text-white'
-                    }`}
-                >
-                  Business to Consumer (B2C)
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Service List Grid */}
-          {paginatedServices.length > 0 ? (
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl shadow-xs border-t border-l border-[#0a1628]/15 bg-white">
-                <AnimatePresence mode="wait" custom={serviceDir} initial={false}>
-                  <motion.div
-                    key={`${categoryFilter}-${searchQuery}-${currentServicePage}`}
-                    custom={serviceDir}
-                    variants={{
-                      enter: (dir) => ({
-                        x: dir > 0 ? 80 : -80,
-                        opacity: 0,
-                      }),
-                      center: {
-                        x: 0,
-                        opacity: 1,
-                      },
-                      exit: (dir) => ({
-                        x: dir > 0 ? -80 : 80,
-                        opacity: 0,
-                      }),
-                    }}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{
-                      duration: 0.36,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-                  >
-                    {paginatedServices.map((srv) => (
-                      <article
-                        key={srv.id}
-                        className="relative group h-[142px] sm:h-[150px] lg:h-[155px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4 bg-white hover:bg-[#0a1628] transition-colors duration-500 select-none overflow-hidden cursor-pointer"
-                      >
-                        {/* ICON: Centered in default state, smoothly scales down and glides to top-left corner on hover in pure white */}
-                        <div className="absolute z-20 pointer-events-none transition-all duration-500 ease-out top-1/2 left-1/2 -translate-x-1/2 -translate-y-9 scale-[0.82] sm:scale-[0.88] text-[#0a1628] group-hover:top-3 group-hover:left-3.5 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-[0.40] group-hover:text-white origin-top-left">
-                          <ServiceVectorLogo id={srv.id} className="w-[88px] h-[88px]" />
-                        </div>
-
-                        {/* ANIMATED TITLE: Centered at bottom in default state; on hover glides smoothly beside icon with clean spacing, vertically centered */}
-                        <div className="absolute inset-x-2 bottom-3.5 text-center transition-all duration-500 ease-out z-20 pointer-events-none group-hover:bottom-auto group-hover:top-[19px] group-hover:left-[56px] group-hover:right-3 group-hover:text-left origin-left">
-                          <h3 className="text-[14px] sm:text-[15px] font-semibold tracking-[-0.015em] text-[#0a1628] leading-tight line-clamp-1 transition-all duration-500 group-hover:text-white group-hover:font-bold group-hover:text-[13px] sm:group-hover:text-[13.5px]">
-                            {srv.name}
-                          </h3>
-                        </div>
-
-                        {/* HOVER DESCRIPTION: Left-aligned and comfortably positioned below the icon & title */}
-                        <div className="absolute inset-x-3.5 top-[52px] bottom-2 flex items-start justify-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out z-10 pointer-events-none">
-                          <p className="text-[11.5px] sm:text-[12px] text-[#c5d5ec] leading-[1.55] text-left line-clamp-3">
-                            {srv.description}
-                          </p>
-                        </div>
-                      </article>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
-              {/* Left Arrow on Grid Edge to Move Back */}
-              {totalServicePages > 1 && currentServicePage > 0 && (
-                <button
-                  onClick={() => {
-                    setServiceDir(-1);
-                    setServicePage(
-                      (prev) =>
-                        (prev - 1 + totalServicePages) % totalServicePages
-                    );
-                  }}
-                  aria-label="Show previous services"
-                  title="Previous services"
-                  className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -left-4 sm:-left-5 -translate-y-1/2 z-20"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                </button>
-              )}
-
-              {/* Right Arrow on Grid Edge to Move Forward */}
-              {totalServicePages > 1 &&
-                currentServicePage < totalServicePages - 1 && (
+                {/* Segmented Filter Bar with Full Forms & G2C Dropdown */}
+                <div className="relative inline-flex items-center bg-[#0a1628]/[0.055] border border-[#0a1628]/10 p-1 rounded-xl">
+                  {/* 1. All Services */}
                   <button
                     onClick={() => {
-                      setServiceDir(1);
-                      setServicePage((prev) => (prev + 1) % totalServicePages);
+                      setCategoryFilter('ALL');
+                      setG2cSubFilter('ALL');
+                      setG2cDropdownOpen(false);
+                      setServicePage(0);
                     }}
-                    aria-label="Show next services"
-                    title="Next services"
-                    className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -right-4 sm:-right-5 -translate-y-1/2 z-20"
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'ALL'
+                      ? 'bg-white text-[#0a1628] shadow-xs'
+                      : 'text-[#475569] hover:text-[#0a1628]'
+                      }`}
                   >
-                    <ArrowRight className="w-4 h-4" />
+                    All Services
+                  </button>
+
+                  {/* 2. Government to Citizen (G2C) with Dropdown */}
+                  <div className="relative">
+                    <button
+                      onClick={() => {
+                        if (categoryFilter !== 'G2C') {
+                          setCategoryFilter('G2C');
+                          setG2cSubFilter('ALL');
+                          setServicePage(0);
+                        }
+                        setG2cDropdownOpen((prev) => !prev);
+                      }}
+                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'G2C'
+                        ? 'bg-white text-[#0a1628] shadow-xs'
+                        : 'text-[#475569] hover:text-[#0a1628]'
+                        }`}
+                    >
+                      <span>
+                        {categoryFilter === 'G2C' && g2cSubFilter !== 'ALL'
+                          ? `Government (G2C): ${g2cSubFilter === 'CENTRAL'
+                            ? 'Central'
+                            : g2cSubFilter === 'STATE'
+                              ? 'State'
+                              : 'Other'
+                          }`
+                          : 'Government to Citizen (G2C)'}
+                      </span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${g2cDropdownOpen ? 'rotate-180' : ''
+                          }`}
+                      />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {g2cDropdownOpen && (
+                      <>
+                        {/* Invisible backdrop to dismiss dropdown on outside click */}
+                        <div
+                          className="fixed inset-0 z-30"
+                          onClick={() => setG2cDropdownOpen(false)}
+                        />
+                        <div className="absolute left-0 top-full mt-2 w-56 py-1.5 rounded-xl bg-white border border-[#0a1628]/15 shadow-2xl z-40 divide-y divide-[#0a1628]/10 text-left">
+                          {[
+                            { id: 'ALL', label: 'All Government Services' },
+                            { id: 'CENTRAL', label: 'Central Government' },
+                            { id: 'STATE', label: 'State Government' },
+                            { id: 'OTHER', label: 'Other Civic & Local' },
+                          ].map((sub) => (
+                            <button
+                              key={sub.id}
+                              onClick={() => {
+                                setCategoryFilter('G2C');
+                                setG2cSubFilter(sub.id);
+                                setServicePage(0);
+                                setG2cDropdownOpen(false);
+                              }}
+                              className={`w-full px-3.5 py-2 text-xs text-left flex items-center justify-between transition-colors cursor-pointer ${categoryFilter === 'G2C' && g2cSubFilter === sub.id
+                                ? 'bg-[#0a1628] text-white font-semibold'
+                                : 'text-[#0a1628] hover:bg-[#0a1628]/5'
+                                }`}
+                            >
+                              <span>{sub.label}</span>
+                              {categoryFilter === 'G2C' && g2cSubFilter === sub.id && (
+                                <Check className="w-3.5 h-3.5 text-white" />
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* 3. Business to Consumer (B2C) */}
+                  <button
+                    onClick={() => {
+                      setCategoryFilter('B2C');
+                      setG2cSubFilter('ALL');
+                      setG2cDropdownOpen(false);
+                      setServicePage(0);
+                    }}
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'B2C'
+                      ? 'bg-white text-[#0a1628] shadow-xs'
+                      : 'text-[#475569] hover:text-[#0a1628]'
+                      }`}
+                  >
+                    Business to Consumer (B2C)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Service List Grid */}
+            {paginatedServices.length > 0 ? (
+              <div className="relative">
+                <div className="overflow-hidden rounded-2xl shadow-xs border-t border-l border-[#0a1628]/15 bg-white">
+                  <AnimatePresence mode="wait" custom={serviceDir} initial={false}>
+                    <motion.div
+                      key={`${categoryFilter}-${searchQuery}-${currentServicePage}`}
+                      custom={serviceDir}
+                      variants={{
+                        enter: (dir) => ({
+                          x: dir > 0 ? 80 : -80,
+                          opacity: 0,
+                        }),
+                        center: {
+                          x: 0,
+                          opacity: 1,
+                        },
+                        exit: (dir) => ({
+                          x: dir > 0 ? -80 : 80,
+                          opacity: 0,
+                        }),
+                      }}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        duration: 0.36,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+                    >
+                      {paginatedServices.map((srv) => (
+                        <article
+                          key={srv.id}
+                          className="relative group h-[142px] sm:h-[150px] lg:h-[155px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4 bg-white hover:bg-[#0a1628] transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] select-none overflow-hidden cursor-pointer"
+                        >
+                          {/* ICON: Smooth 550ms glide & scale using pure interpolatable coords */}
+                          <div className="absolute z-20 pointer-events-none top-[14px] left-1/2 -translate-x-1/2 scale-[0.82] sm:scale-[0.86] text-[#0a1628] group-hover:top-[12px] group-hover:left-[14px] group-hover:translate-x-0 group-hover:scale-[0.38] group-hover:text-white origin-top-left transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
+                            <ServiceVectorLogo id={srv.id} className="w-[88px] h-[88px]" />
+                          </div>
+
+                          {/* ANIMATED TITLE: Smooth 550ms glide with consistent weight */}
+                          <div className="absolute top-[106px] sm:top-[112px] lg:top-[116px] left-1/2 -translate-x-1/2 max-w-[calc(100%-24px)] group-hover:top-[19px] group-hover:left-[56px] group-hover:translate-x-0 group-hover:max-w-[calc(100%-68px)] z-20 pointer-events-none transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
+                            <h3 className="text-[13.5px] sm:text-[14px] font-semibold tracking-[-0.015em] text-[#0a1628] group-hover:text-white leading-tight whitespace-nowrap truncate transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
+                              {srv.name}
+                            </h3>
+                          </div>
+
+                          {/* HOVER DESCRIPTION: Smooth 500ms fade & micro-rise below title */}
+                          <div className="absolute inset-x-3.5 top-[50px] bottom-2 flex items-start justify-start opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-10 pointer-events-none">
+                            <p className="text-[11.5px] sm:text-[12px] text-[#c5d5ec] leading-[1.55] text-left line-clamp-3">
+                              {srv.description}
+                            </p>
+                          </div>
+                        </article>
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Left Arrow on Grid Edge to Move Back */}
+                {totalServicePages > 1 && currentServicePage > 0 && (
+                  <button
+                    onClick={() => {
+                      setServiceDir(-1);
+                      setServicePage(
+                        (prev) =>
+                          (prev - 1 + totalServicePages) % totalServicePages
+                      );
+                    }}
+                    aria-label="Show previous services"
+                    title="Previous services"
+                    className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -left-4 sm:-left-5 -translate-y-1/2 z-20"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
                   </button>
                 )}
-            </div>
-          ) : (
-            <div className="py-10 text-center border border-[#0a1628]/15 rounded-2xl bg-white">
-              <p className="text-sm text-[#334766] mb-2">
-                No services found matching "{searchQuery}".
-              </p>
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setCategoryFilter('ALL');
-                  setServicePage(0);
-                }}
-                className="text-xs font-semibold text-[#0a1628] underline cursor-pointer"
-              >
-                Reset search
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
 
-      {/* ====================================================================
+                {/* Right Arrow on Grid Edge to Move Forward */}
+                {totalServicePages > 1 &&
+                  currentServicePage < totalServicePages - 1 && (
+                    <button
+                      onClick={() => {
+                        setServiceDir(1);
+                        setServicePage((prev) => (prev + 1) % totalServicePages);
+                      }}
+                      aria-label="Show next services"
+                      title="Next services"
+                      className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -right-4 sm:-right-5 -translate-y-1/2 z-20"
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  )}
+              </div>
+            ) : (
+              <div className="py-10 text-center border border-[#0a1628]/15 rounded-2xl bg-white">
+                <p className="text-sm text-[#334766] mb-2">
+                  No services found matching "{searchQuery}".
+                </p>
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setCategoryFilter('ALL');
+                    setServicePage(0);
+                  }}
+                  className="text-xs font-semibold text-[#0a1628] underline cursor-pointer"
+                >
+                  Reset search
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* ====================================================================
           C. VLE OPPORTUNITY & PLATFORM OVERVIEW (PROPOSAL SECTION 07)
           Headline: Explore What It Means to Be a CSC VLE.
           ==================================================================== */}
-      <section
-        id="about"
-        className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
-      >
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          {/* Editorial Section Header with Generous Space After Title */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-12 lg:mb-14">
-            <div className="lg:col-span-7">
+        <section
+          id="about"
+          className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-14 sm:py-16 lg:py-20"
+        >
+          <div className="relative z-10 max-w-[1180px] mx-auto w-full">
+            {/* Editorial Section Header */}
+            <div className="mb-8 sm:mb-10 text-center">
               <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
                 Why Join As A VLE Today?
               </h2>
             </div>
 
-          </div>
+            {/* 4 COMPACT CARDS IN A SINGLE ROW (Body hidden in normal state, concise body revealed on hover) */}
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              {PLATFORM_CARDS.slice(0, 4).map((card, idx) => {
+                const isHovered = hoveredCard === idx;
+                return (
+                  <motion.article
+                    key={card.number}
+                    onMouseEnter={() => setHoveredCard(idx)}
+                    onFocus={() => setHoveredCard(idx)}
+                    tabIndex={0}
+                    className={`group relative h-[365px] sm:h-[375px] lg:h-[385px] rounded-[26px] p-[4.5px] cursor-pointer select-none shadow-[0_20px_50px_-15px_rgba(0,0,0,0.45)] transition-shadow duration-300 ${card.outerBg}`}
+                  >
+                    <div className="relative w-full h-full rounded-[22px] overflow-hidden">
+                      {/* Top Mandala Stage */}
+                      <CardVisualStage variant={card.variant} isHovered={isHovered} />
 
-          {/* ALL 6 CARDS IN A BALANCED 3x2 RESPONSIVE GRID (Card 04 is now a normal card) */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            {PLATFORM_CARDS.map((card, idx) => {
-              const isHovered = hoveredCard === idx;
-              return (
-                <motion.article
-                  key={card.number}
-                  onMouseEnter={() => setHoveredCard(idx)}
-                  onFocus={() => setHoveredCard(idx)}
-                  tabIndex={0}
-                  className={`group relative h-[480px] sm:h-[500px] lg:h-[515px] rounded-[30px] p-[5px] cursor-pointer select-none shadow-[0_24px_55px_-15px_rgba(0,0,0,0.45)] transition-shadow duration-300 ${card.outerBg}`}
-                >
-                  <div className="relative w-full h-full rounded-[25px] overflow-hidden">
-                    {/* Top Pure White Mandala Stage */}
-                    <CardVisualStage variant={card.variant} isHovered={isHovered} />
-
-                    {/* Folder-Tab Detail Sheet */}
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: isHovered ? '86%' : '50%',
-                      }}
-                      transition={springTransition}
-                      style={{ backgroundColor: card.sheetColor }}
-                      className={`absolute inset-x-0 bottom-0 z-30 rounded-tr-[22px] flex flex-col justify-between px-6 pb-6 pt-1 ${card.textColor}`}
-                    >
-                      {/* Seamless SVG Folder-Tab Top Shoulder */}
-                      <svg
-                        viewBox="0 0 400 36"
-                        preserveAspectRatio="none"
-                        className="absolute -top-[35px] left-0 w-full h-[36px] pointer-events-none block"
+                      {/* Folder-Tab Detail Sheet (40% in normal state, rises to 64% on hover) */}
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: isHovered ? '64%' : '40%',
+                        }}
+                        transition={springTransition}
+                        style={{ backgroundColor: card.sheetColor }}
+                        className={`absolute inset-x-0 bottom-0 z-30 rounded-tr-[20px] flex flex-col justify-between px-5 pb-5 pt-1 ${card.textColor}`}
                       >
-                        <path
-                          d="M 0,36 L 0,18 Q 0,0 18,0 L 102,0 Q 118,0 130,13 L 144,28 Q 152,36 168,36 L 400,36 Z"
-                          fill={card.sheetColor}
-                        />
-                      </svg>
-
-                      {/* Number inside top-left tab + ↗ arrow on right */}
-                      <div className="relative z-10 flex items-start justify-between -mt-3.5">
-                        <span className="text-[38px] sm:text-[40px] font-normal tracking-[-0.04em] leading-none">
-                          {card.number}
-                        </span>
-                        <ArrowUpRight className="w-4 h-4 text-[#ff5500] mt-3" />
-                      </div>
-
-                      {/* Bottom Title & Rich Justified Description */}
-                      <div className="relative z-10 flex-1 flex flex-col justify-end">
-                        {card.tag && (
-                          <div className="text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-[#ff7733] mb-1">
-                            {card.tag}
-                          </div>
-                        )}
-                        <h3 className="text-[17px] sm:text-[18px] lg:text-[19px] font-bold tracking-[-0.015em] leading-snug mb-2">
-                          {card.title}
-                        </h3>
-                        <p
-                          className={`text-justify [text-align:justify] [text-justify:inter-word] text-[12px] sm:text-[12.5px] leading-[1.62] transition-all duration-300 ${card.subColor}`}
+                        {/* Seamless SVG Folder-Tab Top Shoulder */}
+                        <svg
+                          viewBox="0 0 400 36"
+                          preserveAspectRatio="none"
+                          className="absolute -top-[35px] left-0 w-full h-[36px] pointer-events-none block"
                         >
-                          {isHovered ? card.detailedDescription : card.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.article>
-              );
-            })}
+                          <path
+                            d="M 0,36 L 0,18 Q 0,0 18,0 L 102,0 Q 118,0 130,13 L 144,28 Q 152,36 168,36 L 400,36 Z"
+                            fill={card.sheetColor}
+                          />
+                        </svg>
+
+                        {/* Number inside top-left tab */}
+                        <div className="relative z-10 flex items-start justify-between -mt-3.5">
+                          <span className="text-[32px] sm:text-[34px] font-normal tracking-[-0.04em] leading-none">
+                            {card.number}
+                          </span>
+                        </div>
+
+                        {/* Bottom Title + Tag in Normal State, Body Content in Hover State */}
+                        <div className="relative z-10 flex-1 flex flex-col justify-end text-left overflow-hidden">
+                          {!isHovered && card.tag && (
+                            <div
+                              className={`text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider mb-1 ${card.subColor}`}
+                            >
+                              {card.tag}
+                            </div>
+                          )}
+                          <h3 className="text-[16px] sm:text-[17px] font-bold tracking-[-0.015em] leading-snug">
+                            {card.title}
+                          </h3>
+                          <AnimatePresence initial={false}>
+                            {isHovered && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                                animate={{ opacity: 1, height: 'auto', marginTop: 8 }}
+                                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                                className={`text-justify [text-align:justify] [text-justify:inter-word] text-[13px] sm:text-[13.5px] leading-[1.52] overflow-hidden ${card.subColor}`}
+                              >
+                                {card.description}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ====================================================================
-          VILLAGE DIGITAL SEVA SLIDESHOW — GROUND REALITIES & SERVICE DELIVERY
-          Clean, low-cognitive centre locator with authentic rural photography
-          ==================================================================== */}
-      <VillageServicesSlideshow
-        onOpenLocator={(q) => {
-          setLocatorQuery(q || '');
-          setLocatorOpen(true);
-        }}
-      />
-
-      {/* ====================================================================
+        {/* ====================================================================
           F. FOR VILLAGE LEVEL ENTREPRENEURS (Fits Viewport)
           Preserved 5-Card Fanned Arc Interaction with Refined Horizontal Rectangle Cards
           ==================================================================== */}
-      <section
-        id="for-vles"
-        className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-b from-[#fffaf5] to-[#eef2f9] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
-      >
-        {/* Subtle Grand Mandala Background Art (Greyish on Cream) */}
-        <img
-          src="/images/mandala-grand-navy.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[740px] h-[740px] object-contain absolute top-20 left-1/2 -translate-x-1/2 opacity-[0.05] grayscale pointer-events-none select-none"
-        />
+        <section
+          id="for-vles"
+          className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-b from-[#fffaf5] to-[#eef2f9] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+        >
+          {/* Subtle Grand Mandala Background Art (Fits Completely Inside Viewport) */}
+          <img
+            src="/images/mandala-grand-navy.png"
+            alt=""
+            aria-hidden="true"
+            className="w-[520px] sm:w-[580px] lg:w-[620px] max-h-[84%] aspect-square object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.05] grayscale pointer-events-none select-none"
+          />
 
-        <div className="relative z-10 max-w-[1240px] mx-auto text-center w-full">
-          <div className="max-w-2xl mx-auto mb-3 sm:mb-5">
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.1]">
-              Real People. Real Journeys. Real Experiences.
-            </h2>
-            <p className="text-xs sm:text-[13.5px] text-[#64748b] mt-1.5 max-w-xl mx-auto">
-              Authentic experiences of Village Level Entrepreneurs bringing digital services to every community.
-            </p>
-          </div>
+          <div className="relative z-10 max-w-[1240px] mx-auto text-center w-full">
+            <div className="max-w-2xl mx-auto mb-3 sm:mb-5">
+              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.1]">
+                Meet the Voices Behind Every Village Kendra.
+              </h2>
+              <p className="text-xs sm:text-[13.5px] text-[#64748b] mt-1.5 max-w-xl mx-auto">
+                Everyday neighbours who built thriving digital hubs right from their hometowns—and became the heartbeat of their communities.
+              </p>
+            </div>
 
-          {/* 5-Card Responsive Rectangle Fanned Arc Stage */}
-          <div className="relative h-[250px] sm:h-[285px] md:h-[305px] flex items-center justify-center my-2 select-none overflow-visible">
-            {VLE_CAROUSEL_ITEMS.map((item, idx) => {
-              const offset = getOffset(idx);
-              const slot = getFanSlot(offset, windowWidth);
-              const isCenter = offset === 0;
+            {/* 5-Card Responsive Rectangle Fanned Arc Stage */}
+            <div className="relative h-[250px] sm:h-[285px] md:h-[305px] flex items-center justify-center my-2 select-none overflow-visible">
+              {VLE_CAROUSEL_ITEMS.map((item, idx) => {
+                const offset = getOffset(idx);
+                const slot = getFanSlot(offset, windowWidth);
+                const isCenter = offset === 0;
 
-              return (
-                <motion.div
-                  key={item.id}
-                  onClick={() => setFanActive(idx)}
-                  drag={isCenter ? 'x' : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.x < -40) rotateFan(1);
-                    else if (info.offset.x > 40) rotateFan(-1);
-                  }}
-                  initial={false}
-                  animate={{
-                    x: slot.x,
-                    y: slot.y,
-                    rotate: slot.rotate,
-                    scale: slot.scale,
-                    zIndex: slot.zIndex,
-                    filter: `brightness(${slot.brightness})`,
-                  }}
-                  whileHover={
-                    isCenter
-                      ? { scale: 1.04, y: slot.y - 6 }
-                      : { scale: slot.scale + 0.02, y: slot.y - 4 }
-                  }
-                  transition={springTransition}
-                  className="absolute w-[320px] sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
-                >
-                  {/* Left Side: Testimonial & Person Meta */}
-                  <div className="p-5 sm:p-6 pr-1 flex flex-col justify-between flex-1 min-w-0 z-10">
-                    <p className="text-[13px] sm:text-[14.5px] md:text-[15.5px] text-[#0a1628] leading-[1.5] font-normal tracking-[-0.01em] line-clamp-3 sm:line-clamp-4">
-                      “{item.testimonial}”
-                    </p>
+                return (
+                  <motion.div
+                    key={item.id}
+                    onClick={() => setFanActive(idx)}
+                    drag={isCenter ? 'x' : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x < -40) rotateFan(1);
+                      else if (info.offset.x > 40) rotateFan(-1);
+                    }}
+                    initial={false}
+                    animate={{
+                      x: slot.x,
+                      y: slot.y,
+                      rotate: slot.rotate,
+                      scale: slot.scale,
+                      zIndex: slot.zIndex,
+                      filter: `brightness(${slot.brightness})`,
+                    }}
+                    whileHover={
+                      isCenter
+                        ? { scale: 1.04, y: slot.y - 6 }
+                        : { scale: slot.scale + 0.02, y: slot.y - 4 }
+                    }
+                    transition={springTransition}
+                    className="absolute w-[320px] sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
+                  >
+                    {/* Left Side: Testimonial & Person Meta */}
+                    <div className="p-5 sm:p-6 pr-1 flex flex-col justify-between flex-1 min-w-0 z-10">
+                      <p className="text-[13px] sm:text-[14.5px] md:text-[15.5px] text-[#0a1628] leading-[1.5] font-normal tracking-[-0.01em] line-clamp-3 sm:line-clamp-4">
+                        “{item.testimonial}”
+                      </p>
 
-                    <div className="pt-2 sm:pt-2.5 border-t border-[#0a1628]/8">
-                      <div className="text-[13px] sm:text-[14px] font-bold text-[#0a1628] leading-tight">
-                        {item.name}
-                        <span className="text-[11.5px] font-normal text-[#64748b] ml-1.5">
-                          Age {item.age}
-                        </span>
-                      </div>
-                      <div className="text-[11px] sm:text-[12px] text-[#64748b] mt-0.5 leading-tight font-medium">
-                        {item.location}
+                      <div className="pt-2 sm:pt-2.5 border-t border-[#0a1628]/8">
+                        <div className="text-[13px] sm:text-[14px] font-bold text-[#0a1628] leading-tight">
+                          {item.name}
+                          <span className="text-[11.5px] font-normal text-[#64748b] ml-1.5">
+                            Age {item.age}
+                          </span>
+                        </div>
+                        <div className="text-[11px] sm:text-[12px] text-[#64748b] mt-0.5 leading-tight font-medium">
+                          {item.location}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Right Side: Person Cutout */}
-                  <div className="w-[46%] sm:w-[48%] h-full shrink-0 relative flex items-end justify-center pointer-events-none overflow-hidden pr-1 sm:pr-3 pb-0">
-                    <img
-                      src={`${item.image}?v=25`}
-                      alt={`${item.name}, VLE from ${item.location}`}
-                      className="h-[102%] w-auto max-h-none object-contain object-bottom pointer-events-none drop-shadow-lg select-none transform translate-y-0.5"
-                    />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Navigation Controls: Arrows + Indicator Dots */}
-          <div className="flex items-center justify-center gap-3.5 mt-3 sm:mt-4">
-            <button
-              onClick={() => rotateFan(-1)}
-              aria-label="Previous VLE story"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#0a1628]/12 text-[#0a1628] hover:bg-[#ff5500] hover:text-white hover:border-[#ff5500] grid place-items-center shadow-xs transition-all cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {VLE_CAROUSEL_ITEMS.map((_, dotIdx) => (
-                <button
-                  key={dotIdx}
-                  onClick={() => setFanActive(dotIdx)}
-                  aria-label={`Go to story ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all cursor-pointer ${fanActive === dotIdx ? 'w-6 bg-[#ff5500]' : 'w-2 bg-[#0a1628]/20 hover:bg-[#0a1628]/40'
-                    }`}
-                />
-              ))}
+                    {/* Right Side: Person Cutout */}
+                    <div className="w-[46%] sm:w-[48%] h-full shrink-0 relative flex items-end justify-center pointer-events-none overflow-hidden pr-1 sm:pr-3 pb-0">
+                      <img
+                        src={`${item.image.split('?')[0]}?v=50`}
+                        alt={`${item.name}, VLE from ${item.location}`}
+                        className="h-[91%] sm:h-[92%] w-auto max-h-none object-contain object-bottom pointer-events-none drop-shadow-md select-none transform translate-y-0.5"
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
-            <button
-              onClick={() => rotateFan(1)}
-              aria-label="Next VLE story"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#0a1628]/12 text-[#0a1628] hover:bg-[#ff5500] hover:text-white hover:border-[#ff5500] grid place-items-center shadow-xs transition-all cursor-pointer"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
 
-      {/* ====================================================================
+            {/* Navigation Controls: Arrows + Indicator Dots */}
+            <div className="flex items-center justify-center gap-3.5 mt-3 sm:mt-4">
+              <button
+                onClick={() => rotateFan(-1)}
+                aria-label="Previous VLE story"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#0a1628]/12 text-[#0a1628] hover:bg-[#ff5500] hover:text-white hover:border-[#ff5500] grid place-items-center shadow-xs transition-all cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </button>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {VLE_CAROUSEL_ITEMS.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    onClick={() => setFanActive(dotIdx)}
+                    aria-label={`Go to story ${dotIdx + 1}`}
+                    className={`h-2 rounded-full transition-all cursor-pointer ${fanActive === dotIdx ? 'w-6 bg-[#ff5500]' : 'w-2 bg-[#0a1628]/20 hover:bg-[#0a1628]/40'
+                      }`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={() => rotateFan(1)}
+                aria-label="Next VLE story"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-[#0a1628]/12 text-[#0a1628] hover:bg-[#ff5500] hover:text-white hover:border-[#ff5500] grid place-items-center shadow-xs transition-all cursor-pointer"
+              >
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* ====================================================================
+          VILLAGE DIGITAL SEVA SLIDESHOW — GROUND REALITIES & SERVICE DELIVERY
+          Clean, low-cognitive centre locator with authentic rural photography
+          ==================================================================== */}
+        <VillageServicesSlideshow
+          onOpenLocator={(q) => {
+            setLocatorQuery(q || '');
+            setLocatorOpen(true);
+          }}
+          onOpenCalculator={() => setCalculatorOpen(true)}
+        />
+
+        {/* ====================================================================
           G. NETWORK STORIES & UPDATES
           Headline: News and Updates (Updates in orange)
           Format: 3 Modern Clean Cards with Bespoke Vector Graphics & Gradients
           ==================================================================== */}
-      <section
-        id="whats-new"
-        className="relative py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
-      >
-        <div className="max-w-[1200px] mx-auto w-full">
-          {/* Section Header with 'View all' on the top right */}
-          <div className="relative flex flex-col items-center text-center mb-12 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#0a1628]">
-              What's Happening Across the CSC Network?
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed max-w-xl">
-              Official circulars, nationwide initiatives, and grassroots announcements.
-            </p>
+        <section
+          id="whats-new"
+          className="relative py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
+        >
+          <div className="max-w-[1200px] mx-auto w-full">
+            {/* Section Header with 'View all' on the top right */}
+            <div className="relative flex flex-col items-center text-center mb-12 sm:mb-14">
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold tracking-tight text-[#0a1628]">
+                What's Happening Across the CSC Network?
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mt-2.5 leading-relaxed max-w-xl">
+                Official circulars, nationwide initiatives, and grassroots announcements.
+              </p>
 
-            {/* View All link on top right */}
-            <a
-              href="#newsletter"
-              className="sm:absolute sm:right-0 sm:bottom-1 mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-[#ff5500] hover:text-[#e04800] transition-colors group cursor-pointer"
-            >
-              <span>View all</span>
-              <ArrowRight className="w-4 h-4 text-[#ff5500] group-hover:text-[#e04800] transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-
-          {/* 3 Bespoke CSC Network Story Cards: Vector Illustration Stage + Seamless Navy Blue Bottom */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 items-stretch">
-            {NEWS_CARDS.map((card) => (
-              <article
-                key={card.id}
-                onClick={() => setSelectedStory(card)}
-                className="relative h-[460px] sm:h-[485px] bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
+              {/* View All link on top right */}
+              <a
+                href="#newsletter"
+                className="sm:absolute sm:right-0 sm:bottom-1 mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-black hover:text-black/75 transition-colors group cursor-pointer"
               >
-                {/* Visual Stage Container (Upper ~60% in normal state) */}
-                <div className="absolute top-0 inset-x-0 h-[280px] sm:h-[295px]">
-                  <NewsIllustrationStage variant={card.variant} />
-                </div>
+                <span>View all</span>
+                <ArrowRight className="w-4 h-4 text-black group-hover:text-black/75 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
 
-                {/* Sliding Navy Text Container: Fixed to bottom of card, slides UP over the shape on hover */}
-                <div className="absolute inset-x-0 bottom-0 bg-[#0c1a2e] flex flex-col justify-between h-[180px] sm:h-[190px] group-hover:h-[280px] sm:group-hover:h-[295px] transition-all duration-500 ease-out z-10 shadow-[0_-10px_25px_rgba(12,26,46,0.3)]">
-                  {/* Card Body - Deep Navy Blue with White/Light Text */}
-                  <div className="p-6 pt-5 pb-2 text-left">
-                    {/* Category Pill & Date */}
-                    <div className="flex items-center gap-2 mb-2.5">
-                      <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border-0">
-                        {card.categoryTag}
-                      </span>
-                      <span className="text-[11px] text-slate-400 font-medium">
-                        {card.date}
-                      </span>
+            {/* 3 Bespoke CSC Network Story Cards: Vector Illustration Stage + Seamless Navy Blue Bottom */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+              {NEWS_CARDS.map((card) => (
+                <article
+                  key={card.id}
+                  onClick={() => setSelectedStory(card)}
+                  className="relative h-[460px] sm:h-[485px] bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
+                >
+                  {/* Visual Stage Container (Upper ~60% in normal state) */}
+                  <div className="absolute top-0 inset-x-0 h-[280px] sm:h-[295px]">
+                    <NewsIllustrationStage variant={card.variant} />
+                  </div>
+
+                  {/* Sliding Navy Text Container: Fixed to bottom of card, slides UP over the shape on hover */}
+                  <div className="absolute inset-x-0 bottom-0 bg-[#0c1a2e] flex flex-col justify-between h-[180px] sm:h-[190px] group-hover:h-[280px] sm:group-hover:h-[295px] transition-all duration-500 ease-out z-10 shadow-[0_-10px_25px_rgba(12,26,46,0.3)]">
+                    {/* Card Body - Deep Navy Blue with White/Light Text */}
+                    <div className="p-6 pt-5 pb-2 text-left">
+                      {/* Category Pill & Date */}
+                      <div className="flex items-center gap-2 mb-2.5">
+                        <span className="text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border-0">
+                          {card.categoryTag}
+                        </span>
+                        <span className="text-[11px] text-slate-400 font-medium">
+                          {card.date}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-[17px] sm:text-[18px] font-bold text-white tracking-tight leading-snug line-clamp-2">
+                        {card.cardTitle}
+                      </h3>
+
+                      {/* Body Description - Slides up & reveals as container height expands */}
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                        <div className="overflow-hidden">
+                          <p className="text-[12.5px] sm:text-[13px] text-slate-300 leading-relaxed pt-3 line-clamp-3 opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 transition-all duration-500 ease-out delay-75">
+                            {card.cardSummary}
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-[17px] sm:text-[18px] font-bold text-white tracking-tight leading-snug line-clamp-2">
-                      {card.cardTitle}
-                    </h3>
+                    {/* Footer Row (Seamless Navy bg-[#0c1a2e], NO dividing border line, White Icon) */}
+                    <div className="px-6 pb-6 pt-2 bg-[#0c1a2e] flex items-center justify-between text-xs">
+                      {/* Left Action Button */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedStory(card);
+                        }}
+                        className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
+                      >
+                        {card.actionText}
+                      </button>
 
-                    {/* Body Description - Slides up & reveals as container height expands */}
-                    <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
-                      <div className="overflow-hidden">
-                        <p className="text-[12.5px] sm:text-[13px] text-slate-300 leading-relaxed pt-3 line-clamp-3 opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 transition-all duration-500 ease-out delay-75">
-                          {card.cardSummary}
-                        </p>
+                      {/* Right Status Indicator with White Icon */}
+                      <div className="flex items-center gap-1.5 text-xs text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
+                        <span className="truncate max-w-[155px] font-medium">{card.statusNote}</span>
                       </div>
                     </div>
                   </div>
+                </article>
+              ))}
+            </div>
 
-                  {/* Footer Row (Seamless Navy bg-[#0c1a2e], NO dividing border line, White Icon) */}
-                  <div className="px-6 pb-6 pt-2 bg-[#0c1a2e] flex items-center justify-between text-xs">
-                    {/* Left Action Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedStory(card);
-                      }}
-                      className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
-                    >
-                      {card.actionText}
-                    </button>
-
-                    {/* Right Status Indicator with White Icon */}
-                    <div className="flex items-center gap-1.5 text-xs text-slate-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0" />
-                      <span className="truncate max-w-[155px] font-medium">{card.statusNote}</span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* ==========================================================
+            {/* ==========================================================
               INTERACTIVE NEWSLETTER & SCHEMES SUBSCRIPTION BANNER
               Allows citizens and VLEs to subscribe to official circulars,
               new scheme rollouts, welfare subsidies, and promotion alerts
               ========================================================== */}
-          <div
-            id="newsletter"
-            className="mt-12 sm:mt-16 rounded-[28px] bg-gradient-to-br from-[#0c1a2e] via-[#0d1f38] to-[#122847] p-7 sm:p-10 lg:p-12 text-white border border-slate-700/60 shadow-lg relative overflow-hidden scroll-mt-28"
-          >
-            {/* Subtle Mandala Background Art Graphic */}
-            <img
-              src="/images/mandala-grand-white.png"
-              alt=""
-              aria-hidden="true"
-              className="absolute -right-20 -bottom-20 w-80 h-80 object-contain opacity-[0.06] pointer-events-none select-none"
-            />
+            <div
+              id="newsletter"
+              className="mt-12 sm:mt-16 rounded-[28px] bg-gradient-to-br from-[#0c1a2e] via-[#0d1f38] to-[#122847] px-7 py-8 sm:px-10 sm:py-10 text-white border border-slate-700/60 shadow-lg relative overflow-hidden scroll-mt-28"
+            >
+              {/* Subtle Mandala Background Art Graphic */}
+              <img
+                src="/images/mandala-grand-white.png"
+                alt=""
+                aria-hidden="true"
+                className="absolute -right-32 -bottom-32 w-72 h-72 object-contain opacity-[0.05] pointer-events-none select-none"
+              />
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Column: Heading, Value Proposition & Trust Badges */}
-              <div className="lg:col-span-7">
-                {/* Pill Tag */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 text-xs font-semibold mb-3.5">
-                  <Mail className="w-3.5 h-3.5 text-[#ff7733]" />
-                  <span>OFFICIAL DIGITAL SEVA DISPATCH</span>
+              <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-10">
+                {/* Left Column: Clean Headline & 1-Line Subtext */}
+                <div className="max-w-xl">
+                  <h3 className="text-2xl sm:text-[28px] font-bold tracking-tight text-white leading-snug">
+                    Stay Updated on New Schemes & Circulars
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Get official updates on new government schemes, service rollouts, and VLE announcements directly in your inbox.
+                  </p>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
-                  Stay Informed on New Schemes, Directives & VLE Promotions
-                </h3>
-
-                <p className="mt-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
-                  Get official circulars from MeitY, launch notices for upcoming G2C welfare schemes, subsidy calendars, and special VLE commission incentive alerts delivered straight to your inbox.
-                </p>
-
-                {/* 3 Value Pillars */}
-                <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-200">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>New Scheme Rollouts</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>Security Advisories</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>VLE Earning Incentives</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Interactive Subscription Form */}
-              <div className="lg:col-span-5">
-                <div className="bg-[#081322]/85 backdrop-blur-md rounded-2xl p-6 sm:p-7 border border-white/12 shadow-xl">
+                {/* Right Column: Clean Inline Email Input + Subscribe Button */}
+                <div className="w-full lg:w-[440px] shrink-0">
                   {newsletterSubscribed ? (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
+                      initial={{ opacity: 0, scale: 0.96 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="text-center py-4"
+                      className="flex items-center justify-between gap-3 px-4 py-3.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs text-emerald-200"
                     >
-                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 grid place-items-center mx-auto mb-3">
-                        <CheckCircle2 className="w-6 h-6" />
-                      </div>
-                      <h4 className="text-base font-bold text-white mb-1">
-                        Subscription Confirmed!
-                      </h4>
-                      <p className="text-xs text-slate-300 mb-4 leading-relaxed">
-                        We have registered <strong className="text-white">{newsletterEmail}</strong>. You will receive official weekly digests, scheme launches, and emergency advisories.
-                      </p>
+                      <span className="flex items-center gap-2 font-medium">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span>Subscribed <strong className="text-white">{newsletterEmail}</strong></span>
+                      </span>
                       <button
                         onClick={() => {
                           setNewsletterSubscribed(false);
                           setNewsletterEmail('');
                         }}
-                        className="text-xs text-[#ff7733] hover:text-white font-medium underline underline-offset-4 cursor-pointer transition-colors"
+                        className="text-[#ff884d] hover:text-white font-semibold underline cursor-pointer shrink-0"
                       >
-                        Subscribe another email address
+                        Change
                       </button>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleNewsletterSubmit} className="space-y-3.5">
-                      <div>
-                        <label
-                          htmlFor="newsletter-email"
-                          className="block text-xs font-semibold text-white/90 mb-1.5"
-                        >
-                          Official or Personal Email
-                        </label>
-                        <div className="relative">
+                    <form onSubmit={handleNewsletterSubmit}>
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                        <div className="relative flex-1">
+                          <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                           <input
                             id="newsletter-email"
                             type="email"
@@ -1598,549 +1594,605 @@ export default function App() {
                               setNewsletterEmail(e.target.value);
                               if (newsletterError) setNewsletterError('');
                             }}
-                            placeholder="Enter your email (e.g. vle@csc.gov.in)"
-                            className="w-full px-4 py-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] focus:bg-white/[0.14] border border-white/15 focus:border-white/15 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-xs sm:text-sm placeholder:text-slate-400 transition-all pr-10"
+                            placeholder="Enter your email address..."
+                            className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-white/30 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-sm placeholder:text-slate-400 transition-all"
                             required
                           />
-                          <Mail className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                         </div>
-                        {newsletterError && (
-                          <p className="text-[11px] text-rose-400 mt-1.5 flex items-center gap-1">
-                            <span>⚠</span>
-                            <span>{newsletterError}</span>
-                          </p>
-                        )}
+
+                        <button
+                          type="submit"
+                          className="py-3.5 px-6 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-sm transition-all hover:scale-102 active:scale-98 cursor-pointer flex items-center justify-center gap-2 shadow-md shrink-0"
+                        >
+                          <span>Subscribe</span>
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </button>
                       </div>
 
-                      <button
-                        type="submit"
-                        className="w-full py-3 px-5 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-sm transition-all hover:scale-[1.01] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 shadow-xs"
-                      >
-                        <Send className="w-4 h-4 text-white" />
-                        <span>Subscribe to Scheme & Circular Alerts</span>
-                      </button>
-
-                      <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-white/10">
-                        <span>🔒 100% Privacy Protected</span>
-                        <span>Zero Spam · Unsubscribe Anytime</span>
-                      </div>
+                      {newsletterError && (
+                        <p className="text-[11px] text-rose-400 mt-1.5">
+                          ⚠ {newsletterError}
+                        </p>
+                      )}
                     </form>
                   )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Gazette Story Detail Reading Modal */}
-      <AnimatePresence>
-        {selectedStory && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedStory(null)}
-            className="fixed inset-0 bg-[#0a1628]/70 backdrop-blur-sm z-50 grid place-items-center p-4"
-          >
+        {/* Gazette Story Detail Reading Modal */}
+        <AnimatePresence>
+          {selectedStory && (
             <motion.div
-              initial={{ scale: 0.95, y: 15, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 15, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-[#0c1a2e] text-white w-full max-w-xl rounded-3xl shadow-2xl relative border border-white/20 overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedStory(null)}
+              className="fixed inset-0 bg-[#0a1628]/70 backdrop-blur-sm z-50 grid place-items-center p-4"
             >
-              {/* Header Image with dark gradient scrim */}
-              <div className="relative aspect-[21/9] w-full overflow-hidden bg-slate-950">
-                <img
-                  src={selectedStory.image}
-                  alt={selectedStory.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent" />
+              <motion.div
+                initial={{ scale: 0.95, y: 15, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.95, y: 15, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-[#0c1a2e] text-white w-full max-w-xl rounded-3xl shadow-2xl relative border border-white/20 overflow-hidden"
+              >
+                {/* Header Image with dark gradient scrim */}
+                <div className="relative aspect-[21/9] w-full overflow-hidden bg-slate-950">
+                  <img
+                    src={selectedStory.image}
+                    alt={selectedStory.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a2e] via-[#0c1a2e]/50 to-transparent" />
 
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedStory(null)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff5500] text-white grid place-items-center cursor-pointer z-10 transition-colors backdrop-blur-md"
-                  aria-label="Close story"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedStory(null)}
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 hover:bg-[#ff5500] text-white grid place-items-center cursor-pointer z-10 transition-colors backdrop-blur-md"
+                    aria-label="Close story"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
 
-                {/* Tags on modal header */}
-                <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs text-white/90">
-                  <span className="px-2.5 py-0.5 rounded bg-[#ff5500] font-bold text-[11px] tracking-wide text-white shadow-sm">
-                    {selectedStory.category}
-                  </span>
-                  <span className="font-mono text-[10.5px] text-white/90 bg-black/50 px-2 py-0.5 rounded border border-white/20">
-                    {selectedStory.refCode}
-                  </span>
-                </div>
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-6 sm:p-8">
-                {/* Authority & Date */}
-                <div className="flex items-center justify-between text-xs text-slate-400 font-medium pb-3 mb-4 border-b border-white/10">
-                  <span className="text-slate-300">{selectedStory.authority}</span>
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#ff5500]" />
-                    <span>{selectedStory.date}</span>
-                    <span>· {selectedStory.readTime}</span>
+                  {/* Tags on modal header */}
+                  <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs text-white/90">
+                    <span className="px-2.5 py-0.5 rounded bg-[#ff5500] font-bold text-[11px] tracking-wide text-white shadow-sm">
+                      {selectedStory.category}
+                    </span>
+                    <span className="font-mono text-[10.5px] text-white/90 bg-black/50 px-2 py-0.5 rounded border border-white/20">
+                      {selectedStory.refCode}
+                    </span>
                   </div>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-4 leading-snug">
-                  {selectedStory.title}
-                </h3>
+                {/* Modal Body */}
+                <div className="p-6 sm:p-8">
+                  {/* Authority & Date */}
+                  <div className="flex items-center justify-between text-xs text-slate-400 font-medium pb-3 mb-4 border-b border-white/10">
+                    <span className="text-slate-300">{selectedStory.authority}</span>
+                    <div className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#ff5500]" />
+                      <span>{selectedStory.date}</span>
+                      <span>· {selectedStory.readTime}</span>
+                    </div>
+                  </div>
 
-                <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3 mb-6 whitespace-pre-line max-h-[42vh] overflow-y-auto pr-2">
-                  {selectedStory.fullStory}
-                </div>
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-4 leading-snug">
+                    {selectedStory.title}
+                  </h3>
 
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                  <span className="text-[11px] font-mono text-emerald-400 font-semibold flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>STATUS: ACTIVE CIRCULAR</span>
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => window.print()}
-                      className="px-4 py-2 rounded-xl border border-white/15 hover:bg-white/5 text-slate-300 text-xs font-semibold transition-colors cursor-pointer"
-                    >
-                      Print Notice
-                    </button>
-                    <button
-                      onClick={() => setSelectedStory(null)}
-                      className="px-5 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs"
-                    >
-                      Done
-                    </button>
+                  <div className="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3 mb-6 whitespace-pre-line max-h-[42vh] overflow-y-auto pr-2">
+                    {selectedStory.fullStory}
+                  </div>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                    <span className="text-[11px] font-mono text-emerald-400 font-semibold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>STATUS: ACTIVE CIRCULAR</span>
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => window.print()}
+                        className="px-4 py-2 rounded-xl border border-white/15 hover:bg-white/5 text-slate-300 text-xs font-semibold transition-colors cursor-pointer"
+                      >
+                        Print Notice
+                      </button>
+                      <button
+                        onClick={() => setSelectedStory(null)}
+                        className="px-5 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs"
+                      >
+                        Done
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      {/* ====================================================================
+        <VleSupportAndHardwareSection />
+
+        {/* ====================================================================
           H. TRUST, SAFETY & SUPPORT (Fits Viewport)
           Headline: Your Safety Is Part of Every Service.
           ==================================================================== */}
-      <section
-        id="support"
-        className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
-      >
-        {/* Subtle Floral Mandala Background Art (Greyish on Cream) */}
-        <img
-          src="/images/mandala-floral-navy.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[520px] h-[520px] object-contain absolute -top-36 -left-36 opacity-[0.05] grayscale pointer-events-none select-none"
-        />
+        <section
+          id="support"
+          className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+        >
+          <div className="relative z-10 max-w-[1240px] mx-auto w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              {/* Left 5 Cols: Deep Navy Support Channels Card */}
+              <div className="lg:col-span-5 relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-7 overflow-hidden shadow-xl border border-white/10">
+                <div className="relative z-10">
+                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.1] mb-2.5">
+                    Your Safety Is Part of Every Service.
+                  </h2>
+                  <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
+                    Recognise official channels, identify fraudulent communication, and access verified assistance safely.
+                  </p>
 
-        <div className="relative z-10 max-w-[1240px] mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            {/* Left 5 Cols: Deep Navy Support Channels Card */}
-            <div className="lg:col-span-5 relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-7 overflow-hidden shadow-xl border border-white/10">
-              {/* Authentic Indian Mandala Art in Bottom-Right Corner */}
-              <img
-                src="/images/mandala-card-01.png"
-                alt=""
-                aria-hidden="true"
-                className="w-[300px] h-[300px] object-contain absolute -bottom-20 -right-20 opacity-[0.09] pointer-events-none select-none"
-              />
-
-              <div className="relative z-10">
-                <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.1] mb-2.5">
-                  Your Safety Is Part of Every Service.
-                </h2>
-                <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
-                  Recognise official channels, identify fraudulent communication, and access verified assistance safely.
-                </p>
-
-                <div className="divide-y divide-white/10 border-t border-b border-white/10">
-                  {SUPPORT_ITEMS.map((item) => (
-                    <div
-                      key={item.code}
-                      className="py-2.5 sm:py-3 flex items-start justify-between gap-3"
-                    >
-                      <div>
-                        <div className="text-xs sm:text-[13px] font-semibold text-white">
-                          {item.title}
+                  <div className="divide-y divide-white/10 border-t border-b border-white/10">
+                    {SUPPORT_ITEMS.map((item) => (
+                      <div
+                        key={item.code}
+                        className="py-2.5 sm:py-3 flex items-start justify-between gap-3"
+                      >
+                        <div>
+                          <div className="text-xs sm:text-[13px] font-semibold text-white">
+                            {item.title}
+                          </div>
+                          <p className="text-[11px] sm:text-[11.5px] text-white/65 mt-0.5 leading-snug">
+                            {item.description}
+                          </p>
                         </div>
-                        <p className="text-[11px] sm:text-[11.5px] text-white/65 mt-0.5 leading-snug">
-                          {item.description}
-                        </p>
+                        <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
+                          {item.action}
+                        </span>
                       </div>
-                      <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
-                        {item.action}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right 7 Cols: Expandable FAQs */}
+              <div className="lg:col-span-7 lg:pl-4">
+                <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
+                  Frequently Asked Questions
+                </h3>
+
+                <div className="divide-y divide-[#0a1628]/12 border-t border-b border-[#0a1628]/12">
+                  {FAQ_LIST.map((faq, idx) => {
+                    const open = openFaqIdx === idx;
+                    return (
+                      <div key={faq.q} className="py-3 sm:py-3.5">
+                        <button
+                          onClick={() => setOpenFaqIdx(open ? -1 : idx)}
+                          className="w-full text-left flex items-center justify-between gap-4 text-[14px] sm:text-[15px] font-semibold text-[#0a1628] transition-colors cursor-pointer"
+                        >
+                          <span>{faq.q}</span>
+                          <span className="w-6 h-6 rounded-full bg-[#0a1628] text-white grid place-items-center shrink-0">
+                            {open ? (
+                              <Minus className="w-3.5 h-3.5" />
+                            ) : (
+                              <Plus className="w-3.5 h-3.5" />
+                            )}
+                          </span>
+                        </button>
+                        {open && (
+                          <p className="mt-2 text-xs sm:text-[13px] text-[#334766] leading-[1.6] pr-6">
+                            {faq.a}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Still have questions? Ask Sarthi AI callout matching user reference */}
+                <div className="mt-7 pt-2 flex flex-col items-center text-center">
+                  <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
+                    Still have questions?
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
+                    Get instant answers from Sarthi, our official AI assistant in your language.
+                  </p>
+                  <button
+                    onClick={() => setChatbotOpen(true)}
+                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#0a1628] hover:bg-[#162844] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                  >
+                    <Sparkles className="w-4 h-4 text-white" />
+                    <span>Ask Sarthi our AI chat bot</span>
+                  </button>
                 </div>
               </div>
             </div>
-
-            {/* Right 7 Cols: Expandable FAQs */}
-            <div className="lg:col-span-7 lg:pl-4">
-              <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
-                Frequently Asked Questions
-              </h3>
-
-              <div className="divide-y divide-[#0a1628]/12 border-t border-b border-[#0a1628]/12">
-                {FAQ_LIST.map((faq, idx) => {
-                  const open = openFaqIdx === idx;
-                  return (
-                    <div key={faq.q} className="py-3 sm:py-3.5">
-                      <button
-                        onClick={() => setOpenFaqIdx(open ? -1 : idx)}
-                        className="w-full text-left flex items-center justify-between gap-4 text-[14px] sm:text-[15px] font-semibold text-[#0a1628] hover:text-[#ff5500] transition-colors cursor-pointer"
-                      >
-                        <span>{faq.q}</span>
-                        {open ? (
-                          <span className="w-6 h-6 rounded-full bg-[#ff5500] text-white grid place-items-center shrink-0">
-                            <Minus className="w-3.5 h-3.5" />
-                          </span>
-                        ) : (
-                          <span className="w-6 h-6 rounded-full bg-[#0a1628] text-white grid place-items-center shrink-0">
-                            <Plus className="w-3.5 h-3.5" />
-                          </span>
-                        )}
-                      </button>
-                      {open && (
-                        <p className="mt-2 text-xs sm:text-[13px] text-[#334766] leading-[1.6] pr-6">
-                          {faq.a}
-                        </p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Still have questions? Ask Sarthi AI callout matching user reference */}
-              <div className="mt-8 pt-6 border-t border-[#0a1628]/12 flex flex-col items-center text-center">
-                <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
-                  Still have questions?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
-                  Get instant answers from Sarthi, our official AI assistant in your language.
-                </p>
-                <button
-                  onClick={() => setChatbotOpen(true)}
-                  className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#1e293b] hover:bg-[#ff5500] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-[#ff7733]" />
-                  <span>Ask Sarthi our AI chat bot</span>
-                </button>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ====================================================================
+        {/* ====================================================================
           APP DOWNLOAD SECTION — SCAN & DOWNLOAD
           Headline: Get Our App: Scan & Download
           Features: Authentic Vector QR Code with CSC Emblem, Store Links & App Pillars
           ==================================================================== */}
-      <AppDownloadSection />
+        <AppDownloadSection />
 
-      {/* ====================================================================
+        {/* ====================================================================
           I. FINAL CALL TO ACTION — DEDICATED VLE CONVERSION STAGE
           Headline: Ready to Bring Digital Services to Your Community?
           Art Graphics: Traditional Indian Mandalas on Bottom-Left & Bottom-Right
           Animated entrance every time user scrolls to this section (viewport: once: false)
           ==================================================================== */}
-      <section
-        id="get-started"
-        className="relative min-h-[70vh] flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-12 sm:py-14 lg:py-16"
-      >
-        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer */}
-        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-          <img
-            src="/images/grainy-gradient-bg-4k.jpg"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-center"
-          />
-          {/* Subtle deep navy gradient integration on top & bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/40 via-transparent to-[#0a1628]/50" />
-
-          {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
-          <div
-            className="absolute inset-0 opacity-[0.22] mix-blend-overlay pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              backgroundRepeat: 'repeat',
-            }}
-          />
-        </div>
-
-        {/* BOTTOM-LEFT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.65, x: -80, y: 80, rotate: -35 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute -bottom-32 sm:-bottom-40 -left-32 sm:-left-40 pointer-events-none select-none z-1"
+        <section
+          id="get-started"
+          className="relative min-h-[70vh] flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-12 sm:py-14 lg:py-16"
         >
-          <img
-            src="/images/mandala-grand-white.png"
-            alt=""
-            aria-hidden="true"
-            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
-          />
-        </motion.div>
+          {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer */}
+          <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+            <img
+              src="/images/grainy-gradient-bg-4k.jpg"
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Subtle deep navy gradient integration on top & bottom */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/40 via-transparent to-[#0a1628]/50" />
 
-        {/* BOTTOM-RIGHT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.65, x: 80, y: 80, rotate: 35 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
-          viewport={{ once: false, amount: 0.15 }}
-          transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute -bottom-32 sm:-bottom-40 -right-32 sm:-right-40 pointer-events-none select-none z-1"
-        >
-          <img
-            src="/images/mandala-grand-white.png"
-            alt=""
-            aria-hidden="true"
-            className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 max-w-[1000px] mx-auto w-full text-center"
-        >
-          {/* Frosted Glass Credential Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase mb-3 shadow-md">
-            <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
-            <span>JOIN 5,50,000+ VILLAGE LEVEL ENTREPRENEURS</span>
+            {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
+            <div
+              className="absolute inset-0 opacity-[0.22] mix-blend-overlay pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundRepeat: 'repeat',
+              }}
+            />
           </div>
 
-          {/* Display Headline */}
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-tight mb-2.5 max-w-2xl mx-auto drop-shadow-sm">
-            Your CSC Journey Starts with One Step.
-          </h2>
+          {/* BOTTOM-LEFT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.65, x: -80, y: 80, rotate: -35 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute -bottom-44 sm:-bottom-56 -left-32 sm:-left-40 pointer-events-none select-none z-1"
+          >
+            <img
+              src="/images/mandala-grand-white.png"
+              alt=""
+              aria-hidden="true"
+              className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
+            />
+          </motion.div>
 
-          {/* Subtitle */}
-          <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-6 font-normal">
-            Explore the requirements, understand the registration process, and take the first step towards establishing your own Village Level Enterprise.
-          </p>
+          {/* BOTTOM-RIGHT CORNER ART GRAPHIC — Animated Entrance Each Time Scrolled into View */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.65, x: 80, y: 80, rotate: 35 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0, y: 0, rotate: 0 }}
+            viewport={{ once: false, amount: 0.15 }}
+            transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute -bottom-44 sm:-bottom-56 -right-32 sm:-right-40 pointer-events-none select-none z-1"
+          >
+            <img
+              src="/images/mandala-grand-white.png"
+              alt=""
+              aria-hidden="true"
+              className="w-[340px] sm:w-[440px] lg:w-[500px] h-[340px] sm:h-[440px] lg:h-[500px] object-contain opacity-[0.16]"
+            />
+          </motion.div>
 
-          {/* 3 Authentic Frosted Key Prerequisite Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-6 text-left">
-            {/* Card 01 — Simple Eligibility */}
-            <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
-              <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Building2 className="w-4 h-4 text-white" />
-              </div>
-
-              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
-                Simple Eligibility
-              </div>
-              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
-                Age 18+ with minimum 10th pass qualification and local panchayat residency.
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 max-w-[1000px] mx-auto w-full text-center"
+          >
+            {/* Frosted Glass Credential Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-[11px] font-semibold tracking-wider uppercase mb-3 shadow-md">
+              <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
+              <span>JOIN 5,50,000+ VILLAGE LEVEL ENTREPRENEURS</span>
             </div>
 
-            {/* Card 02 — MeitY Certification */}
-            <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
-              <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Award className="w-4 h-4 text-white" />
-              </div>
+            {/* Display Headline */}
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-[-0.03em] leading-tight mb-2.5 max-w-2xl mx-auto drop-shadow-sm">
+              Your CSC Journey Starts with One Step.
+            </h2>
 
-              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
-                MeitY Certification
-              </div>
-              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
-                Complete Telecentre Entrepreneur Course (TEC) with dedicated district onboarding.
-              </div>
-            </div>
+            {/* Subtitle */}
+            <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-6 font-normal">
+              Explore the requirements, understand the registration process, and take the first step towards establishing your own Village Level Enterprise.
+            </p>
 
-            {/* Card 03 — Unified Digital Wallet */}
-            <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
-              <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Wallet className="w-4 h-4 text-white" />
-              </div>
-
-              <div className="relative z-10 text-[14.5px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
-                Unified Digital Wallet
-              </div>
-              <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
-                Instant commission payouts and real-time reconciliation across 400+ desks.
-              </div>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
-            <button
-              onClick={() => setLoginOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
-            >
-              <span>Start VLE Registration</span>
-              <ArrowRight className="w-4 h-4 text-white" />
-            </button>
-
-            <button
-              onClick={() => setCalculatorOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.1] backdrop-blur-2xl border border-white/20 text-white font-semibold text-xs sm:text-sm transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
-            >
-              <Calculator className="w-4 h-4 text-[#ff884d]" />
-              <span>Earning Calculator</span>
-              <ArrowUpRight className="w-4 h-4 text-white/70" />
-            </button>
-          </div>
-
-          {/* Direct Support Assistance */}
-          <div className="inline-flex items-center gap-2 text-[11.5px] text-white/70">
-            <span>Need assistance with VLE registration?</span>
-            <span className="text-white font-medium">
-              Call Toll-Free Helpdesk: <span className="text-[#ff7733] font-bold">14599</span>
-            </span>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ====================================================================
-          J. FOOTER (PROPOSAL SECTION 12)
-          Headline: Explore More. Stay Informed. Stay Connected.
-          ==================================================================== */}
-      <footer className="relative bg-[#071120] text-[#9cb1d4] py-16 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
-        <img
-          src="/images/mandala-grand-white.png"
-          alt=""
-          aria-hidden="true"
-          className="w-[500px] h-[500px] object-contain absolute -bottom-52 left-1/2 -translate-x-1/2 opacity-[0.05] pointer-events-none select-none"
-        />
-
-        <div className="relative z-10 max-w-[1240px] mx-auto">
-          {/* Quick Newsletter Subscribe Bar in Footer */}
-          <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-5">
-            <div className="flex items-center gap-3.5 text-left w-full lg:w-auto">
-              <div className="w-10 h-10 rounded-xl bg-[#ff5500]/20 text-[#ff7733] border border-[#ff5500]/30 grid place-items-center shrink-0">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-[11px] font-bold text-[#ff884d] tracking-wider uppercase mb-0.5">
-                  Explore More · Stay Informed · Stay Connected
+            {/* 3 Authentic Frosted Key Prerequisite Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-6 text-left">
+              {/* Card 01 — Simple Eligibility */}
+              <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+                <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <Building2 className="w-4 h-4 text-white" />
                 </div>
-                <div className="text-white font-bold text-sm">
-                  Subscribe to Scheme & Circular Alerts
+
+                <h3 className="relative z-10 text-[15px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                  Simple Eligibility
+                </h3>
+                <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
+                  Age 18+ with minimum 10th pass qualification and local panchayat residency.
                 </div>
-                <div className="text-xs text-[#9cb1d4]">
-                  Official MeitY notifications, new welfare launches, and VLE commission updates.
+              </div>
+
+              {/* Card 02 — MeitY Certification */}
+              <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+                <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <Award className="w-4 h-4 text-white" />
+                </div>
+
+                <h3 className="relative z-10 text-[15px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                  MeitY Certification
+                </h3>
+                <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
+                  Complete Telecentre Entrepreneur Course (TEC) with dedicated district onboarding.
+                </div>
+              </div>
+
+              {/* Card 03 — Unified Digital Wallet */}
+              <div className="relative overflow-hidden rounded-[20px] p-5 bg-gradient-to-br from-white/[0.22] via-white/[0.10] to-white/[0.04] backdrop-blur-3xl backdrop-saturate-150 border border-white/20 shadow-md hover:from-white/[0.26] hover:via-white/[0.12] hover:border-white/30 hover:-translate-y-1 transition-all duration-300 group">
+                <div className="relative z-10 w-9 h-9 rounded-xl bg-gradient-to-br from-white/[0.28] to-white/[0.08] backdrop-blur-md border border-white/25 text-white shadow-xs flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                  <Wallet className="w-4 h-4 text-white" />
+                </div>
+
+                <h3 className="relative z-10 text-[15px] font-bold text-white mb-1 tracking-tight drop-shadow-sm">
+                  Unified Digital Wallet
+                </h3>
+                <div className="relative z-10 text-xs text-white/85 leading-relaxed font-normal">
+                  Instant commission payouts and real-time reconciliation across 400+ desks.
                 </div>
               </div>
             </div>
 
-            <form
-              onSubmit={handleNewsletterSubmit}
-              className="flex items-center gap-2 w-full lg:w-auto shrink-0"
-            >
-              <input
-                type="email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Enter email address"
-                className="w-full sm:w-64 px-3.5 py-2 rounded-xl bg-white/[0.08] focus:bg-white/[0.14] border border-white/15 focus:border-white/15 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-xs placeholder:text-slate-400 transition-all"
-                required
-              />
+            {/* Action CTAs */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
               <button
-                type="submit"
-                className="px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs transition-all shadow-xs active:scale-95 cursor-pointer whitespace-nowrap flex items-center gap-1.5"
+                onClick={() => setLoginOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white font-semibold text-xs sm:text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
               >
-                <span>Subscribe</span>
-                <Send className="w-3 h-3" />
+                <span>Start VLE Registration</span>
+                <ArrowRight className="w-4 h-4 text-white" />
               </button>
-            </form>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 mb-10 border-b border-white/10">
-            <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-              <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-[#ff5500] text-white grid place-items-center font-bold text-[10px]">
-                  CSC
-                </div>
-                <span className="font-semibold text-sm text-white">
-                  Digital Seva Portal
-                </span>
+              <button
+                onClick={() => setCalculatorOpen(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-b from-white/[0.16] to-white/[0.06] hover:from-white/[0.24] hover:to-white/[0.1] backdrop-blur-2xl border border-white/20 text-white font-semibold text-xs sm:text-sm transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-xs"
+              >
+                <Calculator className="w-4 h-4 text-white" />
+                <span>Earning Calculator</span>
+                <ArrowUpRight className="w-4 h-4 text-white" />
+              </button>
+            </div>
+
+            {/* Direct Support Assistance */}
+            <div className="inline-flex items-center gap-2 text-[11.5px] text-white">
+              <span>Need assistance with VLE registration?</span>
+              <span className="text-white font-medium">
+                Call Toll-Free Helpdesk: <span className="text-white font-bold">14599</span>
+              </span>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ====================================================================
+          J. FOOTER — CLEAN ARCHITECTURAL INSTITUTIONAL FOOTER
+          ==================================================================== */}
+        <footer className="relative bg-[#071120] text-[#9cb1d4] pt-14 sm:pt-16 pb-10 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
+          {/* Subtle Corner Mandala Watermark (Tucked in Bottom-Right, Never Behind Middle Columns) */}
+          <img
+            src="/images/mandala-grand-white.png"
+            alt=""
+            aria-hidden="true"
+            className="w-[420px] h-[420px] object-contain absolute -bottom-48 -right-40 opacity-[0.04] pointer-events-none select-none"
+          />
+
+          <div className="relative z-10 max-w-[1240px] mx-auto">
+            {/* 12-Column Main Footer Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 mb-8 border-b border-white/10">
+              {/* Left 4 Cols: Official CSC Brand Lockup & Institutional Credentials */}
+              <div className="lg:col-span-4 flex flex-col items-start">
+                <a
+                  href="#home"
+                  className="inline-flex flex-col items-center mb-4 leading-none"
+                >
+                  <CscOfficialLogo
+                    className="h-8 sm:h-9 w-auto"
+                    showSubtitle={false}
+                    showDividers={false}
+                    variant="dark-bg"
+                  />
+                  <span className="font-semibold text-[11px] tracking-[0.03em] text-white/95 mt-1 whitespace-nowrap">
+                    Digital Seva Portal
+                  </span>
+                </a>
+
+                <p className="text-[13px] text-[#9cb1d4] leading-relaxed max-w-sm mb-5">
+                  CSC e-Governance Services India Limited · A Special Purpose Vehicle under the Ministry of Electronics &amp; Information Technology (MeitY), Government of India.
+                </p>
+
+                {/* Clean Frosted Glass Toll-Free Helpline Pill (No Orange Monospace) */}
+                <a
+                  href="tel:14599"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-xs text-white font-medium transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-white" />
+                  <span>Toll-Free National Helpline:</span>
+                  <span className="font-bold text-white">14599</span>
+                </a>
               </div>
-              <h4 className="font-semibold text-white text-[13px] mb-1.5">
-                Explore More. Stay Informed. Stay Connected.
-              </h4>
-              <p className="text-[#9cb1d4] leading-relaxed mb-3">
-                CSC e-Governance Services India Limited · Ministry of Electronics & Information Technology (MeitY).
-              </p>
-              <div className="font-mono-code text-[#ff7733] font-semibold">
-                Helpline: 14599
-              </div>
-            </div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-3">About CSC</h4>
-              <ul className="space-y-2">
-                <li><a href="#about" className="hover:text-[#ff5500]">Platform Overview</a></li>
-                <li><a href="#about" className="hover:text-[#ff5500]">VLE Opportunity</a></li>
-                <li><a href="#whats-new" className="hover:text-[#ff5500]">Network Announcements</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-3">Digital Seva Services</h4>
-              <ul className="space-y-2">
-                <li><a href="#services" className="hover:text-[#ff5500]">G2C Services</a></li>
-                <li><a href="#services" className="hover:text-[#ff5500]">B2C Services</a></li>
-                <li><a href="#services" className="hover:text-[#ff5500]">e-District & Certificates</a></li>
-                <li><a href="#services" className="hover:text-[#ff5500]">Banking & Utilities</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-3">VLE Resources</h4>
-              <ul className="space-y-2">
-                <li>
-                  <button
-                    onClick={() => setLoginOpen(true)}
-                    className="hover:text-[#ff5500] cursor-pointer"
+              {/* Right 8 Cols: 4 Clean Navigation Columns */}
+              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+                <div>
+                  <h4
+                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
-                    VLE Portal Login
-                  </button>
-                </li>
-                <li><a href="#for-vles" className="hover:text-[#ff5500]">VLE Success Stories</a></li>
-                <li><a href="#get-started" className="hover:text-[#ff5500]">Become a VLE</a></li>
-              </ul>
+                    About CSC
+                  </h4>
+                  <ul className="space-y-2.5 text-[12.5px]">
+                    <li>
+                      <a href="#about" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Why Join as VLE
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#locator" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Find CSC Centre
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#whats-new" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        News &amp; Circulars
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#newsletter" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Scheme Alerts
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4
+                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
+                    Digital Seva
+                  </h4>
+                  <ul className="space-y-2.5 text-[12.5px]">
+                    <li>
+                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        G2C Government Services
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        B2C Public Utilities
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        e-District &amp; Certificates
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Banking &amp; Insurance
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4
+                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
+                    VLE Network
+                  </h4>
+                  <ul className="space-y-2.5 text-[12.5px]">
+                    <li>
+                      <a href="#get-started" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Join as VLE
+                      </a>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => setCalculatorOpen(true)}
+                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                      >
+                        Earning Calculator
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => setLoginOpen(true)}
+                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                      >
+                        VLE Portal Login
+                      </button>
+                    </li>
+                    <li>
+                      <a href="#for-vles" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        VLE Stories
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4
+                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
+                    Help &amp; Support
+                  </h4>
+                  <ul className="space-y-2.5 text-[12.5px]">
+                    <li>
+                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Helpline 14599
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Security &amp; Fraud Guide
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                        Grievance Redressal
+                      </a>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => setChatbotOpen(true)}
+                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                      >
+                        Ask Sarthi AI
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-3">Help & Support</h4>
-              <ul className="space-y-2">
-                <li><a href="#support" className="hover:text-[#ff5500]">Helpline 14599</a></li>
-                <li><a href="#support" className="hover:text-[#ff5500]">Security & Fraud Guide</a></li>
-                <li><a href="#support" className="hover:text-[#ff5500]">Grievance Redressal</a></li>
-              </ul>
+            {/* Bottom Legal & Copyright Row */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#7c93b8]">
+              <span>
+                © 2026 CSC e-Governance Services India Limited. All rights reserved.
+              </span>
+              <div className="flex flex-wrap items-center gap-6">
+                <a href="#support" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#support" className="hover:text-white transition-colors">
+                  Terms &amp; Conditions
+                </a>
+                <a
+                  href="https://digitalseva.csc.gov.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Official CSC Portal
+                </a>
+              </div>
             </div>
           </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[#7c93b8]">
-            <span>
-              © 2026 CSC e-Governance Services India Limited. All rights reserved.
-            </span>
-            <div className="flex items-center gap-6">
-              <a href="#support" className="hover:text-[#ff5500]">Privacy Policy</a>
-              <a href="#support" className="hover:text-[#ff5500]">Terms & Conditions</a>
-              <a href="#support" className="hover:text-[#ff5500]">Official CSC Portal</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+        </footer>
       </div>
 
       {/* VLE Login Modal in Deep Navy & Saffron Orange */}

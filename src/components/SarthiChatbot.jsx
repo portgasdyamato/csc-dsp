@@ -297,8 +297,8 @@ export default function SarthiChatbot({ isOpen, onOpen, onClose }) {
           : "Official Government Rates:\n\n• Aadhaar Address / Mobile Update: ₹50\n• Aadhaar Biometric Update: ₹100\n• e-Aadhaar Printed Copy: ₹30\n• Certificates & Schemes: Standard state fee\n\nAlways ask for an official printed receipt.";
       } else if (lower.includes('near') || lower.includes('centre') || lower.includes('केंद्र') || lower.includes('kendra')) {
         botReply = currentLang === 'hi'
-          ? "आप मुख्य पेज पर 'Find Nearest Centre' बटन पर क्लिक करके अपने पिनकोड या ग्राम पंचायत के सभी एक्टिव केंद्र देख सकते हैं।"
-          : "You can find all active centres near you by clicking 'Find Nearest Centre' on the homepage. Just enter your 6-digit Pincode.";
+          ? "आप मुख्य पेज पर 'Find CSC Centre' बटन पर क्लिक करके अपने पिनकोड या ग्राम पंचायत के सभी एक्टिव केंद्र देख सकते हैं।"
+          : "You can find all active centres near you by clicking 'Find CSC Centre' on the homepage. Just enter your 6-digit Pincode.";
       } else {
         botReply = currentLang === 'hi'
           ? "धन्यवाद! आपका प्रश्न नोट कर लिया गया है। आप वीएलई बनने, नजदीकी केंद्र खोजने या किसी भी सरकारी सेवा के बारे में पूछ सकते हैं।"
