@@ -56,6 +56,7 @@ import ImpactScaleSection from './components/ImpactScaleSection';
 import SarthiChatbot from './components/SarthiChatbot';
 import AppDownloadSection from './components/AppDownloadSection';
 import VleEarningCalculatorModal from './components/VleEarningCalculatorModal';
+import WhyVleBentoSection from './components/WhyVleBentoSection';
 import VleSupportAndHardwareSection from './components/VleSupportAndHardwareSection';
 import CscOfficialLogo from './components/CscLogo';
 import {
@@ -65,6 +66,10 @@ import {
   CardArt04Govt,
   CardArt05Franchise,
   CardArt06Impact,
+  PillarArt01Enterprise,
+  PillarArt02Income,
+  PillarArt03Community,
+  PillarArt04Government,
 } from './components/VleCardArt';
 
 import {
@@ -380,7 +385,7 @@ export default function App() {
   // F. For VLEs 5-Card Fanned Carousel state (Default to Rajeshwar Rao at index 0)
   const [fanActive, setFanActive] = useState(0);
 
-  // H. FAQ state
+  // H. Support & FAQ state
   const [openFaqIdx, setOpenFaqIdx] = useState(0);
 
   // Welcome Entry Pop-up (shown on every homepage load)
@@ -963,7 +968,7 @@ export default function App() {
                 Explore Opportunities Through Digital Seva
               </h2>
               <p className="text-xs sm:text-[13px] text-[#64748b] max-w-2xl">
-         Explore essential CSC services, their benefits for citizens, and opportunities for VLEs to deliver them and grow their businesses sustainably.
+                Explore essential CSC services, their benefits for citizens, and opportunities for VLEs to deliver them and grow their businesses sustainably.
               </p>
 
               {/* Search Input + G2C / B2C Segmented Filter on Next Line */}
@@ -1208,103 +1213,10 @@ export default function App() {
           C. VLE OPPORTUNITY & PLATFORM OVERVIEW (PROPOSAL SECTION 07)
           Headline: Explore What It Means to Be a CSC VLE.
           ==================================================================== */}
-        <section
-          id="about"
-          className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#0a1628] text-white border-b border-white/10 overflow-hidden scroll-mt-24 py-14 sm:py-16 lg:py-20"
-        >
-          <div className="relative z-10 max-w-[1180px] mx-auto w-full">
-            {/* Editorial Section Header */}
-            <div className="mb-8 sm:mb-10 text-center">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-[-0.03em] text-white leading-[1.1]">
-                Why Join As A VLE Today?
-              </h2>
-              <p className="text-xs sm:text-[13.5px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mt-2.5 font-normal">
-                Build a respected digital enterprise in your community with steady daily income and official government backing.
-              </p>
-            </div>
-
-            {/* 4 COMPACT CARDS IN A SINGLE ROW (Body hidden in normal state, concise body revealed on hover) */}
-            <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {PLATFORM_CARDS.slice(0, 4).map((card, idx) => {
-                const isHovered = hoveredCard === idx;
-                return (
-                  <motion.article
-                    key={card.number}
-                    onMouseEnter={() => setHoveredCard(idx)}
-                    onFocus={() => setHoveredCard(idx)}
-                    tabIndex={0}
-                    className={`group relative h-[365px] sm:h-[375px] lg:h-[385px] rounded-[26px] p-[4.5px] cursor-pointer select-none shadow-[0_20px_50px_-15px_rgba(0,0,0,0.45)] transition-shadow duration-300 ${card.outerBg}`}
-                  >
-                    <div className="relative w-full h-full rounded-[22px] overflow-hidden">
-                      {/* Top Mandala Stage */}
-                      <CardVisualStage variant={card.variant} isHovered={isHovered} />
-
-                      {/* Folder-Tab Detail Sheet (40% in normal state, rises to 64% on hover) */}
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: isHovered ? '64%' : '40%',
-                        }}
-                        transition={springTransition}
-                        style={{ backgroundColor: card.sheetColor }}
-                        className={`absolute inset-x-0 bottom-0 z-30 rounded-tr-[20px] flex flex-col justify-between px-5 pb-5 pt-1 ${card.textColor}`}
-                      >
-                        {/* Seamless SVG Folder-Tab Top Shoulder */}
-                        <svg
-                          viewBox="0 0 400 36"
-                          preserveAspectRatio="none"
-                          className="absolute -top-[35px] left-0 w-full h-[36px] pointer-events-none block"
-                        >
-                          <path
-                            d="M 0,36 L 0,18 Q 0,0 18,0 L 102,0 Q 118,0 130,13 L 144,28 Q 152,36 168,36 L 400,36 Z"
-                            fill={card.sheetColor}
-                          />
-                        </svg>
-
-                        {/* Number inside top-left tab */}
-                        <div className="relative z-10 flex items-start justify-between -mt-3.5">
-                          <span className="text-[32px] sm:text-[34px] font-normal tracking-[-0.04em] leading-none">
-                            {card.number}
-                          </span>
-                        </div>
-
-                        {/* Bottom Title + Tag in Normal State, Body Content in Hover State */}
-                        <div className="relative z-10 flex-1 flex flex-col justify-end text-left overflow-hidden">
-                          {!isHovered && card.tag && (
-                            <div
-                              className={`text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider mb-1 ${card.subColor}`}
-                            >
-                              {card.tag}
-                            </div>
-                          )}
-                          <h3 className="text-[16px] sm:text-[17px] font-bold tracking-[-0.015em] leading-snug">
-                            {card.title}
-                          </h3>
-                          <AnimatePresence initial={false}>
-                            {isHovered && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                                animate={{ opacity: 1, height: 'auto', marginTop: 8 }}
-                                exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                                className={`text-justify [text-align:justify] [text-justify:inter-word] text-[13px] sm:text-[13.5px] leading-[1.52] overflow-hidden ${card.subColor}`}
-                              >
-                                {card.description}
-                              </motion.p>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </motion.div>
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        {/* ====================================================================
+          E. WHY JOIN AS A VLE TODAY? (Interactive 2x2 Bento Grid)
+          ==================================================================== */}
+        <WhyVleBentoSection />
 
         {/* ====================================================================
           F. FOR VILLAGE LEVEL ENTREPRENEURS (Fits Viewport)
@@ -1333,67 +1245,79 @@ export default function App() {
             </div>
 
             {/* 5-Card Responsive Rectangle Fanned Arc Stage */}
-            <div className="relative h-[250px] sm:h-[285px] md:h-[305px] flex items-center justify-center my-2 select-none overflow-visible">
+            <div
+              onPointerDown={(e) => {
+                e.currentTarget.dataset.swipeX = String(e.clientX);
+              }}
+              onPointerUp={(e) => {
+                const startX = Number(e.currentTarget.dataset.swipeX);
+                if (!Number.isNaN(startX)) {
+                  const delta = e.clientX - startX;
+                  if (delta < -45) rotateFan(1);
+                  else if (delta > 45) rotateFan(-1);
+                }
+                delete e.currentTarget.dataset.swipeX;
+              }}
+              className="relative h-[250px] sm:h-[285px] md:h-[305px] w-full my-2 select-none overflow-visible touch-pan-y"
+            >
               {VLE_CAROUSEL_ITEMS.map((item, idx) => {
                 const offset = getOffset(idx);
                 const slot = getFanSlot(offset, windowWidth);
                 const isCenter = offset === 0;
 
                 return (
-                  <motion.div
+                  <div
                     key={item.id}
-                    onClick={() => setFanActive(idx)}
-                    drag={isCenter ? 'x' : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    onDragEnd={(_, info) => {
-                      if (info.offset.x < -40) rotateFan(1);
-                      else if (info.offset.x > 40) rotateFan(-1);
-                    }}
-                    initial={false}
-                    animate={{
-                      x: slot.x,
-                      y: slot.y,
-                      rotate: slot.rotate,
-                      scale: slot.scale,
-                      zIndex: slot.zIndex,
-                      filter: `brightness(${slot.brightness})`,
-                    }}
-                    whileHover={
-                      isCenter
-                        ? { scale: 1.04, y: slot.y - 6 }
-                        : { scale: slot.scale + 0.02, y: slot.y - 4 }
-                    }
-                    transition={springTransition}
-                    className="absolute w-[320px] sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    style={{ zIndex: slot.zIndex }}
                   >
-                    {/* Left Side: Testimonial & Person Meta */}
-                    <div className="p-5 sm:p-6 pr-1 flex flex-col justify-between flex-1 min-w-0 z-10">
-                      <p className="text-[13px] sm:text-[14.5px] md:text-[15.5px] text-[#0a1628] leading-[1.5] font-normal tracking-[-0.01em] line-clamp-3 sm:line-clamp-4">
-                        “{item.testimonial}”
-                      </p>
+                    <motion.div
+                      onClick={() => setFanActive(idx)}
+                      initial={false}
+                      animate={{
+                        x: slot.x,
+                        y: slot.y,
+                        rotate: slot.rotate,
+                        scale: slot.scale,
+                        filter: `brightness(${slot.brightness})`,
+                      }}
+                      whileHover={
+                        isCenter
+                          ? { scale: 1.04, y: slot.y - 6 }
+                          : { scale: slot.scale + 0.02, y: slot.y - 4 }
+                      }
+                      transition={springTransition}
+                      className="w-[320px] sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
+                    >
+                      {/* Left Side: Testimonial & Person Meta */}
+                      <div className="p-5 sm:p-6 pr-1 flex flex-col justify-between flex-1 min-w-0 z-10">
+                        <p className="text-[13px] sm:text-[14.5px] md:text-[15.5px] text-[#0a1628] leading-[1.5] font-normal tracking-[-0.01em] line-clamp-3 sm:line-clamp-4">
+                          “{item.testimonial}”
+                        </p>
 
-                      <div className="pt-2 sm:pt-2.5 border-t border-[#0a1628]/8">
-                        <div className="text-[13px] sm:text-[14px] font-bold text-[#0a1628] leading-tight">
-                          {item.name}
-                          <span className="text-[11.5px] font-normal text-[#64748b] ml-1.5">
-                            Age {item.age}
-                          </span>
-                        </div>
-                        <div className="text-[11px] sm:text-[12px] text-[#64748b] mt-0.5 leading-tight font-medium">
-                          {item.location}
+                        <div className="pt-2 sm:pt-2.5 border-t border-[#0a1628]/8">
+                          <div className="text-[13px] sm:text-[14px] font-bold text-[#0a1628] leading-tight">
+                            {item.name}
+                            <span className="text-[11.5px] font-normal text-[#64748b] ml-1.5">
+                              Age {item.age}
+                            </span>
+                          </div>
+                          <div className="text-[11px] sm:text-[12px] text-[#64748b] mt-0.5 leading-tight font-medium">
+                            {item.location}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Right Side: Person Cutout */}
-                    <div className="w-[46%] sm:w-[48%] h-full shrink-0 relative flex items-end justify-center pointer-events-none overflow-hidden pr-1 sm:pr-3 pb-0">
-                      <img
-                        src={`${item.image.split('?')[0]}?v=50`}
-                        alt={`${item.name}, VLE from ${item.location}`}
-                        className="h-[91%] sm:h-[92%] w-auto max-h-none object-contain object-bottom pointer-events-none drop-shadow-md select-none transform translate-y-0.5"
-                      />
-                    </div>
-                  </motion.div>
+                      {/* Right Side: Person Cutout */}
+                      <div className="w-[46%] sm:w-[48%] h-full shrink-0 relative flex items-end justify-center pointer-events-none overflow-hidden pr-1 sm:pr-3 pb-0">
+                        <img
+                          src={`${item.image.split('?')[0]}?v=50`}
+                          alt={`${item.name}, VLE from ${item.location}`}
+                          className="h-[91%] sm:h-[92%] w-auto max-h-none object-contain object-bottom pointer-events-none drop-shadow-md select-none transform translate-y-0.5"
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -1720,121 +1644,124 @@ export default function App() {
         </AnimatePresence>
 
         {/* ====================================================================
-          H. TRUST, SAFETY & SUPPORT (2 Side-by-Side Navy Cards + Full-Width FAQ)
+          H. DEDICATED SUPPORT & SAFETY (Standalone 3-Col Editorial Hub) + FAQ
           ==================================================================== */}
         <section
           id="support"
           className="relative px-6 sm:px-12 lg:px-20 bg-[#fffaf5] overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
         >
           <div className="relative z-10 max-w-[1160px] mx-auto w-full">
-            {/* Top Row: 2 Matching Deep Navy Cards Side-by-Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
-              {/* Left Card: Safety & Official Channels */}
-              <div className="relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-8 overflow-hidden shadow-xl border border-white/10 flex flex-col justify-between">
-                <img
-                  src="/images/mandala-card-01.png"
-                  alt=""
-                  aria-hidden="true"
-                  className="w-48 h-48 object-contain absolute -bottom-16 -right-16 opacity-[0.08] pointer-events-none select-none"
-                />
-                <div className="relative z-10">
-                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.12] mb-2.5">
-                    Safety &amp; Protection in Every Service.
-                  </h2>
-                  <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
-                    Recognise official channels, identify fraudulent communication, and access verified assistance safely.
-                  </p>
-
-                  <div className="divide-y divide-white/10 border-t border-b border-white/10">
-                    {SUPPORT_ITEMS.map((item) => (
-                      <div
-                        key={item.code}
-                        className="py-3 flex items-start justify-between gap-3"
-                      >
-                        <div>
-                          <div className="text-xs sm:text-[13px] font-semibold text-white">
-                            {item.title}
-                          </div>
-                          <p className="text-[11px] sm:text-[11.5px] text-white/65 mt-0.5 leading-snug">
-                            {item.description}
-                          </p>
-                        </div>
-                        <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
-                          {item.action}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            {/* Standalone Support Section: Ultra-Clean Architectural 4-Column Panel */}
+            <div>
+              <div className="max-w-3xl mb-10 sm:mb-14">
+                <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#64748b] font-semibold mb-3">
+                  Support &amp; Safety
+                </p>
+                <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-semibold tracking-[-0.035em] text-[#0a1628] leading-[1.05] mb-4">
+                  Dedicated Support at Every Step.
+                </h2>
+                <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-2xl">
+                  Official helpline assistance, verified @csc.gov.in security, and on-ground district support whenever your centre needs it.
+                </p>
               </div>
 
-              {/* Right Card: Unwavering VLE Support (Matching Deep Navy UI) */}
-              <div className="relative rounded-[28px] bg-[#0a1628] text-white p-6 sm:p-8 overflow-hidden shadow-xl border border-white/10 flex flex-col justify-between">
-                <img
-                  src="/images/mandala-grand-white.png"
-                  alt=""
-                  aria-hidden="true"
-                  className="w-48 h-48 object-contain absolute -bottom-16 -right-16 opacity-[0.08] pointer-events-none select-none"
-                />
-                <div className="relative z-10">
-                  <h2 className="text-2xl sm:text-[28px] font-semibold tracking-[-0.03em] text-white leading-[1.12] mb-2.5">
-                    Dedicated Support at Every Step.
-                  </h2>
-                  <p className="text-xs sm:text-[13px] text-white/70 leading-[1.5] mb-5">
-                    From regulatory assistance to daily technical help, the CSC SPV network provides dedicated enablement in your language.
-                  </p>
-
-                  <div className="divide-y divide-white/10 border-t border-b border-white/10">
-                    {[
-                      {
-                        title: 'District Manager (DM) On-Call',
-                        description:
-                          'Assigned local government nodal officers to unblock banking credentials and service approvals.',
-                        action: 'Nodal Officer',
-                      },
-                      {
-                        title: 'National Helpdesk: 14599',
-                        description:
-                          'Toll-free portal support available in 12 Indian languages, 6 days a week.',
-                        action: 'Call 14599',
-                      },
-                      {
-                        title: 'CSC Academy LMS',
-                        description:
-                          'Self-paced video modules, marketing banner toolkits, and compliance checklists updated weekly.',
-                        action: 'Free Training',
-                      },
-                      {
-                        title: 'Vernacular Onboarding Desk',
-                        description:
-                          'Step-by-step portal guidance and hardware setup troubleshooting in your regional language.',
-                        action: '12 Languages',
-                      },
-                    ].map((pillar) => (
-                      <div
-                        key={pillar.title}
-                        className="py-3 flex items-start justify-between gap-3"
-                      >
-                        <div>
-                          <div className="text-xs sm:text-[13px] font-semibold text-white">
-                            {pillar.title}
-                          </div>
-                          <p className="text-[11px] sm:text-[11.5px] text-white/65 mt-0.5 leading-snug">
-                            {pillar.description}
-                          </p>
-                        </div>
-                        <span className="px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shrink-0 shadow-sm">
-                          {pillar.action}
-                        </span>
+              <div className="rounded-[24px] bg-white border border-[#0a1628]/[0.08] shadow-[0_4px_16px_-4px_rgba(10,22,40,0.06),0_14px_32px_-12px_rgba(10,22,40,0.08)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#0a1628]/[0.07] overflow-hidden">
+                {/* Col 1: Helpline */}
+                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
+                        Toll-Free Helpline
                       </div>
-                    ))}
+                      <div className="text-xl font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white tabular-nums leading-tight transition-colors duration-300">
+                        14599
+                      </div>
+                    </div>
                   </div>
+                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
+                    Voice support in 12 Indian languages for portal &amp; transactions.
+                  </p>
+                </div>
+
+                {/* Col 2: Fraud Protection */}
+                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M12 2.25c.26 0 .52.06.75.18l6.75 3.38A1.5 1.5 0 0 1 20.25 7.15v4.35c0 4.92-3.27 9.26-7.95 10.67a1.05 1.05 0 0 1-.6 0C7.02 20.76 3.75 16.42 3.75 11.5V7.15a1.5 1.5 0 0 1 .75-1.34l6.75-3.38c.23-.12.49-.18.75-.18Zm0 5.5a.9.9 0 0 0-.9.9v4.2a.9.9 0 1 0 1.8 0v-4.2a.9.9 0 0 0-.9-.9Zm0 8.5a1.05 1.05 0 1 0 0-2.1 1.05 1.05 0 0 0 0 2.1Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
+                        Official Domain
+                      </div>
+                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
+                        @csc.gov.in Only
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
+                    We never ask for OTPs, passwords, or personal payments.
+                  </p>
+                </div>
+
+                {/* Col 3: District Manager */}
+                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                        <path d="M10 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-7.5 2.4-7.5 5.25 0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25C17.5 16.4 14.42 14 10 14Zm10.78-4.78a.9.9 0 0 0-1.27 0l-2.36 2.36-.88-.88a.9.9 0 1 0-1.27 1.27l1.52 1.52a.9.9 0 0 0 1.27 0l2.99-3a.9.9 0 0 0 0-1.27Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
+                        700+ Districts
+                      </div>
+                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
+                        District Manager
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
+                    Local nodal officers for banking and service approvals.
+                  </p>
+                </div>
+
+                {/* Col 4: CSC Academy */}
+                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                        <path d="M12 3 1.5 8.25 12 13.5l8.5-4.25V15.5a.9.9 0 1 0 1.8 0V8.25L12 3Zm-6.5 8.92v4.33c0 1.85 2.91 3.5 6.5 3.5s6.5-1.65 6.5-3.5v-4.33L12 15.17l-6.5-3.25Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
+                        Free Onboarding
+                      </div>
+                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
+                        CSC Academy LMS
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
+                    Free training videos, branding kits, and compliance guides.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Row: Full-Width Expandable FAQs with Smooth Slide Open/Close */}
-            <div className="mt-12 sm:mt-14 w-full">
+            {/* Separate Full-Width FAQ Section Below */}
+            <div className="mt-16 sm:mt-20 w-full">
               <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
                 Frequently Asked Questions
               </h3>

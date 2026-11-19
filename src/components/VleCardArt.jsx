@@ -115,3 +115,59 @@ export function CardArt05Franchise({ className = '' }) {
 export function CardArt06Impact({ className = '' }) {
   return <CardArt03Respect className={className} />;
 }
+
+// ============================================================================
+// SEMANTIC INDIAN-ART PILLAR EMBLEMS (Conveying Both Indian Craft & Title Meaning)
+// ============================================================================
+
+// ============================================================================
+// SEMANTIC INDIAN-ART PILLAR EMBLEMS (Conveying Both Indian Craft & Title Meaning)
+// ============================================================================
+
+/** 01: Run Your Own Hometown Enterprise — Ornate Rajasthani Jharokha Kiosk Emblem */
+export function PillarArt01Enterprise({ className = '' }) {
+  return (
+    <img
+      src="/images/vle-pillar-01.png"
+      alt=""
+      aria-hidden="true"
+      className={`${className} object-contain select-none pointer-events-none`}
+    />
+  );
+}
+
+/** 02: Earn Financial Independence Daily — 12-Petal Lotus Mandala with ₹ Emblem */
+export function PillarArt02Income({ className = '' }) {
+  return (
+    <img
+      src="/images/vle-pillar-02.png"
+      alt=""
+      aria-hidden="true"
+      className={`${className} object-contain select-none pointer-events-none`}
+    />
+  );
+}
+
+/** 03: Community Respect & National Impact — Community Figures Beneath Lotus Halo */
+export function PillarArt03Community({ className = '' }) {
+  return (
+    <img
+      src="/images/vle-pillar-03.png"
+      alt=""
+      aria-hidden="true"
+      className={`${className} object-contain select-none pointer-events-none`}
+    />
+  );
+}
+
+/** 04: Official Government Portal Backing — Ceremonial Crest Shield & Lotus Wreath */
+export function PillarArt04Government({ className = '' }) {
+  return (
+    <img
+      src="/images/vle-pillar-04.png"
+      alt=""
+      aria-hidden="true"
+      className={`${className} object-contain select-none pointer-events-none`}
+    />
+  );
+}

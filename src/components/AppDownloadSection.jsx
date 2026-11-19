@@ -155,7 +155,7 @@ function HighDensityQrCode() {
 
 export default function AppDownloadSection() {
   return (
-    <section className="relative z-10 bg-[#FFFAF5] py-14 sm:py-16 lg:py-20 px-5 sm:px-8 border-b border-[#0a1628]/10 overflow-hidden">
+    <section className="relative z-10 bg-[#FFFAF5] py-14 sm:py-16 lg:py-20 px-5 sm:px-8 overflow-hidden">
       <div className="max-w-[1240px] mx-auto w-full relative">
         {/* ====================================================================
             MAIN ROUNDED SHOWCASE BANNER (NO SLIDESHOW ARROWS)
