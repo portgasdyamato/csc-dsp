@@ -836,27 +836,31 @@ export default function App() {
       <section
         ref={heroRef}
         id="home"
-        className="sticky top-0 z-0 w-full h-screen min-h-[640px] flex items-center justify-center bg-[#0a1628] text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
+        className="sticky top-0 z-0 w-full h-screen min-h-[640px] flex items-center justify-center bg-black text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
       >
         {/* Physical depth scrim that dims the pinned hero subtly as the curtain slides over */}
         <motion.div
           style={{ opacity: heroDimOpacity }}
-          className="absolute inset-0 bg-[#071120] z-20 pointer-events-none"
+          className="absolute inset-0 bg-black z-20 pointer-events-none"
         />
 
-        {/* Pristine High-Resolution Grainy Gradient Wallpaper Layer with Parallax */}
+        {/* Hero Background Video Layer with Parallax */}
         <motion.div
           style={{ y: heroBgY }}
           className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden"
         >
-          <img
-            src="/images/grainy-gradient-bg-4k.jpg"
-            alt=""
+          <video
+            src="/Hero-bg.mp4"
+            poster="/images/grainy-gradient-bg-4k.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
             aria-hidden="true"
             className="w-full h-full object-cover object-center scale-105"
           />
-          {/* Subtle deep navy gradient integration on top & bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/55 via-[#0a1628]/25 to-[#0a1628]/75" />
+          {/* Deep black gradient overlay & vignette shadow for crisp text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/95 shadow-[inset_0_0_180px_rgba(0,0,0,0.9)]" />
 
           {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
           <div
@@ -871,7 +875,7 @@ export default function App() {
         {/* TOP-RIGHT CORNER ART GRAPHIC with Parallax */}
         <motion.div
           style={{ y: heroBgY }}
-          className="absolute -top-72 sm:-top-84 lg:-top-96 -right-48 sm:-right-60 lg:-right-72 pointer-events-none select-none z-1"
+          className="absolute -top-84 sm:-top-96 lg:-top-[28rem] -right-60 sm:-right-72 lg:-right-96 pointer-events-none select-none z-1"
         >
           <MultiLayerMandala
             idPrefix="hero-tr"
@@ -883,7 +887,7 @@ export default function App() {
         {/* BOTTOM-LEFT CORNER ART GRAPHIC with Parallax */}
         <motion.div
           style={{ y: heroBgY }}
-          className="absolute -bottom-52 sm:-bottom-60 lg:-bottom-72 -left-44 sm:-left-52 lg:-left-64 pointer-events-none select-none z-1"
+          className="absolute -bottom-64 sm:-bottom-72 lg:-bottom-88 -left-56 sm:-left-68 lg:-left-84 pointer-events-none select-none z-1"
         >
           <MultiLayerMandala
             idPrefix="hero-bl"
