@@ -872,30 +872,6 @@ export default function App() {
           />
         </motion.div>
 
-        {/* TOP-RIGHT CORNER ART GRAPHIC with Parallax */}
-        <motion.div
-          style={{ y: heroBgY }}
-          className="absolute -top-84 sm:-top-96 lg:-top-[28rem] -right-60 sm:-right-72 lg:-right-96 pointer-events-none select-none z-1"
-        >
-          <MultiLayerMandala
-            idPrefix="hero-tr"
-            className="w-[450px] sm:w-[580px] lg:w-[680px] h-[450px] sm:h-[580px] lg:h-[680px]"
-            opacity={0.16}
-          />
-        </motion.div>
-
-        {/* BOTTOM-LEFT CORNER ART GRAPHIC with Parallax */}
-        <motion.div
-          style={{ y: heroBgY }}
-          className="absolute -bottom-64 sm:-bottom-72 lg:-bottom-88 -left-56 sm:-left-68 lg:-left-84 pointer-events-none select-none z-1"
-        >
-          <MultiLayerMandala
-            idPrefix="hero-bl"
-            className="w-[400px] sm:w-[500px] lg:w-[600px] h-[400px] sm:h-[500px] lg:h-[600px]"
-            opacity={0.14}
-          />
-        </motion.div>
-
         {/* Main Center Content with Parallax Drift (NO SHRINKING!) */}
         <motion.div
           style={{ y: heroContentY }}
