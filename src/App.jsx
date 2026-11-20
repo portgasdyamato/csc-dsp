@@ -1630,7 +1630,7 @@ export default function App() {
           id="support"
           className="relative px-6 sm:px-12 lg:px-20 bg-[#fffaf5] overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
         >
-          <div className="relative z-10 max-w-[1160px] mx-auto w-full">
+          <div className="relative z-10 max-w-[1260px] mx-auto w-full">
             {/* Standalone Support Section: Ultra-Clean Architectural 4-Column Panel */}
             <div>
               <div className="max-w-3xl mb-10 sm:mb-14">
@@ -1646,95 +1646,71 @@ export default function App() {
               </div>
 
               <div className="rounded-[24px] bg-white border border-[#0a1628]/[0.08] shadow-[0_4px_16px_-4px_rgba(10,22,40,0.06),0_14px_32px_-12px_rgba(10,22,40,0.08)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#0a1628]/[0.07] overflow-hidden">
-                {/* Col 1: National Helpline & Official Mail */}
-                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-3.5 mb-4">
+                {/* Col 1: District Manager On-Call */}
+                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-2.5 mb-3">
                     <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
-                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2Z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Toll-Free &amp; Email
-                      </div>
-                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        14599 Helpline
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Call 14599 in 12 languages or write to support@csc.gov.in.
-                  </p>
-                </div>
-
-                {/* Col 2: District Manager On-Call */}
-                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                         <path d="M10 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-7.5 2.4-7.5 5.25 0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25C17.5 16.4 14.42 14 10 14Zm10.78-4.78a.9.9 0 0 0-1.27 0l-2.36 2.36-.88-.88a.9.9 0 1 0-1.27 1.27l1.52 1.52a.9.9 0 0 0 1.27 0l2.99-3a.9.9 0 0 0 0-1.27Z" />
                       </svg>
                     </div>
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        On-Call Support
-                      </div>
-                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        District Manager
-                      </h3>
-                    </div>
+                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
+                      District Manager
+                    </h3>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Direct field officer help for banking approvals and portal issues.
+                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
+                    On-call local nodal officers for portal &amp; banking help.
                   </p>
                 </div>
 
-                {/* Col 3: Grievance Tickets */}
-                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-3.5 mb-4">
+                {/* Col 2: CSC Academy */}
+                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-2.5 mb-3">
                     <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M4.5 5.25A2.25 2.25 0 0 0 2.25 7.5v2.38a.75.75 0 0 0 .56.73 1.5 1.5 0 0 1 0 2.78.75.75 0 0 0-.56.73v2.38A2.25 2.25 0 0 0 4.5 18.75h15a2.25 2.25 0 0 0 2.25-2.25v-2.38a.75.75 0 0 0-.56-.73 1.5 1.5 0 0 1 0-2.78.75.75 0 0 0 .56-.73V7.5a2.25 2.25 0 0 0-2.25-2.25h-15ZM9 9.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Zm0 3.75a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5H9Z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Dispute Resolution
-                      </div>
-                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        Grievance Tickets
-                      </h3>
-                    </div>
-                  </div>
-                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Raise and track escalation tickets for stuck or failed transactions.
-                  </p>
-                </div>
-
-                {/* Col 4: CSC Academy */}
-                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
                         <path d="M12 3 1.5 8.25 12 13.5l8.5-4.25V15.5a.9.9 0 1 0 1.8 0V8.25L12 3Zm-6.5 8.92v4.33c0 1.85 2.91 3.5 6.5 3.5s6.5-1.65 6.5-3.5v-4.33L12 15.17l-6.5-3.25Z" />
                       </svg>
                     </div>
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Training &amp; Guides
-                      </div>
-                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        CSC Academy
-                      </h3>
-                    </div>
+                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
+                      CSC Academy
+                    </h3>
                   </div>
-                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Step-by-step setup guides, biometric help, and compliance videos.
+                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
+                    Free training, setup guides &amp; skill development.
+                  </p>
+                </div>
+
+                {/* Col 3: VLE Community */}
+                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
+                        <path d="M9 11.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Zm7.25 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM9 13.5c-3.5 0-6.25 1.9-6.25 4.25 0 .69.56 1.25 1.25 1.25h10c.69 0 1.25-.56 1.25-1.25 0-2.35-2.75-4.25-6.25-4.25Zm7.25.75c-.82 0-1.58.16-2.25.44 1.38.94 2.25 2.26 2.25 3.81 0 .18-.02.35-.06.5h4.06c.69 0 1.25-.56 1.25-1.25 0-1.95-2.22-3.5-5.25-3.5Z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
+                      VLE Community
+                    </h3>
+                  </div>
+                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
+                    Peer guidance and daily tips from 5.5L+ VLEs.
+                  </p>
+                </div>
+
+                {/* Col 4: National Helpline & Official Mail (Last) */}
+                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
+                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2Z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
+                      14599 Helpline
+                    </h3>
+                  </div>
+                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
+                    Call 14599 in 12 languages or mail @csc.gov.in.
                   </p>
                 </div>
               </div>
