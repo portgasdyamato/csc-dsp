@@ -163,17 +163,7 @@ export default function AppDownloadSection() {
             Center: Photorealistic iPhone Mockup Rising from Bottom with QR Code
             Right: Frosted CSC Official Brand Card with Official C|S|C Logo
             ==================================================================== */}
-        <div
-          className="relative rounded-[32px] sm:rounded-[38px] bg-[#0a1628] text-white overflow-hidden"
-          style={{
-            WebkitMaskImage:
-              'radial-gradient(circle 22px at 0% 50%, transparent 21.5px, black 22.5px), radial-gradient(circle 22px at 100% 50%, transparent 21.5px, black 22.5px)',
-            WebkitMaskComposite: 'destination-in',
-            maskImage:
-              'radial-gradient(circle 22px at 0% 50%, transparent 21.5px, black 22.5px), radial-gradient(circle 22px at 100% 50%, transparent 21.5px, black 22.5px)',
-            maskComposite: 'intersect',
-          }}
-        >
+        <div className="relative rounded-[32px] sm:rounded-[38px] bg-[#0a1628] text-white overflow-hidden">
           {/* Uniform Brand Navy Stage with Subtle Radial Depth & Tactile Grain */}
           <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
             <div

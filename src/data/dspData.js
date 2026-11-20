@@ -747,6 +747,10 @@ export const FAQ_LIST = [
     a: 'Citizens can simply walk into any authorized Common Service Centre. The local Village Level Entrepreneur assists in filling out forms, submitting required documents, and completing verified biometric transactions.',
   },
   {
+    q: 'Can women join and operate as a Village Level Entrepreneur (VLE)?',
+    a: 'Yes! Women entrepreneurs are strongly encouraged to become VLEs. Thousands of women across India—including Self-Help Group (SHG) members—successfully run Digital Seva Kendras from their villages with full training, banking, and District Manager support.',
+  },
+  {
     q: 'What does it take to become a Village Level Entrepreneur (VLE)?',
     a: 'Applicants must be at least 18 years old, possess a valid Aadhaar and PAN card, complete the Telecentre Entrepreneur Course (TEC) certification, and have a designated centre with a computer, printer, biometric scanner, and internet connectivity.',
   },

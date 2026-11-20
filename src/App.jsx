@@ -859,8 +859,8 @@ export default function App() {
             aria-hidden="true"
             className="w-full h-full object-cover object-center scale-105"
           />
-          {/* Deep black gradient overlay & vignette shadow for crisp text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/95 shadow-[inset_0_0_180px_rgba(0,0,0,0.9)]" />
+          {/* Balanced black gradient overlay & softer vignette shadow */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/75 shadow-[inset_0_0_120px_rgba(0,0,0,0.65)]" />
 
           {/* Native SVG Tactile Micro-Grain Overlay (Infinitely sharp, never pixelates or bands) */}
           <div
@@ -1646,7 +1646,7 @@ export default function App() {
               </div>
 
               <div className="rounded-[24px] bg-white border border-[#0a1628]/[0.08] shadow-[0_4px_16px_-4px_rgba(10,22,40,0.06),0_14px_32px_-12px_rgba(10,22,40,0.08)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#0a1628]/[0.07] overflow-hidden">
-                {/* Col 1: Helpline */}
+                {/* Col 1: National Helpline & Official Mail */}
                 <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
                   <div className="flex items-center gap-3.5 mb-4">
                     <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
@@ -1656,45 +1656,19 @@ export default function App() {
                     </div>
                     <div>
                       <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Toll-Free Helpline
-                      </div>
-                      <div className="text-xl font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white tabular-nums leading-tight transition-colors duration-300">
-                        14599
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Voice support in 12 Indian languages for portal &amp; transactions.
-                  </p>
-                </div>
-
-                {/* Col 2: Fraud Protection */}
-                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M12 2.25c.26 0 .52.06.75.18l6.75 3.38A1.5 1.5 0 0 1 20.25 7.15v4.35c0 4.92-3.27 9.26-7.95 10.67a1.05 1.05 0 0 1-.6 0C7.02 20.76 3.75 16.42 3.75 11.5V7.15a1.5 1.5 0 0 1 .75-1.34l6.75-3.38c.23-.12.49-.18.75-.18Zm0 5.5a.9.9 0 0 0-.9.9v4.2a.9.9 0 1 0 1.8 0v-4.2a.9.9 0 0 0-.9-.9Zm0 8.5a1.05 1.05 0 1 0 0-2.1 1.05 1.05 0 0 0 0 2.1Z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Official Domain
+                        Toll-Free &amp; Email
                       </div>
                       <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        @csc.gov.in Only
+                        14599 Helpline
                       </h3>
                     </div>
                   </div>
                   <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    We never ask for OTPs, passwords, or personal payments.
+                    Call 14599 in 12 languages or write to support@csc.gov.in.
                   </p>
                 </div>
 
-                {/* Col 3: District Manager */}
+                {/* Col 2: District Manager On-Call */}
                 <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
                   <div className="flex items-center gap-3.5 mb-4">
                     <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
@@ -1704,7 +1678,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        700+ Districts
+                        On-Call Support
                       </div>
                       <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
                         District Manager
@@ -1712,7 +1686,33 @@ export default function App() {
                     </div>
                   </div>
                   <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Local nodal officers for banking and service approvals.
+                    Direct field officer help for banking approvals and portal issues.
+                  </p>
+                </div>
+
+                {/* Col 3: Grievance Tickets */}
+                <div className="group p-7 lg:p-8 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
+                  <div className="flex items-center gap-3.5 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4.5 h-4.5" aria-hidden="true">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M4.5 5.25A2.25 2.25 0 0 0 2.25 7.5v2.38a.75.75 0 0 0 .56.73 1.5 1.5 0 0 1 0 2.78.75.75 0 0 0-.56.73v2.38A2.25 2.25 0 0 0 4.5 18.75h15a2.25 2.25 0 0 0 2.25-2.25v-2.38a.75.75 0 0 0-.56-.73 1.5 1.5 0 0 1 0-2.78.75.75 0 0 0 .56-.73V7.5a2.25 2.25 0 0 0-2.25-2.25h-15ZM9 9.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Zm0 3.75a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5H9Z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
+                        Dispute Resolution
+                      </div>
+                      <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
+                        Grievance Tickets
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
+                    Raise and track escalation tickets for stuck or failed transactions.
                   </p>
                 </div>
 
@@ -1726,41 +1726,62 @@ export default function App() {
                     </div>
                     <div>
                       <div className="text-[10px] font-mono uppercase tracking-[0.12em] text-[#64748b] group-hover:text-white/60 transition-colors duration-300">
-                        Free Onboarding
+                        Training &amp; Guides
                       </div>
                       <h3 className="text-base sm:text-[17px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-tight transition-colors duration-300">
-                        CSC Academy LMS
+                        CSC Academy
                       </h3>
                     </div>
                   </div>
                   <p className="text-xs sm:text-[13px] text-[#475569] group-hover:text-white/75 leading-[1.55] transition-colors duration-300">
-                    Free training videos, branding kits, and compliance guides.
+                    Step-by-step setup guides, biometric help, and compliance videos.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Separate Full-Width FAQ Section Below */}
-            <div className="mt-16 sm:mt-20 w-full">
-              <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.02em] text-[#0a1628] mb-4">
-                Frequently Asked Questions
-              </h3>
+            {/* Separate 2-Column Editorial FAQ Section Below */}
+            <div className="mt-20 sm:mt-28 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+              {/* Left 5 Cols: FAQ Heading Top + Ask Sarthi AI CTA Anchored Bottom */}
+              <div className="lg:col-span-5 flex flex-col justify-between items-start pb-2">
+                <h3 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.08] max-w-xs">
+                  Frequently Asked Questions
+                </h3>
 
-              <div className="divide-y divide-[#0a1628]/12 border-t border-b border-[#0a1628]/12">
+                <div className="mt-14 lg:mt-20">
+                  <h4 className="text-lg sm:text-xl font-bold text-[#0a1628] tracking-tight mb-1">
+                    Still have questions?
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 mb-5 max-w-sm leading-relaxed">
+                    Get instant answers from Sarthi, our official AI assistant in your language.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setChatbotOpen(true)}
+                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#0a1628] hover:bg-[#162844] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-[1.02] active:scale-95 shadow-md cursor-pointer"
+                  >
+                    <Sparkles className="w-4 h-4 text-white" />
+                    <span>Ask Sarthi our AI chat bot</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right 7 Cols: Minimal Hairline FAQ Accordion */}
+              <div className="lg:col-span-7 divide-y divide-[#0a1628]/10 border-b border-[#0a1628]/10">
                 {FAQ_LIST.map((faq, idx) => {
                   const open = openFaqIdx === idx;
                   return (
-                    <div key={faq.q} className="py-3.5 sm:py-4">
+                    <div key={faq.q} className="py-5 first:pt-1">
                       <button
                         type="button"
                         onClick={() => setOpenFaqIdx(open ? -1 : idx)}
-                        className="w-full text-left flex items-center justify-between gap-4 text-[14px] sm:text-[15.5px] font-semibold text-[#0a1628] transition-colors cursor-pointer"
+                        className="w-full text-left flex items-center justify-between gap-6 text-[14.5px] sm:text-[16px] font-medium text-[#0a1628] hover:text-[#0a1628]/75 transition-colors cursor-pointer"
                       >
                         <span>{faq.q}</span>
                         <motion.span
                           animate={{ rotate: open ? 180 : 0 }}
-                          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                          className="w-6 h-6 rounded-full bg-[#0a1628] text-white grid place-items-center shrink-0"
+                          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                          className="w-7 h-7 rounded-full bg-[#0a1628] text-white shrink-0 grid place-items-center"
                         >
                           {open ? (
                             <Minus className="w-3.5 h-3.5" />
@@ -1776,10 +1797,10 @@ export default function App() {
                             initial={{ height: 0, opacity: 0, y: -4 }}
                             animate={{ height: 'auto', opacity: 1, y: 0 }}
                             exit={{ height: 0, opacity: 0, y: -4 }}
-                            transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                             className="overflow-hidden"
                           >
-                            <p className="pt-2.5 pb-1 text-xs sm:text-[13.5px] text-[#334766] leading-[1.6] pr-8">
+                            <p className="pt-3 pb-1 text-xs sm:text-[13.5px] text-[#475569] leading-[1.65] pr-10">
                               {faq.a}
                             </p>
                           </motion.div>
@@ -1788,23 +1809,6 @@ export default function App() {
                     </div>
                   );
                 })}
-              </div>
-
-              {/* Still have questions? Ask Sarthi AI callout */}
-              <div className="mt-10 pt-2 flex flex-col items-center text-center">
-                <h4 className="text-xl sm:text-2xl font-bold text-[#0a1628] tracking-tight mb-1">
-                  Still have questions?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-600 mb-4 max-w-md">
-                  Get instant answers from Sarthi, our official AI assistant in your language.
-                </p>
-                <button
-                  onClick={() => setChatbotOpen(true)}
-                  className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#0a1628] hover:bg-[#162844] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-white" />
-                  <span>Ask Sarthi our AI chat bot</span>
-                </button>
               </div>
             </div>
           </div>

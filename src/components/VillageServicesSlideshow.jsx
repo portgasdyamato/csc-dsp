@@ -555,13 +555,13 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                   CSC Centre Locator
                 </h3>
 
-                {/* Compact PIN Search Input + Find CSC Centre CTA */}
+                {/* Compact PIN Search Input with Integrated Icon Send Button Inside */}
                 <form
                   onSubmit={handleSearch}
-                  className="flex items-center gap-2 self-stretch sm:self-auto"
+                  className="self-stretch sm:self-auto"
                 >
-                  <div className="relative flex-1 sm:w-48 flex items-center bg-white/95 border border-white/30 focus-within:border-white rounded-xl px-3 py-2 transition-colors shadow-xs">
-                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0 mr-1.5" />
+                  <div className="relative flex items-center bg-white/95 border border-white/30 focus-within:border-white rounded-xl p-1 pl-3 gap-1.5 transition-colors shadow-xs sm:w-64">
+                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
                     <input
                       id="locator-pin-input"
                       type="text"
@@ -569,27 +569,26 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                       onChange={(e) => setPinQuery(e.target.value)}
                       placeholder="Enter PIN"
                       maxLength={18}
-                      className="w-full bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none"
+                      className="w-full min-w-0 bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none"
                     />
                     {pinQuery && (
                       <button
                         type="button"
                         onClick={() => setPinQuery('')}
                         aria-label="Clear PIN"
-                        className="text-slate-400 hover:text-[#0a1628] ml-1 cursor-pointer"
+                        className="text-slate-400 hover:text-[#0a1628] p-1 cursor-pointer shrink-0"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
                     )}
+                    <button
+                      type="submit"
+                      aria-label="Find CSC Centre"
+                      className="w-8 h-8 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white grid place-items-center transition-all active:scale-95 cursor-pointer shrink-0"
+                    >
+                      <Search className="w-3.5 h-3.5 text-white" />
+                    </button>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-[13px] font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-xs shrink-0"
-                  >
-                    <Search className="w-3.5 h-3.5 text-white" />
-                    <span>Find CSC Centre</span>
-                  </button>
                 </form>
               </div>
 
