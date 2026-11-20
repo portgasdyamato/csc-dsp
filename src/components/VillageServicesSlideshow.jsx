@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import indiaMap from '@svg-maps/india';
 import {
   MapPin,
   Search,
@@ -15,6 +16,7 @@ import {
   Building2,
   Calculator,
   ArrowUpRight,
+  Undo2,
 } from 'lucide-react';
 
 // ============================================================================
@@ -352,6 +354,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
   const [locating, setLocating] = useState(false);
   const [locationHint, setLocationHint] = useState('');
   const [activeCentre, setActiveCentre] = useState(null);
+  const [hoveredState, setHoveredState] = useState(null);
   const [cardVisible, setCardVisible] = useState(false);
   const [mapTransform, setMapTransform] = useState({ scale: 1, x: 0, y: 0 });
 
@@ -409,7 +412,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
             detectUserLocation(true);
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }, []);
 
@@ -432,17 +435,17 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
     const basePin =
       exact ||
       KENDRA_PINS[
-        q.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) %
-          KENDRA_PINS.length
+      q.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0) %
+      KENDRA_PINS.length
       ];
 
     const updatedPin = /^\d{6}$/.test(q)
       ? {
-          ...basePin,
-          pincode: q,
-          cscId: `CSC0${q}45`,
-          address: basePin.address.replace(/\d{6}$/, q),
-        }
+        ...basePin,
+        pincode: q,
+        cscId: `CSC0${q}45`,
+        address: basePin.address.replace(/\d{6}$/, q),
+      }
       : basePin;
 
     if (/^\d{6}$/.test(q)) {
@@ -565,10 +568,11 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                     <input
                       id="locator-pin-input"
                       type="text"
+                      inputMode="numeric"
                       value={pinQuery}
-                      onChange={(e) => setPinQuery(e.target.value)}
+                      onChange={(e) => setPinQuery(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="Enter PIN"
-                      maxLength={18}
+                      maxLength={6}
                       className="w-full min-w-0 bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none"
                     />
                     {pinQuery && (
@@ -593,321 +597,533 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
               </div>
 
               {/* ==============================================================
-                  ARCHITECTURAL VECTOR MAP CANVAS (FITS CLEANLY IN VIEWPORT)
-                  Inspired by Live Tracking Reference: Rich City Blocks, Hub Pills,
-                  Dashed Network Connectors, River Waterway & Floating Navy Card
+                  INTERACTIVE MAP CANVAS:
+                  - Default Mode (!activeCentre): India Overview Map + Pulsing Regional Hubs
+                  - Active PIN Mode (activeCentre): Detailed Local Street & Kendra Map
                   ============================================================== */}
               <div className="relative w-full h-[370px] sm:h-[395px] lg:h-[405px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
-                <svg
-                  viewBox="0 0 820 420"
-                  className="w-full h-full object-cover"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <motion.g
-                    animate={{
-                      scale: mapTransform.scale,
-                      x: mapTransform.x,
-                      y: mapTransform.y,
-                    }}
-                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ transformOrigin: '245px 222px' }}
-                  >
-                    {/* Base Cartographic Canvas */}
-                    <rect width="820" height="420" fill="#edf1f7" />
-
-                    {/* Architectural Urban & Village Block Polygons (High-Craft Map Depth) */}
-                    <g fill="#e2e8f0">
-                      <polygon points="18,16 128,12 142,86 26,98" />
-                      <polygon points="154,14 278,8 294,76 166,88" />
-                      <polygon points="308,10 442,14 426,92 318,82" />
-                      <polygon points="462,16 610,12 595,96 452,88" />
-                      <polygon points="24,114 138,104 152,196 34,208" />
-                      <polygon points="168,102 298,92 314,188 182,198" />
-                      <polygon points="332,98 456,106 442,196 324,186" />
-                      <polygon points="474,108 618,112 602,208 462,198" />
-                      <polygon points="32,224 148,214 162,312 42,324" />
-                      <polygon points="178,212 312,202 328,302 192,314" />
-                      <polygon points="344,204 468,214 452,306 338,298" />
-                      <polygon points="48,338 168,326 182,408 56,412" />
-                      <polygon points="198,328 322,316 334,404 208,412" />
-                    </g>
-
-                    {/* Secondary Inner Sub-Blocks for Authentic Cartographic Detail */}
-                    <g fill="#e7edf5">
-                      <polygon points="176,110 232,105 240,152 182,158" />
-                      <polygon points="246,104 292,100 298,146 252,150" />
-                      <polygon points="186,220 248,214 256,266 194,272" />
-                      <polygon points="262,212 306,208 314,260 268,264" />
-                      <polygon points="342,108 398,112 392,158 336,152" />
-                    </g>
-
-                    {/* Soft Green Parks & Panchayat Grounds */}
-                    <g fill="#d6ebe1">
-                      <polygon points="168,28 238,22 246,72 176,78" />
-                      <polygon points="344,112 414,118 406,168 338,162" />
-                      <polygon points="56,238 128,230 136,288 64,296" />
-                      <polygon points="212,336 286,328 294,386 220,394" />
-                    </g>
-
-                    {/* Yamuna River / Canal Waterway with Soft Bank Casing */}
-                    <path
-                      d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
-                      stroke="#bae6fd"
-                      strokeWidth="26"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                    <path
-                      d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
-                      stroke="#7dd3fc"
-                      strokeWidth="14"
-                      fill="none"
-                      strokeLinecap="round"
-                      opacity="0.75"
-                    />
-
-                    {/* Minor Local Street Grid */}
-                    <g stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" fill="none">
-                      <path d="M 0 96 L 820 74" />
-                      <path d="M 0 162 L 820 142" />
-                      <path d="M 0 210 L 820 192" />
-                      <path d="M 0 272 L 820 254" />
-                      <path d="M 0 322 L 820 308" />
-                      <path d="M 0 378 L 820 362" />
-
-                      <path d="M 88 0 L 128 420" />
-                      <path d="M 156 0 L 194 420" />
-                      <path d="M 238 0 L 274 420" />
-                      <path d="M 318 0 L 352 420" />
-                      <path d="M 402 0 L 436 420" />
-                      <path d="M 468 0 L 504 420" />
-                      <path d="M 552 0 L 588 420" />
-                    </g>
-
-                    {/* Major Arterial Highways & Ring Roads */}
-                    <g stroke="#ffffff" strokeWidth="8.5" strokeLinecap="round" fill="none">
-                      <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
-                      <path d="M 118 -15 L 296 435" />
-                      <path d="M 348 -15 L 478 435" />
-                      <path d="M -15 112 Q 310 175 835 268" />
-                    </g>
-
-                    {/* Subtle Road Centerline Tint on Major Arterials */}
-                    <g stroke="#cbd5e1" strokeWidth="1" strokeDasharray="6 6" fill="none">
-                      <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
-                      <path d="M 118 -15 L 296 435" />
-                    </g>
-
-                    {/* Interactive CSC Storefront Pins */}
-                    {KENDRA_PINS.map((pin) => {
-                      const isSelected = activeCentre?.id === pin.id;
-                      return (
-                        <g
-                          key={pin.id}
-                          transform={`translate(${pin.x}, ${pin.y})`}
-                          onClick={() => handleSelectPin(pin)}
-                        >
-                          <StorefrontMapPin
-                            selected={isSelected}
-                            label={isSelected ? pin.areaName : ''}
-                          />
-                        </g>
-                      );
-                    })}
-                  </motion.g>
-                </svg>
-
-                {/* Left Floating Zoom & Recenter Controls */}
-                <div className="absolute top-3.5 left-3.5 z-20 flex flex-col gap-2">
-                  <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 divide-y divide-slate-200/80 overflow-hidden">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setMapTransform((prev) => ({
-                          ...prev,
-                          scale: Math.min(1.45, +(prev.scale + 0.14).toFixed(2)),
-                        }))
-                      }
-                      aria-label="Zoom in"
-                      className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setMapTransform((prev) => ({
-                          ...prev,
-                          scale: Math.max(0.86, +(prev.scale - 0.14).toFixed(2)),
-                        }))
-                      }
-                      aria-label="Zoom out"
-                      className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleResetView}
-                    aria-label="Reset map view"
-                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
-                  >
-                    <LocateFixed className="w-4 h-4" />
-                  </button>
-                </div>
-
-                {/* Bottom-Left Legend Pill (Selected Centre | Other Centre) */}
-                <div className="absolute bottom-3.5 left-3.5 z-20 bg-white/95 backdrop-blur-md rounded-xl px-3 py-1.5 shadow-md border border-slate-200/80 flex items-center gap-3 text-[11px] font-semibold text-[#0a1628]">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5500] inline-block" />
-                    <span>Selected Centre</span>
-                  </span>
-                  <span className="h-3 w-px bg-slate-200" />
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#0a1628] inline-block" />
-                    <span>Other Centre</span>
-                  </span>
-                </div>
-
-                {/* ============================================================
-                    FLOATING DARK NAVY GLASSMORPHIC VLE PROFILE CARD
-                    ============================================================ */}
                 <AnimatePresence mode="wait">
-                  {cardVisible && activeCentre && (
+                  {!activeCentre ? (
                     <motion.div
-                      key={activeCentre.id + activeCentre.pincode}
-                      initial={{ opacity: 0, x: 16, scale: 0.97 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: 12, scale: 0.97 }}
-                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute top-3.5 bottom-3.5 right-3.5 w-[285px] sm:w-[325px] rounded-[18px] bg-[#0a1628] text-white p-4 shadow-[0_24px_55px_rgba(10,22,40,0.45)] border border-white/15 z-30 flex flex-col justify-between"
+                      key="india-overview-map"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.08 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative w-full h-full bg-[#e8eef6] flex items-center justify-center"
                     >
-                      <div>
-                        {/* Header: Orange Storefront Badge + CSC Centre + Close X */}
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded-full bg-[#ff5500] grid place-items-center shrink-0 shadow-xs">
-                              <svg
-                                viewBox="0 0 16 16"
-                                className="w-3.5 h-3.5 text-white"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                              >
-                                <path d="M2 6L3.2 2.5H12.8L14 6" />
-                                <path d="M3 6.5V13.5H13V6.5" />
-                                <rect x="6.5" y="9" width="3" height="4.5" />
-                              </svg>
-                            </div>
-                            <h4 className="text-[15px] font-bold text-white tracking-tight">
-                              CSC Centre
-                            </h4>
-                          </div>
+                      {/* Subtle Cartographic Grid Backdrop */}
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 opacity-45 pointer-events-none"
+                        style={{
+                          backgroundImage:
+                            'linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)',
+                          backgroundSize: '36px 36px',
+                        }}
+                      />
 
+                      {/* Detailed Official India State-by-State Vector Map */}
+                      <svg
+                        viewBox={indiaMap.viewBox}
+                        className="relative z-10 w-full h-[94%] max-w-[540px] drop-shadow-[0_10px_24px_rgba(10,22,40,0.12)]"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <g>
+                          {indiaMap.locations.map((loc) => {
+                            const isHovered = hoveredState === loc.name;
+                            return (
+                              <path
+                                key={loc.id}
+                                d={loc.path}
+                                fill={isHovered ? '#fed7aa' : '#ffffff'}
+                                stroke={isHovered ? '#ff5500' : '#94a3b8'}
+                                strokeWidth={isHovered ? 1.5 : 0.9}
+                                strokeLinejoin="round"
+                                onMouseEnter={() => setHoveredState(loc.name)}
+                                onMouseLeave={() => setHoveredState(null)}
+                                onClick={() => {
+                                  const statePins = {
+                                    an: '744101', ap: '520001', ar: '791111', as: '781001', br: '800001',
+                                    ch: '160001', ct: '492001', dn: '396230', dd: '396210', dl: '110092',
+                                    ga: '403001', gj: '380001', hr: '122001', hp: '171001', jk: '190001',
+                                    jh: '834001', ka: '560001', kl: '682001', ld: '682555', mp: '462001',
+                                    mh: '400001', mn: '795001', ml: '793001', mz: '796001', nl: '797001',
+                                    or: '751001', py: '605001', pb: '141001', rj: '302001', sk: '737101',
+                                    tn: '600001', tg: '500001', tr: '799001', up: '226001', ut: '248001',
+                                    wb: '700001', la: '194101',
+                                  };
+                                  const pin = statePins[loc.id] || '110092';
+                                  const matched = KENDRA_PINS[0];
+                                  setPinQuery(pin);
+                                  handleSelectPin({
+                                    ...matched,
+                                    pincode: pin,
+                                    cscId: `CSC0${pin}45`,
+                                    address: `${loc.name}, PIN ${pin}`,
+                                  });
+                                }}
+                                className="transition-colors duration-200 cursor-pointer"
+                              />
+                            );
+                          })}
+                        </g>
+
+                        {/* Pan-India Network Mesh Connecting Every State & UT */}
+                        {(() => {
+                          const stateNodes = [
+                            { id: 'jk', label: 'Srinagar', pin: '190001', x: 158, y: 82 },
+                            { id: 'la', label: 'Leh', pin: '194101', x: 205, y: 65 },
+                            { id: 'hp', label: 'Shimla', pin: '171001', x: 194, y: 142 },
+                            { id: 'pb', label: 'Chandigarh', pin: '160001', x: 170, y: 158 },
+                            { id: 'uk', label: 'Dehradun', pin: '248001', x: 218, y: 172 },
+                            { id: 'hr', label: 'Gurugram', pin: '122001', x: 176, y: 196 },
+                            { id: 'dl', label: 'Delhi', pin: '110092', x: 188, y: 210, major: true },
+                            { id: 'rj', label: 'Jaipur', pin: '302001', x: 145, y: 255, major: true },
+                            { id: 'up', label: 'Lucknow', pin: '226001', x: 266, y: 242 },
+                            { id: 'gj', label: 'Ahmedabad', pin: '380001', x: 92, y: 332 },
+                            { id: 'mp', label: 'Bhopal', pin: '462001', x: 215, y: 340, major: true },
+                            { id: 'br', label: 'Patna', pin: '800001', x: 370, y: 270, major: true },
+                            { id: 'jh', label: 'Ranchi', pin: '834001', x: 368, y: 325 },
+                            { id: 'wb', label: 'Kolkata', pin: '700001', x: 424, y: 334, major: true },
+                            { id: 'sk', label: 'Gangtok', pin: '737101', x: 432, y: 222 },
+                            { id: 'as', label: 'Guwahati', pin: '781001', x: 492, y: 244, major: true },
+                            { id: 'ar', label: 'Itanagar', pin: '791111', x: 540, y: 218 },
+                            { id: 'nl', label: 'Kohima', pin: '797001', x: 542, y: 258 },
+                            { id: 'mn', label: 'Imphal', pin: '795001', x: 536, y: 282 },
+                            { id: 'mz', label: 'Aizawl', pin: '796001', x: 520, y: 306 },
+                            { id: 'tr', label: 'Agartala', pin: '799001', x: 492, y: 300 },
+                            { id: 'ml', label: 'Shillong', pin: '793001', x: 492, y: 264 },
+                            { id: 'ct', label: 'Raipur', pin: '492001', x: 298, y: 375 },
+                            { id: 'od', label: 'Bhubaneswar', pin: '751001', x: 365, y: 394 },
+                            { id: 'mh', label: 'Mumbai', pin: '400001', x: 122, y: 440, major: true },
+                            { id: 'pn', label: 'Pune', pin: '411001', x: 146, y: 462 },
+                            { id: 'ga', label: 'Panaji', pin: '403001', x: 125, y: 512 },
+                            { id: 'tg', label: 'Hyderabad', pin: '500001', x: 228, y: 495, major: true },
+                            { id: 'ap', label: 'Vijayawada', pin: '520001', x: 274, y: 505 },
+                            { id: 'ka', label: 'Bengaluru', pin: '560001', x: 196, y: 575, major: true },
+                            { id: 'tn', label: 'Chennai', pin: '600001', x: 252, y: 576 },
+                            { id: 'kl', label: 'Kochi', pin: '682001', x: 176, y: 626 },
+                          ];
+
+                          const links = [
+                            ['jk', 'la'], ['jk', 'hp'], ['jk', 'pb'], ['la', 'hp'], ['hp', 'uk'], ['hp', 'pb'],
+                            ['pb', 'hr'], ['uk', 'dl'], ['hr', 'dl'], ['dl', 'rj'], ['dl', 'up'], ['rj', 'gj'],
+                            ['rj', 'mp'], ['up', 'mp'], ['up', 'br'], ['gj', 'mp'], ['gj', 'mh'], ['mp', 'ct'],
+                            ['mp', 'mh'], ['br', 'jh'], ['br', 'sk'], ['br', 'wb'], ['jh', 'wb'], ['jh', 'ct'],
+                            ['jh', 'od'], ['wb', 'od'], ['wb', 'sk'], ['sk', 'as'], ['as', 'ar'], ['as', 'ml'],
+                            ['as', 'nl'], ['ar', 'nl'], ['nl', 'mn'], ['mn', 'mz'], ['ml', 'tr'], ['tr', 'mz'],
+                            ['ct', 'od'], ['ct', 'tg'], ['od', 'ap'], ['mh', 'pn'], ['pn', 'ga'], ['pn', 'tg'],
+                            ['ga', 'ka'], ['tg', 'ap'], ['tg', 'ka'], ['ap', 'tn'], ['ka', 'tn'], ['ka', 'kl'],
+                            ['tn', 'kl'],
+                          ];
+
+                          const nodeMap = Object.fromEntries(stateNodes.map((n) => [n.id, n]));
+
+                          return (
+                            <>
+                              <g stroke="#ff5500" strokeWidth="1.2" strokeDasharray="3.5 3.5" opacity="0.38" fill="none" pointerEvents="none">
+                                {links.map(([a, b]) => {
+                                  const n1 = nodeMap[a];
+                                  const n2 = nodeMap[b];
+                                  if (!n1 || !n2) return null;
+                                  return <line key={`${a}-${b}`} x1={n1.x} y1={n1.y} x2={n2.x} y2={n2.y} />;
+                                })}
+                              </g>
+
+                              {stateNodes.map((hub) => (
+                                <g
+                                  key={hub.id}
+                                  onMouseEnter={() => setHoveredState(hub.label)}
+                                  onMouseLeave={() => setHoveredState(null)}
+                                  onClick={() => {
+                                    setPinQuery(hub.pin);
+                                    const matched = KENDRA_PINS[0];
+                                    handleSelectPin({
+                                      ...matched,
+                                      pincode: hub.pin,
+                                      cscId: `CSC0${hub.pin}45`,
+                                      address: `${hub.label}, PIN ${hub.pin}`,
+                                    });
+                                  }}
+                                  className="cursor-pointer"
+                                >
+                                  {hub.major && (
+                                    <circle cx={hub.x} cy={hub.y} r="15" fill="#ff5500" opacity="0.16">
+                                      <animate attributeName="r" values="8;18;8" dur="2.6s" repeatCount="indefinite" />
+                                      <animate attributeName="opacity" values="0.3;0.05;0.3" dur="2.6s" repeatCount="indefinite" />
+                                    </circle>
+                                  )}
+                                  <circle
+                                    cx={hub.x}
+                                    cy={hub.y}
+                                    r={hub.major ? 5.5 : 3.8}
+                                    fill="#ff5500"
+                                    stroke="#ffffff"
+                                    strokeWidth={hub.major ? 2 : 1.5}
+                                  />
+                                </g>
+                              ))}
+                            </>
+                          );
+                        })()}
+                      </svg>
+
+                      {/* Top-Left Live State Hover Badge */}
+                      <div className="absolute top-3.5 left-3.5 z-20 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#0a1628]/10 text-[11.5px] font-semibold text-[#0a1628] shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-[#ff5500] animate-pulse" />
+                        <span>{hoveredState ? `${hoveredState} · Active CSCs` : 'All 28 States & 8 UTs'}</span>
+                      </div>
+
+                      {/* Bottom-Left Floating Guide Pill */}
+                      <div className="absolute bottom-3.5 left-3.5 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0a1628]/90 backdrop-blur-md text-white text-[11.5px] shadow-lg border border-white/15">
+                        <span className="font-medium">
+                          5.5L+ Centres — enter PIN above or click any state
+                        </span>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="local-detail-map"
+                      initial={{ opacity: 0, scale: 0.94 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative w-full h-full"
+                    >
+                      <svg
+                        viewBox="0 0 820 420"
+                        className="w-full h-full object-cover"
+                        preserveAspectRatio="xMidYMid slice"
+                      >
+                        <motion.g
+                          animate={{
+                            scale: mapTransform.scale,
+                            x: mapTransform.x,
+                            y: mapTransform.y,
+                          }}
+                          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                          style={{ transformOrigin: '245px 222px' }}
+                        >
+                          {/* Base Cartographic Canvas */}
+                          <rect width="820" height="420" fill="#edf1f7" />
+
+                          {/* Architectural Urban & Village Block Polygons (High-Craft Map Depth) */}
+                          <g fill="#e2e8f0">
+                            <polygon points="18,16 128,12 142,86 26,98" />
+                            <polygon points="154,14 278,8 294,76 166,88" />
+                            <polygon points="308,10 442,14 426,92 318,82" />
+                            <polygon points="462,16 610,12 595,96 452,88" />
+                            <polygon points="24,114 138,104 152,196 34,208" />
+                            <polygon points="168,102 298,92 314,188 182,198" />
+                            <polygon points="332,98 456,106 442,196 324,186" />
+                            <polygon points="474,108 618,112 602,208 462,198" />
+                            <polygon points="32,224 148,214 162,312 42,324" />
+                            <polygon points="178,212 312,202 328,302 192,314" />
+                            <polygon points="344,204 468,214 452,306 338,298" />
+                            <polygon points="48,338 168,326 182,408 56,412" />
+                            <polygon points="198,328 322,316 334,404 208,412" />
+                          </g>
+
+                          {/* Secondary Inner Sub-Blocks for Authentic Cartographic Detail */}
+                          <g fill="#e7edf5">
+                            <polygon points="176,110 232,105 240,152 182,158" />
+                            <polygon points="246,104 292,100 298,146 252,150" />
+                            <polygon points="186,220 248,214 256,266 194,272" />
+                            <polygon points="262,212 306,208 314,260 268,264" />
+                            <polygon points="342,108 398,112 392,158 336,152" />
+                          </g>
+
+                          {/* Soft Green Parks & Panchayat Grounds */}
+                          <g fill="#d6ebe1">
+                            <polygon points="168,28 238,22 246,72 176,78" />
+                            <polygon points="344,112 414,118 406,168 338,162" />
+                            <polygon points="56,238 128,230 136,288 64,296" />
+                            <polygon points="212,336 286,328 294,386 220,394" />
+                          </g>
+
+                          {/* Yamuna River / Canal Waterway with Soft Bank Casing */}
+                          <path
+                            d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
+                            stroke="#bae6fd"
+                            strokeWidth="26"
+                            fill="none"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="M 295 430 C 330 335, 445 305, 555 375 C 605 405, 650 420, 700 430"
+                            stroke="#7dd3fc"
+                            strokeWidth="14"
+                            fill="none"
+                            strokeLinecap="round"
+                            opacity="0.75"
+                          />
+
+                          {/* Minor Local Street Grid */}
+                          <g stroke="#ffffff" strokeWidth="3.5" strokeLinecap="round" fill="none">
+                            <path d="M 0 96 L 820 74" />
+                            <path d="M 0 162 L 820 142" />
+                            <path d="M 0 210 L 820 192" />
+                            <path d="M 0 272 L 820 254" />
+                            <path d="M 0 322 L 820 308" />
+                            <path d="M 0 378 L 820 362" />
+
+                            <path d="M 88 0 L 128 420" />
+                            <path d="M 156 0 L 194 420" />
+                            <path d="M 238 0 L 274 420" />
+                            <path d="M 318 0 L 352 420" />
+                            <path d="M 402 0 L 436 420" />
+                            <path d="M 468 0 L 504 420" />
+                            <path d="M 552 0 L 588 420" />
+                          </g>
+
+                          {/* Major Arterial Highways & Ring Roads */}
+                          <g stroke="#ffffff" strokeWidth="8.5" strokeLinecap="round" fill="none">
+                            <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
+                            <path d="M 118 -15 L 296 435" />
+                            <path d="M 348 -15 L 478 435" />
+                            <path d="M -15 112 Q 310 175 835 268" />
+                          </g>
+
+                          {/* Subtle Road Centerline Tint on Major Arterials */}
+                          <g stroke="#cbd5e1" strokeWidth="1" strokeDasharray="6 6" fill="none">
+                            <path d="M -20 278 Q 230 212 520 76 L 840 -10" />
+                            <path d="M 118 -15 L 296 435" />
+                          </g>
+
+                          {/* Interactive CSC Storefront Pins */}
+                          {KENDRA_PINS.map((pin) => {
+                            const isSelected = activeCentre?.id === pin.id;
+                            return (
+                              <g
+                                key={pin.id}
+                                transform={`translate(${pin.x}, ${pin.y})`}
+                                onClick={() => handleSelectPin(pin)}
+                              >
+                                <StorefrontMapPin
+                                  selected={isSelected}
+                                  label={isSelected ? pin.areaName : ''}
+                                />
+                              </g>
+                            );
+                          })}
+                        </motion.g>
+                      </svg>
+
+                      {/* Left Floating Zoom & Recenter Controls */}
+                      <div className="absolute top-3.5 left-3.5 z-20 flex flex-col gap-2">
+                        <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 divide-y divide-slate-200/80 overflow-hidden">
                           <button
                             type="button"
-                            onClick={() => setCardVisible(false)}
-                            aria-label="Close card"
-                            className="p-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                            onClick={() =>
+                              setMapTransform((prev) => ({
+                                ...prev,
+                                scale: Math.min(2.2, +(prev.scale + 0.25).toFixed(2)),
+                              }))
+                            }
+                            aria-label="Zoom in"
+                            className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
                           >
-                            <X className="w-4 h-4" />
+                            <Plus className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setMapTransform((prev) => ({
+                                ...prev,
+                                scale: Math.max(0.75, +(prev.scale - 0.25).toFixed(2)),
+                              }))
+                            }
+                            aria-label="Zoom out"
+                            className="w-8 h-8 sm:w-9 sm:h-9 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                          >
+                            <Minus className="w-4 h-4" />
                           </button>
                         </div>
 
-                        {/* VLE Profile Row */}
-                        <div className="flex items-center justify-between gap-2.5 pb-3 border-b border-white/12">
-                          <div className="flex items-center gap-2.5 min-w-0">
-                            <div className="w-12 h-12 rounded-full bg-white overflow-hidden shrink-0 border-2 border-white/25 shadow-xs">
-                              <img
-                                src={activeCentre.avatar}
-                                alt={activeCentre.vleName}
-                                className="w-full h-full object-cover object-top scale-[1.85] origin-[50%_12%]"
-                              />
-                            </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (activeCentre) {
+                              setMapTransform({
+                                scale: 1.07,
+                                x: (245 - activeCentre.x) * 0.24,
+                                y: (222 - activeCentre.y) * 0.24,
+                              });
+                              setCardVisible(true);
+                            }
+                          }}
+                          aria-label="Recenter on active centre"
+                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                        >
+                          <LocateFixed className="w-4 h-4" />
+                        </button>
+                      </div>
 
-                            <div className="min-w-0">
-                              <div className="text-[14.5px] font-bold text-white leading-tight truncate">
-                                {activeCentre.vleName}
-                              </div>
-                              <div className="text-[10.5px] text-slate-300 mt-1 font-mono">
-                                CSC ID: {activeCentre.cscId}
-                              </div>
-                            </div>
-                          </div>
+                      {/* Top-Right Return to Whole India View Button */}
+                      <button
+                        type="button"
+                        onClick={handleResetView}
+                        aria-label="Return to India map"
+                        title="Return to India map"
+                        className="absolute top-3.5 right-3.5 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/95 hover:bg-white backdrop-blur-md shadow-md border border-slate-200/80 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
+                      >
+                        <Undo2 className="w-4 h-4" />
+                      </button>
 
-                          <div className="flex flex-col items-end shrink-0">
-                            <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-white">
-                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                              <span>{activeCentre.rating}</span>
-                            </span>
-                            <span className="text-[10.5px] text-slate-300 mt-0.5 font-medium">
-                              {activeCentre.reviews} reviews
-                            </span>
-                          </div>
-                        </div>
+                      {/* Bottom-Left Legend Pill (Selected Centre | Other Centre) */}
+                      <div className="absolute bottom-3.5 left-3.5 z-20 bg-white/95 backdrop-blur-md rounded-xl px-3 py-1.5 shadow-md border border-slate-200/80 flex items-center gap-3 text-[11px] font-semibold text-[#0a1628]">
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5500] inline-block" />
+                          <span>Selected Centre</span>
+                        </span>
+                        <span className="h-3 w-px bg-slate-200" />
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#0a1628] inline-block" />
+                          <span>Other Centre</span>
+                        </span>
+                      </div>
 
-                        {/* Details Table (Address, Working Hours, Services) */}
-                        <div className="divide-y divide-white/10 text-[11.5px]">
-                          <div className="py-2.5 flex items-start gap-2">
-                            <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
-                            <span className="text-slate-400 w-18 shrink-0">Address</span>
-                            <span className="text-white/95 font-medium leading-snug line-clamp-2">
-                              {activeCentre.address}
-                            </span>
-                          </div>
+                      {/* ============================================================
+                    FLOATING DARK NAVY GLASSMORPHIC VLE PROFILE CARD
+                    ============================================================ */}
+                      <AnimatePresence mode="wait">
+                        {cardVisible && activeCentre && (
+                          <motion.div
+                            key={activeCentre.id + activeCentre.pincode}
+                            initial={{ opacity: 0, x: 16, scale: 0.97 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 12, scale: 0.97 }}
+                            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute top-3.5 bottom-3.5 right-3.5 w-[285px] sm:w-[325px] rounded-[18px] bg-[#0a1628] text-white p-4 shadow-[0_24px_55px_rgba(10,22,40,0.45)] border border-white/15 z-30 flex flex-col justify-between"
+                          >
+                            <div>
+                              {/* Header: Orange Storefront Badge + CSC Centre + Close X */}
+                              <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-6 h-6 rounded-full bg-[#ff5500] grid place-items-center shrink-0 shadow-xs">
+                                    <svg
+                                      viewBox="0 0 16 16"
+                                      className="w-3.5 h-3.5 text-white"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="1.5"
+                                    >
+                                      <path d="M2 6L3.2 2.5H12.8L14 6" />
+                                      <path d="M3 6.5V13.5H13V6.5" />
+                                      <rect x="6.5" y="9" width="3" height="4.5" />
+                                    </svg>
+                                  </div>
+                                  <h4 className="text-[15px] font-bold text-white tracking-tight">
+                                    CSC Centre
+                                  </h4>
+                                </div>
 
-                          <div className="py-2.5 flex items-center gap-2">
-                            <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                            <span className="text-slate-400 w-18 shrink-0">Working Hours</span>
-                            <span className="text-white/95 font-medium truncate">
-                              {activeCentre.hours}
-                            </span>
-                          </div>
-
-                          <div className="py-2.5 flex items-center gap-2">
-                            <Layers className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                            <span className="text-slate-400 w-18 shrink-0">Services</span>
-                            <div className="flex flex-wrap items-center gap-1">
-                              {activeCentre.services.map((svc) => (
-                                <span
-                                  key={svc}
-                                  className="px-2 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-medium text-white"
+                                <button
+                                  type="button"
+                                  onClick={() => setCardVisible(false)}
+                                  aria-label="Close card"
+                                  className="p-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
                                 >
-                                  {svc}
-                                </span>
-                              ))}
-                              <span className="px-1.5 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-semibold text-white/85">
-                                {activeCentre.moreCount}
-                              </span>
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+
+                              {/* VLE Profile Row */}
+                              <div className="flex items-center justify-between gap-2.5 pb-3 border-b border-white/12">
+                                <div className="flex items-center gap-2.5 min-w-0">
+                                  <div className="w-12 h-12 rounded-full bg-white overflow-hidden shrink-0 border-2 border-white/25 shadow-xs">
+                                    <img
+                                      src={activeCentre.avatar}
+                                      alt={activeCentre.vleName}
+                                      className="w-full h-full object-cover object-top scale-[1.85] origin-[50%_12%]"
+                                    />
+                                  </div>
+
+                                  <div className="min-w-0">
+                                    <div className="text-[14.5px] font-bold text-white leading-tight truncate">
+                                      {activeCentre.vleName}
+                                    </div>
+                                    <div className="text-[10.5px] text-slate-300 mt-1 font-mono">
+                                      CSC ID: {activeCentre.cscId}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-col items-end shrink-0">
+                                  <span className="inline-flex items-center gap-1 text-[12.5px] font-bold text-white">
+                                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                                    <span>{activeCentre.rating}</span>
+                                  </span>
+                                  <span className="text-[10.5px] text-slate-300 mt-0.5 font-medium">
+                                    {activeCentre.reviews} reviews
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Details Table (Address, Working Hours, Services) */}
+                              <div className="divide-y divide-white/10 text-[11.5px]">
+                                <div className="py-2.5 flex items-start gap-2">
+                                  <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+                                  <span className="text-slate-400 w-18 shrink-0">Address</span>
+                                  <span className="text-white/95 font-medium leading-snug line-clamp-2">
+                                    {activeCentre.address}
+                                  </span>
+                                </div>
+
+                                <div className="py-2.5 flex items-center gap-2">
+                                  <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                                  <span className="text-slate-400 w-18 shrink-0">Working Hours</span>
+                                  <span className="text-white/95 font-medium truncate">
+                                    {activeCentre.hours}
+                                  </span>
+                                </div>
+
+                                <div className="py-2.5 flex items-center gap-2">
+                                  <Layers className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                                  <span className="text-slate-400 w-18 shrink-0">Services</span>
+                                  <div className="flex flex-wrap items-center gap-1">
+                                    {activeCentre.services.map((svc) => (
+                                      <span
+                                        key={svc}
+                                        className="px-2 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-medium text-white"
+                                      >
+                                        {svc}
+                                      </span>
+                                    ))}
+                                    <span className="px-1.5 py-0.5 rounded-md bg-white/[0.12] border border-white/15 text-[10px] font-semibold text-white/85">
+                                      {activeCentre.moreCount}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
 
-                      {/* Bottom Action Buttons */}
-                      <div className="grid grid-cols-2 gap-2 pt-1.5">
-                        <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                            'CSC Centre ' + activeCentre.address
-                          )}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="py-2 px-3 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-md"
-                        >
-                          <Navigation className="w-3 h-3 fill-white" />
-                          <span>Get Directions</span>
-                        </a>
+                            {/* Bottom Action Buttons */}
+                            <div className="grid grid-cols-2 gap-2 pt-1.5">
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                                  'CSC Centre ' + activeCentre.address
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="py-2 px-3 rounded-xl bg-[#ff5500] hover:bg-[#e04800] text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-md"
+                              >
+                                <Navigation className="w-3 h-3 fill-white" />
+                                <span>Get Directions</span>
+                              </a>
 
-                        <a
-                          href={`tel:${activeCentre.phone}`}
-                          className="py-2 px-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] border border-white/25 text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors"
-                        >
-                          <Phone className="w-3 h-3" />
-                          <span>Contact VLE</span>
-                        </a>
-                      </div>
+                              <a
+                                href={`tel:${activeCentre.phone}`}
+                                className="py-2 px-3 rounded-xl bg-white/[0.08] hover:bg-white/[0.16] border border-white/25 text-white text-[11.5px] font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                              >
+                                <Phone className="w-3 h-3" />
+                                <span>Contact VLE</span>
+                              </a>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
                   )}
                 </AnimatePresence>
