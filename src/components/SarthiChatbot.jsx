@@ -346,11 +346,17 @@ export default function SarthiChatbot({ isOpen, onOpen, onClose }) {
         {isOpen && (
           <motion.div
             ref={chatRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Sarthi AI Assistant"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') onClose();
+            }}
             initial={{ opacity: 0, y: 25, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 25, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-6 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[400px] max-h-[600px] h-[540px] rounded-[24px] bg-white text-slate-800 shadow-[0_24px_70px_rgba(0,0,0,0.45)] flex flex-col overflow-hidden"
+            className="fixed bottom-4 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[400px] max-h-[82vh] sm:max-h-[600px] h-[540px] rounded-[24px] bg-white text-slate-800 shadow-[0_24px_70px_rgba(0,0,0,0.45)] flex flex-col overflow-hidden"
           >
             {/* Top Clean Header Bar (Navy Dark Blue, No Duplicate Text or Indicators, No White Border) */}
             <div className="px-5 py-3.5 bg-[#0a1628] text-white flex items-center justify-between z-20 shrink-0">
@@ -500,7 +506,11 @@ export default function SarthiChatbot({ isOpen, onOpen, onClose }) {
               {/* Unified Input Bar: Voice & Send Buttons Nested INSIDE the Input Only, Navy Theme, No White Border */}
               <div className="p-3">
                 <div className="relative flex items-center w-full rounded-xl bg-white/[0.08] px-3 py-1 focus-within:bg-white/[0.14] transition-all">
+                  <label htmlFor="sarthi-chat-input" className="sr-only">
+                    Ask Sarthi AI a question
+                  </label>
                   <input
+                    id="sarthi-chat-input"
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
@@ -510,7 +520,7 @@ export default function SarthiChatbot({ isOpen, onOpen, onClose }) {
                         ? 'प्रश्न पूछें या बोलें...'
                         : 'Ask a question or speak...'
                     }
-                    className="flex-1 bg-transparent text-xs sm:text-[13px] text-white placeholder:text-white/40 outline-none border-none py-1.5 pr-2"
+                    className="flex-1 bg-transparent text-xs sm:text-[13px] text-white placeholder:text-white/55 border-none py-1.5 pr-2"
                   />
 
                   {/* Inline Action Buttons Inside Input Only */}

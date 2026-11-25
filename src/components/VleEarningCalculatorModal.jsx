@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Calculator,
@@ -19,6 +19,15 @@ export default function VleEarningCalculatorModal({ isOpen, onClose, onStartRegi
   const [govSchemes, setGovSchemes] = useState(6); // PM-Kisan, Ayushman, e-Shram (avg ₹45 commission)
   const [utilityBills, setUtilityBills] = useState(20); // BBPS bills & recharges (avg ₹10 commission)
   const [insuranceTxns, setInsuranceTxns] = useState(2); // Motor/Health insurance & FASTag (avg ₹150 commission)
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -47,6 +56,9 @@ export default function VleEarningCalculatorModal({ isOpen, onClose, onStartRegi
       className="fixed inset-0 z-50 bg-[#0a1628]/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
     >
       <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="calculator-modal-title"
         initial={{ opacity: 0, scale: 0.94, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 15 }}
@@ -58,14 +70,14 @@ export default function VleEarningCalculatorModal({ isOpen, onClose, onStartRegi
         <div className="relative z-10 px-6 sm:px-7 pt-6 pb-4 border-b border-slate-100 flex items-start justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-[#ff5500] shrink-0">
-              <Calculator className="w-5 h-5" />
+              <Calculator className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-orange-100/70 text-[#ff5500] text-[10.5px] font-bold uppercase tracking-wider mb-0.5">
-                <Sparkles className="w-3 h-3" />
+                <Sparkles className="w-3 h-3" aria-hidden="true" />
                 <span>OFFICIAL COMMISSION SLABS</span>
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-[#0a1628]">
+              <h3 id="calculator-modal-title" className="text-lg sm:text-xl font-bold text-[#0a1628]">
                 VLE Monthly Earning Calculator
               </h3>
             </div>

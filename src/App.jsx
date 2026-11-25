@@ -346,6 +346,9 @@ export default function App() {
   const lastScrollY = useRef(0);
   const [lang, setLang] = useState('EN');
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [screenReaderModalOpen, setScreenReaderModalOpen] = useState(false);
+  const [heroVideoPaused, setHeroVideoPaused] = useState(false);
+  const heroVideoRef = useRef(null);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   );
@@ -354,6 +357,21 @@ export default function App() {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Sync <html lang="..."> with active language toggle (WCAG 3.1.1 & GIGW multi-lingual sync)
+  useEffect(() => {
+    document.documentElement.lang = lang === 'EN' ? 'en' : 'hi';
+  }, [lang]);
+
+  // Respect prefers-reduced-motion for hero background video (WCAG 2.2.2 / 2.3.3)
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      setHeroVideoPaused(true);
+      heroVideoRef.current?.pause();
+    }
   }, []);
 
   // Hero Curtain Parallax Physics (Zero shrinking, authentic parallax drift & depth scrim)
@@ -399,6 +417,20 @@ export default function App() {
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [locatorQuery, setLocatorQuery] = useState('');
   const [calculatorOpen, setCalculatorOpen] = useState(false);
+
+  // Global Escape key handler to close open modals/drawers (WCAG 2.1.1 Keyboard)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key !== 'Escape') return;
+      if (screenReaderModalOpen) setScreenReaderModalOpen(false);
+      else if (locatorOpen) setLocatorOpen(false);
+      else if (loginOpen) setLoginOpen(false);
+      else if (welcomePopupOpen) setWelcomePopupOpen(false);
+      else if (mobileNavOpen) setMobileNavOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [screenReaderModalOpen, locatorOpen, loginOpen, welcomePopupOpen, mobileNavOpen]);
 
   const SAMPLE_CENTRES = [
     {
@@ -618,6 +650,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fc] text-[#0a1628]">
+      {/* GIGW / WCAG 2.4.1 Skip to Main Content Link */}
+      <a href="#main-content" className="skip-to-content">
+        {lang === 'EN' ? 'Skip to main content' : 'मुख्य सामग्री पर जाएं'}
+      </a>
+
       {/* ====================================================================
           PERSISTENT FULL-WIDTH NAVIGATION BAR (NEVER HIDES ON SCROLL, NEVER BLOCKED BY NOTICE)
           Clean edge-to-edge navbar fixed at top, 100% visible across the entire site
@@ -628,30 +665,34 @@ export default function App() {
           : 'bg-[#0a1628]/90 backdrop-blur-xl border-b border-white/10'
           }`}
       >
-        <div className="w-full px-5 sm:px-8 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+        <div className="w-full px-3.5 sm:px-8 lg:px-12 py-3 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4">
           {/* Official CSC Brand Lockup (No Vertical Lines, Digital Seva Portal Stacked Below) */}
           <a
             href="#home"
+            aria-label="CSC Digital Seva Portal Home"
             className="inline-flex flex-col items-center shrink-0 text-white group leading-none"
           >
             <CscOfficialLogo
-              className="h-6 sm:h-[26px] w-auto"
+              className="h-5 sm:h-[26px] w-auto"
               showSubtitle={false}
               showDividers={false}
               variant="dark-bg"
             />
-            <span className="font-semibold text-[9.5px] sm:text-[10px] tracking-[0.03em] text-white/95 mt-0.5 whitespace-nowrap">
-              Digital Seva Portal
+            <span className="font-semibold text-[9px] sm:text-[10px] tracking-[0.03em] text-white/95 mt-0.5 whitespace-nowrap">
+              {lang === 'EN' ? 'Digital Seva Portal' : 'डिजिटल सेवा पोर्टल'}
             </span>
           </a>
 
           {/* Centered Primary Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12.5px] xl:text-[13px] font-medium text-white/75">
+          <nav
+            aria-label="Primary navigation"
+            className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12.5px] xl:text-[13px] font-medium text-white/85"
+          >
             <a href="#services" className="hover:text-white transition-colors whitespace-nowrap">
-              Services
+              {lang === 'EN' ? 'Services' : 'सेवाएं'}
             </a>
             <a href="#about" className="hover:text-white transition-colors whitespace-nowrap">
-              Jankari Suvidha
+              {lang === 'EN' ? 'Jankari Suvidha' : 'जानकारी सुविधा'}
             </a>
             <a
               href="#locator"
@@ -664,69 +705,81 @@ export default function App() {
               }}
               className="hover:text-white transition-colors whitespace-nowrap"
             >
-              Find CSC Centre
+              {lang === 'EN' ? 'Find CSC Centre' : 'सीएससी केंद्र खोजें'}
             </a>
             <a href="#whats-new" className="hover:text-white transition-colors whitespace-nowrap">
-              News & Updates
+              {lang === 'EN' ? 'News & Updates' : 'समाचार एवं अपडेट'}
             </a>
             <a href="#support" className="hover:text-white transition-colors whitespace-nowrap">
-              Help
+              {lang === 'EN' ? 'Help' : 'सहायता'}
             </a>
           </nav>
 
           {/* Right Action Cluster — Conversion-First Hierarchy (Primary 'Join as VLE' -> Secondary 'Login' -> Utilities Last) */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Primary Conversion CTA: Join as VLE (Highlighted Solid Saffron Button) */}
             <a
               href="#get-started"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-[12px] sm:text-[12.5px] font-semibold transition-all hover:scale-102 active:scale-98 whitespace-nowrap shadow-md"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-[11px] sm:text-[12.5px] font-semibold transition-all hover:scale-102 active:scale-98 whitespace-nowrap shadow-md"
             >
-              <span>Join as VLE</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white" />
+              <span>{lang === 'EN' ? 'Join as VLE' : 'वीएलई बनें'}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white" aria-hidden="true" />
             </a>
 
             {/* Secondary Action: Existing VLE Login */}
             <button
+              type="button"
               onClick={() => setLoginOpen(true)}
-              className="hidden sm:inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/10 text-white text-[12px] font-semibold transition-all cursor-pointer whitespace-nowrap shadow-xs"
+              className="hidden sm:inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-white/25 hover:border-white/40 hover:bg-white/10 text-white text-[12px] font-semibold transition-all cursor-pointer whitespace-nowrap shadow-xs"
             >
-              <span>Login</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-white/80" />
+              <span>{lang === 'EN' ? 'Login' : 'लॉगिन'}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-white/80" aria-hidden="true" />
             </button>
 
-            <div className="hidden lg:block h-4 w-px bg-white/15 mx-0.5" />
+            <div className="hidden lg:block h-4 w-px bg-white/15 mx-0.5" aria-hidden="true" />
 
             {/* Utility Controls Moved Last (Quiet, Non-Competing) */}
             <button
+              type="button"
               onClick={scrollToNewsletter}
-              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-white/65 hover:text-white hover:bg-white/10 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-white/80 hover:text-white hover:bg-white/10 rounded-full text-xs font-medium transition-colors cursor-pointer whitespace-nowrap"
               title="Subscribe to Newsletter & Scheme Alerts"
+              aria-label="Subscribe to Newsletter and Scheme Alerts"
             >
-              <Mail className="w-3.5 h-3.5 text-white/75" />
-              <span className="hidden xl:inline">Newsletter</span>
+              <Mail className="w-3.5 h-3.5 text-white/80" aria-hidden="true" />
+              <span className="hidden xl:inline">{lang === 'EN' ? 'Newsletter' : 'समाचार पत्र'}</span>
             </button>
 
             <button
+              type="button"
               onClick={() => setLang((l) => (l === 'EN' ? 'हिं' : 'EN'))}
-              className="px-2 py-1 text-[11.5px] font-medium text-white/65 hover:text-white transition-colors cursor-pointer"
+              aria-label={lang === 'EN' ? 'Switch language to Hindi' : 'Switch language to English'}
+              className="px-2 py-1 text-[11px] sm:text-[11.5px] font-medium text-white/85 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
             >
               {lang === 'EN' ? 'EN / हिं' : 'हिं / EN'}
             </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
+              type="button"
               onClick={() => setMobileNavOpen((o) => !o)}
-              className="lg:hidden p-1.5 text-white cursor-pointer"
-              aria-label="Menu"
+              className="lg:hidden p-2 text-white cursor-pointer rounded-lg hover:bg-white/10"
+              aria-label={mobileNavOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileNavOpen}
+              aria-controls="mobile-nav-drawer"
             >
-              <Menu className="w-5 h-5" />
+              {mobileNavOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
             </button>
           </div>
         </div>
 
         {/* Structured Mobile Drawer */}
         {mobileNavOpen && (
-          <div className="lg:hidden w-full bg-[#0a1628]/98 backdrop-blur-xl border-b border-white/12 px-5 py-4 text-sm font-medium text-white pointer-events-auto shadow-2xl space-y-4">
+          <nav
+            id="mobile-nav-drawer"
+            aria-label="Mobile navigation"
+            className="lg:hidden w-full bg-[#0a1628]/98 backdrop-blur-xl border-b border-white/12 px-5 py-4 text-sm font-medium text-white pointer-events-auto shadow-2xl space-y-4 max-h-[calc(100vh-64px)] overflow-y-auto"
+          >
             <div>
               <div className="text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-2">
                 Citizen Access
@@ -824,9 +877,11 @@ export default function App() {
                 <ArrowUpRight className="w-3.5 h-3.5 text-white/80" />
               </button>
             </div>
-          </div>
+          </nav>
         )}
       </header>
+
+      <main id="main-content" tabIndex={-1} className="outline-none">
 
       {/* ====================================================================
           03. FLAGSHIP EDITORIAL HERO — STICKY CURTAIN PARALLAX
@@ -836,7 +891,7 @@ export default function App() {
       <section
         ref={heroRef}
         id="home"
-        className="sticky top-0 z-0 w-full h-screen min-h-[640px] flex items-center justify-center bg-black text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
+        className="sticky top-0 z-0 w-full h-screen min-h-[560px] sm:min-h-[640px] flex items-center justify-center bg-black text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
       >
         {/* Physical depth scrim that dims the pinned hero subtly as the curtain slides over */}
         <motion.div
@@ -850,6 +905,7 @@ export default function App() {
           className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden"
         >
           <video
+            ref={heroVideoRef}
             src="/Hero-bg.mp4"
             poster="/images/grainy-gradient-bg-4k.jpg"
             autoPlay
@@ -883,38 +939,61 @@ export default function App() {
           </div>
 
           {/* Monumental Display Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-[62px] xl:text-[68px] font-bold tracking-[-0.035em] text-white leading-[1.06] mb-5 sm:mb-6 max-w-4xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.65)]">
-            Bringing Essential Services Closer to Every Indian.
+          <h1 className="text-[32px] sm:text-5xl lg:text-[62px] xl:text-[68px] font-bold tracking-[-0.035em] text-white leading-[1.08] sm:leading-[1.06] mb-4 sm:mb-6 max-w-4xl mx-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.65)]">
+            {lang === 'EN'
+              ? 'Bringing Essential Services Closer to Every Indian.'
+              : 'हर भारतीय के करीब आवश्यक सेवाएं पहुंचाना।'}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base lg:text-[17px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-8 sm:mb-10 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+          <p className="text-[13.5px] sm:text-base lg:text-[17px] text-[#c5d5ec] max-w-xl mx-auto leading-relaxed mb-7 sm:mb-10 font-normal drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             Connecting citizens across every Gram Panchayat to 400+ government, banking, and utility services through local Village Level Entrepreneurs.
           </p>
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
               href="#get-started"
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
             >
-              <span>Join as VLE</span>
-              <ArrowRight className="w-4 h-4 text-white" />
+              <span>{lang === 'EN' ? 'Join as VLE' : 'वीएलई के रूप में जुड़ें'}</span>
+              <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />
             </a>
 
             <button
+              type="button"
               onClick={() => {
                 const el = document.getElementById('locator');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
                 else setLocatorOpen(true);
               }}
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] hover:from-white/[0.26] hover:to-white/[0.12] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-md"
+              className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] hover:from-white/[0.26] hover:to-white/[0.12] backdrop-blur-2xl border border-white/20 text-white text-xs sm:text-sm font-semibold transition-all hover:border-white/35 hover:scale-105 cursor-pointer shadow-md"
             >
-              <MapPin className="w-4 h-4 text-white" />
-              <span>Find CSC Centre</span>
+              <MapPin className="w-4 h-4 text-white" aria-hidden="true" />
+              <span>{lang === 'EN' ? 'Find CSC Centre' : 'सीएससी केंद्र खोजें'}</span>
             </button>
           </div>
         </motion.div>
+
+        {/* WCAG 2.2.2 Time-Based Media Control: Pause/Play Background Video */}
+        <button
+          type="button"
+          onClick={() => {
+            const vid = heroVideoRef.current;
+            if (!vid) return;
+            if (vid.paused) {
+              vid.play();
+              setHeroVideoPaused(false);
+            } else {
+              vid.pause();
+              setHeroVideoPaused(true);
+            }
+          }}
+          aria-label={heroVideoPaused ? 'Play background video' : 'Pause background video'}
+          className="absolute bottom-5 left-5 z-20 px-3 py-1.5 rounded-full bg-black/55 hover:bg-black/75 border border-white/20 text-white text-[11px] font-medium backdrop-blur-md transition-colors cursor-pointer"
+        >
+          {heroVideoPaused ? 'Play background' : 'Pause background'}
+        </button>
       </section>
 
       {/* ====================================================================
@@ -954,8 +1033,12 @@ export default function App() {
               {/* Search Input + G2C / B2C Segmented Filter on Next Line */}
               <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center bg-white border border-[#0a1628]/20 focus-within:border-[#0a1628] rounded-xl px-3 py-2 w-full sm:w-72 shadow-xs transition-colors">
-                  <Search className="w-3.5 h-3.5 text-[#64748b] mr-2 shrink-0" />
+                  <Search className="w-3.5 h-3.5 text-[#64748b] mr-2 shrink-0" aria-hidden="true" />
+                  <label htmlFor="service-search-input" className="sr-only">
+                    Search CSC services
+                  </label>
                   <input
+                    id="service-search-input"
                     type="text"
                     value={searchQuery}
                     onChange={(e) => {
@@ -963,23 +1046,29 @@ export default function App() {
                       setServicePage(0);
                     }}
                     placeholder="What are you looking for?"
-                    className="w-full text-xs text-[#0a1628] placeholder:text-[#94a3b8] bg-transparent outline-none"
+                    className="w-full text-xs text-[#0a1628] placeholder:text-[#64748b] bg-transparent outline-none"
                   />
                 </div>
 
                 {/* Segmented Filter Bar with Full Forms & G2C Dropdown */}
-                <div className="relative inline-flex items-center bg-[#0a1628]/[0.055] border border-[#0a1628]/10 p-1 rounded-xl">
+                <div
+                  role="group"
+                  aria-label="Filter services by category"
+                  className="relative flex flex-wrap sm:inline-flex items-center gap-1 bg-[#0a1628]/[0.055] border border-[#0a1628]/10 p-1 rounded-xl w-full sm:w-auto"
+                >
                   {/* 1. All Services */}
                   <button
+                    type="button"
                     onClick={() => {
                       setCategoryFilter('ALL');
                       setG2cSubFilter('ALL');
                       setG2cDropdownOpen(false);
                       setServicePage(0);
                     }}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'ALL'
+                    aria-pressed={categoryFilter === 'ALL'}
+                    className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'ALL'
                       ? 'bg-white text-[#0a1628] shadow-xs'
-                      : 'text-[#475569] hover:text-[#0a1628]'
+                      : 'text-[#334155] hover:text-[#0a1628]'
                       }`}
                   >
                     All Services
@@ -988,6 +1077,7 @@ export default function App() {
                   {/* 2. Government to Citizen (G2C) with Dropdown */}
                   <div className="relative">
                     <button
+                      type="button"
                       onClick={() => {
                         if (categoryFilter !== 'G2C') {
                           setCategoryFilter('G2C');
@@ -996,9 +1086,11 @@ export default function App() {
                         }
                         setG2cDropdownOpen((prev) => !prev);
                       }}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'G2C'
+                      aria-expanded={g2cDropdownOpen}
+                      aria-haspopup="menu"
+                      className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'G2C'
                         ? 'bg-white text-[#0a1628] shadow-xs'
-                        : 'text-[#475569] hover:text-[#0a1628]'
+                        : 'text-[#334155] hover:text-[#0a1628]'
                         }`}
                     >
                       <span>
@@ -1012,6 +1104,7 @@ export default function App() {
                           : 'Government to Citizen (G2C)'}
                       </span>
                       <ChevronDown
+                        aria-hidden="true"
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${g2cDropdownOpen ? 'rotate-180' : ''
                           }`}
                       />
@@ -1025,7 +1118,11 @@ export default function App() {
                           className="fixed inset-0 z-30"
                           onClick={() => setG2cDropdownOpen(false)}
                         />
-                        <div className="absolute left-0 top-full mt-2 w-56 py-1.5 rounded-xl bg-white border border-[#0a1628]/15 shadow-2xl z-40 divide-y divide-[#0a1628]/10 text-left">
+                        <div
+                          role="menu"
+                          aria-label="Government service subcategories"
+                          className="absolute left-0 top-full mt-2 w-56 py-1.5 rounded-xl bg-white border border-[#0a1628]/15 shadow-2xl z-40 divide-y divide-[#0a1628]/10 text-left"
+                        >
                           {[
                             { id: 'ALL', label: 'All Government Services' },
                             { id: 'CENTRAL', label: 'Central Government' },
@@ -1034,6 +1131,9 @@ export default function App() {
                           ].map((sub) => (
                             <button
                               key={sub.id}
+                              type="button"
+                              role="menuitemradio"
+                              aria-checked={categoryFilter === 'G2C' && g2cSubFilter === sub.id}
                               onClick={() => {
                                 setCategoryFilter('G2C');
                                 setG2cSubFilter(sub.id);
@@ -1047,7 +1147,7 @@ export default function App() {
                             >
                               <span>{sub.label}</span>
                               {categoryFilter === 'G2C' && g2cSubFilter === sub.id && (
-                                <Check className="w-3.5 h-3.5 text-white" />
+                                <Check className="w-3.5 h-3.5 text-white" aria-hidden="true" />
                               )}
                             </button>
                           ))}
@@ -1058,15 +1158,17 @@ export default function App() {
 
                   {/* 3. Business to Consumer (B2C) */}
                   <button
+                    type="button"
                     onClick={() => {
                       setCategoryFilter('B2C');
                       setG2cSubFilter('ALL');
                       setG2cDropdownOpen(false);
                       setServicePage(0);
                     }}
-                    className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'B2C'
+                    aria-pressed={categoryFilter === 'B2C'}
+                    className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition-all cursor-pointer whitespace-nowrap ${categoryFilter === 'B2C'
                       ? 'bg-white text-[#0a1628] shadow-xs'
-                      : 'text-[#475569] hover:text-[#0a1628]'
+                      : 'text-[#334155] hover:text-[#0a1628]'
                       }`}
                   >
                     Business to Consumer (B2C)
@@ -1109,22 +1211,24 @@ export default function App() {
                       {paginatedServices.map((srv) => (
                         <article
                           key={srv.id}
-                          className="relative group h-[142px] sm:h-[150px] lg:h-[155px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4 bg-white hover:bg-[#0a1628] transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] select-none overflow-hidden cursor-pointer"
+                          tabIndex={0}
+                          aria-label={`${srv.name}: ${srv.description}`}
+                          className="relative group h-[142px] sm:h-[150px] lg:h-[155px] border-r border-b border-[#0a1628]/15 p-3.5 sm:p-4 bg-white hover:bg-[#0a1628] focus:bg-[#0a1628] transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] select-none overflow-hidden cursor-pointer outline-none"
                         >
                           {/* ICON: Smooth 550ms glide & scale using pure interpolatable coords */}
-                          <div className="absolute z-20 pointer-events-none top-[14px] left-1/2 -translate-x-1/2 scale-[0.82] sm:scale-[0.86] text-[#0a1628] group-hover:top-[12px] group-hover:left-[14px] group-hover:translate-x-0 group-hover:scale-[0.38] group-hover:text-white origin-top-left transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
+                          <div className="absolute z-20 pointer-events-none top-[14px] left-1/2 -translate-x-1/2 scale-[0.82] sm:scale-[0.86] text-[#0a1628] group-hover:top-[12px] group-hover:left-[14px] group-hover:translate-x-0 group-hover:scale-[0.38] group-hover:text-white group-focus:top-[12px] group-focus:left-[14px] group-focus:translate-x-0 group-focus:scale-[0.38] group-focus:text-white origin-top-left transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
                             <ServiceVectorLogo id={srv.id} className="w-[88px] h-[88px]" />
                           </div>
 
                           {/* ANIMATED TITLE: Smooth 550ms glide with consistent weight */}
-                          <div className="absolute top-[106px] sm:top-[112px] lg:top-[116px] left-1/2 -translate-x-1/2 max-w-[calc(100%-24px)] group-hover:top-[19px] group-hover:left-[56px] group-hover:translate-x-0 group-hover:max-w-[calc(100%-68px)] z-20 pointer-events-none transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
-                            <h3 className="text-[13.5px] sm:text-[14px] font-semibold tracking-[-0.015em] text-[#0a1628] group-hover:text-white leading-tight whitespace-nowrap truncate transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
+                          <div className="absolute top-[106px] sm:top-[112px] lg:top-[116px] left-1/2 -translate-x-1/2 max-w-[calc(100%-24px)] group-hover:top-[19px] group-hover:left-[56px] group-hover:translate-x-0 group-hover:max-w-[calc(100%-68px)] group-focus:top-[19px] group-focus:left-[56px] group-focus:translate-x-0 group-focus:max-w-[calc(100%-68px)] z-20 pointer-events-none transition-all duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform">
+                            <h3 className="text-[13.5px] sm:text-[14px] font-semibold tracking-[-0.015em] text-[#0a1628] group-hover:text-white group-focus:text-white leading-tight whitespace-nowrap truncate transition-colors duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
                               {srv.name}
                             </h3>
                           </div>
 
-                          {/* HOVER DESCRIPTION: Smooth 500ms fade & micro-rise below title */}
-                          <div className="absolute inset-x-3.5 top-[50px] bottom-2 flex items-start justify-start opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-10 pointer-events-none">
+                          {/* HOVER / FOCUS DESCRIPTION: Smooth 500ms fade & micro-rise below title */}
+                          <div className="absolute inset-x-3.5 top-[50px] bottom-2 flex items-start justify-start opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] z-10 pointer-events-none">
                             <p className="text-[11.5px] sm:text-[12px] text-[#c5d5ec] leading-[1.55] text-left line-clamp-3">
                               {srv.description}
                             </p>
@@ -1138,6 +1242,7 @@ export default function App() {
                 {/* Left Arrow on Grid Edge to Move Back */}
                 {totalServicePages > 1 && currentServicePage > 0 && (
                   <button
+                    type="button"
                     onClick={() => {
                       setServiceDir(-1);
                       setServicePage(
@@ -1147,9 +1252,9 @@ export default function App() {
                     }}
                     aria-label="Show previous services"
                     title="Previous services"
-                    className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -left-4 sm:-left-5 -translate-y-1/2 z-20"
+                    className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 left-1 sm:-left-5 -translate-y-1/2 z-20"
                   >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                   </button>
                 )}
 
@@ -1157,15 +1262,16 @@ export default function App() {
                 {totalServicePages > 1 &&
                   currentServicePage < totalServicePages - 1 && (
                     <button
+                      type="button"
                       onClick={() => {
                         setServiceDir(1);
                         setServicePage((prev) => (prev + 1) % totalServicePages);
                       }}
                       aria-label="Show next services"
                       title="Next services"
-                      className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 -right-4 sm:-right-5 -translate-y-1/2 z-20"
+                      className="grid place-items-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0a1628] hover:bg-[#ff5500] text-white shadow-lg transition-all cursor-pointer absolute top-1/2 right-1 sm:-right-5 -translate-y-1/2 z-20"
                     >
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </button>
                   )}
               </div>
@@ -1252,7 +1358,16 @@ export default function App() {
                     style={{ zIndex: slot.zIndex }}
                   >
                     <motion.div
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`VLE story from ${item.name}, ${item.location}`}
                       onClick={() => setFanActive(idx)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setFanActive(idx);
+                        }
+                      }}
                       initial={false}
                       animate={{
                         x: slot.x,
@@ -1267,7 +1382,7 @@ export default function App() {
                           : { scale: slot.scale + 0.02, y: slot.y - 4 }
                       }
                       transition={springTransition}
-                      className="w-[320px] sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
+                      className="w-[calc(100vw-2.5rem)] max-w-[330px] sm:max-w-none sm:w-[480px] md:w-[540px] h-[215px] sm:h-[250px] md:h-[270px] rounded-[24px] overflow-hidden cursor-pointer bg-white text-[#0a1628] shadow-[0_20px_45px_-12px_rgba(10,22,40,0.14)] border border-[#0a1628]/10 flex flex-row select-none text-left"
                     >
                       {/* Left Side: Testimonial & Person Meta */}
                       <div className="p-5 sm:p-6 pr-1 flex flex-col justify-between flex-1 min-w-0 z-10">
@@ -1379,7 +1494,16 @@ export default function App() {
               {NEWS_CARDS.map((card) => (
                 <article
                   key={card.id}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${card.cardTitle} — ${card.actionText}`}
                   onClick={() => setSelectedStory(card)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedStory(card);
+                    }
+                  }}
                   className="relative h-[460px] sm:h-[485px] bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
                 >
                   {/* Visual Stage Container (Upper ~60% in normal state) */}
@@ -1494,7 +1618,10 @@ export default function App() {
                     <form onSubmit={handleNewsletterSubmit}>
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                         <div className="relative flex-1">
-                          <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <label htmlFor="newsletter-email" className="sr-only">
+                            Email address for scheme alerts and circulars
+                          </label>
+                          <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
                           <input
                             id="newsletter-email"
                             type="email"
@@ -1504,7 +1631,7 @@ export default function App() {
                               if (newsletterError) setNewsletterError('');
                             }}
                             placeholder="Enter your email address..."
-                            className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-white/30 outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 text-white text-sm placeholder:text-slate-400 transition-all"
+                            className="w-full pl-10 pr-4 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-white/30 text-white text-sm placeholder:text-slate-300 transition-all"
                             required
                           />
                         </div>
@@ -1751,12 +1878,16 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setOpenFaqIdx(open ? -1 : idx)}
-                        className="w-full text-left flex items-center justify-between gap-6 text-[14.5px] sm:text-[16px] font-medium text-[#0a1628] hover:text-[#0a1628]/75 transition-colors cursor-pointer"
+                        aria-expanded={open}
+                        aria-controls={`faq-panel-${idx}`}
+                        id={`faq-trigger-${idx}`}
+                        className="w-full text-left flex items-center justify-between gap-4 sm:gap-6 text-[14.5px] sm:text-[16px] font-medium text-[#0a1628] hover:text-[#0a1628]/75 transition-colors cursor-pointer"
                       >
                         <span>{faq.q}</span>
                         <motion.span
                           animate={{ rotate: open ? 180 : 0 }}
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                          aria-hidden="true"
                           className="w-7 h-7 rounded-full bg-[#0a1628] text-white shrink-0 grid place-items-center"
                         >
                           {open ? (
@@ -1770,13 +1901,16 @@ export default function App() {
                         {open && (
                           <motion.div
                             key="content"
+                            id={`faq-panel-${idx}`}
+                            role="region"
+                            aria-labelledby={`faq-trigger-${idx}`}
                             initial={{ height: 0, opacity: 0, y: -4 }}
                             animate={{ height: 'auto', opacity: 1, y: 0 }}
                             exit={{ height: 0, opacity: 0, y: -4 }}
                             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                             className="overflow-hidden"
                           >
-                            <p className="pt-3 pb-1 text-xs sm:text-[13.5px] text-[#475569] leading-[1.65] pr-10">
+                            <p className="pt-3 pb-1 text-xs sm:text-[13.5px] text-[#334155] leading-[1.65] pr-6 sm:pr-10">
                               {faq.a}
                             </p>
                           </motion.div>
@@ -1957,40 +2091,68 @@ export default function App() {
           </motion.div>
         </section>
 
-        {/* ====================================================================
-          J. FOOTER — CLEAN ARCHITECTURAL INSTITUTIONAL FOOTER
+        </div>
+      </main>
+
+      {/* ====================================================================
+          J. FOOTER — CLEAN ARCHITECTURAL INSTITUTIONAL FOOTER (GIGW COMPLIANT)
           ==================================================================== */}
-        <footer className="relative bg-[#071120] text-[#9cb1d4] pt-14 sm:pt-16 pb-10 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
+      <footer className="relative z-10 bg-[#071120] text-[#b4c6e4] pt-14 sm:pt-16 pb-10 px-5 sm:px-8 text-xs border-t border-white/10 overflow-hidden">
           <div className="relative z-10 max-w-[1240px] mx-auto">
             {/* 12-Column Main Footer Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 mb-8 border-b border-white/10">
-              {/* Left 4 Cols: Official CSC Brand Lockup & Institutional Credentials */}
+              {/* Left 4 Cols: State Emblem of India + Official CSC Brand Lockup & Department Lineage */}
               <div className="lg:col-span-4 flex flex-col items-start">
-                <a
-                  href="#home"
-                  className="inline-flex flex-col items-center mb-4 leading-none"
-                >
-                  <CscOfficialLogo
-                    className="h-8 sm:h-9 w-auto"
-                    showSubtitle={false}
-                    showDividers={false}
-                    variant="dark-bg"
-                  />
-                  <span className="font-semibold text-[11px] tracking-[0.03em] text-white/95 mt-1 whitespace-nowrap">
-                    Digital Seva Portal
-                  </span>
-                </a>
+                <div className="flex items-center gap-4 mb-4">
+                  {/* State Emblem of India (Ashoka Lion Capital) — GIGW Ownership Requirement */}
+                  <div className="flex flex-col items-center shrink-0 pr-4 border-r border-white/15">
+                    <svg
+                      viewBox="0 0 64 88"
+                      className="w-9 h-12 text-white"
+                      fill="currentColor"
+                      role="img"
+                      aria-label="State Emblem of India"
+                    >
+                      {/* Stylized Ashoka Lion Capital & Abacus */}
+                      <path d="M32 6c-3.5 0-6.2 2.4-6.8 5.6-.4 2.1.4 4.2 1.8 5.6-3.2 1.2-5.4 4.2-5.4 7.8v6h20.8v-6c0-3.6-2.2-6.6-5.4-7.8 1.4-1.4 2.2-3.5 1.8-5.6C38.2 8.4 35.5 6 32 6Zm-13 11c-2.8 0-5 2.2-5 5v9c0 1.4 1.1 2.5 2.5 2.5H20V22c0-2.8-1.8-5-1-5Zm26 0c-.8 0-1 2.2-1 5v11.5h3.5c1.4 0 2.5-1.1 2.5-2.5v-9c0-2.8-2.2-5-5-5Z" />
+                      <rect x="14" y="36" width="36" height="4.5" rx="1.5" />
+                      <circle cx="32" cy="48" r="6.5" fill="none" stroke="currentColor" strokeWidth="2.2" />
+                      <circle cx="32" cy="48" r="1.8" />
+                      <path d="M16 58h32l-3 7H19l-3-7Z" />
+                      <text x="32" y="77" textAnchor="middle" fontSize="6.5" fontWeight="700" letterSpacing="0.4">
+                        सत्यमेव जयते
+                      </text>
+                    </svg>
+                  </div>
 
-                <p className="text-[13px] text-[#9cb1d4] leading-relaxed max-w-sm mb-5">
-                  CSC e-Governance Services India Limited · A Special Purpose Vehicle under the Ministry of Electronics &amp; Information Technology (MeitY), Government of India.
+                  <a
+                    href="#home"
+                    aria-label="CSC Digital Seva Portal Home"
+                    className="inline-flex flex-col items-start leading-none"
+                  >
+                    <CscOfficialLogo
+                      className="h-8 sm:h-9 w-auto"
+                      showSubtitle={false}
+                      showDividers={false}
+                      variant="dark-bg"
+                    />
+                    <span className="font-semibold text-[11px] tracking-[0.03em] text-white/95 mt-1 whitespace-nowrap">
+                      Digital Seva Portal
+                    </span>
+                  </a>
+                </div>
+
+                <p className="text-[12.5px] sm:text-[13px] text-[#b4c6e4] leading-relaxed max-w-sm mb-5">
+                  <strong className="text-white font-semibold">Government of India</strong> · Ministry of Electronics &amp; Information Technology (MeitY) ·{' '}
+                  <span className="text-white/90">CSC e-Governance Services India Limited</span> (Special Purpose Vehicle).
                 </p>
 
-                {/* Clean Frosted Glass Toll-Free Helpline Pill (No Orange Monospace) */}
+                {/* Clean Frosted Glass Toll-Free Helpline Pill */}
                 <a
                   href="tel:14599"
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-xs text-white font-medium transition-colors"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-xs text-white font-medium transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-white" />
+                  <Phone className="w-3.5 h-3.5 text-white" aria-hidden="true" />
                   <span>Toll-Free National Helpline:</span>
                   <span className="font-bold text-white">14599</span>
                 </a>
@@ -1999,30 +2161,27 @@ export default function App() {
               {/* Right 8 Cols: 4 Clean Navigation Columns */}
               <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
                 <div>
-                  <h4
-                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
+                  <h2 className="font-sans font-semibold text-white text-[13.5px] tracking-tight mb-3.5">
                     About CSC
-                  </h4>
+                  </h2>
                   <ul className="space-y-2.5 text-[12.5px]">
                     <li>
-                      <a href="#about" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#about" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Why Join as VLE
                       </a>
                     </li>
                     <li>
-                      <a href="#locator" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#locator" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Find CSC Centre
                       </a>
                     </li>
                     <li>
-                      <a href="#whats-new" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#whats-new" className="text-[#b4c6e4] hover:text-white transition-colors">
                         News &amp; Circulars
                       </a>
                     </li>
                     <li>
-                      <a href="#newsletter" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#newsletter" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Scheme Alerts
                       </a>
                     </li>
@@ -2030,30 +2189,27 @@ export default function App() {
                 </div>
 
                 <div>
-                  <h4
-                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
+                  <h2 className="font-sans font-semibold text-white text-[13.5px] tracking-tight mb-3.5">
                     Digital Seva
-                  </h4>
+                  </h2>
                   <ul className="space-y-2.5 text-[12.5px]">
                     <li>
-                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#services" className="text-[#b4c6e4] hover:text-white transition-colors">
                         G2C Government Services
                       </a>
                     </li>
                     <li>
-                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#services" className="text-[#b4c6e4] hover:text-white transition-colors">
                         B2C Public Utilities
                       </a>
                     </li>
                     <li>
-                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#services" className="text-[#b4c6e4] hover:text-white transition-colors">
                         e-District &amp; Certificates
                       </a>
                     </li>
                     <li>
-                      <a href="#services" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#services" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Banking &amp; Insurance
                       </a>
                     </li>
@@ -2061,15 +2217,12 @@ export default function App() {
                 </div>
 
                 <div>
-                  <h4
-                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
+                  <h2 className="font-sans font-semibold text-white text-[13.5px] tracking-tight mb-3.5">
                     VLE Network
-                  </h4>
+                  </h2>
                   <ul className="space-y-2.5 text-[12.5px]">
                     <li>
-                      <a href="#get-started" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#get-started" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Join as VLE
                       </a>
                     </li>
@@ -2077,7 +2230,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setCalculatorOpen(true)}
-                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                        className="text-[#b4c6e4] hover:text-white transition-colors cursor-pointer text-left"
                       >
                         Earning Calculator
                       </button>
@@ -2086,13 +2239,13 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setLoginOpen(true)}
-                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                        className="text-[#b4c6e4] hover:text-white transition-colors cursor-pointer text-left"
                       >
                         VLE Portal Login
                       </button>
                     </li>
                     <li>
-                      <a href="#for-vles" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#for-vles" className="text-[#b4c6e4] hover:text-white transition-colors">
                         VLE Stories
                       </a>
                     </li>
@@ -2100,25 +2253,22 @@ export default function App() {
                 </div>
 
                 <div>
-                  <h4
-                    className="font-semibold text-white text-[13.5px] tracking-tight mb-3.5"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
+                  <h2 className="font-sans font-semibold text-white text-[13.5px] tracking-tight mb-3.5">
                     Help &amp; Support
-                  </h4>
+                  </h2>
                   <ul className="space-y-2.5 text-[12.5px]">
                     <li>
-                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#support" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Helpline 14599
                       </a>
                     </li>
                     <li>
-                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#support" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Security &amp; Fraud Guide
                       </a>
                     </li>
                     <li>
-                      <a href="#support" className="text-[#9cb1d4] hover:text-white transition-colors">
+                      <a href="#support" className="text-[#b4c6e4] hover:text-white transition-colors">
                         Grievance Redressal
                       </a>
                     </li>
@@ -2126,7 +2276,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setChatbotOpen(true)}
-                        className="text-[#9cb1d4] hover:text-white transition-colors cursor-pointer text-left"
+                        className="text-[#b4c6e4] hover:text-white transition-colors cursor-pointer text-left"
                       >
                         Ask Sarthi AI
                       </button>
@@ -2136,12 +2286,19 @@ export default function App() {
               </div>
             </div>
 
-            {/* Bottom Legal & Copyright Row */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#7c93b8]">
+            {/* Bottom Legal, GIGW Accessibility & Copyright Row */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#9eb4d6]">
               <span>
-                © 2026 CSC e-Governance Services India Limited. All rights reserved.
+                © 2026 CSC e-Governance Services India Limited · MeitY, Government of India.
               </span>
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6">
+                <button
+                  type="button"
+                  onClick={() => setScreenReaderModalOpen(true)}
+                  className="text-white hover:text-[#ff884d] font-medium underline underline-offset-4 transition-colors cursor-pointer"
+                >
+                  Screen Reader Access
+                </button>
                 <a href="#support" className="hover:text-white transition-colors">
                   Privacy Policy
                 </a>
@@ -2160,7 +2317,6 @@ export default function App() {
             </div>
           </div>
         </footer>
-      </div>
 
       {/* Welcome Entry Pop-up — Shown on every homepage visit */}
       <AnimatePresence>
@@ -2173,12 +2329,15 @@ export default function App() {
             className="fixed inset-0 bg-[#071120]/80 backdrop-blur-md z-50 grid place-items-center p-4"
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="welcome-dialog-title"
               initial={{ scale: 0.95, y: 12, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.95, y: 12, opacity: 0 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-md rounded-2xl p-7 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)] relative border border-white/15 overflow-hidden"
+              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-md rounded-2xl p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.75)] relative border border-white/15 overflow-hidden"
             >
               <img
                 src="/images/mandala-card-01.png"
@@ -2202,7 +2361,7 @@ export default function App() {
                   <span>DIGITAL SEVA PORTAL</span>
                 </div>
 
-                <h3 className="text-2xl font-medium tracking-tight text-white mb-2">
+                <h3 id="welcome-dialog-title" className="text-2xl font-medium tracking-tight text-white mb-2">
                   Welcome to CSC Digital Seva
                 </h3>
                 <p className="text-sm text-[#a6bad8] leading-relaxed mb-6">
@@ -2254,11 +2413,14 @@ export default function App() {
             className="fixed inset-0 bg-[#071120]/80 backdrop-blur-md z-50 grid place-items-center p-4"
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="login-dialog-title"
               initial={{ scale: 0.96, y: 10, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.96, y: 10, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-md rounded-2xl p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative border border-white/20 overflow-hidden"
+              className="bg-gradient-to-b from-[#0c1c38] to-[#071328] text-white w-full max-w-md rounded-2xl p-6 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] relative border border-white/20 overflow-hidden"
             >
               <img
                 src="/images/mandala-card-01.png"
@@ -2280,7 +2442,7 @@ export default function App() {
                   <LotusBadge className="w-4 h-4" />
                   <span>DIGITAL SEVA CONNECT</span>
                 </div>
-                <h3 className="text-xl font-semibold tracking-tight mb-1.5 text-white">
+                <h3 id="login-dialog-title" className="text-xl font-semibold tracking-tight mb-1.5 text-white">
                   VLE Operator Sign In
                 </h3>
                 <p className="text-xs text-[#9cb1d4] mb-6">
@@ -2295,25 +2457,27 @@ export default function App() {
                   className="space-y-4"
                 >
                   <div>
-                    <label className="block text-xs font-medium text-[#c5d4eb] mb-1">
+                    <label htmlFor="vle-login-id" className="block text-xs font-medium text-[#c5d4eb] mb-1">
                       CSC ID / Username
                     </label>
                     <input
+                      id="vle-login-id"
                       type="text"
                       required
                       placeholder="12-digit CSC ID"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#071120] border border-white/20 focus:border-white/20 text-white text-sm outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#071120] border border-white/20 focus:border-[#ff5500] text-white text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-[#c5d4eb] mb-1">
+                    <label htmlFor="vle-login-password" className="block text-xs font-medium text-[#c5d4eb] mb-1">
                       Password
                     </label>
                     <input
+                      id="vle-login-password"
                       type="password"
                       required
                       placeholder="••••••••"
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#071120] border border-white/20 focus:border-white/20 text-white text-sm outline-none focus:outline-none ring-0 focus:ring-0 focus-visible:outline-none focus-visible:ring-0"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#071120] border border-white/20 focus:border-[#ff5500] text-white text-sm"
                     />
                   </div>
                   <button
@@ -2344,11 +2508,14 @@ export default function App() {
             className="fixed inset-0 bg-[#0a1628]/60 backdrop-blur-sm z-50 grid place-items-center p-4 overflow-y-auto"
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="locator-modal-title"
               initial={{ scale: 0.95, y: 15, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.96, y: 10, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white text-[#0a1628] w-full max-w-2xl rounded-3xl p-6 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative border border-slate-200 overflow-hidden my-8 max-h-[88vh] flex flex-col"
+              className="bg-white text-[#0a1628] w-full max-w-2xl rounded-3xl p-5 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.35)] relative border border-slate-200 overflow-hidden my-8 max-h-[88vh] flex flex-col"
             >
               {/* Close Button */}
               <button
@@ -2365,10 +2532,10 @@ export default function App() {
                   <MapPin className="w-3.5 h-3.5" />
                   <span>CENTRE LOCATOR</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#0a1628] mb-1.5">
+                <h3 id="locator-modal-title" className="text-xl sm:text-2xl font-bold tracking-tight text-[#0a1628] mb-1.5">
                   Find Your Nearest CSC Centre
                 </h3>
-                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed">
                   Visit your local Kendra for Aadhaar updates, cash withdrawal, certificates, and government schemes.
                 </p>
               </div>
@@ -2376,13 +2543,17 @@ export default function App() {
               {/* Search Bar + Quick Pincode Filter */}
               <div className="relative z-10 mb-4 space-y-2.5">
                 <div className="relative">
-                  <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <label htmlFor="modal-locator-search" className="sr-only">
+                    Enter pincode or village name
+                  </label>
+                  <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
                   <input
+                    id="modal-locator-search"
                     type="text"
                     value={locatorQuery}
                     onChange={(e) => setLocatorQuery(e.target.value)}
                     placeholder="Enter pincode or village (e.g. 503185)..."
-                    className="w-full pl-10 pr-14 py-2.5 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#ff5500] text-slate-900 text-xs sm:text-sm outline-none transition-colors placeholder:text-slate-400"
+                    className="w-full pl-10 pr-14 py-2.5 rounded-xl bg-slate-50 border border-slate-300 focus:border-[#ff5500] text-slate-900 text-xs sm:text-sm transition-colors placeholder:text-slate-500"
                   />
                   {locatorQuery && (
                     <button
@@ -2544,6 +2715,85 @@ export default function App() {
                   <span>Open CSC National Directory</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Sarthi AI Assistant & Screen Reader Access Modal */}
+      <AnimatePresence>
+        {screenReaderModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setScreenReaderModalOpen(false)}
+            className="fixed inset-0 bg-[#071120]/75 backdrop-blur-md z-50 grid place-items-center p-4 overflow-y-auto"
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="screen-reader-dialog-title"
+              initial={{ scale: 0.96, y: 12, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.96, y: 12, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white text-[#0a1628] w-full max-w-2xl rounded-2xl p-6 sm:p-7 shadow-2xl relative border border-slate-200 my-8 max-h-[88vh] overflow-y-auto"
+            >
+              <button
+                type="button"
+                onClick={() => setScreenReaderModalOpen(false)}
+                aria-label="Close screen reader access information"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 grid place-items-center cursor-pointer"
+              >
+                <X className="w-4 h-4" aria-hidden="true" />
+              </button>
+
+              <h3 id="screen-reader-dialog-title" className="text-xl font-bold text-[#0a1628] mb-2 pr-8">
+                Screen Reader Access &amp; Accessibility Statement
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                The CSC Digital Seva Portal complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 Level AA and Guidelines for Indian Government Websites (GIGW). It is compatible with assistive technologies such as JAWS, NVDA, SAFA, Supernova, and System Access To Go.
+              </p>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200">
+                <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                  <caption className="sr-only">
+                    Supported screen readers, official websites, and license types
+                  </caption>
+                  <thead className="bg-[#0a1628] text-white">
+                    <tr>
+                      <th scope="col" className="px-4 py-2.5 font-semibold">Screen Reader</th>
+                      <th scope="col" className="px-4 py-2.5 font-semibold">Website</th>
+                      <th scope="col" className="px-4 py-2.5 font-semibold">Free / Commercial</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 bg-white">
+                    {[
+                      { name: 'Non Visual Desktop Access (NVDA)', url: 'https://www.nvaccess.org/', type: 'Free' },
+                      { name: 'System Access To Go', url: 'http://www.satogo.com', type: 'Free' },
+                      { name: 'Hal', url: 'https://yourdolphin.com/ScreenReader', type: 'Commercial' },
+                      { name: 'JAWS', url: 'https://www.freedomscientific.com/Downloads/JAWS', type: 'Commercial' },
+                      { name: 'Supernova', url: 'https://yourdolphin.com/SuperNova', type: 'Commercial' },
+                    ].map((sr) => (
+                      <tr key={sr.name} className="hover:bg-slate-50">
+                        <td className="px-4 py-2.5 font-medium text-[#0a1628]">{sr.name}</td>
+                        <td className="px-4 py-2.5">
+                          <a
+                            href={sr.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#c2410c] hover:underline break-all"
+                          >
+                            {sr.url}
+                          </a>
+                        </td>
+                        <td className="px-4 py-2.5 text-slate-700">{sr.type}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </motion.div>
           </motion.div>

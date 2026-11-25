@@ -564,7 +564,10 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                   className="self-stretch sm:self-auto"
                 >
                   <div className="relative flex items-center bg-white/95 border border-white/30 focus-within:border-white rounded-xl p-1 pl-3 gap-1.5 transition-colors shadow-xs sm:w-64">
-                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <label htmlFor="locator-pin-input" className="sr-only">
+                      Enter 6-digit PIN code to locate CSC centres
+                    </label>
+                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
                     <input
                       id="locator-pin-input"
                       type="text"
@@ -601,7 +604,7 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                   - Default Mode (!activeCentre): India Overview Map + Pulsing Regional Hubs
                   - Active PIN Mode (activeCentre): Detailed Local Street & Kendra Map
                   ============================================================== */}
-              <div className="relative w-full h-[370px] sm:h-[395px] lg:h-[405px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
+              <div className="relative w-full h-[320px] sm:h-[395px] lg:h-[405px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
                 <AnimatePresence mode="wait">
                   {!activeCentre ? (
                     <motion.div
@@ -626,44 +629,58 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                       {/* Detailed Official India State-by-State Vector Map */}
                       <svg
                         viewBox={indiaMap.viewBox}
+                        role="img"
+                        aria-label="Interactive map of India showing CSC centres across all states and union territories"
                         className="relative z-10 w-full h-[94%] max-w-[540px] drop-shadow-[0_10px_24px_rgba(10,22,40,0.12)]"
                         preserveAspectRatio="xMidYMid meet"
                       >
                         <g>
                           {indiaMap.locations.map((loc) => {
                             const isHovered = hoveredState === loc.name;
+                            const selectStatePin = () => {
+                              const statePins = {
+                                an: '744101', ap: '520001', ar: '791111', as: '781001', br: '800001',
+                                ch: '160001', ct: '492001', dn: '396230', dd: '396210', dl: '110092',
+                                ga: '403001', gj: '380001', hr: '122001', hp: '171001', jk: '190001',
+                                jh: '834001', ka: '560001', kl: '682001', ld: '682555', mp: '462001',
+                                mh: '400001', mn: '795001', ml: '793001', mz: '796001', nl: '797001',
+                                or: '751001', py: '605001', pb: '141001', rj: '302001', sk: '737101',
+                                tn: '600001', tg: '500001', tr: '799001', up: '226001', ut: '248001',
+                                wb: '700001', la: '194101',
+                              };
+                              const pin = statePins[loc.id] || '110092';
+                              const matched = KENDRA_PINS[0];
+                              setPinQuery(pin);
+                              handleSelectPin({
+                                ...matched,
+                                pincode: pin,
+                                cscId: `CSC0${pin}45`,
+                                address: `${loc.name}, PIN ${pin}`,
+                              });
+                            };
                             return (
                               <path
                                 key={loc.id}
                                 d={loc.path}
+                                tabIndex={0}
+                                role="button"
+                                aria-label={`Explore CSC centres in ${loc.name}`}
                                 fill={isHovered ? '#fed7aa' : '#ffffff'}
                                 stroke={isHovered ? '#ff5500' : '#94a3b8'}
                                 strokeWidth={isHovered ? 1.5 : 0.9}
                                 strokeLinejoin="round"
                                 onMouseEnter={() => setHoveredState(loc.name)}
                                 onMouseLeave={() => setHoveredState(null)}
-                                onClick={() => {
-                                  const statePins = {
-                                    an: '744101', ap: '520001', ar: '791111', as: '781001', br: '800001',
-                                    ch: '160001', ct: '492001', dn: '396230', dd: '396210', dl: '110092',
-                                    ga: '403001', gj: '380001', hr: '122001', hp: '171001', jk: '190001',
-                                    jh: '834001', ka: '560001', kl: '682001', ld: '682555', mp: '462001',
-                                    mh: '400001', mn: '795001', ml: '793001', mz: '796001', nl: '797001',
-                                    or: '751001', py: '605001', pb: '141001', rj: '302001', sk: '737101',
-                                    tn: '600001', tg: '500001', tr: '799001', up: '226001', ut: '248001',
-                                    wb: '700001', la: '194101',
-                                  };
-                                  const pin = statePins[loc.id] || '110092';
-                                  const matched = KENDRA_PINS[0];
-                                  setPinQuery(pin);
-                                  handleSelectPin({
-                                    ...matched,
-                                    pincode: pin,
-                                    cscId: `CSC0${pin}45`,
-                                    address: `${loc.name}, PIN ${pin}`,
-                                  });
+                                onFocus={() => setHoveredState(loc.name)}
+                                onBlur={() => setHoveredState(null)}
+                                onClick={selectStatePin}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    selectStatePin();
+                                  }
                                 }}
-                                className="transition-colors duration-200 cursor-pointer"
+                                className="transition-colors duration-200 cursor-pointer outline-none"
                               />
                             );
                           })}
