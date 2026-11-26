@@ -12,7 +12,7 @@ import {
   Plus,
   Minus,
   RotateCcw,
-} from 'lucide-react';
+} from './SolidIcons';
 
 // ============================================================================
 // VERIFIED VLE PINS DATA ACROSS INDIA (Mapped to 600x520 SVG coordinate space)

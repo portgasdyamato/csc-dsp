@@ -10,7 +10,7 @@ import {
   Sparkles,
   RotateCcw,
   CheckCircle2,
-} from 'lucide-react';
+} from './SolidIcons';
 
 export default function VleEarningCalculatorModal({ isOpen, onClose, onStartRegistration }) {
   // Configurable sliders with realistic official CSC commission rates

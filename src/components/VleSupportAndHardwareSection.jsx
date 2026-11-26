@@ -8,7 +8,7 @@ import {
   BookOpen,
   UserCheck,
   CheckCircle2,
-} from 'lucide-react';
+} from './SolidIcons';
 
 const SUPPORT_PILLARS = [
   {

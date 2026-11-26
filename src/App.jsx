@@ -47,7 +47,7 @@ import {
   Headphones,
   BookOpen,
   UserCheck,
-} from 'lucide-react';
+} from './components/SolidIcons';
 
 import ServiceVectorLogo from './components/ServiceVectorLogo';
 import MultiLayerMandala from './components/MultiLayerMandala';
@@ -58,6 +58,7 @@ import AppDownloadSection from './components/AppDownloadSection';
 import VleEarningCalculatorModal from './components/VleEarningCalculatorModal';
 import WhyVleBentoSection from './components/WhyVleBentoSection';
 import VleSupportAndHardwareSection from './components/VleSupportAndHardwareSection';
+import SupportHubSection from './components/SupportHubSection';
 import CscOfficialLogo from './components/CscLogo';
 import {
   CardArt01Boss,
@@ -1011,7 +1012,7 @@ export default function App() {
           ==================================================================== */}
         <section
           id="services"
-          className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-[#fffaf5] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-20"
+          className="relative min-h-screen flex flex-col justify-center px-5 sm:px-8 bg-white border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-20"
         >
           {/* Subtle Floral Mandala Background Art (Greyish on Cream) */}
           <img
@@ -1310,7 +1311,7 @@ export default function App() {
           ==================================================================== */}
         <section
           id="for-vles"
-          className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-gradient-to-b from-[#fffaf5] to-[#eef2f9] border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
+          className="relative min-h-screen lg:h-screen flex flex-col justify-center px-5 sm:px-8 bg-white border-b border-[#0a1628]/12 overflow-hidden scroll-mt-24 pt-24 lg:pt-20 pb-6 lg:pb-8"
         >
           {/* Subtle Grand Mandala Background Art (Fits Completely Inside Viewport) */}
           <img
@@ -1467,7 +1468,7 @@ export default function App() {
           ==================================================================== */}
         <section
           id="whats-new"
-          className="relative py-20 lg:py-24 px-5 sm:px-8 bg-[#fffaf5] text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
+          className="relative py-20 lg:py-24 px-5 sm:px-8 bg-white text-[#0a1628] border-b border-[#0a1628]/10 scroll-mt-24"
         >
           <div className="max-w-[1200px] mx-auto w-full">
             {/* Section Header with 'View all' on the top right */}
@@ -1755,96 +1756,14 @@ export default function App() {
           ==================================================================== */}
         <section
           id="support"
-          className="relative px-6 sm:px-12 lg:px-20 bg-[#fffaf5] overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
+          className="relative px-6 sm:px-12 lg:px-20 bg-white overflow-hidden scroll-mt-24 py-16 sm:py-20 lg:py-24"
         >
           <div className="relative z-10 max-w-[1260px] mx-auto w-full">
-            {/* Standalone Support Section: Ultra-Clean Architectural 4-Column Panel */}
-            <div>
-              <div className="max-w-3xl mb-10 sm:mb-14">
-                <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#64748b] font-semibold mb-3">
-                  Support &amp; Safety
-                </p>
-                <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-semibold tracking-[-0.035em] text-[#0a1628] leading-[1.05] mb-4">
-                  Dedicated Support at Every Step.
-                </h2>
-                <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-2xl">
-                  Official helpline assistance, verified @csc.gov.in security, and on-ground district support whenever your centre needs it.
-                </p>
-              </div>
-
-              <div className="rounded-[24px] bg-white border border-[#0a1628]/[0.08] shadow-[0_4px_16px_-4px_rgba(10,22,40,0.06),0_14px_32px_-12px_rgba(10,22,40,0.08)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#0a1628]/[0.07] overflow-hidden">
-                {/* Col 1: District Manager On-Call */}
-                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                        <path d="M10 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-7.5 2.4-7.5 5.25 0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25C17.5 16.4 14.42 14 10 14Zm10.78-4.78a.9.9 0 0 0-1.27 0l-2.36 2.36-.88-.88a.9.9 0 1 0-1.27 1.27l1.52 1.52a.9.9 0 0 0 1.27 0l2.99-3a.9.9 0 0 0 0-1.27Z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
-                      District Manager
-                    </h3>
-                  </div>
-                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
-                    On-call local nodal officers for portal &amp; banking help.
-                  </p>
-                </div>
-
-                {/* Col 2: CSC Academy */}
-                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                        <path d="M12 3 1.5 8.25 12 13.5l8.5-4.25V15.5a.9.9 0 1 0 1.8 0V8.25L12 3Zm-6.5 8.92v4.33c0 1.85 2.91 3.5 6.5 3.5s6.5-1.65 6.5-3.5v-4.33L12 15.17l-6.5-3.25Z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
-                      CSC Academy
-                    </h3>
-                  </div>
-                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
-                    Free training, setup guides &amp; skill development.
-                  </p>
-                </div>
-
-                {/* Col 3: VLE Community */}
-                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                        <path d="M9 11.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Zm7.25 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM9 13.5c-3.5 0-6.25 1.9-6.25 4.25 0 .69.56 1.25 1.25 1.25h10c.69 0 1.25-.56 1.25-1.25 0-2.35-2.75-4.25-6.25-4.25Zm7.25.75c-.82 0-1.58.16-2.25.44 1.38.94 2.25 2.26 2.25 3.81 0 .18-.02.35-.06.5h4.06c.69 0 1.25-.56 1.25-1.25 0-1.95-2.22-3.5-5.25-3.5Z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
-                      VLE Community
-                    </h3>
-                  </div>
-                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
-                    Peer guidance and daily tips from 5.5L+ VLEs.
-                  </p>
-                </div>
-
-                {/* Col 4: National Helpline & Official Mail (Last) */}
-                <div className="group px-5 py-7 flex flex-col transition-colors duration-300 hover:bg-[#0a1628]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#0a1628] text-white group-hover:bg-[#172a46] group-hover:text-white group-hover:ring-1 group-hover:ring-white/15 transition-colors duration-300 grid place-items-center shrink-0">
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2Z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-[14.5px] xl:text-[15.5px] font-semibold tracking-[-0.02em] text-[#0a1628] group-hover:text-white leading-snug whitespace-nowrap transition-colors duration-300">
-                      14599 Helpline
-                    </h3>
-                  </div>
-                  <p className="text-[13px] text-[#475569] group-hover:text-white/75 leading-relaxed transition-colors duration-300">
-                    Call 14599 in 12 languages or mail @csc.gov.in.
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* Dedicated Support Section — Multi-Layout Interactive Hub */}
+            <SupportHubSection onOpenChatbot={() => setChatbotOpen(true)} />
 
             {/* Separate 2-Column Editorial FAQ Section Below */}
-            <div className="mt-20 sm:mt-28 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
+            <div className="mt-16 sm:mt-20 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
               {/* Left 5 Cols: FAQ Heading Top + Ask Sarthi AI CTA Anchored Bottom */}
               <div className="lg:col-span-5 flex flex-col justify-between items-start pb-2">
                 <h3 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-[-0.03em] text-[#0a1628] leading-[1.08] max-w-xs">

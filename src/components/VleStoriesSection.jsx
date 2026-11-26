@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from './SolidIcons';
 import { STORIES_FAN_CLEAN } from '../data/proposalData';
 
 const FAN_POSITIONS = {

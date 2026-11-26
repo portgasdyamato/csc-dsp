@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from './SolidIcons';
 import { VLE_STAGES, CITIZEN_NEEDS } from '../data/proposalData';
 
 export default function PinnedJourneysSection() {

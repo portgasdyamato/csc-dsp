@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Mic, MicOff, X, Send, Languages } from 'lucide-react';
+import { Sparkles, Mic, MicOff, X, Send, Languages } from './SolidIcons';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // ============================================================================

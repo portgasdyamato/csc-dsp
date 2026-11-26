@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Smartphone, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Smartphone, CheckCircle2 } from './SolidIcons';
 import CscOfficialLogo from './CscLogo';
 
 // ============================================================================
@@ -155,7 +155,7 @@ function HighDensityQrCode() {
 
 export default function AppDownloadSection() {
   return (
-    <section className="relative z-10 bg-[#FFFAF5] py-14 sm:py-16 lg:py-20 px-5 sm:px-8 overflow-hidden">
+    <section className="relative z-10 bg-white py-14 sm:py-16 lg:py-20 px-5 sm:px-8 overflow-hidden">
       <div className="max-w-[1240px] mx-auto w-full relative">
         {/* ====================================================================
             MAIN ROUNDED SHOWCASE BANNER (NO SLIDESHOW ARROWS)

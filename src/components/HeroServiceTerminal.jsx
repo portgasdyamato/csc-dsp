@@ -13,7 +13,7 @@ import {
   Fingerprint,
   FileCheck2,
   Users,
-} from 'lucide-react';
+} from './SolidIcons';
 
 const FEATURED_SERVICES = [
   {

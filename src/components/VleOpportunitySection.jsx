@@ -5,7 +5,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from 'framer-motion';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from './SolidIcons';
 import { BENEFIT_CARDS_CLEAN, DAY_AT_CSC_PILLS } from '../data/proposalData';
 
 function CleanBenefitArt({ variant, isHovered }) {

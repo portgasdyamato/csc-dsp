@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Users, Award, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Users, Award, CheckCircle2 } from './SolidIcons';
 
 export default function HeroArtLoop() {
   const [activeScene, setActiveScene] = useState(0);

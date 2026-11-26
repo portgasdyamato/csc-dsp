@@ -17,7 +17,7 @@ import {
   Calculator,
   ArrowUpRight,
   Undo2,
-} from 'lucide-react';
+} from './SolidIcons';
 
 // ============================================================================
 // STOREFRONT TEARDROP PIN SVG
