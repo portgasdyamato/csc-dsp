@@ -16,7 +16,6 @@ import {
   Building2,
   Calculator,
   ArrowUpRight,
-  Undo2,
 } from './SolidIcons';
 
 // ============================================================================
@@ -551,60 +550,102 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
               RIGHT 8 COLS: CLEAN MAP-FIRST CONTAINER (MINIMAL CHROME)
               ================================================================ */}
           <div className="lg:col-span-8">
-            <div className="relative overflow-hidden rounded-[26px] p-3.5 sm:p-4 bg-gradient-to-br from-white/[0.14] via-white/[0.06] to-white/[0.02] backdrop-blur-2xl backdrop-saturate-150 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20">
-              {/* Compact Top Toolbar: Clean Title on Left, PIN Input + Find CSC Centre on Right */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1 pb-3.5">
-                <h3 className="text-base sm:text-[18px] font-bold text-white tracking-tight drop-shadow-xs">
-                  CSC Centre Locator
-                </h3>
-
-                {/* Compact PIN Search Input with Integrated Icon Send Button Inside */}
-                <form
-                  onSubmit={handleSearch}
-                  className="self-stretch sm:self-auto"
-                >
-                  <div className="relative flex items-center bg-white/95 border border-white/30 focus-within:border-white rounded-xl p-1 pl-3 gap-1.5 transition-colors shadow-xs sm:w-64">
-                    <label htmlFor="locator-pin-input" className="sr-only">
-                      Enter 6-digit PIN code to locate CSC centres
-                    </label>
-                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
-                    <input
-                      id="locator-pin-input"
-                      type="text"
-                      inputMode="numeric"
-                      value={pinQuery}
-                      onChange={(e) => setPinQuery(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                      placeholder="Enter PIN"
-                      maxLength={6}
-                      className="w-full min-w-0 bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none"
-                    />
-                    {pinQuery && (
-                      <button
-                        type="button"
-                        onClick={() => setPinQuery('')}
-                        aria-label="Clear PIN"
-                        className="text-slate-400 hover:text-[#0a1628] p-1 cursor-pointer shrink-0"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                    <button
-                      type="submit"
-                      aria-label="Find CSC Centre"
-                      className="w-8 h-8 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white grid place-items-center transition-all active:scale-95 cursor-pointer shrink-0"
-                    >
-                      <Search className="w-3.5 h-3.5 text-white" />
-                    </button>
-                  </div>
-                </form>
-              </div>
-
+            <div className="relative overflow-hidden rounded-[26px] p-2.5 sm:p-3 bg-gradient-to-br from-white/[0.14] via-white/[0.06] to-white/[0.02] backdrop-blur-2xl backdrop-saturate-150 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.5)] border border-white/20">
               {/* ==============================================================
                   INTERACTIVE MAP CANVAS:
                   - Default Mode (!activeCentre): India Overview Map + Pulsing Regional Hubs
                   - Active PIN Mode (activeCentre): Detailed Local Street & Kendra Map
                   ============================================================== */}
-              <div className="relative w-full h-[320px] sm:h-[395px] lg:h-[405px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
+              <div className="relative w-full h-[350px] sm:h-[420px] lg:h-[430px] rounded-[20px] bg-[#edf1f7] overflow-hidden border border-white/25 shadow-inner select-none">
+                {/* Floating PIN Search Control Inside Map Container:
+                    - India Overview (!activeCentre): Bottom-Right compact square card with "Enter PIN" heading
+                    - Detailed Pin View (activeCentre): Top-Left beside zoom/recenter controls */}
+                {!activeCentre ? (
+                  <form
+                    onSubmit={handleSearch}
+                    autoComplete="off"
+                    className="absolute bottom-6 right-5 sm:bottom-10 sm:right-8 z-30 w-[225px] sm:w-[260px] rounded-xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl p-3.5 sm:p-4"
+                  >
+                    <label
+                      htmlFor="locator-pin-input"
+                      className="block text-[13px] font-bold text-[#0a1628] tracking-tight mb-0.5"
+                    >
+                      Enter PIN
+                    </label>
+                    <p className="text-[11px] text-slate-500 mb-2.5">
+                      Search nearest Digital Seva Kendra
+                    </p>
+                    <div className="relative flex items-center bg-slate-50 border border-slate-200 focus-within:border-slate-300 rounded-lg p-1 pl-2.5 gap-1.5 transition-colors">
+                      <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
+                      <input
+                        id="locator-pin-input"
+                        type="text"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        value={pinQuery}
+                        onChange={(e) => setPinQuery(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                        placeholder="e.g. 110092"
+                        maxLength={6}
+                        className="w-full min-w-0 bg-transparent text-xs font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none focus:outline-none focus-visible:outline-none"
+                      />
+                      {pinQuery && (
+                        <button
+                          type="button"
+                          onClick={handleResetView}
+                          aria-label="Clear PIN"
+                          className="text-slate-400 hover:text-[#0a1628] p-1 cursor-pointer shrink-0 focus:outline-none"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      )}
+                      <button
+                        type="submit"
+                        aria-label="Find CSC Centre"
+                        className="w-8 h-8 rounded-md bg-[#ff5500] hover:bg-[#e04800] text-white grid place-items-center transition-all active:scale-95 cursor-pointer shrink-0"
+                      >
+                        <Search className="w-3.5 h-3.5 text-white" />
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <form
+                    onSubmit={handleSearch}
+                    className="absolute top-3.5 left-14 sm:left-16 z-30 w-[calc(100%-4.5rem)] max-w-[230px] sm:w-56"
+                  >
+                    <div className="relative flex items-center bg-white/95 backdrop-blur-md border border-slate-200 focus-within:border-slate-300 rounded-xl p-1 pl-2.5 sm:pl-3 gap-1.5 transition-colors shadow-md">
+                      <label htmlFor="locator-pin-input" className="sr-only">
+                        Enter 6-digit PIN code to locate CSC centres
+                      </label>
+                      <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" aria-hidden="true" />
+                      <input
+                        id="locator-pin-input"
+                        type="text"
+                        inputMode="numeric"
+                        value={pinQuery}
+                        onChange={(e) => setPinQuery(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                        placeholder="Enter PIN"
+                        maxLength={6}
+                        className="w-full min-w-0 bg-transparent text-xs sm:text-[13px] font-semibold text-[#0a1628] placeholder:text-slate-400 outline-none focus:outline-none focus-visible:outline-none"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleResetView}
+                        aria-label="Close detailed view and return to India map"
+                        title="Return to India map"
+                        className="text-slate-500 hover:text-[#0a1628] p-1 cursor-pointer shrink-0 focus:outline-none"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        type="submit"
+                        aria-label="Find CSC Centre"
+                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#ff5500] hover:bg-[#e04800] text-white grid place-items-center transition-all active:scale-95 cursor-pointer shrink-0"
+                      >
+                        <Search className="w-3.5 h-3.5 text-white" />
+                      </button>
+                    </div>
+                  </form>
+                )}
                 <AnimatePresence mode="wait">
                   {!activeCentre ? (
                     <motion.div
@@ -793,9 +834,9 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                       </div>
 
                       {/* Bottom-Left Floating Guide Pill */}
-                      <div className="absolute bottom-3.5 left-3.5 z-20 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0a1628]/90 backdrop-blur-md text-white text-[11.5px] shadow-lg border border-white/15">
+                      <div className="hidden sm:inline-flex absolute bottom-3.5 left-3.5 z-20 items-center gap-2 px-3.5 py-2 rounded-xl bg-[#0a1628]/90 backdrop-blur-md text-white text-[11.5px] shadow-lg border border-white/15">
                         <span className="font-medium">
-                          5.5L+ Centres — enter PIN above or click any state
+                          5.5L+ Centres — enter PIN or click any state
                         </span>
                       </div>
                     </motion.div>
@@ -976,17 +1017,6 @@ export default function VillageServicesSlideshow({ onOpenCalculator }) {
                           <LocateFixed className="w-4 h-4" />
                         </button>
                       </div>
-
-                      {/* Top-Right Return to Whole India View Button */}
-                      <button
-                        type="button"
-                        onClick={handleResetView}
-                        aria-label="Return to India map"
-                        title="Return to India map"
-                        className="absolute top-3.5 right-3.5 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/95 hover:bg-white backdrop-blur-md shadow-md border border-slate-200/80 grid place-items-center text-[#0a1628] hover:bg-slate-100 transition-colors cursor-pointer"
-                      >
-                        <Undo2 className="w-4 h-4" />
-                      </button>
 
                       {/* Bottom-Left Legend Pill (Selected Centre | Other Centre) */}
                       <div className="absolute bottom-3.5 left-3.5 z-20 bg-white/95 backdrop-blur-md rounded-xl px-3 py-1.5 shadow-md border border-slate-200/80 flex items-center gap-3 text-[11px] font-semibold text-[#0a1628]">

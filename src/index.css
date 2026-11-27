@@ -92,8 +92,8 @@
 
 @layer base {
   :root {
-    --font-heading: 'Season Mix', Georgia, serif;
-    --font-sans: 'Matter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-sans: 'Matter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: var(--font-sans);
     --font-mono: 'JetBrains Mono', monospace;
   }
 

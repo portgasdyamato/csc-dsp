@@ -59,6 +59,8 @@ import VleEarningCalculatorModal from './components/VleEarningCalculatorModal';
 import WhyVleBentoSection from './components/WhyVleBentoSection';
 import VleSupportAndHardwareSection from './components/VleSupportAndHardwareSection';
 import SupportHubSection from './components/SupportHubSection';
+import NewsIllustrationStage from './components/NewsIllustrationStage';
+import { NewsDirectoryPage, NewsDetailPage } from './components/NewsPages';
 import CscOfficialLogo from './components/CscLogo';
 import {
   CardArt01Boss,
@@ -85,6 +87,7 @@ import {
   SUPPORT_ITEMS,
   FAQ_LIST,
 } from './data/dspData';
+import { NEWS_ARTICLES } from './data/newsData';
 
 // ============================================================================
 // AUTHENTIC HIGH-RESOLUTION INDIAN MANDALA & LOTUS ARTWORK COMPONENTS
@@ -317,28 +320,9 @@ function getFanSlot(offset, width = 1200) {
 // SOLID DARK NAVY BLUE INDIAN ART ARCHITECTURAL SHAPES (60% CARD STAGE)
 // Authentic Indian heritage jharokha & stepped architectural silhouettes
 // 1. Security Advisory: Scalloped Indian Jharokha Medallion (Shape 01)
-// 2. CSC Academy: Stepped Architectural Diamond Jharokha (Shape 02)
-// 3. Financial Inclusion: Lotus-Scalloped Temple Arch Medallion (Shape 03)
 // ============================================================================
-function NewsIllustrationStage({ variant }) {
-  let shapeSrc = '/images/indian-shape-01.svg';
-  if (variant === 'academy') {
-    shapeSrc = '/images/indian-shape-02.svg';
-  } else if (variant === 'banking') {
-    shapeSrc = '/images/indian-shape-03.svg';
-  }
-
-  return (
-    <div className="relative w-full h-full bg-[#f8fafc] flex items-center justify-center p-8 sm:p-10 pb-12 sm:pb-14 overflow-hidden select-none">
-      <img
-        src={shapeSrc}
-        alt=""
-        aria-hidden="true"
-        className="w-full h-full max-h-[165px] sm:max-h-[180px] object-contain pointer-events-none select-none group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
-      />
-    </div>
-  );
-}
+// NEWS CARD ARTWORKS MOVED TO ./components/NewsIllustrationStage.jsx
+// ============================================================================
 
 
 export default function App() {
@@ -406,6 +390,53 @@ export default function App() {
 
   // H. Support & FAQ state
   const [openFaqIdx, setOpenFaqIdx] = useState(0);
+
+  // News & Updates Page Navigation ('home' | 'news-list' | 'news-detail')
+  const [newsView, setNewsView] = useState('home');
+  const [activeNewsId, setActiveNewsId] = useState(NEWS_ARTICLES[0]?.id || 'news-01');
+
+  const activeNewsArticle =
+    NEWS_ARTICLES.find((a) => a.id === activeNewsId) || NEWS_ARTICLES[0];
+
+  const openNewsDirectory = () => {
+    setNewsView('news-list');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openNewsDetail = (article) => {
+    setActiveNewsId(article.id);
+    setNewsView('news-detail');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openHomeAndScroll = (sectionId) => {
+    setNewsView('home');
+    setMobileNavOpen(false);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    if (!sectionId || sectionId === 'home') return;
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        if (sectionId === 'newsletter') {
+          setTimeout(() => {
+            const input = document.getElementById('newsletter-email');
+            if (input) input.focus();
+          }, 450);
+        }
+      }
+    }, 80);
+  };
+
+  useEffect(() => {
+    if (newsView === 'news-list') {
+      document.title = 'News & Official Updates | CSC Digital Seva Portal';
+    } else if (newsView === 'news-detail' && activeNewsArticle) {
+      document.title = `${activeNewsArticle.cardTitle} | CSC Digital Seva Portal`;
+    } else {
+      document.title = 'CSC Digital Seva Portal | Ministry of Electronics & IT, Government of India';
+    }
+  }, [newsView, activeNewsArticle]);
 
   // Welcome Entry Pop-up (shown on every homepage load)
   const [welcomePopupOpen, setWelcomePopupOpen] = useState(true);
@@ -500,95 +531,7 @@ export default function App() {
     }
   };
 
-  const NEWS_CARDS = [
-    {
-      id: 'news-01',
-      variant: 'security',
-      categoryTag: 'Security Advisory',
-      cardTitle: 'Advisory: Fake WhatsApp Channels & Phishing Impersonations',
-      cardSummary:
-        'Strict MeitY directives warning Village Level Entrepreneurs against unauthorized WhatsApp groups, spurious APK downloads, and payment scams.',
-      statusNote: 'Active Advisory · Verified',
-      issuer: 'MEITY · CSC SPV',
-      subLabel: 'OFFICIAL DIRECTIVE',
-      sealText: 'CSC',
-      actionText: 'Read Advisory',
-      headlineDisplay: 'Protection Against Fraudulent Channels & Phishing Impersonations',
-      category: 'Security Advisory',
-      categoryType: 'Active Alert',
-      pillStyle: 'bg-rose-50 text-rose-700 border border-rose-200/60',
-      brandBadge: 'CSC VLE SECURITY',
-      badgeColor: 'border-rose-500/30 bg-rose-500/15 text-rose-300',
-      title: 'Advisory: Protection Against Fraudulent Channels & Phishing Impersonations',
-      description:
-        'Digital Seva e-Governance issues strict directives warning Village Level Entrepreneurs against unauthorized WhatsApp groups, spurious APK downloads, and payment fraud.',
-      date: '15 Oct 2025',
-      readTime: '3 min read',
-      refCode: 'REF: CSC/SEC/2026-ADV',
-      authority: 'MeitY · CSC SPV Security Desk',
-      image: '/images/step-03-biometric.jpg',
-      fullStory:
-        'Official Security Circular for all Village Level Entrepreneurs:\n\nIt has come to our attention that fraudulent entities are creating unauthorized WhatsApp groups, Telegram channels, and fake websites pretending to represent CSC e-Governance district managers.\n\nKey Safety Guidelines:\n1. Never download any third-party APK application sent via WhatsApp or SMS. All verified tools are available only on the official Digital Seva Portal.\n2. Never send registration fees or security deposits to personal UPI IDs or bank accounts. CSC ID generation involves no unauthorized fees.\n3. Verify all district manager contact information directly through your state nodal coordinator.\n\nAny suspicious communication should be reported immediately to the National Cyber Crime portal (cybercrime.gov.in) and the CSC VLE Helpdesk at 14599.',
-    },
-    {
-      id: 'news-02',
-      variant: 'academy',
-      categoryTag: 'CSC Academy · AI',
-      cardTitle: 'CSC Olympiad 6.0: AI-Driven Adaptive Diagnostic Testing',
-      cardSummary:
-        'Nationwide educational initiative introduces intelligent diagnostic evaluations and regional language practice roadmaps across 50,000+ gram panchayats for Grades 3–12.',
-      statusNote: '1.2M Students Enrolled',
-      issuer: 'CSC ACADEMY',
-      subLabel: 'OFFICIAL CREDENTIAL',
-      sealText: 'AI',
-      actionText: 'Explore Olympiad',
-      headlineDisplay: 'CSC Olympiad 6.0 Adaptive AI Testing for 1.2M Rural Students',
-      category: 'CSC Academy · AI',
-      categoryType: 'Olympiad 6.0',
-      pillStyle: 'bg-sky-50 text-sky-700 border border-sky-200/60',
-      brandBadge: 'CSC ACADEMY',
-      badgeColor: 'border-sky-500/30 bg-sky-500/15 text-sky-300',
-      title: 'CSC Olympiad 6.0 Launches AI-Driven Adaptive Testing for 1.2M Rural Students',
-      description:
-        'Nationwide educational initiative introduces intelligent diagnostic evaluations and regional language practice roadmaps across 50,000+ gram panchayats for Grades 3–12.',
-      date: '13 Oct 2025',
-      readTime: '4 min read',
-      refCode: 'REF: CSCA/OLY/2026-ED',
-      authority: 'CSC Academy · National Education Desk',
-      image: '/images/step-01-visit.jpg',
-      fullStory:
-        'CSC Academy is thrilled to announce the nationwide launch of CSC Olympiad 6.0 across all gram panchayats.\n\nThis year’s edition introduces adaptive artificial intelligence learning modules that tailor question difficulty based on student responses in mathematics, science, and digital literacy.\n\nOver 1.2 million rural school students across Grades 3 to 12 can now access simulated practice examinations, mock tests, and personalized performance roadmaps directly from their neighborhood Digital Seva Kendra.\n\nTop-performing students across rural districts will receive national scholarships, digital tablets, and direct mentorship from premier institutions.',
-    },
-    {
-      id: 'news-03',
-      variant: 'banking',
-      categoryTag: 'Financial Inclusion',
-      cardTitle: 'Grassroots Banking Milestone: ₹1,200+ Cr Doorstep Welfare',
-      cardSummary:
-        'Frontline Micro-ATM and DigiPay operators deliver critical Direct Benefit Transfers, pensions, and PM-KISAN funds to 14M+ rural citizens.',
-      statusNote: '₹1,200+ Cr Disbursed',
-      issuer: 'FINANCIAL INCLUSION',
-      subLabel: 'OFFICIAL REPORT',
-      sealText: '₹',
-      actionText: 'View Milestone',
-      headlineDisplay: 'Grassroots Banking Milestone: ₹1,200+ Cr Doorstep Welfare',
-      category: 'Financial Inclusion',
-      categoryType: '₹1,200 Cr Milestone',
-      pillStyle: 'bg-amber-50 text-amber-800 border border-amber-200/60',
-      brandBadge: 'FINANCIAL SERVICES',
-      badgeColor: 'border-amber-500/30 bg-amber-500/15 text-amber-300',
-      title: 'Grassroots Banking Milestone: VLEs Facilitate ₹1,200+ Cr in Doorstep Welfare',
-      description:
-        'Frontline Micro-ATM and DigiPay operators deliver critical Direct Benefit Transfers, pensions, and PM-KISAN funds to 14M+ elderly and rural citizens during festive disbursements.',
-      date: '01 Oct 2025',
-      readTime: '5 min read',
-      refCode: 'REF: CSC/FIN/2026-Q3',
-      authority: 'Financial Inclusion & Tax2win Division',
-      image: '/images/journey-clean-vle.jpg',
-      fullStory:
-        'A comprehensive impact evaluation highlights the extraordinary frontline contributions of Village Level Entrepreneurs during the festive welfare disbursement cycle.\n\nOperating Micro-ATMs, AePS biometric scanners, and DigiPay terminals, VLEs delivered doorstep banking assistance to over 14 million rural beneficiaries — specifically elderly citizens, widows, and MGNREGA workers who previously faced arduous journeys to district branch counters.\n\nTotal social welfare disbursements processed through the network surpassed ₹1,200 Crores this quarter, proving once again that the decentralized VLE network is India’s most resilient last-mile financial lifeline.',
-    },
-  ];
+  const NEWS_CARDS = NEWS_ARTICLES.slice(0, 3);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -670,6 +613,10 @@ export default function App() {
           {/* Official CSC Brand Lockup (No Vertical Lines, Digital Seva Portal Stacked Below) */}
           <a
             href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              openHomeAndScroll('home');
+            }}
             aria-label="CSC Digital Seva Portal Home"
             className="inline-flex flex-col items-center shrink-0 text-white group leading-none"
           >
@@ -689,29 +636,59 @@ export default function App() {
             aria-label="Primary navigation"
             className="hidden lg:flex items-center gap-6 xl:gap-8 text-[12.5px] xl:text-[13px] font-medium text-white/85"
           >
-            <a href="#services" className="hover:text-white transition-colors whitespace-nowrap">
+            <a
+              href="#services"
+              onClick={(e) => {
+                if (newsView !== 'home') {
+                  e.preventDefault();
+                  openHomeAndScroll('services');
+                }
+              }}
+              className="hover:text-white transition-colors whitespace-nowrap"
+            >
               {lang === 'EN' ? 'Services' : 'सेवाएं'}
             </a>
-            <a href="#about" className="hover:text-white transition-colors whitespace-nowrap">
+            <a
+              href="#about"
+              onClick={(e) => {
+                if (newsView !== 'home') {
+                  e.preventDefault();
+                  openHomeAndScroll('about');
+                }
+              }}
+              className="hover:text-white transition-colors whitespace-nowrap"
+            >
               {lang === 'EN' ? 'Jankari Suvidha' : 'जानकारी सुविधा'}
             </a>
             <a
               href="#locator"
               onClick={(e) => {
-                const el = document.getElementById('locator');
-                if (el) {
-                  e.preventDefault();
-                  el.scrollIntoView({ behavior: 'smooth' });
-                }
+                e.preventDefault();
+                openHomeAndScroll('locator');
               }}
               className="hover:text-white transition-colors whitespace-nowrap"
             >
               {lang === 'EN' ? 'Find CSC Centre' : 'सीएससी केंद्र खोजें'}
             </a>
-            <a href="#whats-new" className="hover:text-white transition-colors whitespace-nowrap">
+            <button
+              type="button"
+              onClick={openNewsDirectory}
+              className={`hover:text-white transition-colors whitespace-nowrap cursor-pointer ${
+                newsView !== 'home' ? 'text-white font-semibold' : ''
+              }`}
+            >
               {lang === 'EN' ? 'News & Updates' : 'समाचार एवं अपडेट'}
-            </a>
-            <a href="#support" className="hover:text-white transition-colors whitespace-nowrap">
+            </button>
+            <a
+              href="#support"
+              onClick={(e) => {
+                if (newsView !== 'home') {
+                  e.preventDefault();
+                  openHomeAndScroll('support');
+                }
+              }}
+              className="hover:text-white transition-colors whitespace-nowrap"
+            >
               {lang === 'EN' ? 'Help' : 'सहायता'}
             </a>
           </nav>
@@ -721,6 +698,12 @@ export default function App() {
             {/* Primary Conversion CTA: Join as VLE (Highlighted Solid Saffron Button) */}
             <a
               href="#get-started"
+              onClick={(e) => {
+                if (newsView !== 'home') {
+                  e.preventDefault();
+                  openHomeAndScroll('get-started');
+                }
+              }}
               className="inline-flex items-center gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 rounded-full bg-[#ff5500] hover:bg-[#e04800] text-white text-[11px] sm:text-[12.5px] font-semibold transition-all hover:scale-102 active:scale-98 whitespace-nowrap shadow-md"
             >
               <span>{lang === 'EN' ? 'Join as VLE' : 'वीएलई बनें'}</span>
@@ -883,6 +866,26 @@ export default function App() {
       </header>
 
       <main id="main-content" tabIndex={-1} className="outline-none">
+      {newsView === 'news-list' ? (
+        <NewsDirectoryPage
+          articles={NEWS_ARTICLES}
+          onSelectArticle={openNewsDetail}
+          onBackHome={() => openHomeAndScroll('home')}
+          onJoinVle={() => openHomeAndScroll('get-started')}
+          onSubscribeNewsletter={() => openHomeAndScroll('newsletter')}
+        />
+      ) : newsView === 'news-detail' ? (
+        <NewsDetailPage
+          article={activeNewsArticle}
+          allArticles={NEWS_ARTICLES}
+          onSelectArticle={openNewsDetail}
+          onBackToAll={openNewsDirectory}
+          onBackHome={() => openHomeAndScroll('home')}
+          onJoinVle={() => openHomeAndScroll('get-started')}
+          onSubscribeNewsletter={() => openHomeAndScroll('newsletter')}
+        />
+      ) : (
+        <>
 
       {/* ====================================================================
           03. FLAGSHIP EDITORIAL HERO — STICKY CURTAIN PARALLAX
@@ -892,19 +895,10 @@ export default function App() {
       <section
         ref={heroRef}
         id="home"
-        className="sticky top-0 z-0 w-full h-screen min-h-[560px] sm:min-h-[640px] flex items-center justify-center bg-black text-white overflow-hidden pt-20 sm:pt-24 will-change-transform"
+        className="relative z-0 w-full h-screen min-h-[560px] sm:min-h-[640px] flex items-center justify-center bg-black text-white overflow-hidden pt-20 sm:pt-24"
       >
-        {/* Physical depth scrim that dims the pinned hero subtly as the curtain slides over */}
-        <motion.div
-          style={{ opacity: heroDimOpacity }}
-          className="absolute inset-0 bg-black z-20 pointer-events-none"
-        />
-
-        {/* Hero Background Video Layer with Parallax */}
-        <motion.div
-          style={{ y: heroBgY }}
-          className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden"
-        >
+        {/* Hero Background Video Layer (Pinned flush to inset-0, zero gap on return/scroll) */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
           <video
             ref={heroVideoRef}
             src="/Hero-bg.mp4"
@@ -927,13 +921,10 @@ export default function App() {
               backgroundRepeat: 'repeat',
             }}
           />
-        </motion.div>
+        </div>
 
-        {/* Main Center Content with Parallax Drift (NO SHRINKING!) */}
-        <motion.div
-          style={{ y: heroContentY }}
-          className="relative z-10 w-full max-w-[1100px] mx-auto px-5 sm:px-8 text-center py-8"
-        >
+        {/* Main Center Content */}
+        <div className="relative z-10 w-full max-w-[1100px] mx-auto px-5 sm:px-8 text-center py-8">
           {/* Government Credential Pill — Frosted Glassmorphism */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-b from-white/[0.18] to-white/[0.06] backdrop-blur-2xl border border-white/20 text-white text-xs font-semibold tracking-wide mb-6 sm:mb-7 shadow-md mx-auto">
             <span>MINISTRY OF ELECTRONICS & IT · DIGITAL INDIA NETWORK</span>
@@ -974,7 +965,7 @@ export default function App() {
               <span>{lang === 'EN' ? 'Find CSC Centre' : 'सीएससी केंद्र खोजें'}</span>
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* WCAG 2.2.2 Time-Based Media Control: Pause/Play Background Video */}
         <button
@@ -1480,14 +1471,15 @@ export default function App() {
                 Official circulars, nationwide initiatives, and grassroots announcements.
               </p>
 
-              {/* View All link on top right */}
-              <a
-                href="#newsletter"
-                className="sm:absolute sm:right-0 sm:bottom-1 mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-black hover:text-black/75 transition-colors group cursor-pointer"
+              {/* View All button on top right */}
+              <button
+                type="button"
+                onClick={openNewsDirectory}
+                className="sm:absolute sm:right-0 sm:bottom-1 mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm sm:text-[15px] font-semibold text-black hover:text-[#ff5500] transition-colors group cursor-pointer"
               >
                 <span>View all</span>
-                <ArrowRight className="w-4 h-4 text-black group-hover:text-black/75 transition-transform group-hover:translate-x-1" />
-              </a>
+                <ArrowRight className="w-4 h-4 text-current transition-transform group-hover:translate-x-1" />
+              </button>
             </div>
 
             {/* 3 Bespoke CSC Network Story Cards: Vector Illustration Stage + Seamless Navy Blue Bottom */}
@@ -1498,11 +1490,11 @@ export default function App() {
                   tabIndex={0}
                   role="button"
                   aria-label={`${card.cardTitle} — ${card.actionText}`}
-                  onClick={() => setSelectedStory(card)}
+                  onClick={() => openNewsDetail(card)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setSelectedStory(card);
+                      openNewsDetail(card);
                     }
                   }}
                   className="relative h-[460px] sm:h-[485px] bg-[#0c1a2e] rounded-[28px] border-0 shadow-[0_8px_30px_rgba(10,22,40,0.16)] overflow-hidden hover:shadow-[0_16px_44px_rgba(10,22,40,0.28)] hover:-translate-y-1 transition-all duration-500 group cursor-pointer"
@@ -1547,7 +1539,7 @@ export default function App() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          setSelectedStory(card);
+                          openNewsDetail(card);
                         }}
                         className="px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-xs font-bold text-[#0c1a2e] transition-all shadow-xs cursor-pointer active:scale-95"
                       >
@@ -2011,6 +2003,8 @@ export default function App() {
         </section>
 
         </div>
+        </>
+      )}
       </main>
 
       {/* ====================================================================
